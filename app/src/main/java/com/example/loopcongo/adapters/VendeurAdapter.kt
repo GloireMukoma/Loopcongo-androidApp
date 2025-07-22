@@ -32,7 +32,8 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
         holder.nomVendeur.text = vendeur.nom
         holder.descriptionVendeur.text = vendeur.description
         holder.nbArticles.text = "${vendeur.nbArticlePublie} articles"
-        holder.typeLabel.text = if (vendeur.type == "immobilier") "Immobilier" else "Vendeur"
+        holder.typeLabel.text = ""
+        /*holder.typeLabel.text = if (vendeur.type == "immobilier") "Immobilier" else "Vendeur"*/
     }
 
     override fun getItemCount(): Int = vendeurs.size

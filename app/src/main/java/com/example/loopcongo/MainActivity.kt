@@ -1,11 +1,13 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.fragments.AccueilFragment
@@ -23,6 +25,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //supportActionBar?.hide()
         setContentView(R.layout.activity_main)
+        //forcer pour que la barre de notification et d'en bas prenne un couleur
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Couleur de la status bar (en haut)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.noir_fonce)
+            // Couleur de la navigation bar (en bas)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.noir_fonce)
+        }
 
         /*supportActionBar?.title = "Acceuil"
         val textView = findViewById<TextView>(R.id.toolbarTitle) // si tu utilises custom layout

@@ -35,15 +35,15 @@ class ArticleListFragment : Fragment() {
 
     private fun mockData(): List<Article> {
         return listOf(
-            Article("Créer des interfaces animées...", 1736, 48, 5, R.drawable.images),
-            Article("Pourquoi j’ai choisi Flutter...", 872, 82, 9, R.drawable.img),
-            Article("8 astuces cachées en CSS", 734, 69, 2, R.drawable.images),
-            Article("Créer des interfaces animées...", 1736, 48, 5, R.drawable.img_1),
-            Article("Pourquoi j’ai choisi Flutter...", 872, 82, 9, R.drawable.images),
-            Article("8 astuces cachées en CSS", 734, 69, 2, R.drawable.img_1),
-            Article("Créer des interfaces animées...", 1736, 48, 5, R.drawable.img_1),
-            Article("Pourquoi j’ai choisi Flutter...", 872, 82, 9, R.drawable.images),
-            Article("8 astuces cachées en CSS", 734, 69, 2, R.drawable.img),
+            Article("Créer des interfaces animées...", "10 $", "Tatiana moda", "Il y a 1min",1736, 48, 5, R.drawable.images),
+            Article("Pourquoi j’ai choisi Flutter...", "21000 CDF", "Gloire mukoma","Il y a 19min",872, 82, 9, R.drawable.img),
+            Article("8 astuces cachées en CSS", "85 $", "Tatiana moda","Il y a 1min",734, 69, 2, R.drawable.images),
+            Article("Créer des interfaces animées...", "120 $", "Etienne mulenda","Il y a 2h",1736, 48, 5, R.drawable.img_1),
+            Article("Pourquoi j’ai choisi Flutter...","8500 CDF", "Tatiana moda", "Il y a 1min",872, 82, 9, R.drawable.images),
+            Article("8 astuces cachées en CSS", "45 $", "Elisée kab","Il y a 1min",734, 69, 2, R.drawable.img_1),
+            Article("Créer des interfaces animées...","1500 CDF", "Tatiana moda", "Il y a 1h",1736, 48, 5, R.drawable.img_1),
+            Article("Pourquoi j’ai choisi Flutter...", "40 $", "Tatiana moda","Il y a 1min",872, 82, 9, R.drawable.images),
+            Article("8 astuces cachées en CSS", "22500 CDF", "Tatiana moda","Il y a 3h",734, 69, 2, R.drawable.img),
         )
     }
 }
