@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Ton style Tab personnalisé -->
+    <style name="MyTabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item> <!-- Taille du texte -->
+        <!--<item name="android:textColor">#FF000000</item>  Couleur du texte -->
+        <!-- <item name="android:textStyle">bold</item> Style du texte (gras) -->
+        <!--<item name="android:fontFamily">sans-serif</item>  Optionnel -->
+    </style>
+
+    <!-- (facultatif) si tu veux styliser la TabLayout elle-même
+    <style name="MyTabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/MyTabTextStyle</item>
+        <item name="tabSelectedTextColor">#000000</item>
+        <item name="tabIndicatorColor">#000000</item>
+        <item name="tabIndicatorHeight">4dp</item>
+    </style>-->
+    <style name="CircularImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Taille du texte des liens du tabview -->
+    <style name="TabTextSmall" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#aaa</item>
+    </style>
+    <!-- Coins arrondis (border-radius) items article et plus -->
+    <style name="RoundedImageShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item> <!-- Taille du texte -->
+    </style>
+
+    <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="itemIconSize">24dp</item> <!-- Taille de l’icône -->
+        <item name="itemTextAppearanceActive">@style/BottomNavTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavTextAppearance</item>
+    </style>
+
+
+
+
+
+</resources>

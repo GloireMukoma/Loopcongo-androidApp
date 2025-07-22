@@ -1,0 +1,71 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="95dp"
+    android:layout_height="150dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="2dp"
+    android:layout_marginRight="8dp"
+    android:clipChildren="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Image de fond -->
+        <ImageView
+            android:id="@+id/imageBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/images"
+            android:alpha="0.95" />
+
+        <!-- Avatar circulaire arrondi en haut à gauche -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="6dp"
+            android:src="@drawable/images"
+            android:scaleType="centerCrop"
+            android:padding="2dp"
+            app:shapeAppearanceOverlay="@style/CircularImageStyle" />
+
+        <!-- Texte en bas à gauche -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/textUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1" />
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Il y a 2h"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1" />
+        </LinearLayout>
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>
