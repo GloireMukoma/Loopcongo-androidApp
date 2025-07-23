@@ -29,8 +29,8 @@
 
                 <ImageView
                     android:id="@+id/logoImage"
-                    android:layout_width="165dp"
-                    android:layout_height="35dp"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/loop_logo"
                     android:contentDescription="Logo"
                     android:layout_marginEnd="8dp" />

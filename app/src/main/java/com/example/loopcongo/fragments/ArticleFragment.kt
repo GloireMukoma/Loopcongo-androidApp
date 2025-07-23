@@ -35,7 +35,7 @@ class ArticleFragment : Fragment() {
             tab.text = when (position) {
                 0 -> "Habillement"
                 1 -> "Voiture"
-                2 -> "Electronique"
+                2 -> "Autres"
                 else -> ""
             }
         }.attach()

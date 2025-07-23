@@ -21,9 +21,9 @@
         android:icon="@drawable/ic_users"/>
 
     <item
-        android:id="@+id/bNavAnnonce"
-        android:title="Annonce"
-        android:icon="@drawable/ic_alert"/>
+        android:id="@+id/bNavCitizens"
+        android:title="Citizen"
+        android:icon="@drawable/ic_citizen"/>
 
 
 </menu>

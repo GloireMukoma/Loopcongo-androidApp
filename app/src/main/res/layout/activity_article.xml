@@ -22,39 +22,52 @@
             android:padding="12dp"
             android:background="#000000">
 
-            <!-- Ligne 1 : Logo + Bouton -->
-            <LinearLayout
+            <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:paddingHorizontal="8dp">
 
+                <!-- Image de profil utilisateur à gauche -->
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/img"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_background"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background"
+                    android:contentDescription="Profil utilisateur" />
+
+
+                <!-- Logo centré -->
                 <ImageView
                     android:id="@+id/logoImage"
-                    android:layout_width="165dp"
-                    android:layout_height="35dp"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
                     android:src="@drawable/loop_logo"
-                    android:contentDescription="Logo"
-                    android:layout_marginEnd="8dp" />
+                    android:contentDescription="Logo" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
+                <!-- Bouton à droite -->
                 <Button
                     android:id="@+id/loginBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
                     android:text="Se connecter"
                     android:textSize="13sp"
                     android:textColor="#ffffff"
                     android:background="@drawable/rounded_bg"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:layout_marginEnd="4dp" />
-            </LinearLayout>
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
 
             <!-- Ligne 2 : Recherche -->
             <LinearLayout

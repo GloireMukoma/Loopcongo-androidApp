@@ -43,10 +43,18 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.bNavHome -> loadFragment(ArticleFragment())
-                R.id.bNavArticle -> loadFragment(FragmentTabVendeur())
-                R.id.bNavImmo -> loadFragment(ArticleFragment()) // <-- ici
-                R.id.bNavUsers -> loadFragment(ArticleFragment())
-                 R.id.bNavAnnonce -> loadFragment(ArticleFragment())
+                R.id.bNavArticle -> loadFragment(ArticleFragment())
+                R.id.bNavImmo ->  {
+                    val intent = Intent(this, CitizenProfileActivity ::class.java)
+                    startActivity(intent)
+                    true
+                }// <-- ici
+                R.id.bNavUsers -> loadFragment(FragmentTabVendeur())
+                 R.id.bNavCitizens -> {
+                     val intent = Intent(this, CitizenActivity::class.java)
+                     startActivity(intent)
+                     true
+                 }
             }
             true
         }
