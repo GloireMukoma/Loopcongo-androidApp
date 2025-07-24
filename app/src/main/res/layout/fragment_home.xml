@@ -1,13 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AccueilFragment">
+    android:background="#191C1E">
 
-    <WebView
-        android:id="@+id/accueilWebView"
+    <!-- TopBar personnalisée -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@color/primaryColor">
 
-</FrameLayout>
+        <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
+
+            <!-- Image de profil utilisateur à gauche -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileCard"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_centerVertical="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar_1" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Logo centré -->
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="165dp"
+                android:layout_height="33dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/loop_logo"
+                android:contentDescription="Logo" />
+
+            <!-- Bouton image login à droite (sans espace) -->
+            <ImageView
+                android:id="@+id/loginIconBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_login"
+                android:contentDescription="Icône de connexion" />
+        </RelativeLayout>
+        <!-- Ligne 2 : Recherche -->
+    </LinearLayout>
+
+    <!-- Le contenu défilable -->
+    <!-- <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:backgroundTint="#34393D"
+            android:padding="12dp">
+
+            <!-- Carousel -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/carouselView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:clipToPadding="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top vendeurs"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp" />
+
+            <!-- Profils utilisateurs -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/statutUserProfileRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:clipToPadding="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top articles"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"/>
+
+            <!-- <GridView
+                android:id="@+id/gridArticles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2"
+                android:horizontalSpacing="10dp"
+                android:verticalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none" /> -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gridArticles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    <!-- </ScrollView>-->
+</LinearLayout>

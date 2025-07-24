@@ -18,22 +18,6 @@ class AccueilFragment : Fragment() {
         // On "inflate" le layout du fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         // Charger lien du site sur un fragment android
-        val myWebview: WebView = view?.findViewById<View>(R.id.accueilWebView) as WebView
-        myWebview.loadUrl("https://www.loopcongo.com/android/home")
-
-        val webSetting: WebSettings = myWebview.settings
-        webSetting.javaScriptEnabled = true
-        myWebview.webViewClient = WebViewClient()
-
-        myWebview.canGoBack()
-        myWebview.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if(keyCode == KeyEvent.KEYCODE_BACK && event.action == MotionEvent.ACTION_UP && myWebview.canGoBack()){
-                myWebview.goBack()
-                return@OnKeyListener true
-            }
-            false
-
-        })
 
         return view
         //Item des profils users(statut whatsapp design)

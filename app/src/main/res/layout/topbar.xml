@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="@color/primaryColor">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="12dp"
-    android:background="#000000">
+    android:background="@color/primaryColor">
 
     <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
     <RelativeLayout

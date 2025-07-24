@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.fragments.AccueilFragment
 import com.example.loopcongo.fragments.ArticleFragment
 import com.example.loopcongo.fragments.FragmentTabVendeur
+import com.example.loopcongo.fragments.HomeFragment
 import com.example.loopcongo.models.Product
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -28,21 +29,21 @@ class MainActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.noir_fonce)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
             // Couleur de la navigation bar (en bas)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.noir_fonce)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.primaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"
         val textView = findViewById<TextView>(R.id.toolbarTitle) // si tu utilises custom layout
         textView.setTextColor(Color.RED)*/
 
-        loadFragment(ArticleFragment())
+        loadFragment(HomeFragment())
         // import la barre de navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.navigation_view)
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.bNavHome -> loadFragment(ArticleFragment())
+                R.id.bNavHome -> loadFragment(HomeFragment())
                 R.id.bNavArticle -> loadFragment(ArticleFragment())
                 R.id.bNavImmo ->  {
                     val intent = Intent(this, CitizenProfileActivity ::class.java)

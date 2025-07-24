@@ -35,6 +35,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
+    <!-- coins arrondis pour les images du carousel des annonces sur la home page-->
+    <style name="RoundedCarouselImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Caption">
@@ -42,13 +48,10 @@
     </style>
 
     <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
-        <item name="itemIconSize">24dp</item> <!-- Taille de l’icône -->
+        <item name="itemIconSize">25dp</item> <!-- Taille de l’icône -->
         <item name="itemTextAppearanceActive">@style/BottomNavTextAppearance</item>
         <item name="itemTextAppearanceInactive">@style/BottomNavTextAppearance</item>
     </style>
-
-
-
 
 
 </resources>
