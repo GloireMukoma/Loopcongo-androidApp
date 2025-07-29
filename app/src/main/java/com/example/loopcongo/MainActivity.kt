@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
             // Couleur de la navigation bar (en bas)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.primaryColor)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"
@@ -45,14 +45,14 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.bNavHome -> loadFragment(HomeFragment())
                 R.id.bNavArticle -> loadFragment(ArticleFragment())
-                R.id.bNavImmo ->  {
-                    val intent = Intent(this, CitizenProfileActivity ::class.java)
+                R.id.bNavImmo -> {
+                    val intent = Intent(this, DetailArticleActivity::class.java)
                     startActivity(intent)
                     true
-                }// <-- ici
+                }
                 R.id.bNavUsers -> loadFragment(FragmentTabVendeur())
                  R.id.bNavCitizens -> {
-                     val intent = Intent(this, CitizenActivity::class.java)
+                     val intent = Intent(this, PrestataireActivity::class.java)
                      startActivity(intent)
                      true
                  }

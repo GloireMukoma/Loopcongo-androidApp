@@ -41,6 +41,21 @@
         <item name="cornerSize">12dp</item>
     </style>
 
+    <!-- Taille du texte des onglets de l'activité prestataire(accueil, fil actualité, autre) -->
+    <style name="TabTextSmallOngletsPrestataire" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">10sp</item> <!-- ou 10sp si tu veux encore plus petit -->
+        <item name="android:textAllCaps">false</item> <!-- facultatif -->
+        <item name="android:textColor">#212529</item> <!-- ta couleur personnalisée -->
+    </style>
+
+    <!-- diminuer la taille des icones de mon tablatyout-->
+    <style name="CustomTabLayoutIcon">
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
+    </style>
+
+
+
 
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Caption">
@@ -48,7 +63,7 @@
     </style>
 
     <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
-        <item name="itemIconSize">25dp</item> <!-- Taille de l’icône -->
+        <item name="itemIconSize">26dp</item> <!-- Taille de l’icône -->
         <item name="itemTextAppearanceActive">@style/BottomNavTextAppearance</item>
         <item name="itemTextAppearanceInactive">@style/BottomNavTextAppearance</item>
     </style>

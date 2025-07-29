@@ -3,14 +3,10 @@ package com.example.loopcongo.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.ArticleAdapter
+import com.example.loopcongo.adapters.articles.ArticleAdapter
 import com.example.loopcongo.models.Article
 
 class ArticleListFragment : Fragment() {

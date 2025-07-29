@@ -16,14 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
+
         <activity
-            android:name=".CitizenProfileActivity"
+            android:name=".DetailArticleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileVendeurActivity"
+            android:exported="false"
+            android:parentActivityName=".PrestataireActivity" />
+        <activity
+            android:name=".PrestataireActivity"
+            android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CitizenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
+            android:theme="@style/Theme.Loopcongo" />
         <activity
             android:name=".ArticleActivity"
             android:exported="false"

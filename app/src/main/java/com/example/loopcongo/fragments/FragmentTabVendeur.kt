@@ -27,8 +27,9 @@ class FragmentTabVendeur : Fragment() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Vendeurs"
-                1 -> "Immobiliers"
+                0 -> "Vendeur"
+                1 -> "Immobilier"
+                2 -> "Fournisseur"
                 else -> ""
             }
         }.attach()

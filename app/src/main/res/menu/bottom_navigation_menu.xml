@@ -22,7 +22,7 @@
 
     <item
         android:id="@+id/bNavCitizens"
-        android:title="Citizen"
+        android:title="Prestataire"
         android:icon="@drawable/ic_citizen"/>
 
 

@@ -1,4 +1,4 @@
-package com.example.loopcongo.adapters
+package com.example.loopcongo.adapters.articles
 
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +29,7 @@ class ArticleAdapter(private val articles: List<Article>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = articles[position]
-        holder.title.text = article.title
+        holder.title.text = article.nom
         holder.prix.text = article.prix
         holder.auteur.text = article.auteur
         holder.timeAgo.text = article.articleTimeAgo

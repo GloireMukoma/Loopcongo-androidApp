@@ -1,5 +1,6 @@
 package com.example.loopcongo.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,12 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.loopcongo.ProfileVendeurActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.*
+import com.example.loopcongo.adapters.articles.ArticleAdapter
 import com.example.loopcongo.models.Article
 import com.example.loopcongo.models.CarouselItem
 import com.example.loopcongo.models.Vendeur
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
@@ -35,7 +37,6 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // RecyclerView horizontal des utilisateurs (design statut whatsapp home page)
         statutUserrecyclerView = view.findViewById(R.id.statutUserProfileRecycler)
         statutUserrecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
@@ -48,7 +49,14 @@ class HomeFragment : Fragment() {
             Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.avatar_1, "immobilier")
         )
 
-        statutUserrecyclerView.adapter = StatutUserProfileAdapter(users)
+        statutUserrecyclerView.adapter = StatutUserProfileAdapter(users) { clickedUser ->
+            val intent = Intent(requireContext(), ProfileVendeurActivity::class.java)
+            intent.putExtra("user_name", clickedUser.nom)
+            intent.putExtra("user_description", clickedUser.description)
+            intent.putExtra("user_type", clickedUser.type)
+            intent.putExtra("user_image", clickedUser.imageResId)
+            startActivity(intent)
+        }
 
         // Defilement automatique de la carousel d'images d'annonces sur la page d'accueil
         //val imageList = listOf(R.drawable.chaussures, R.drawable.shoes, R.drawable.shoes_men)

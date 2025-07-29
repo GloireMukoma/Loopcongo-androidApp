@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Image des habits -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            card_view:cardCornerRadius="9dp"
+            card_view:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/articleImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chaussures" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Titre -->
+        <TextView
+            android:id="@+id/titreArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Habits pour femmes, toutes les couleurs sont disponibles"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/descriptionArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Habits turquie pour femmes"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Prix -->
+        <TextView
+            android:id="@+id/prix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix: 35 $"
+            android:textColor="#FFC107"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Détails de publication -->
+        <TextView
+            android:id="@+id/detailsPublication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="📅 Publié il y a 1 mois"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp" />
+        <TextView
+            android:id="@+id/auteurDetailArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Par: Loopcongo"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp" />
+
+        <!-- Zone de message
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/messageInput"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:hint="Votre message au vendeur..."
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/envoyerBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Envoyer"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>-->
+
+        <!-- Bouton WhatsApp -->
+        <Button
+            android:id="@+id/btnWhatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="💬 Discutez sur Whatsapp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="@color/secondaryColor"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+</ScrollView>

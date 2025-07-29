@@ -1,4 +1,4 @@
-package com.example.loopcongo.fragments.users
+package com.example.loopcongo.fragments.vendeurs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.example.loopcongo.R
 import com.example.loopcongo.adapters.VendeurAdapter
 import com.example.loopcongo.models.Vendeur
 
-class FragmentListeVendeur : Fragment() {
+class OngletListVendeurFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: VendeurAdapter
@@ -20,8 +20,8 @@ class FragmentListeVendeur : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_liste_vendeur, container, false)
-        recyclerView = view.findViewById(R.id.userVendeurRecyclerView)
+        val view = inflater.inflate(R.layout.onglet_liste_vendeur, container, false)
+        recyclerView = view.findViewById(R.id.listVendeurRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val tous = getFakeVendeurs()

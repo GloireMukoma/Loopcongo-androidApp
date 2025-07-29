@@ -12,77 +12,9 @@
         android:elevation="4dp">
 
         <!-- TopBar personnalisée -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:background="#000000">
+        <include
+            layout="@layout/topbar" />
 
-            <!-- Ligne 1 : Logo + Bouton -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="8dp">
-
-                <ImageView
-                    android:id="@+id/logoImage"
-                    android:layout_width="160dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/loop_logo"
-                    android:contentDescription="Logo"
-                    android:layout_marginEnd="8dp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/loginBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:text="Se connecter"
-                    android:textSize="13sp"
-                    android:textColor="@color/secondaryColor"
-                    android:backgroundTint="@color/primaryColor"
-                    android:background="@drawable/rounded_bg"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:layout_marginEnd="4dp" />
-            </LinearLayout>
-
-            <!-- Ligne 2 : Recherche -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:background="@drawable/search_bg"
-                android:paddingHorizontal="12dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_search"
-                    android:tint="#cccccc" />
-
-                <EditText
-                    android:id="@+id/searchBar"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:hint="Rechercher un article..."
-                    android:textColor="#ffffff"
-                    android:textColorHint="#aaaaaa"
-                    android:textSize="16dp"
-                    android:background="@android:color/transparent"
-                    android:paddingStart="8dp"
-                    android:inputType="text" />
-            </LinearLayout>
-        </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Onglets -->
@@ -90,7 +22,7 @@
         android:id="@+id/vendeurTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#121212"
+        android:background="@color/secondprimaryColor"
         app:tabTextAppearance="@style/TabTextSmall"
         app:tabIndicatorColor="@android:color/holo_blue_light"
         app:tabTextColor="#aaa"
@@ -102,5 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#121212" />
+        android:background="@color/secondprimaryColor" />
 </LinearLayout>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@color/primaryColor">
+        android:background="@color/secondprimaryColor">
 
         <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
         <RelativeLayout
@@ -114,8 +114,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginTop="10dp" />
 
             <!-- <GridView
                 android:id="@+id/gridArticles"
@@ -130,6 +129,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gridArticles"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="35dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

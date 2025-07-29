@@ -1,4 +1,4 @@
-package com.example.loopcongo.adapters
+package com.example.loopcongo.adapters.articles
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class ArticleGridAdapter(private val context: Context, private val articles: Lis
         val article = articles[position]
 
         view.findViewById<ImageView>(R.id.gridimageArticle).setImageResource(article.imageResId)
-        view.findViewById<TextView>(R.id.gridtitleArticle).text = article.title
+        view.findViewById<TextView>(R.id.gridtitleArticle).text = article.nom
         view.findViewById<TextView>(R.id.gridpriceArticle).text = article.prix
 
         return view
