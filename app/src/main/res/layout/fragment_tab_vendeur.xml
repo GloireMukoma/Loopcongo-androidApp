@@ -22,11 +22,12 @@
         android:id="@+id/vendeurTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/secondprimaryColor"
-        app:tabTextAppearance="@style/TabTextSmall"
-        app:tabIndicatorColor="@android:color/holo_blue_light"
-        app:tabTextColor="#aaa"
-        app:tabSelectedTextColor="#fff"/>
+        android:background="@color/primaryColor"
+        app:tabIndicatorColor="#FFD700"
+        app:tabSelectedTextColor="#FFD700"
+        app:tabIconTint="@color/my_tab_icon_color"
+        app:tabTextColor="#CCCCCC"
+        app:tabTextAppearance="@style/TabTextSmall" />
 
     <!-- Contenu des onglets -->
     <androidx.viewpager2.widget.ViewPager2
@@ -34,5 +35,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/secondprimaryColor" />
+        android:background="@color/white" />
 </LinearLayout>

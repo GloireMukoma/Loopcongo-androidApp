@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp"
+    card_view:cardUseCompatPadding="false">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Image de l’article -->
+        <ImageView
+            android:id="@+id/img_article"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="Image de l’article"
+            android:src="@drawable/shoes_men" />
+
+        <!-- Bloc texte superposé en bas avec fond semi-transparent -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="#80000000"
+            android:padding="6dp">
+
+            <!-- Titre -->
+            <TextView
+                android:id="@+id/nom_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nom de l'article"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Prix -->
+            <TextView
+                android:id="@+id/prix_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prix"
+                android:textStyle="bold"
+                android:textColor="#CCCCCC"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+
+            <!-- Auteur avec icône -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_person"
+                    android:layout_marginEnd="4dp"
+                    app:tint="#CCCCCC" />
+
+                <TextView
+                    android:id="@+id/auteur_article"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auteur"
+                    android:textColor="#DDDDDD"
+                    android:textSize="11sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- Date avec icône -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_time"
+                    app:tint="#CCCCCC"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/date_article"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Il y a 2h"
+                    android:textColor="#CCCCCC"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

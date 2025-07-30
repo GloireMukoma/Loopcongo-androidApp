@@ -26,8 +26,8 @@ class ProfilVendeursOngletArticleFragment : Fragment() {
         // Tu peux remplacer cet appel plus tard par les articles du vendeur
         val articles = articlesList()
 
-        adapter = ArticleGridAdapter(requireContext(), articles)
-        gridView.adapter = adapter
+        /*adapter = ArticleGridAdapter(requireContext(), articles)
+        gridView.adapter = adapter*/
 
         return view
     }

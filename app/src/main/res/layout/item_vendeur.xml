@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="12dp"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="#282828"
+    app:cardBackgroundColor="@color/white"
     card_view:cardElevation="4dp">
 
     <LinearLayout
@@ -36,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="Nom du vendeur"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/white" />
+                android:textSize="14sp"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/descriptionVendeur"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textSize="14sp"
-                android:textColor="@color/white" />
+                android:textColor="#888888" />
 
             <TextView
                 android:id="@+id/nbArticles"

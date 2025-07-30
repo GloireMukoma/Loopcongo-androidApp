@@ -16,9 +16,9 @@ class ArticleAdapter(private val articles: List<Article>) : RecyclerView.Adapter
         val views = view.findViewById<TextView>(R.id.views)
         val prix = view.findViewById<TextView>(R.id.articlePrix)
         val auteur = view.findViewById<TextView>(R.id.articleAuteur)
-        val timeAgo = view.findViewById<TextView>(R.id.articleTimeAgo)
+        /*val timeAgo = view.findViewById<TextView>(R.id.articleTimeAgo)
         val likes = view.findViewById<TextView>(R.id.likes)
-        val comments = view.findViewById<TextView>(R.id.comments)
+        val comments = view.findViewById<TextView>(R.id.comments)*/
         val image = view.findViewById<ImageView>(R.id.articleImage)
     }
 
@@ -32,10 +32,10 @@ class ArticleAdapter(private val articles: List<Article>) : RecyclerView.Adapter
         holder.title.text = article.nom
         holder.prix.text = article.prix
         holder.auteur.text = article.auteur
-        holder.timeAgo.text = article.articleTimeAgo
+        /*holder.timeAgo.text = article.articleTimeAgo
         holder.views.text = ""
         holder.likes.text = ""
-        holder.comments.text = ""
+        holder.comments.text = ""*/
         holder.image.setImageResource(article.imageResId)
 
         /*holder.views.text = "👁 ${article.views}"

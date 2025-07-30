@@ -41,12 +41,12 @@ class HomeFragment : Fragment() {
         statutUserrecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         val users = listOf(
-            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.avatar, "article"),
-            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.avatar_1, "immobilier"),
-            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.avatar_2, "article"),
-            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.avatar_4, "immobilier"),
-            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.avatar, "article"),
-            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.avatar_1, "immobilier")
+            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.user5, "article"),
+            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.user1, "immobilier"),
+            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.user2, "article"),
+            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.user3, "immobilier"),
+            Vendeur("Shabani Market", "Articles divers", 23, R.drawable.user4, "article"),
+            Vendeur("Congo Immo", "Maisons à vendre", 8, R.drawable.user2, "immobilier")
         )
 
         statutUserrecyclerView.adapter = StatutUserProfileAdapter(users) { clickedUser ->

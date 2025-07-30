@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.loopcongo.fragments.AccueilFragment
-import com.example.loopcongo.fragments.ArticleFragment
+import com.example.loopcongo.fragments.article.ArticleFragment
 import com.example.loopcongo.fragments.FragmentTabVendeur
 import com.example.loopcongo.fragments.HomeFragment
 import com.example.loopcongo.models.Product

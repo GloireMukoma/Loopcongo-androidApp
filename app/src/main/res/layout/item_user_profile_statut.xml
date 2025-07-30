@@ -30,7 +30,10 @@
             android:src="@drawable/images"
             android:scaleType="centerCrop"
             android:padding="2dp"
-            app:shapeAppearanceOverlay="@style/CircularImageStyle" />
+            app:shapeAppearanceOverlay="@style/CircularImageStyle"
+            app:strokeColor="@android:color/holo_orange_light"
+            app:strokeWidth="2dp" />
+
 
         <!-- Texte en bas à gauche -->
         <LinearLayout
@@ -46,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nom"
-                android:textColor="@android:color/white"
+                android:textColor="@color/low_white"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 android:shadowColor="#80000000"
@@ -59,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Il y a 2h"
-                android:textColor="@android:color/white"
+                android:textColor="@color/low_white"
                 android:textSize="12sp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"

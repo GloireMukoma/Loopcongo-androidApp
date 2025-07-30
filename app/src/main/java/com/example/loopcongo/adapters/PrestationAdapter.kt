@@ -16,7 +16,7 @@ class PrestationAdapter(private val prestations: List<Prestation>) :
         val imagePrestation: ImageView = itemView.findViewById(R.id.imagePrestation)
         //val titre: TextView = itemView.findViewById(R.id.titrePrestation)
         val description: TextView = itemView.findViewById(R.id.descriptionPrestation)
-        val prix: TextView = itemView.findViewById(R.id.prixPrestation)
+        //val prix: TextView = itemView.findViewById(R.id.prixPrestation)
         val nomPrestataire: TextView = itemView.findViewById(R.id.nomPrestataire)
         val domaine: TextView = itemView.findViewById(R.id.domainePrestataire)
         val localisation: TextView = itemView.findViewById(R.id.localisationPrestation)
@@ -33,7 +33,7 @@ class PrestationAdapter(private val prestations: List<Prestation>) :
         holder.imagePrestation.setImageResource(prestation.imageResId)
         //holder.titre.text = prestation.titre
         holder.description.text = prestation.description
-        holder.prix.text = "${prestation.prix} FC"
+        //holder.prix.text = "${prestation.prix} FC"
         holder.nomPrestataire.text = prestation.nomPrestataire
         holder.domaine.text = prestation.domaine
         holder.localisation.text = prestation.localisation

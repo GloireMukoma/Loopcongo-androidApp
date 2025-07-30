@@ -6,7 +6,7 @@
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/primaryColor"> <!-- Couleur appliquée ici -->
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +14,7 @@
         android:orientation="horizontal"
         android:padding="8dp">
 
+        <!-- Image article -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/articleImage"
             android:layout_width="90dp"
@@ -23,57 +24,93 @@
             android:src="@drawable/img"
             app:shapeAppearanceOverlay="@style/RoundedImageShape" />
 
-
+        <!-- Section infos -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <!-- Titre -->
             <TextView
                 android:id="@+id/articleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Titre de l'article"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
+            <!-- Prix -->
             <TextView
                 android:id="@+id/articlePrix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="18"
-                android:textColor="@color/secondaryColor"
+                android:text="18 $"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="14sp"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
-            <TextView
-                android:id="@+id/articleAuteur"
+            <!-- Auteur avec icône -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nom user"
-                android:textColor="#888888"
-                android:textSize="12sp"
-                android:maxLines="2"
-                android:ellipsize="end" />
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/articleTimeAgo"
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_person"
+                    app:tint="#888888"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/articleAuteur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom user"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- Temps avec icône -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18min"
-                android:textColor="#888888"
-                android:textSize="11sp"
-                android:maxLines="2"
-                android:ellipsize="end" />
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical">
 
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_time"
+                    app:tint="#888888"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/articleTimeAgo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18min"
+                    android:textColor="#888888"
+                    android:textSize="11sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- Statistiques
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="4dp">
 
@@ -99,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:text="💬 3"
                     android:textColor="#aaaaaa" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

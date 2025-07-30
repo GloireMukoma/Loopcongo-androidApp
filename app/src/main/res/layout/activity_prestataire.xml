@@ -14,6 +14,7 @@
         android:background="#212529"
         app:tabIndicatorColor="#FFD700"
         app:tabSelectedTextColor="#FFD700"
+        app:tabIconTint="@color/my_tab_icon_color"
         app:tabTextColor="#CCCCCC"
         app:tabTextAppearance="@style/TabTextSmallOngletsPrestataire"
         app:tabMode="fixed"

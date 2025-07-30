@@ -5,7 +5,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loopcongo.fragments.prestataire.AccueilFragment
 import com.example.loopcongo.fragments.prestataire.FilActualiteFragment
-import com.example.loopcongo.fragments.prestataire.AutreFragment
+import com.example.loopcongo.fragments.prestataire.OffresPrestationFragment
+import com.example.loopcongo.models.FilActualitePrestataire
 
 class PrestatairePagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int = 3
@@ -14,7 +15,7 @@ class PrestatairePagerAdapter(fragmentActivity: FragmentActivity) : FragmentStat
         return when (position) {
             0 -> AccueilFragment()
             1 -> FilActualiteFragment()
-            2 -> AutreFragment()
+            2 -> OffresPrestationFragment()
             else -> AccueilFragment()
         }
     }
