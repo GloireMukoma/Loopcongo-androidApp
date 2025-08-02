@@ -90,22 +90,18 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="7dp"/>
 
-            <!-- Profils utilisateurs -->
+            <!-- Liste horizontale des profils utilisateurs -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/statutUserProfileRecycler"
+                android:id="@+id/statutUserProfileHomePageRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 android:overScrollMode="never"
-                android:scrollbars="none"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:scrollbars="none" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,22 +110,11 @@
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp" />
-
-            <!-- <GridView
-                android:id="@+id/gridArticles"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:numColumns="2"
-                android:horizontalSpacing="10dp"
-                android:verticalSpacing="10dp"
-                android:stretchMode="columnWidth"
-                android:layout_marginTop="8dp"
-                android:scrollbars="none" /> -->
+                android:layout_marginTop="5dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/gridArticles"
-                android:layout_marginTop="8dp"
+                android:id="@+id/topArticlesHomePageRecyclerView"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="35dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
