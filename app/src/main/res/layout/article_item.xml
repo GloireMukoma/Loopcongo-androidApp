@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Titre de l'article"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:maxLines="2"
                 android:ellipsize="end" />

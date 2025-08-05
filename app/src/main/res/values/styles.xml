@@ -56,8 +56,6 @@
 
 
 
-
-
     <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textSize">12sp</item> <!-- Taille du texte -->
     </style>

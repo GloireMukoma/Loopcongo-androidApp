@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:padding="10dp"
     android:background="@color/ThreePrimaryColor">
 
     <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
@@ -19,8 +19,20 @@
         android:layout_marginBottom="8dp"
         android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="6dp"
+            android:scaleType="centerCrop"
+            android:padding="2dp"
+            app:shapeAppearanceOverlay="@style/CircularImageStyle"
+            app:strokeColor="@android:color/holo_orange_light"
+            app:strokeWidth="2dp"
+            android:src="@drawable/user_profile" />
+
         <!-- Image de profil utilisateur à gauche -->
-        <androidx.cardview.widget.CardView
+        <!-- <androidx.cardview.widget.CardView
             android:id="@+id/profileCard"
             android:layout_width="37dp"
             android:layout_height="37dp"
@@ -29,6 +41,7 @@
             android:layout_centerVertical="true"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
+            app:strokeColor="@android:color/holo_orange_light"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true">
 
@@ -37,8 +50,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                app:strokeColor="@android:color/holo_orange_light"
                 android:src="@drawable/img" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView> -->
 
         <!-- Logo centré -->
         <ImageView

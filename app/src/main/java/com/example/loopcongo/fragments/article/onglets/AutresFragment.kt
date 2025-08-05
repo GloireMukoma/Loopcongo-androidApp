@@ -22,13 +22,9 @@ class AutresFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         // Exemple de données
-        val articles = listOf(
-            ArticleGridView(R.drawable.shoes_men, "Robe d'été", "Awa Boutique", "il y a 3h", "25.000 FC"),
-            ArticleGridView(R.drawable.shoes, "Costume Homme", "ModaLux", "hier", "150.000 FC"),
-            ArticleGridView(R.drawable.chaussures, "T-Shirt Graphique", "UrbanStyle", "il y a 5h", "12.000 FC")
-        )
+        /*
         adapter = ArticleGridAdapter(articles)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapter*/
 
         return view
     }

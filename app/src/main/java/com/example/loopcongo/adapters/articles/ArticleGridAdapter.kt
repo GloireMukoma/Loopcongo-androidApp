@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.loopcongo.R
-import com.example.loopcongo.models.ArticleGridView
+import com.example.loopcongo.models.ArticleApi
 
-class ArticleGridAdapter(private val articles: List<ArticleGridView>) :
+class ArticleGridAdapter(private val articles: List<ArticleApi>) :
     RecyclerView.Adapter<ArticleGridAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgArticle: ImageView = view.findViewById(R.id.img_article)
-        val nom: TextView = view.findViewById(R.id.nom_article)
+        val article_nom: TextView = view.findViewById(R.id.nom_article)
         val auteur: TextView = view.findViewById(R.id.auteur_article)
         val date: TextView = view.findViewById(R.id.date_article)
         val prix: TextView = view.findViewById(R.id.prix_article)
@@ -28,12 +29,29 @@ class ArticleGridAdapter(private val articles: List<ArticleGridView>) :
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = articles[position]
-        holder.imgArticle.setImageResource(article.imageResId)
-        holder.nom.text = article.titre
-        holder.auteur.text = article.auteur
-        holder.date.text = article.date
-        holder.prix.text = article.prix
+
+        // Charger image depuis URL
+        Glide.with(holder.itemView.context)
+            .load("https://loopcongo.com/" +article.file_url)
+            .placeholder(R.drawable.shoes)
+            .into(holder.imgArticle)
+
+        // Remplir les champs
+        holder.article_nom.text = article.nom
+        holder.prix.text = "${article.prix} ${article.devise}"
+
+        // Auteur : non fourni dans l’API, on affiche "Inconnu" ou tu peux afficher l’ID ou rien
+        holder.auteur.text = article.nom
+
+        // Date brute ou formatée
+        holder.date.text = formatRelativeDate(article.created_at)
     }
 
     override fun getItemCount(): Int = articles.size
+
+    // Utilitaire simple pour afficher "il y a X jours/heures"
+    private fun formatRelativeDate(createdAt: String): String {
+        // Exemple basique, à remplacer par un vrai calcul de date si besoin
+        return createdAt.take(10) // juste pour montrer la date yyyy-MM-dd
+    }
 }

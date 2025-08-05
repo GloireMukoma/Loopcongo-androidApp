@@ -18,6 +18,7 @@ class ArticleApiAdapter(private val articles: List<ArticleApi>) :
         val image: ImageView = itemView.findViewById(R.id.articleImage)
         val title: TextView = itemView.findViewById(R.id.articleTitle)
         val prix: TextView = itemView.findViewById(R.id.articlePrix)
+        val timeAgo: TextView = itemView.findViewById(R.id.articleTimeAgo)
         //val badge: TextView = itemView.findViewById(R.id.articleBadge)
     }
 
@@ -31,6 +32,8 @@ class ArticleApiAdapter(private val articles: List<ArticleApi>) :
         val article = articles[position]
         holder.title.text = article.nom
         holder.prix.text = "${article.prix} ${article.devise}"
+
+        holder.timeAgo.text = article.created_at
 
         Glide.with(holder.itemView.context)
             .load("https://loopcongo.com/" + article.file_url)

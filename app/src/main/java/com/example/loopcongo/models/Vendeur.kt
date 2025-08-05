@@ -1,8 +1,21 @@
 package com.example.loopcongo.models
 data class Vendeur(
+    val id: Int,
+    val type_account: String,
     val nom: String,
-    val description: String,
-    val nbArticlePublie: Int,
-    val imageResId: Int,
-    val type: String // "article" ou "immobilier"
+    val is_sponsored: Int,
+    val boost_type: String?,
+    val sponsored_until: String?,
+    val password: String?,        // Facultatif si jamais tu ne veux pas l'utiliser
+    val contact: String?,
+    val city: String?,
+    val file_url: String?,
+    val about: String?
 )
+
+data class VendeurResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Vendeur>
+)
+

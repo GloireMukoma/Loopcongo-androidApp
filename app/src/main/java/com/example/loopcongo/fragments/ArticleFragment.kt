@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.ArticleViewPagerAdapter
+import com.example.loopcongo.adapters.articles.ArticleViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -35,7 +35,11 @@ class ArticleFragment : Fragment() {
             tab.text = when (position) {
                 0 -> "Habillement"
                 1 -> "Voiture"
-                2 -> "Autres"
+                2 -> "Telephone"
+                3 -> "Chaussures"
+                4 -> "Electronique"
+                5 -> "Sac"
+                6 -> "Autres"
                 else -> ""
             }
         }.attach()

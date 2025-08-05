@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.fragments.article.ArticleFragment
-import com.example.loopcongo.fragments.FragmentTabVendeur
 import com.example.loopcongo.fragments.HomeFragment
+import com.example.loopcongo.fragments.vendeurs.VendeurMainFragment
 import com.example.loopcongo.models.Product
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             // Couleur de la status bar (en haut)
             window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
             // Couleur de la navigation bar (en bas)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            //window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                R.id.bNavUsers -> loadFragment(FragmentTabVendeur())
+                R.id.bNavUsers -> loadFragment(VendeurMainFragment())
                  R.id.bNavCitizens -> {
                      val intent = Intent(this, PrestataireActivity::class.java)
                      startActivity(intent)
