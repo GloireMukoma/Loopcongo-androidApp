@@ -5,32 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.example.loopcongo.R
-import com.example.loopcongo.models.FilActualitePrestataire
+import com.example.loopcongo.models.Prestation
 
 class FilActualitePrestataireAdapter(
-    context: Context,
-    private val articles: List<FilActualitePrestataire>
-) : ArrayAdapter<FilActualitePrestataire>(context, 0, articles) {
+    private val mContext: Context,
+    private val publications: List<Prestation>
+) : ArrayAdapter<Prestation>(mContext, 0, publications) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context)
+        val view = convertView ?: LayoutInflater.from(mContext)
             .inflate(R.layout.item_fil_actualite, parent, false)
 
-        val avatar: ImageView = view.findViewById(R.id.imgUserFilActu)
+        val publication = getItem(position)
+
+        val userProfilImg: ImageView = view.findViewById(R.id.profilUserImgFilActu)
+        val image: ImageView = view.findViewById(R.id.imagePublicationFilActu)
         val username: TextView = view.findViewById(R.id.usernameFilActu)
-        val createdAt: TextView = view.findViewById(R.id.createdAtFilActu)
-        val texteContenu: TextView = view.findViewById(R.id.texteContenuFilActuPrestataire)
-        val imageArticle: ImageView = view.findViewById(R.id.imageFilActuPrestataire)
+        val profession: TextView = view.findViewById(R.id.professionFilActu)
+        val textContenu: TextView = view.findViewById(R.id.texteContenuFilActu)
+        val createdAt: TextView = view.findViewById(R.id.datePublicationFilActu)
 
-        val item = articles[position]
+        username.text = publication?.prestataire_nom ?: ""
+        profession.text = publication?.prestataire_profession ?: ""
+        textContenu.text = publication?.description ?: ""
+        createdAt.text = publication?.date_publication ?: ""
 
-        avatar.setImageResource(item.avatarResId)
-        username.text = item.username
-        createdAt.text = item.createdAt
-        texteContenu.text = item.texteContenu
-        imageArticle.setImageResource(item.imageArticleResId)
+        Glide.with(mContext)
+            .load("https://loopcongo.com/" + (publication?.photo_profil ?: ""))
+            .placeholder(R.drawable.avatar)
+            .into(userProfilImg)
+
+        Glide.with(mContext)
+            .load("https://loopcongo.com/" + (publication?.image ?: ""))
+            .placeholder(R.drawable.chaussures)
+            .into(image)
 
         return view
     }
 }
+

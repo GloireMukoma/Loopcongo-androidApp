@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:padding="12dp"
-    android:layout_margin="10dp">
+    android:padding="12dp">
 
     <!-- Ligne du haut : avatar + infos -->
     <LinearLayout
@@ -16,14 +15,14 @@
 
         <!-- Avatar dans CardView (aligné en haut) -->
         <androidx.cardview.widget.CardView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
             android:layout_gravity="top">
 
             <ImageView
-                android:id="@+id/imgUserFilActu"
+                android:id="@+id/profilUserImgFilActu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -36,6 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="-4dp"
             android:layout_weight="1">
 
             <!-- Nom + Heure -->
@@ -52,10 +52,10 @@
                     android:text="Le Monde"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/createdAtFilActu"
+                    android:id="@+id/datePublicationFilActu"
                     android:layout_marginStart="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,31 +66,58 @@
 
             <!-- Texte contenu -->
             <TextView
-                android:id="@+id/texteContenuFilActuPrestataire"
+                android:id="@+id/texteContenuFilActu"
                 android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"
                 android:text="En direct, François Bayrou premier ministre : Bruno Retailleau a été reçu à Matignon vendredi soir"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:maxLines="3"/>
         </LinearLayout>
     </LinearLayout>
 
         <!-- Image de l’article dans CardView, indentée -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="180dp"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="52dp"
             android:layout_marginEnd="0dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="3dp">
 
         <ImageView
-            android:id="@+id/imageFilActuPrestataire"
+            android:id="@+id/imagePublicationFilActu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/chaussures" />
     </androidx.cardview.widget.CardView>
+    <!-- Profession -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="3dp"
+            app:tint="@color/gray"
+            android:src="@drawable/ic_citizen" />
+
+        <TextView
+            android:id="@+id/professionFilActu"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:text="Profession"
+            android:textSize="13sp" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -28,7 +28,7 @@
             android:padding="2dp"
             app:shapeAppearanceOverlay="@style/CircularImageStyle"
             app:strokeColor="@android:color/holo_orange_light"
-            app:strokeWidth="2dp"
+            app:strokeWidth="1dp"
             android:src="@drawable/user_profile" />
 
         <!-- Image de profil utilisateur à gauche -->

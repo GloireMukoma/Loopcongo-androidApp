@@ -12,10 +12,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class PrestataireActivity : AppCompatActivity() {
 
-    private val tabTitles = arrayOf("Accueil", "Fil d'actualité", "Offre")
+    private val tabTitles = arrayOf("Accueil", "Fil d'actualité", "Prestataire", "Offre")
     private val tabIcons = arrayOf(
         R.drawable.ic_home,
         R.drawable.ic_encontinu,
+        R.drawable.ic_person,
         R.drawable.ic_more
     )
 

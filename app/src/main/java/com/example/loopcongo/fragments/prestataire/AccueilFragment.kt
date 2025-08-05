@@ -58,7 +58,7 @@ class AccueilFragment : Fragment() {
         statutPrestataireRecyclerView.isNestedScrollingEnabled = false
         statutPrestataireRecyclerView.overScrollMode = View.OVER_SCROLL_NEVER
 
-        val prestataires = listOf(
+        /*val prestataires = listOf(
             Prestataire(1, "Glody mukoma", "Plombier", "Disponible 24h/24", R.drawable.user1),
             Prestataire(2, "Sarah km", "Coiffeuse", "Salon moderne", R.drawable.user2),
             Prestataire(3, "John living", "Mécanicien", "Spécialiste 4x4", R.drawable.user3),
@@ -68,12 +68,12 @@ class AccueilFragment : Fragment() {
             Prestataire(7, "Glody", "Plombier", "Disponible 24h/24", R.drawable.user4),
             Prestataire(8, "Sarah", "Coiffeuse", "Salon moderne", R.drawable.user1),
             Prestataire(9, "John", "Mécanicien", "Spécialiste 4x4", R.drawable.user5)
-        )
+        )*/
 
-        statutPrestataireRecyclerView.adapter = StatutPrestataireProfileAdapter(prestataires)
+        //statutPrestataireRecyclerView.adapter = StatutPrestataireProfileAdapter(prestataires)
 
         // Top prestations (vertical)
-        val prestations = listOf(
+        /*val prestations = listOf(
             Prestation(1, "Coupe de cheveux", "Coiffure pour homme tendance", 5000.0, R.drawable.user1, "David", "Coiffeur", "Kinshasa"),
             Prestation(2, "Manucure", "Manucure et soins des ongles", 8000.0, R.drawable.user2, "Jessica", "Esthéticienne", "Gombe"),
             Prestation(3, "Nettoyage", "Service de nettoyage à domicile", 12000.0, R.drawable.user3, "Jean", "Agent d'entretien", "Limete"),
@@ -82,10 +82,9 @@ class AccueilFragment : Fragment() {
             Prestation(6, "Nettoyage", "Service de nettoyage à domicile", 12000.0, R.drawable.user1, "Jean", "Agent d'entretien", "Limete")
         )
 
-
         val prestationRecyclerView = view.findViewById<RecyclerView>(R.id.topPrestationPageAcceuilRecyclerView)
         prestationRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        prestationRecyclerView.adapter = PrestationAdapter(prestations)
+        prestationRecyclerView.adapter = PrestationAdapter(prestations)*/
 
         return view
     }

@@ -29,7 +29,7 @@ class StatutPrestataireProfileAdapter(private val profiles: List<Prestataire>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val profile = profiles[position]
-        holder.background.setImageResource(profile.imageResId)
+        //holder.background.setImageResource(profile.photo_profil)
         //holder.avatar.setImageResource(profile.imageResId)
         holder.name.text = profile.username
         //holder.time.text = profile.description

@@ -30,13 +30,13 @@ class PrestationAdapter(private val prestations: List<Prestation>) :
 
     override fun onBindViewHolder(holder: PrestationViewHolder, position: Int) {
         val prestation = prestations[position]
-        holder.imagePrestation.setImageResource(prestation.imageResId)
+        //holder.imagePrestation.setImageResource(prestation.image)
         //holder.titre.text = prestation.titre
         holder.description.text = prestation.description
         //holder.prix.text = "${prestation.prix} FC"
-        holder.nomPrestataire.text = prestation.nomPrestataire
-        holder.domaine.text = prestation.domaine
-        holder.localisation.text = prestation.localisation
+        holder.nomPrestataire.text = prestation.prestataire_nom
+        holder.domaine.text = prestation.prestataire_profession
+        holder.localisation.text = prestation.titre
     }
 
     override fun getItemCount(): Int = prestations.size

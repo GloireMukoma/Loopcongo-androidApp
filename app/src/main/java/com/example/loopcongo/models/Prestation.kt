@@ -1,12 +1,18 @@
 package com.example.loopcongo.models
-
 data class Prestation(
-    val id: Int,
+    val publication_id: Int,
+    val prestataire_id: Int,
     val titre: String,
     val description: String,
-    val prix: Double,
-    val imageResId: Int,
-    val nomPrestataire: String,
-    val domaine: String,
-    val localisation: String
+    val image: String,
+    val date_publication: String,
+    val prestataire_nom: String,
+    val photo_profil: String,
+    val prestataire_profession: String
+)
+
+data class PrestationResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Prestation>
 )

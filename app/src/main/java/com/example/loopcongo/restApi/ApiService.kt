@@ -1,8 +1,6 @@
 package com.example.loopcongo.restApi
 
-import com.example.loopcongo.models.ArticleApi
-import com.example.loopcongo.models.UserResponse
-import com.example.loopcongo.models.VendeurResponse
+import com.example.loopcongo.models.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -19,5 +17,14 @@ interface ApiService {
     // Appelle GET sur /api/vendeurs
     @GET("vendeurs")
     fun getVendeurs(): Call<VendeurResponse>
+
+    // Get la liste des prestataires
+    @GET("prestataires")
+    fun getPrestataires(): Call<PrestataireResponse>
+
+    //Get les prestations deja publiés
+    @GET("prestations")
+    fun getPublications(): Call<PrestationResponse>
+
 
 }
