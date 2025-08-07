@@ -24,7 +24,8 @@
             android:theme="@style/Theme.Loopcongo" />
 
         <activity
-            android:name=".DetailArticleActivity"
+            android:name=".ArticleDetailActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileVendeurActivity"

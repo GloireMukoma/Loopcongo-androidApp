@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bNavHome -> loadFragment(HomeFragment())
                 R.id.bNavArticle -> loadFragment(ArticleFragment())
                 R.id.bNavImmo -> {
-                    val intent = Intent(this, DetailArticleActivity::class.java)
+                    val intent = Intent(this, ArticleDetailActivity::class.java)
                     startActivity(intent)
                     true
                 }

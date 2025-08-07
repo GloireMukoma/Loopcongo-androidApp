@@ -98,7 +98,7 @@
                 android:id="@+id/statutUserProfileHomePageRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="15dp"
                 android:overScrollMode="never"
                 android:clipToPadding="false"
                 android:scrollbars="none" />
@@ -109,15 +109,15 @@
                 android:text="Top articles"
                 android:textSize="18sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp" />
+                android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/topArticlesHomePageRecyclerView"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="35dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:divider="@drawable/ligne_diviseur"
+                android:dividerHeight="1dp"/>
+
 
         </LinearLayout>
     <!-- </ScrollView>-->

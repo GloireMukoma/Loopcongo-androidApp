@@ -32,4 +32,8 @@ interface ApiService {
     @GET("prestations/sponsorisees")
     fun getSponsorisedPublications(): Call<PrestationSponsoriseesResponse>
 
+    // Get la liste des annonces des prestataires (a charger dans la caroussel home)
+    @GET("prest/annonces/actives")
+    fun getPrestataireAnnonces(): Call<AnnoncePrestataireResponse>
+
 }

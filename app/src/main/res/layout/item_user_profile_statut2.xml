@@ -58,17 +58,17 @@
             android:orientation="vertical"
             android:padding="6dp"
             android:layout_gravity="bottom"
-            android:background="#80000000">
+            android:background="@drawable/degrade_background_color">
 
             <TextView
                 android:id="@+id/profileUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nom"
-                android:textColor="@color/low_white"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:shadowColor="#80000000"
+                android:shadowColor="#88000000"
                 android:shadowDx="1"
                 android:maxLines="1"
                 android:shadowDy="1"
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Il y a 2h"
-                android:textColor="@color/low_white"
+                android:textColor="@color/white"
                 android:textSize="11sp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"

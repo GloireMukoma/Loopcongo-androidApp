@@ -1,5 +1,6 @@
 package com.example.loopcongo.adapters.articles
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ArticleDetailActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.ArticleApi
 
@@ -45,6 +47,22 @@ class ArticleGridAdapter(private val articles: List<ArticleApi>) :
 
         // Date brute ou formatée
         holder.date.text = formatRelativeDate(article.created_at)
+
+        // 👉 CLIC : Redirection vers Détail
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ArticleDetailActivity::class.java)
+
+            // Passer les données nécessaires (tu peux en passer plus)
+            intent.putExtra("nom", article.nom)
+            intent.putExtra("prix", article.prix)
+            intent.putExtra("devise", article.devise)
+            intent.putExtra("image", article.file_url)
+            intent.putExtra("description", article.about)
+            intent.putExtra("created_at", article.created_at)
+
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = articles.size

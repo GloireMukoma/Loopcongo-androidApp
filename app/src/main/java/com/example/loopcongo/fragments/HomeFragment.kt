@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,18 +64,16 @@ class HomeFragment : Fragment() {
         })
 
         // Charger les données provenant de l'API REST (pour les top articles)
-        val topArticlesRecyclerView = view.findViewById<RecyclerView>(R.id.topArticlesHomePageRecyclerView)
-        topArticlesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        val topArticlesListView = view.findViewById<ListView>(R.id.topArticlesHomePageRecyclerView)
         ApiClient.instance.getArticles().enqueue(object : Callback<List<ArticleApi>> {
             override fun onResponse(
                 call: Call<List<ArticleApi>>,
                 response: Response<List<ArticleApi>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.body() != null) {
                     val articles = response.body()!!
-                    val adapter = ArticleApiAdapter(articles)
-                    topArticlesRecyclerView.adapter = adapter
+                    val adapter = ArticleApiAdapter(requireContext(), articles)
+                    topArticlesListView.adapter = adapter
                 }
             }
 
@@ -82,6 +81,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
+
         // End données API REST
 
         // Defilement automatique de la carousel d'images d'annonces sur la page d'accueil

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:orientation="vertical"
-            android:background="#80000000"
+            android:background="@drawable/degrade_background_color"
             android:padding="6dp">
 
             <!-- Titre -->
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="Prix"
                 android:textStyle="bold"
-                android:textColor="#CCCCCC"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:layout_marginTop="4dp" />
 
@@ -67,14 +67,14 @@
                     android:layout_height="16dp"
                     android:src="@drawable/ic_person"
                     android:layout_marginEnd="4dp"
-                    app:tint="#CCCCCC" />
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/auteur_article"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Auteur"
-                    android:textColor="#DDDDDD"
+                    android:textColor="@color/white"
                     android:textSize="11sp"
                     android:maxLines="1"
                     android:ellipsize="end" />
@@ -92,7 +92,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:src="@drawable/ic_time"
-                    app:tint="#CCCCCC"
+                    app:tint="@color/white"
                     android:layout_marginEnd="4dp" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Il y a 2h"
-                    android:textColor="#CCCCCC"
+                    android:textColor="@color/white"
                     android:textSize="11sp" />
             </LinearLayout>
 

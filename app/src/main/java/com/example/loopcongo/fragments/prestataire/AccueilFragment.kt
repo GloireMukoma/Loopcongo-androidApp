@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.CarouselAnnonceAdapter
+import com.example.loopcongo.adapters.prestataire.AnnoncePrestataireAdapter
 import com.example.loopcongo.adapters.prestataire.TopPrestataireProfileAdapter
 import com.example.loopcongo.adapters.prestataire.TopPrestationAdapter
 import com.example.loopcongo.models.*
@@ -36,31 +37,40 @@ class AccueilFragment : Fragment() {
     private lateinit var topPrestationsAdapter: TopPrestationAdapter
     private val prestationsList = mutableListOf<PrestationSponsorisee>()
 
-    // Carousel d'annonces
-    val imageList = listOf(
-        CarouselItem(R.drawable.chaussures, "20% de réduction", "Promo exceptionnelle !"),
-        CarouselItem(R.drawable.shoes, "Qualité garantie", "Chaussures pour hommes et femmes"),
-        CarouselItem(R.drawable.shoes_men, "Nouveautés", "Collection été 2025")
-    )
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.onglet_acceuil_prestataire, container, false)
 
+        // Item caroussel anonce prestataire
         viewPager2 = view.findViewById(R.id.carouselPrestataireAnnonce)
-        viewPager2.adapter = CarouselAnnonceAdapter(imageList)
         viewPager2.offscreenPageLimit = 3
         viewPager2.isNestedScrollingEnabled = false
 
+        ApiClient.instance.getPrestataireAnnonces().enqueue(object : Callback<AnnoncePrestataireResponse> {
+            override fun onResponse(
+                call: Call<AnnoncePrestataireResponse>,
+                response: Response<AnnoncePrestataireResponse>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    val annonces = response.body()!!.data
+                    viewPager2.adapter = AnnoncePrestataireAdapter(requireContext(), annonces)
 
-        val sliderRunnable = Runnable {
-            viewPager2.currentItem = (viewPager2.currentItem + 1) % imageList.size
-        }
+                    val sliderRunnable = Runnable {
+                        viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
+                    }
 
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable, 2000)
+                    viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                        override fun onPageSelected(position: Int) {
+                            sliderHandler.removeCallbacks(sliderRunnable)
+                            sliderHandler.postDelayed(sliderRunnable, 3000)
+                        }
+                    })
+                } else {
+                    Toast.makeText(requireContext(), "Réponse vide ou invalide", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<AnnoncePrestataireResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -83,6 +93,7 @@ class AccueilFragment : Fragment() {
 
         return view
     }
+
 
     private fun loadTopPrestataires() {
         ApiClient.instance.getTopPrestataires().enqueue(object : Callback<PrestataireResponse> {
@@ -126,7 +137,7 @@ class AccueilFragment : Fragment() {
             }
         })
     }
-    override fun onPause() {
+    /*override fun onPause() {
         super.onPause()
         sliderHandler.removeCallbacksAndMessages(null)
     }
@@ -137,6 +148,6 @@ class AccueilFragment : Fragment() {
         sliderHandler.postDelayed({
             viewPager2.currentItem = (viewPager2.currentItem + 1) % imageList.size
         }, 3000)
-    }
+    }*/
 
 }
