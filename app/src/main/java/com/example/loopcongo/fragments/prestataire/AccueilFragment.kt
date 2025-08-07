@@ -6,22 +6,35 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.CarouselAnnonceAdapter
-import com.example.loopcongo.adapters.PrestationAdapter
-import com.example.loopcongo.adapters.prestataire.StatutPrestataireProfileAdapter
-import com.example.loopcongo.models.CarouselItem
-import com.example.loopcongo.models.Prestataire
-import com.example.loopcongo.models.Prestation
+import com.example.loopcongo.adapters.prestataire.TopPrestataireProfileAdapter
+import com.example.loopcongo.adapters.prestataire.TopPrestationAdapter
+import com.example.loopcongo.models.*
+import com.example.loopcongo.restApi.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AccueilFragment : Fragment() {
 
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler(Looper.getMainLooper())
+
+    // Top prestataires (Profils prestataires)
+    private lateinit var topPrestataireProfileRecyclerView: RecyclerView
+    private lateinit var adapter: TopPrestataireProfileAdapter
+    private val topPrestataires = ArrayList<Prestataire>()
+
+    // Top prestations (Publications)
+    private lateinit var topPrestationsRecyclerView: RecyclerView
+    private lateinit var topPrestationsAdapter: TopPrestationAdapter
+    private val prestationsList = mutableListOf<PrestationSponsorisee>()
 
     // Carousel d'annonces
     val imageList = listOf(
@@ -47,48 +60,72 @@ class AccueilFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable, 3000)
+                sliderHandler.postDelayed(sliderRunnable, 2000)
             }
         })
 
-        // Profils prestataires (horizontal)
-        val statutPrestataireRecyclerView = view.findViewById<RecyclerView>(R.id.statutPrestataireProfileRecyclerView)
-        statutPrestataireRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        // Top prestataire Profils (horizontal)
+        topPrestataireProfileRecyclerView = view.findViewById(R.id.topPrestataireProfileRecyclerView)
+        topPrestataireProfileRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         // Pour regler le probleme de blocage quand on scroll (conflit avec le NestedSrollview)
-        statutPrestataireRecyclerView.isNestedScrollingEnabled = false
-        statutPrestataireRecyclerView.overScrollMode = View.OVER_SCROLL_NEVER
+        topPrestataireProfileRecyclerView.isNestedScrollingEnabled = false
+        topPrestataireProfileRecyclerView.overScrollMode = View.OVER_SCROLL_NEVER
+        adapter = TopPrestataireProfileAdapter(topPrestataires)
+        topPrestataireProfileRecyclerView.adapter = adapter
+        loadTopPrestataires()
 
-        /*val prestataires = listOf(
-            Prestataire(1, "Glody mukoma", "Plombier", "Disponible 24h/24", R.drawable.user1),
-            Prestataire(2, "Sarah km", "Coiffeuse", "Salon moderne", R.drawable.user2),
-            Prestataire(3, "John living", "Mécanicien", "Spécialiste 4x4", R.drawable.user3),
-            Prestataire(4, "Glody", "Plombier", "Disponible 24h/24", R.drawable.user4),
-            Prestataire(5, "Sarah mulanba", "Coiffeuse", "Salon moderne", R.drawable.user5),
-            Prestataire(6, "John", "Mécanicien", "Spécialiste 4x4", R.drawable.user3),
-            Prestataire(7, "Glody", "Plombier", "Disponible 24h/24", R.drawable.user4),
-            Prestataire(8, "Sarah", "Coiffeuse", "Salon moderne", R.drawable.user1),
-            Prestataire(9, "John", "Mécanicien", "Spécialiste 4x4", R.drawable.user5)
-        )*/
-
-        //statutPrestataireRecyclerView.adapter = StatutPrestataireProfileAdapter(prestataires)
-
-        // Top prestations (vertical)
-        /*val prestations = listOf(
-            Prestation(1, "Coupe de cheveux", "Coiffure pour homme tendance", 5000.0, R.drawable.user1, "David", "Coiffeur", "Kinshasa"),
-            Prestation(2, "Manucure", "Manucure et soins des ongles", 8000.0, R.drawable.user2, "Jessica", "Esthéticienne", "Gombe"),
-            Prestation(3, "Nettoyage", "Service de nettoyage à domicile", 12000.0, R.drawable.user3, "Jean", "Agent d'entretien", "Limete"),
-            Prestation(4, "Coupe de cheveux", "Coiffure pour homme tendance", 5000.0, R.drawable.user4, "David", "Coiffeur", "Kinshasa"),
-            Prestation(5, "Manucure", "Manucure et soins des ongles", 8000.0, R.drawable.user2, "Jessica", "Esthéticienne", "Gombe"),
-            Prestation(6, "Nettoyage", "Service de nettoyage à domicile", 12000.0, R.drawable.user1, "Jean", "Agent d'entretien", "Limete")
-        )
-
-        val prestationRecyclerView = view.findViewById<RecyclerView>(R.id.topPrestationPageAcceuilRecyclerView)
-        prestationRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        prestationRecyclerView.adapter = PrestationAdapter(prestations)*/
+        // Top prestations (publications pour les prestataires sponsorisés)
+        topPrestationsRecyclerView = view.findViewById(R.id.topPrestationsHomePageRecyclerView)
+        topPrestationsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        topPrestationsAdapter = TopPrestationAdapter(prestationsList)
+        topPrestationsRecyclerView.adapter = topPrestationsAdapter
+        loadTopPrestations()
 
         return view
     }
 
+    private fun loadTopPrestataires() {
+        ApiClient.instance.getTopPrestataires().enqueue(object : Callback<PrestataireResponse> {
+            override fun onResponse(
+                call: Call<PrestataireResponse>,
+                response: Response<PrestataireResponse>
+            ) {
+                if (response.isSuccessful && response.body()?.status == true) {
+                    val prestataires = response.body()?.data ?: emptyList()
+                    topPrestataires.clear()
+                    topPrestataires.addAll(prestataires)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(context, "Erreur : ${response.body()?.message ?: "Inconnue"}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<PrestataireResponse>, t: Throwable) {
+                Toast.makeText(context, "Échec de connexion : ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun loadTopPrestations() {
+        ApiClient.instance.getSponsorisedPublications().enqueue(object : Callback<PrestationSponsoriseesResponse> {
+            override fun onResponse(
+                call: Call<PrestationSponsoriseesResponse>,
+                response: Response<PrestationSponsoriseesResponse>
+            ) {
+                if (response.isSuccessful && response.body()?.status == true) {
+                    prestationsList.clear()
+                    prestationsList.addAll(response.body()?.data ?: emptyList())
+                    adapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(requireContext(), "Erreur lors du chargement", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<PrestationSponsoriseesResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erreur réseau: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
     override fun onPause() {
         super.onPause()
         sliderHandler.removeCallbacksAndMessages(null)

@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="4dp">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="2dp"
@@ -25,7 +25,7 @@
             app:cardUseCompatPadding="true">
 
             <ImageView
-                android:id="@+id/imagePrestation"
+                android:id="@+id/imageTopPrestation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -48,7 +48,7 @@
 
 
                 <TextView
-                    android:id="@+id/descriptionPrestation"
+                    android:id="@+id/textContenuTopPrestation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
@@ -63,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 android:layout_marginBottom="2dp">
 
                 <ImageView
@@ -73,11 +74,11 @@
                     android:src="@drawable/ic_person" />
 
                 <TextView
-                    android:id="@+id/nomPrestataire"
+                    android:id="@+id/usernameTopPrestation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prestataire"
-                    android:textColor="#000000" />
+                    android:textColor="@color/gray" />
             </LinearLayout>
 
             <!-- Ligne domaine -->
@@ -85,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 android:layout_marginBottom="2dp">
 
                 <ImageView
@@ -95,7 +97,7 @@
                     android:src="@drawable/ic_citizen" />
 
                 <TextView
-                    android:id="@+id/domainePrestataire"
+                    android:id="@+id/professionTopPrestation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Domaine"
@@ -103,25 +105,6 @@
             </LinearLayout>
 
             <!-- Ligne localisation -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="6dp"
-                    app:tint="@color/gray"
-                    android:src="@drawable/ic_location" />
-
-                <TextView
-                    android:id="@+id/localisationPrestation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Localisation"
-                    android:textColor="#777777" />
-            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

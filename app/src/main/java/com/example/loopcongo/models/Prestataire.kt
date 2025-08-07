@@ -2,6 +2,8 @@ package com.example.loopcongo.models
 data class Prestataire(
     val id: Int,
     val username: String,
+    val is_sponsored: Int,
+    val sponsored_until: String?,
     val email: String,
     val telephone: String?,
     val profession: String,
