@@ -41,4 +41,8 @@ interface ApiService {
     @GET("user/{id}")
     fun getUserById(@Path("id") id: Int): Call<ApiResponse<UserData>>
 
+    // Get les annonces des articles (afficher dans la caroussel)
+    @GET("annonces/articles")
+    fun getAnnoncesArticlesCaroussel(): Call<AnnonceResponse>
+
 }

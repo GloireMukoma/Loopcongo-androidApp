@@ -8,7 +8,7 @@ data class UserResponse(
 
 data class User(
     val id: Int,
-    val nom: String,
+    val username: String,
     val type_account: String,
     val contact: String,
     val city: String,
@@ -20,5 +20,6 @@ data class User(
     val article_id: Int?,
     val article_nom: String?,
     val article_image: String?,
-    val article_date: String?
+    val article_date: String?,
+    val total_articles: Int
 )

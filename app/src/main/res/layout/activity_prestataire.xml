@@ -5,6 +5,56 @@
     android:orientation="vertical"
     android:background="@android:color/white">
 
+    <!-- TopBar personnalisée -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@color/secondprimaryColor">
+
+        <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
+
+            <!-- Image de profil utilisateur à gauche -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImgProfileUser"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                app:strokeColor="@android:color/holo_orange_light"
+                app:strokeWidth="1dp"
+                android:src="@drawable/user_profile" />
+
+            <!-- Logo centré -->
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="165dp"
+                android:layout_height="33dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/loop_logo"
+                android:contentDescription="Logo" />
+
+            <!-- Bouton image login à droite (sans espace) -->
+            <ImageView
+                android:id="@+id/loginIconBtn"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_notifications"
+                android:contentDescription="Icône de connexion" />
+        </RelativeLayout>
+        <!-- Ligne 2 : Recherche -->
+    </LinearLayout>
+
     <!-- Onglets -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/prestataireTabLayout"

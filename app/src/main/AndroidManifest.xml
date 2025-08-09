@@ -34,14 +34,8 @@
         <activity
             android:name=".PrestataireActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.Loopcongo" />
-
-
-        <activity
-            android:name=".ArticleActivity"
-            android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".ProfileUserActivity"
             android:exported="false" />

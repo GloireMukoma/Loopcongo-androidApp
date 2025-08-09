@@ -22,11 +22,12 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
     RecyclerView.Adapter<StatutUserProfileAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val backgroundImage: ImageView = itemView.findViewById(R.id.profileBackgroundImage)
-        val avatarImage: ShapeableImageView = itemView.findViewById(R.id.profileAvatarImage)
-        val badgeText: TextView = itemView.findViewById(R.id.profileBadgeText)
-        val userName: TextView = itemView.findViewById(R.id.profileUserName)
-        val timeAgo: TextView = itemView.findViewById(R.id.profileTimeAgo)
+        val articleImage: ImageView = itemView.findViewById(R.id.topVendeursImageArticle)
+        val avatarImage: ShapeableImageView = itemView.findViewById(R.id.topVendeurAvatarImage)
+        val userName: TextView = itemView.findViewById(R.id.topVendeurUserName)
+        val totalArticle: TextView = itemView.findViewById(R.id.topVendeurNbArticle)
+        //val badgeText: TextView = itemView.findViewById(R.id.profileBadgeText)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -39,20 +40,9 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = userList[position]
 
-        holder.userName.text = user.nom
+        holder.userName.text = user.username
+        holder.totalArticle.text = "${user.total_articles} articles"
 
-        // Calcul du "Il y a..." à partir de la date article_date
-        holder.timeAgo.text = user.article_date?.let {
-            getTimeAgo(it)
-        } ?: "Aucun article"
-
-        // Affiche "VIP" uniquement si is_sponsored == 1
-        if (user.is_sponsored == 1) {
-            holder.badgeText.visibility = View.VISIBLE
-            holder.badgeText.text = user.boost_type?.uppercase() ?: "VIP"
-        } else {
-            holder.badgeText.visibility = View.GONE
-        }
 
         //CHARGEMENT DES IMAGES (profil et derniere article publié)
         val baseUrl = "https://loopcongo.com/"
@@ -60,22 +50,9 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
         val profileUrl = user.profile_image?.let {
             if (it.startsWith("http")) it else baseUrl + it
         }
-
         val articleUrl = user.article_image?.let {
             if (it.startsWith("http")) it else baseUrl + it
         }
-
-        holder.userName.text = user.nom
-
-        holder.timeAgo.text = user.article_date?.let { getTimeAgo(it) } ?: "Aucun article"
-
-        if (user.is_sponsored == 1) {
-            holder.badgeText.visibility = View.VISIBLE
-            holder.badgeText.text = user.boost_type?.uppercase() ?: "VIP"
-        } else {
-            holder.badgeText.visibility = View.GONE
-        }
-
         // Charger l'image de profil (avatar)
         Glide.with(holder.itemView.context)
             .load(profileUrl)
@@ -88,7 +65,17 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
             .load(articleUrl ?: profileUrl)
             .placeholder(R.drawable.avatar)
             .centerCrop()
-            .into(holder.backgroundImage)
+            .into(holder.articleImage)
+
+        // Affiche "VIP" uniquement si is_sponsored == 1
+        /*if (user.is_sponsored == 1) {
+            holder.badgeText.visibility = View.VISIBLE
+            holder.badgeText.text = user.boost_type?.uppercase() ?: "VIP"
+        } else {
+            holder.badgeText.visibility = View.GONE
+        }*/
+
+
     }
 
     // Convertir la date en "Il y a..."

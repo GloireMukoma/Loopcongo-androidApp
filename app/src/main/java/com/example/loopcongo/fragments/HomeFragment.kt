@@ -20,6 +20,7 @@ import com.example.loopcongo.ProfileUserActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.*
 import com.example.loopcongo.adapters.articles.ArticleApiAdapter
+import com.example.loopcongo.adapters.articles.CarouselAnnonceArticleAdapter
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
@@ -93,32 +94,43 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
-
         // End données API REST
 
-        // Defilement automatique de la carousel d'images d'annonces sur la page d'accueil
-        //val imageList = listOf(R.drawable.chaussures, R.drawable.shoes, R.drawable.shoes_men)
-        val imageList = listOf(
-            CarouselItem(R.drawable.chaussures, "20% de reduction", "Description de l’image 1"),
-            CarouselItem(R.drawable.shoes, "Shoes de qualité", "Description de l’image ipsum dolor"),
-            CarouselItem(R.drawable.shoes_men, "Titre 3", "Description de l’image 3")
-        )
-        val sliderRunnable = Runnable {
-            viewPager2.currentItem = (viewPager2.currentItem + 1) % imageList.size
-        }
-        viewPager2 = view.findViewById(R.id.carouselView)
-        viewPager2.adapter = CarouselAnnonceAdapter(imageList) // Ton adapter
-        viewPager2.offscreenPageLimit = 3
 
-        // Démarrer le défilement automatique
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                // Redémarre le timer à chaque changement de page
-                sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable, 3000) // 3 secondes
+        // Gere la caroussel des annonces
+        viewPager2 = view.findViewById(R.id.carouselArticleAnnnonce)
+        viewPager2.offscreenPageLimit = 5
+        viewPager2.isNestedScrollingEnabled = false
+
+        ApiClient.instance.getAnnoncesArticlesCaroussel().enqueue(object : Callback<AnnonceResponse> {
+            override fun onResponse(call: Call<AnnonceResponse>, response: Response<AnnonceResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val annonces = response.body()!!.data
+                    viewPager2.adapter = CarouselAnnonceArticleAdapter(requireContext(), annonces)
+
+                    val sliderRunnable = Runnable {
+                        viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
+                    }
+
+                    viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                        override fun onPageSelected(position: Int) {
+                            sliderHandler.removeCallbacks(sliderRunnable)
+                            sliderHandler.postDelayed(sliderRunnable, 3000)
+                        }
+                    })
+
+                    // Lance la première fois le défilement auto
+                    sliderHandler.postDelayed(sliderRunnable, 3000)
+
+                } else {
+                    Toast.makeText(requireContext(), "Réponse vide ou invalide", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<AnnonceResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
 
         return view
     }

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.CarouselAnnonceAdapter
 import com.example.loopcongo.adapters.prestataire.AnnoncePrestataireAdapter
 import com.example.loopcongo.adapters.prestataire.TopPrestataireProfileAdapter
 import com.example.loopcongo.adapters.prestataire.TopPrestationAdapter
@@ -42,7 +41,7 @@ class AccueilFragment : Fragment() {
 
         // Item caroussel anonce prestataire
         viewPager2 = view.findViewById(R.id.carouselPrestataireAnnonce)
-        viewPager2.offscreenPageLimit = 3
+        viewPager2.offscreenPageLimit = 4
         viewPager2.isNestedScrollingEnabled = false
 
         ApiClient.instance.getPrestataireAnnonces().enqueue(object : Callback<AnnoncePrestataireResponse> {

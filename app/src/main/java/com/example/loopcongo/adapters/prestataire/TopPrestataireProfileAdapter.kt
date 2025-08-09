@@ -10,21 +10,20 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Prestataire
 
-
 class TopPrestataireProfileAdapter(
     private val prestataires: List<Prestataire>
 ) : RecyclerView.Adapter<TopPrestataireProfileAdapter.PrestataireViewHolder>() {
 
 
     class PrestataireViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photoProfil: ImageView = itemView.findViewById(R.id.topPrestataireStatutImageProfil)
-        val username: TextView = itemView.findViewById(R.id.topPrestataireProfileUsername)
-        val profession: TextView = itemView.findViewById(R.id.topPrestataireProfileProfession)
+        val photoProfil: ImageView = itemView.findViewById(R.id.topPrestataireProfilImg)
+        val username: TextView = itemView.findViewById(R.id.topPrestataireUserName)
+        val profession: TextView = itemView.findViewById(R.id.topPrestataireProfession)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrestataireViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_prestataire_profile_statut, parent, false)
+            .inflate(R.layout.item_top_prestataire, parent, false)
         return PrestataireViewHolder(view)
     }
 

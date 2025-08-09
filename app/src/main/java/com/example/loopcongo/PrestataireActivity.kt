@@ -37,7 +37,7 @@ class PrestataireActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
-            tab.setIcon(tabIcons[position])
+            //tab.setIcon(tabIcons[position])
         }.attach()
     }
 }

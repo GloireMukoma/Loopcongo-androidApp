@@ -67,7 +67,7 @@
     </style>
     <!-- mettre les onglets du tablayout en minuscules -->
     <style name="CustomTabLayoutTextMinuscules" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">false</item>
+        <!-- <item name="textAllCaps">false</item>-->
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item> <!-- Pas de bold -->
     </style>

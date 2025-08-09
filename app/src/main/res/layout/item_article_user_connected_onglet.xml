@@ -109,7 +109,7 @@
         android:layout_height="30dp"
         android:layout_gravity="top|end"
         android:layout_margin="4dp"
-        android:src="@drawable/ic_delete_"
+        android:src="@drawable/ic_delete"
         app:tint="@color/gray"
         android:background="?attr/selectableItemBackgroundBorderless" />
 </FrameLayout>

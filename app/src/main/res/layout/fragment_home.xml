@@ -70,9 +70,9 @@
 
             <!-- Carousel -->
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/carouselView"
+                android:id="@+id/carouselArticleAnnnonce"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="160dp"
                 android:clipToPadding="false" />
 
             <TextView
