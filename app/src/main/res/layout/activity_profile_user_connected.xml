@@ -5,21 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <!-- HEADER -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryColor"
+                android:background="@color/secondprimaryColor"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -71,22 +66,28 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-4dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Gloire mukoma"
                             android:textColor="@android:color/white"
-                            android:textStyle="bold"
                             android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+243 97 1737160"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mon profil"
                             android:textColor="@color/secondaryColor"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -172,19 +173,22 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/userProfiletabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#F1F1F1"
-                app:tabIndicatorColor="#1E3D85"
-                app:tabSelectedTextColor="#1E3D85"
-                app:tabTextColor="#777" />
+                android:layout_height="45dp"
+                android:background="@color/primaryColor"
+                app:tabIndicatorColor="#FFD700"
+                app:tabSelectedTextColor="#FFD700"
+                app:tabIconTint="@color/my_tab_icon_color"
+                app:tabTextColor="#CCCCCC"
+                app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/userProfileviewPager"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
             <!-- BASIC INFO -->
-            <LinearLayout
+            <!-- <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,30 +225,27 @@
                     android:layout_width="wrap_content" android:layout_height="wrap_content" />
                 <TextView android:text="No"
                     android:layout_width="wrap_content" android:layout_height="wrap_content" />
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!-- LOCATION -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <TextView android:text="LOCATION" android:textStyle="bold"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:text="Address" android:textColor="#888"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView
-                    android:autoLink="all"
-                    android:textColor="#1E3D85"
-                    android:layout_width="wrap_content"
+            <!--<LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="72 Springs Hill, Colorado Springs, Colorado, 80921\nUnited States" />
-            </LinearLayout>
+                    android:padding="16dp">
+
+                    <TextView android:text="LOCATION" android:textStyle="bold"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                    <TextView android:text="Address" android:textColor="#888"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                    <TextView
+                        android:autoLink="all"
+                        android:textColor="#1E3D85"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="72 Springs Hill, Colorado Springs, Colorado, 80921\nUnited States" />
+                </LinearLayout> -->
 
         </LinearLayout>
-    </ScrollView>
-
-    <!-- Floating button -->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

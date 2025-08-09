@@ -21,25 +21,17 @@
             android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
 
             <!-- Image de profil utilisateur à gauche -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/profileCard"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImgProfileUser"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="0dp"
-                android:layout_centerVertical="true"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true">
-
-                <ImageView
-                    android:id="@+id/profileImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/avatar_1" />
-            </androidx.cardview.widget.CardView>
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                app:strokeColor="@android:color/holo_orange_light"
+                app:strokeWidth="1dp"
+                android:src="@drawable/user_profile" />
 
             <!-- Logo centré -->
             <ImageView

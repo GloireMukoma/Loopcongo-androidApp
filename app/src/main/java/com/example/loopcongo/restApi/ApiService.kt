@@ -3,6 +3,7 @@ import com.example.loopcongo.models.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     // Endpoint pour récupérer les articles
@@ -35,5 +36,9 @@ interface ApiService {
     // Get la liste des annonces des prestataires (a charger dans la caroussel home)
     @GET("prest/annonces/actives")
     fun getPrestataireAnnonces(): Call<AnnoncePrestataireResponse>
+
+    // Get un user + ses articles par son ID
+    @GET("user/{id}")
+    fun getUserById(@Path("id") id: Int): Call<ApiResponse<UserData>>
 
 }

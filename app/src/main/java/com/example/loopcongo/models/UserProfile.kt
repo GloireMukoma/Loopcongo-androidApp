@@ -18,3 +18,8 @@ data class UserProfileResponse(
     val message: String,
     val data: List<UserProfile>
 )
+
+data class UserData(
+    val user: User,
+    val articles: List<ArticleApi>
+)

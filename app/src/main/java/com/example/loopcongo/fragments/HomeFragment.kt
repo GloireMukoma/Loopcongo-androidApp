@@ -1,5 +1,6 @@
 package com.example.loopcongo.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.loopcongo.ProfileUserActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.*
 import com.example.loopcongo.adapters.articles.ArticleApiAdapter
@@ -38,6 +41,15 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        // Récupère l'ImageView de l'avatar
+        val avatarImageView = view.findViewById<ImageView>(R.id.avatarImgProfileUser)
+
+        // Clic sur l'avatar -> redirection vers ProfilUtilisateurActivity
+        avatarImageView.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileUserActivity::class.java)
+            startActivity(intent)
+        }
 
         // Charger les données des profils utilisateurs de l'API REST
         val recyclerViewUsers = view.findViewById<RecyclerView>(R.id.statutUserProfileHomePageRecycler)
