@@ -7,17 +7,17 @@
 
     <item
         android:id="@+id/bNavArticle"
-        android:title="Articles"
-        android:icon="@drawable/ic_encontinu"/>
+        android:title="Article"
+        android:icon="@drawable/ic_shopping"/>
 
     <item
         android:id="@+id/bNavImmo"
-        android:title="Immobiliers"
+        android:title="Immobilier"
         android:icon="@drawable/ic_immobilier"/>
 
     <item
         android:id="@+id/bNavUsers"
-        android:title="Vendeurs"
+        android:title="Vendeur"
         android:icon="@drawable/ic_users"/>
 
     <item

@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
             // Couleur de la navigation bar (en bas)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            //window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"
@@ -72,6 +72,5 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
 
 }

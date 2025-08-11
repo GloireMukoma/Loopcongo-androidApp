@@ -1,11 +1,13 @@
 package com.example.loopcongo.adapters.prestataire
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
+import com.example.loopcongo.DetailPrestationActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Prestation
 
@@ -41,6 +43,18 @@ class FilActualitePrestataireAdapter(
             .load("https://loopcongo.com/" + (publication?.image ?: ""))
             .placeholder(R.drawable.chaussures)
             .into(image)
+
+        // ✅ Gestion du clic pour ouvrir l'activité de détail
+        view.setOnClickListener {
+            val intent = Intent(mContext, DetailPrestationActivity::class.java)
+            intent.putExtra("prestataire_nom", publication?.prestataire_nom)
+            intent.putExtra("prestataire_profession", publication?.prestataire_profession)
+            intent.putExtra("description", publication?.description)
+            intent.putExtra("date_publication", publication?.date_publication)
+            intent.putExtra("photo_profil", publication?.photo_profil)
+            intent.putExtra("image", publication?.image)
+            mContext.startActivity(intent)
+        }
 
         return view
     }

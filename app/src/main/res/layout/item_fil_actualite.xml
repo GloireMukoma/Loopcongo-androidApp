@@ -63,6 +63,38 @@
                     android:textColor="#888888"
                     android:textSize="12sp" />
             </LinearLayout>
+            <!-- Profession -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!--<ImageView
+                   android:layout_width="16dp"
+                   android:layout_height="16dp"
+                   android:layout_marginEnd="3dp"
+                   app:tint="@android:color/holo_blue_light"
+                   android:src="@drawable/ic_citizen" />-->
+
+               <TextView
+                   android:id="@+id/professionFilActu"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/gray"
+                   android:text="Profession"
+                   android:textSize="13sp" />
+           </LinearLayout>
+
+
+           <!--<TextView
+               android:id="@+id/tweetLink"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Titre de la publication"
+               android:textColor="@android:color/holo_blue_light"
+               android:textSize="15sp"
+               android:layout_marginTop="4dp" />-->
 
             <!-- Texte contenu -->
             <TextView
@@ -70,9 +102,9 @@
                 android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:text="En direct, François Bayrou premier ministre : Bruno Retailleau a été reçu à Matignon vendredi soir"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:maxLines="3"/>
         </LinearLayout>
     </LinearLayout>
@@ -94,30 +126,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/chaussures" />
     </androidx.cardview.widget.CardView>
-    <!-- Profession -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="3dp"
-            app:tint="@color/gray"
-            android:src="@drawable/ic_citizen" />
-
-        <TextView
-            android:id="@+id/professionFilActu"
-            android:layout_marginTop="1dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray"
-            android:text="Profession"
-            android:textSize="13sp" />
-    </LinearLayout>
 
 </LinearLayout>

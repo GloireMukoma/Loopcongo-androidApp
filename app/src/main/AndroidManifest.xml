@@ -16,17 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DetailPrestationActivity"
+            android:parentActivityName=".PrestataireActivity"
+            android:exported="false" />
         <activity
             android:name=".DetailOffrePrestationActivity"
             android:exported="false"
             android:parentActivityName=".PrestataireActivity"
             android:theme="@style/Theme.Loopcongo" />
-
         <activity
             android:name=".ArticleDetailActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ProfileVendeurActivity"
             android:exported="false"
@@ -35,7 +37,6 @@
             android:name=".PrestataireActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".ProfileUserActivity"
             android:exported="false" />

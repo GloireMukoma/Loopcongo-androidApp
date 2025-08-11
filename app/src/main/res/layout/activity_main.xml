@@ -20,7 +20,7 @@
         app:menu="@menu/bottom_navigation_menu"
         app:itemTextColor="@drawable/bottom_nav_color"
         app:itemIconTint="@drawable/bottom_nav_color"
-        android:background="@color/secondprimaryColor"
+        android:background="@color/white"
         style="@style/BottomNavigationStyle"
         app:labelVisibilityMode="labeled"/>
 
