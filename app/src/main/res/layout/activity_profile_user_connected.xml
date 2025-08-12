@@ -89,13 +89,23 @@
                             android:textColor="@color/secondaryColor"
                             android:textSize="12sp" />
                     </LinearLayout>
+
                 </LinearLayout>
+                <!-- Description -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:text="Description du profil utilisateur, les entrepreneurs Informer,  Inspirer, Fédérer"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
 
                 <!-- Score / Articles / Comments / Likes -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="3">
 

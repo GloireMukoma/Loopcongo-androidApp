@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.prestataire.PrestataireListAdapter
 import com.example.loopcongo.models.Prestataire
+import com.example.loopcongo.models.PrestataireListResponse
 import com.example.loopcongo.models.PrestataireResponse
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
@@ -42,10 +43,10 @@ class PrestataireListFragment : Fragment() {
     }
 
     private fun fetchPrestataires() {
-        ApiClient.instance.getPrestataires().enqueue(object : Callback<PrestataireResponse> {
+        ApiClient.instance.getPrestataires().enqueue(object : Callback<PrestataireListResponse> {
             override fun onResponse(
-                call: Call<PrestataireResponse>,
-                response: Response<PrestataireResponse>
+                call: Call<PrestataireListResponse>,
+                response: Response<PrestataireListResponse>
             ) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     val data = response.body()?.data ?: emptyList()
@@ -61,7 +62,7 @@ class PrestataireListFragment : Fragment() {
                     Log.e("API_DEBUG", "Erreur serveur: ${response.errorBody()?.string()}")
                 }
             }
-            override fun onFailure(call: Call<PrestataireResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PrestataireListResponse>, t: Throwable) {
                 Log.e("API_DEBUG", "Erreur réseau: ${t.localizedMessage}")
                 Toast.makeText(requireContext(), "Erreur : ${t.localizedMessage}", Toast.LENGTH_LONG).show()
             }

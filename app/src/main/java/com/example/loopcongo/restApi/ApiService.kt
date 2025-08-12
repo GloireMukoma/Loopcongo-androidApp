@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     // Endpoint pour récupérer les articles
@@ -19,7 +20,7 @@ interface ApiService {
 
     // Get la liste des prestataires
     @GET("prestataires")
-    fun getPrestataires(): Call<PrestataireResponse>
+    fun getPrestataires(): Call<PrestataireListResponse>
 
     //Get les prestations deja publiés
     @GET("prestations")
@@ -27,7 +28,7 @@ interface ApiService {
 
     // Get la liste des top prestataire (sponsorisés)
     @GET("prestataires/sponsored")
-    fun getTopPrestataires(): Call<PrestataireResponse>
+    fun getTopPrestataires(): Call<PrestataireListResponse>
 
     //Get la liste des publications des prestataires qui sont sponsorisés
     @GET("prestations/sponsorisees")
@@ -44,5 +45,17 @@ interface ApiService {
     // Get les annonces des articles (afficher dans la caroussel)
     @GET("annonces/articles")
     fun getAnnoncesArticlesCaroussel(): Call<AnnonceResponse>
+
+    // Recuperer les prestations d'un prestataire par son id
+    // 🔹 Exemple : GET /prestations?prestataire_id=5
+    @GET("prestations")
+    fun getPrestationsByPrestataire(
+        @Query("prestataire_id") prestataireId: Int
+    ): Call<List<Prestation>>
+
+    @GET("prestataire/get/{id}")
+    fun getPrestataireById(
+        @Path("id") id: Int
+    ): Call<PrestataireResponse>
 
 }

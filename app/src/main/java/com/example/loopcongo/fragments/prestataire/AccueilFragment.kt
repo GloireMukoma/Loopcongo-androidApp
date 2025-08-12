@@ -95,10 +95,10 @@ class AccueilFragment : Fragment() {
 
 
     private fun loadTopPrestataires() {
-        ApiClient.instance.getTopPrestataires().enqueue(object : Callback<PrestataireResponse> {
+        ApiClient.instance.getTopPrestataires().enqueue(object : Callback<PrestataireListResponse> {
             override fun onResponse(
-                call: Call<PrestataireResponse>,
-                response: Response<PrestataireResponse>
+                call: Call<PrestataireListResponse>,
+                response: Response<PrestataireListResponse>
             ) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     val prestataires = response.body()?.data ?: emptyList()
@@ -110,7 +110,7 @@ class AccueilFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<PrestataireResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PrestataireListResponse>, t: Throwable) {
                 Toast.makeText(context, "Échec de connexion : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
