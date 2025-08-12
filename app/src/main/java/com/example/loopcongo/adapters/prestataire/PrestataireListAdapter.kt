@@ -1,5 +1,6 @@
 package com.example.loopcongo.adapters.prestataire
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ProfilePrestataireActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Prestataire
 
@@ -40,6 +42,13 @@ class PrestataireListAdapter(
             .load("https://loopcongo.com/" +prestataire.photo_profil)
             .placeholder(R.drawable.avatar)
             .into(holder.photoProfil)
+
+        // ✅ Gestion du clic pour ouvrir l'activité profil du prestataire
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProfilePrestataireActivity::class.java)
+            intent.putExtra("prestataire_id", prestataire.id) // on envoie juste l'ID
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = prestataires.size

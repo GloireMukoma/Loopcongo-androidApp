@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.articles.UserArticleAdapter
-import com.example.loopcongo.models.ArticleApi
 import com.example.loopcongo.models.ApiResponse
 import com.example.loopcongo.models.UserData
 import com.example.loopcongo.restApi.ApiClient

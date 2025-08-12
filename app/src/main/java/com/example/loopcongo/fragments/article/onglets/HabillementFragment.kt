@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.articles.ArticleGridAdapter
-import com.example.loopcongo.models.ArticleApi
-import com.example.loopcongo.models.ArticleGridView
+import com.example.loopcongo.models.Article
+import com.example.loopcongo.models.ArticleResponse
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,22 +29,25 @@ class HabillementFragment : Fragment() {
         recyclerView = view.findViewById(R.id.ongletHabillementArticleRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
 
-        ApiClient.instance.getArticles().enqueue(object : Callback<List<ArticleApi>> {
+        ApiClient.instance.getArticles().enqueue(object : Callback<ArticleResponse> {
             override fun onResponse(
-                call: Call<List<ArticleApi>>,
-                response: Response<List<ArticleApi>>
+                call: Call<ArticleResponse>,
+                response: Response<ArticleResponse>
             ) {
-                if (response.isSuccessful) {
-                    val articles = response.body()!!
-                    val adapter = ArticleGridAdapter(articles)
+                if (response.isSuccessful && response.body() != null && response.body()!!.status) {
+                    val articles = response.body()!!.data  // Récupère la liste d'articles
+                    val adapter = ArticleGridAdapter(articles)  // Passe uniquement la liste au constructeur
                     recyclerView.adapter = adapter
+                } else {
+                    Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<ArticleApi>>, t: Throwable) {
+            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
+
         // End données API REST
 
         return view

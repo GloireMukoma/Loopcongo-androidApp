@@ -9,10 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
-import com.example.loopcongo.models.ArticleApi
+import com.example.loopcongo.models.Article
 
-class UserArticleAdapter(context: Context, articles: List<ArticleApi>) :
-    ArrayAdapter<ArticleApi>(context, 0, articles) {
+class UserArticleAdapter(context: Context, articles: List<Article>) :
+    ArrayAdapter<Article>(context, 0, articles) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val article = getItem(position)

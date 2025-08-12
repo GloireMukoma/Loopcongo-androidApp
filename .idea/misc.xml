@@ -34,6 +34,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_prestataire.xml" value="0.19021739130434784" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_prestataire.xml" value="0.1875" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_prestataire_connected.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_user.xml" value="0.22" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_user_connected.xml" value="0.2" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_vendeur.xml" value="0.20416666666666666" />
@@ -84,6 +85,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_property.xml" value="0.1983695652173913" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_publication.xml" value="0.1983695652173913" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_status.xml" value="0.1983695652173913" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_top_prestataire.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_user_profile_statut.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_user_profile_statut2.xml" value="0.2033514492753623" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_vendeur.xml" value="0.2006340579710145" />

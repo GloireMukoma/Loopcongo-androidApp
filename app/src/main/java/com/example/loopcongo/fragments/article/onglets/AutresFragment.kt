@@ -18,8 +18,8 @@ class AutresFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.onglet_autre_article, container, false)
-        recyclerView = view.findViewById(R.id.ongletAutreArticleRecyclerView)
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        //recyclerView = view.findViewById(R.id.ongletAutreArticleRecyclerView)
+        //recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         // Exemple de données
         /*

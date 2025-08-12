@@ -21,32 +21,6 @@ tools:context=".ProfilePrestataireActivity">
         android:padding="16dp">
 
         <!-- Top Bar with back arrow and 2 icons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
-
-            <!-- Back Button -->
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_back"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <!-- Action Button 2 -->
-            <ImageView
-                android:id="@+id/action2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_more" />
-        </LinearLayout>
 
         <!-- Profile info -->
         <LinearLayout
@@ -141,7 +115,7 @@ tools:context=".ProfilePrestataireActivity">
             android:textSize="14sp" />
 
         <!-- Score / Articles / Comments / Likes -->
-        <!--<LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -159,7 +133,7 @@ tools:context=".ProfilePrestataireActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Articles"
-                    android:textColor="#D0D0D0"
+                    android:textColor="@color/secondaryColor"
                     android:textSize="12sp" />
 
                 <TextView
@@ -182,7 +156,7 @@ tools:context=".ProfilePrestataireActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Commandes"
-                    android:textColor="#D0D0D0"
+                    android:textColor="@color/secondaryColor"
                     android:textSize="12sp" />
 
                 <TextView
@@ -204,7 +178,7 @@ tools:context=".ProfilePrestataireActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Likes"
-                    android:textColor="#D0D0D0"
+                    android:textColor="@color/secondaryColor"
                     android:textSize="12sp" />
 
                 <TextView
@@ -215,7 +189,7 @@ tools:context=".ProfilePrestataireActivity">
                     android:textStyle="bold"
                     android:textSize="18sp" />
             </LinearLayout>
-        </LinearLayout>-->
+        </LinearLayout>
     </LinearLayout>
 
     <!-- REAL TABS avec TabLayout et ViewPager2 -->

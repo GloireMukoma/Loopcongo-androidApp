@@ -15,11 +15,12 @@ class ProfilePrestataireViewPagerAdapter(
     private val prestataire: Prestataire
 ) : FragmentStateAdapter(fragmentActivity) {
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> PrestationsFragment.newInstance(prestataire.publications)
+            1 -> PrestationsFragment.newInstance(prestataire.publications)
             else -> AutresFragment()
         }
     }

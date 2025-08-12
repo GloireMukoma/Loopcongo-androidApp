@@ -20,6 +20,12 @@
             android:name=".ProfilePrestataireActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
+
+        <activity
+            android:name=".ProfilePrestataireConnectedActivity"
+            android:parentActivityName=".PrestataireActivity"
+            android:exported="false" />
+
         <activity
             android:name=".DetailPrestationActivity"
             android:exported="false"

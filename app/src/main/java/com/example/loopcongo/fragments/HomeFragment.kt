@@ -19,7 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.ProfileUserActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.*
-import com.example.loopcongo.adapters.articles.ArticleApiAdapter
+import com.example.loopcongo.adapters.articles.TopArticleAdapter
 import com.example.loopcongo.adapters.articles.CarouselAnnonceArticleAdapter
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
@@ -78,22 +78,26 @@ class HomeFragment : Fragment() {
 
         // Charger les données provenant de l'API REST (pour les top articles)
         val topArticlesListView = view.findViewById<ListView>(R.id.topArticlesHomePageRecyclerView)
-        ApiClient.instance.getArticles().enqueue(object : Callback<List<ArticleApi>> {
+
+        ApiClient.instance.getArticles().enqueue(object : Callback<ArticleResponse> {
             override fun onResponse(
-                call: Call<List<ArticleApi>>,
-                response: Response<List<ArticleApi>>
+                call: Call<ArticleResponse>,
+                response: Response<ArticleResponse>
             ) {
-                if (response.isSuccessful && response.body() != null) {
-                    val articles = response.body()!!
-                    val adapter = ArticleApiAdapter(requireContext(), articles)
+                if (response.isSuccessful && response.body() != null && response.body()!!.status) {
+                    val articles = response.body()!!.data  // Liste des articles
+                    val adapter = TopArticleAdapter(requireContext(), articles)
                     topArticlesListView.adapter = adapter
+                } else {
+                    Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<ArticleApi>>, t: Throwable) {
+            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
+
         // End données API REST
 
 

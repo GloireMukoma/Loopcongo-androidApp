@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             // Couleur de la status bar (en haut)
             window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
             // Couleur de la navigation bar (en bas)
-            //window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"

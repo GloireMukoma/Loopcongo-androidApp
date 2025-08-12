@@ -2,12 +2,63 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ongletAutreArticleRecyclerView"
+    <!-- BASIC INFO -->
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:text="BASIC INFORMATION"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView android:text="Owner" android:textColor="#888"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="Clara Jones" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:text="Accounts" android:textColor="#888"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="Minyx" android:textColor="#1E3D85"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:text="Has authority" android:textColor="#888"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="No"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:text="Status" android:textColor="#888"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="Qualified Lead" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:text="Do not disturb" android:textColor="#888"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="No"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- LOCATION -->
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView android:text="LOCATION" android:textStyle="bold"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="Address" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView
+                android:autoLink="all"
+                android:textColor="#1E3D85"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="72 Springs Hill, Colorado Springs, Colorado, 80921\nUnited States" />
+        </LinearLayout>
+
 </FrameLayout>

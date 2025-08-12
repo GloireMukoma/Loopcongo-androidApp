@@ -12,6 +12,8 @@
     <color name="primaryColor">#212529</color>
     <color name="secondprimaryColor">#191C1E</color>
     <color name="ThreePrimaryColor">#121212</color>
+    <color name="greenPrimaryColor">#067647</color>
+    ;
 
     <color name="bottomNavItemNoSelect">#8c8b8b</color>
     <color name="noir_fonce">#000000</color>

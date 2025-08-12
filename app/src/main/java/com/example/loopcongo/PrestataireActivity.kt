@@ -1,8 +1,11 @@
 package com.example.loopcongo
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.loopcongo.R
@@ -27,6 +30,14 @@ class PrestataireActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
             window.statusBarColor = ContextCompat.getColor(this, R.color.ThreePrimaryColor)
+        }
+
+        val avatarTopBarPrestataire = findViewById<ImageView>(R.id.avatarTopBarPrestataire)
+
+        // Clic sur l'avatar -> redirection vers ProfilePrestataireConnectedActivity
+        avatarTopBarPrestataire.setOnClickListener {
+            val intent = Intent(this, ProfilePrestataireConnectedActivity::class.java)
+            startActivity(intent)
         }
 
         val tabLayout = findViewById<TabLayout>(R.id.prestataireTabLayout)

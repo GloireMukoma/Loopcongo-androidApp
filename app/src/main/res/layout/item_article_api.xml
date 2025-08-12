@@ -1,105 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="12dp"
+    android:layout_marginHorizontal="8dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:elevation="3dp"
+    android:padding="8dp">
 
+    <!-- IMAGE DE L'ARTICLE -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/topArticleImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        app:shapeAppearanceOverlay="@style/RoundedImageShape" />
+
+    <!-- INFOS -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="top">
 
-        <!-- IMAGE DE L'ARTICLE -->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/articleImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img"
-            app:shapeAppearanceOverlay="@style/RoundedImageShape" />
+        <!-- Titre -->
+        <TextView
+            android:id="@+id/topArticleNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titre de l'article très accrocheur et pertinent"
+            android:textSize="16sp"
+            android:textColor="@color/primaryColor"
+            android:lineSpacingExtra="1dp"
+            android:maxLines="2"
+            android:ellipsize="end" />
 
-        <!-- INFOS -->
+        <!-- Prix -->
+        <TextView
+            android:id="@+id/topArticlePrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18 $"
+            android:textSize="15sp"
+            android:textColor="@color/greenPrimaryColor"
+            android:textStyle="bold" />
+
+        <!-- Auteur -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <!-- Titre -->
+            <!-- Image de profil -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/topArticleUserAvatar"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="3dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                app:strokeColor="@android:color/holo_orange_light"
+                app:strokeWidth="1dp"
+                android:src="@drawable/user_profile" />
+
             <TextView
-                android:id="@+id/articleTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Titre de l'article"
-                android:textSize="14sp"
-                android:textColor="@color/primaryColor"
-                android:textStyle="bold"
-                android:maxLines="2"
-                android:ellipsize="end" />
-
-            <!-- Prix -->
-            <TextView
-                android:id="@+id/articlePrix"
+                android:id="@+id/topArticleAuteur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="18 $"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <!-- Auteur -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/ic_person"
-                    app:tint="#888888"
-                    android:layout_marginEnd="4dp" />
-
-                <TextView
-                    android:id="@+id/articleAuteur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nom user"
-                    android:textSize="12sp"
-                    android:textColor="#888888" />
-            </LinearLayout>
-
-            <!-- Temps -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="2dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/ic_time"
-                    app:tint="#888888"
-                    android:layout_marginEnd="4dp" />
-
-                <TextView
-                    android:id="@+id/articleTimeAgo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="18min"
-                    android:textSize="11sp"
-                    android:textColor="#888888" />
-            </LinearLayout>
+                android:text="Nom de l'auteur"
+                android:textSize="13sp"
+                android:textColor="@color/gray" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
     android:background="@color/white">
 
     <!-- TopBar personnalisée -->
@@ -90,7 +91,7 @@
                 android:id="@+id/statutUserProfileHomePageRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="12dp"
                 android:overScrollMode="never"
                 android:clipToPadding="false"
                 android:scrollbars="none" />
@@ -109,7 +110,6 @@
                 android:layout_height="match_parent"
                 android:divider="@drawable/ligne_diviseur"
                 android:dividerHeight="1dp"/>
-
 
         </LinearLayout>
     <!-- </ScrollView>-->

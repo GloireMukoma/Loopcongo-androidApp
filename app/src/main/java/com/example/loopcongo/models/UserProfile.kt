@@ -21,5 +21,5 @@ data class UserProfileResponse(
 
 data class UserData(
     val user: User,
-    val articles: List<ArticleApi>
+    val articles: List<Article>
 )

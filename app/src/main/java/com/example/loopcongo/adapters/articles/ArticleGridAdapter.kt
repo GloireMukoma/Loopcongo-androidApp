@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.ArticleDetailActivity
 import com.example.loopcongo.R
-import com.example.loopcongo.models.ArticleApi
+import com.example.loopcongo.models.Article
 
-class ArticleGridAdapter(private val articles: List<ArticleApi>) :
+class ArticleGridAdapter(private val articles: List<Article>) :
     RecyclerView.Adapter<ArticleGridAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {

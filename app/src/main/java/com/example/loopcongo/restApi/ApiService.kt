@@ -1,7 +1,6 @@
 package com.example.loopcongo.restApi
 import com.example.loopcongo.models.*
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -9,7 +8,7 @@ import retrofit2.http.Query
 interface ApiService {
     // Endpoint pour récupérer les articles
     @GET("articles")
-    fun getArticles(): Call<List<ArticleApi>>
+    fun getArticles(): Call<ArticleResponse>
     // Endpoint pour récupérer les profils utilisateurs
     @GET("users")
     fun getUsersWithLastArticle(): Call<UserResponse>
