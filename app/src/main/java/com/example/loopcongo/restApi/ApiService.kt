@@ -9,9 +9,14 @@ interface ApiService {
     // Endpoint pour récupérer les articles
     @GET("articles")
     fun getArticles(): Call<ArticleResponse>
+
     // Endpoint pour récupérer les profils utilisateurs
     @GET("users")
     fun getUsersWithLastArticle(): Call<UserResponse>
+
+    // Récupère tous les articles d’un vendeur
+    @GET("articles/vendeur/{id}")
+    fun getArticlesByVendeur(@Path("id") vendeurId: Int): Call<ArticleResponse>
 
     // Appelle GET sur /api/vendeurs
     @GET("vendeurs")

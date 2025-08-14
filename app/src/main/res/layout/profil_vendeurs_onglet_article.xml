@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridView
-        android:id="@+id/gridViewArticles"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profileVendeurArticleGridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3"
+        android:numColumns="2"
         android:verticalSpacing="12dp"
         android:horizontalSpacing="12dp"
-        android:padding="12dp"
+        android:padding="3dp"
         android:clipToPadding="false"
         android:stretchMode="columnWidth"
         android:gravity="center"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="210dp"
     android:layout_margin="5dp"
-    card_view:cardCornerRadius="12dp"
+    card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="false">
 
@@ -15,7 +15,7 @@
 
         <!-- Image de l’article -->
         <ImageView
-            android:id="@+id/img_article"
+            android:id="@+id/imageArticleForOngletProfilVendeur"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -33,7 +33,7 @@
 
             <!-- Titre -->
             <TextView
-                android:id="@+id/nom_article"
+                android:id="@+id/nomArticleForOngletProfileVendeur"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nom de l'article"
@@ -45,7 +45,7 @@
 
             <!-- Prix -->
             <TextView
-                android:id="@+id/prix_article"
+                android:id="@+id/prixArticleForOngletProfileVendeur"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Prix"
@@ -55,31 +55,6 @@
                 android:layout_marginTop="4dp" />
 
             <!-- Auteur avec icône -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="2dp">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_person"
-                    android:layout_marginEnd="4dp"
-                    app:tint="@color/white" />
-
-                <TextView
-                    android:id="@+id/auteur_article"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Auteur"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
-                    android:maxLines="1"
-                    android:ellipsize="end" />
-            </LinearLayout>
-
             <!-- Date avec icône -->
             <!-- <LinearLayout
                 android:layout_width="match_parent"

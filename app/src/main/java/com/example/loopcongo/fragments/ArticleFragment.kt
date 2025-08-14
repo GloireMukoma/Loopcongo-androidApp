@@ -25,10 +25,11 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tabLayout = view.findViewById(R.id.tabLayout)
-        viewPager = view.findViewById(R.id.viewPager)
+        tabLayout = view.findViewById(R.id.fragmentArticleTabLayout)
+        viewPager = view.findViewById(R.id.fragmentArticleViewPager)
 
-        val adapter = ArticleViewPagerAdapter(requireActivity())
+        val adapter = ArticleViewPagerAdapter(this) // this = ArticleFragment
+
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -36,12 +37,14 @@ class ArticleFragment : Fragment() {
                 0 -> "Habillement"
                 1 -> "Voiture"
                 2 -> "Telephone"
-                3 -> "Chaussures"
-                4 -> "Electronique"
+                3 -> "Electronique"
+                4 -> "Chaussures"
                 5 -> "Sac"
                 6 -> "Autres"
                 else -> ""
             }
         }.attach()
+
+
     }
 }

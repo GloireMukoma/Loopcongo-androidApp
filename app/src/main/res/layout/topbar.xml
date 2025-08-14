@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/ThreePrimaryColor">
+    android:background="@color/secondprimaryColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@color/ThreePrimaryColor">
+        android:background="@color/secondprimaryColor">
 
         <!-- Ligne principale : Image + Champ de recherche + Notification -->
         <LinearLayout

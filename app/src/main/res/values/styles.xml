@@ -28,7 +28,7 @@
     <!-- Taille du texte des liens du tabview -->
     <style name="TabTextSmall" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#aaa</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Contraste élevé -->
     </style>
     <!-- Coins arrondis (border-radius) items article et plus -->
     <style name="RoundedImageShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">

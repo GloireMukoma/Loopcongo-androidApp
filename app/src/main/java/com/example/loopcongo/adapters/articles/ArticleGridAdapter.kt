@@ -18,9 +18,10 @@ class ArticleGridAdapter(private val articles: List<Article>) :
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgArticle: ImageView = view.findViewById(R.id.img_article)
         val article_nom: TextView = view.findViewById(R.id.nom_article)
-        val auteur: TextView = view.findViewById(R.id.auteur_article)
-        val date: TextView = view.findViewById(R.id.date_article)
         val prix: TextView = view.findViewById(R.id.prix_article)
+        val auteur: TextView = view.findViewById(R.id.auteur_article)
+        //val date: TextView = view.findViewById(R.id.date_article)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -43,10 +44,10 @@ class ArticleGridAdapter(private val articles: List<Article>) :
         holder.prix.text = "${article.prix} ${article.devise}"
 
         // Auteur : non fourni dans l’API, on affiche "Inconnu" ou tu peux afficher l’ID ou rien
-        holder.auteur.text = article.nom
+        holder.auteur.text = article.user_nom
 
         // Date brute ou formatée
-        holder.date.text = formatRelativeDate(article.created_at)
+        //holder.date.text = formatRelativeDate(article.created_at)
 
         // 👉 CLIC : Redirection vers Détail
         holder.itemView.setOnClickListener {
@@ -54,12 +55,15 @@ class ArticleGridAdapter(private val articles: List<Article>) :
             val intent = Intent(context, ArticleDetailActivity::class.java)
 
             // Passer les données nécessaires (tu peux en passer plus)
-            intent.putExtra("nom", article.nom)
-            intent.putExtra("prix", article.prix)
-            intent.putExtra("devise", article.devise)
-            intent.putExtra("image", article.file_url)
-            intent.putExtra("description", article.about)
-            intent.putExtra("created_at", article.created_at)
+
+            intent.putExtra("article_nom", article.nom)
+            intent.putExtra("article_prix", article.prix)
+            intent.putExtra("article_devise", article.devise)
+            intent.putExtra("article_description", article.about)
+            intent.putExtra("article_nbLike", article.nb_like ?: "0")
+            intent.putExtra("article_auteur", article.user_nom)
+            intent.putExtra("article_photo", article.file_url)
+            intent.putExtra("user_avatar", article.user_avatar)
 
             context.startActivity(intent)
         }

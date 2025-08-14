@@ -15,8 +15,8 @@
 
         <!-- Avatar dans CardView (aligné en haut) -->
         <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             app:cardCornerRadius="50dp"
             app:cardElevation="2dp"
             android:layout_gravity="top">
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="top">
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/usernameVendeur"
@@ -53,20 +53,67 @@
                     android:textStyle="bold"
                     android:textSize="15sp" />
 
+                <ImageView
+                    android:id="@+id/vendeurBadgeSponsor"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_badge"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="3dp"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:visibility="gone"/> <!-- Par défaut caché -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:src="@drawable/ic_phone" />
+
                 <TextView
-                    android:id="@+id/nbArticlePublier"
-                    android:layout_marginStart="6dp"
+                    android:id="@+id/phoneItemVendeur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="• 1 h"
-                    android:textColor="#888888"
+                    android:text="+243 97 1737160"
+                    android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/locationItemVendeur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ville"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
 
             <!-- Texte contenu -->
             <TextView
                 android:id="@+id/aboutVendeur"
-                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray"

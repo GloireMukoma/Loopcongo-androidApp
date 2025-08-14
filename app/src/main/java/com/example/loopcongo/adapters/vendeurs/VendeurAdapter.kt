@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ArticleDetailActivity
 import com.example.loopcongo.DetailOffrePrestationActivity
+import com.example.loopcongo.ProfileVendeurActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.OffrePrestation
 import com.example.loopcongo.models.Vendeur
@@ -21,8 +23,12 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
     inner class VendeurViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgProfile: ImageView = itemView.findViewById(R.id.imgProfileVendeur)
         val nom: TextView = itemView.findViewById(R.id.usernameVendeur)
-        val boost: TextView = itemView.findViewById(R.id.nbArticlePublier)
+        val phone: TextView = itemView.findViewById(R.id.phoneItemVendeur)
+        val city: TextView = itemView.findViewById(R.id.locationItemVendeur)
+
+        //val boost: TextView = itemView.findViewById(R.id.statutSponsoredOrNot)
         val about: TextView = itemView.findViewById(R.id.aboutVendeur)
+        val badgeImage: ImageView = itemView.findViewById(R.id.vendeurBadgeSponsor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendeurViewHolder {
@@ -36,16 +42,23 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
 
         // Affichage nom et description
         holder.nom.text = vendeur.nom
+        holder.phone.text = vendeur.contact
+        holder.city.text = vendeur.city
         holder.about.text = vendeur.about ?: "Aucune description"
 
         // Affiche boost_type ou texte par défaut
-        holder.boost.text = when {
+        /*holder.boost.text = when {
             vendeur.is_sponsored == 1 && !vendeur.boost_type.isNullOrBlank() ->
                 "• ${vendeur.boost_type.uppercase()}"
             vendeur.is_sponsored == 1 ->
                 "• Sponsorisé"
             else ->
                 "• Non sponsorisé"
+        }*/
+        if (vendeur.is_sponsored == 1) {
+            holder.badgeImage.visibility = View.VISIBLE
+        } else {
+            holder.badgeImage.visibility = View.GONE
         }
 
         // Chargement de l'image
@@ -59,6 +72,24 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
             .placeholder(R.drawable.avatar) // Optionnel : image temporaire
             .error(R.drawable.avatar)       // Optionnel : image si erreur
             .into(holder.imgProfile)
+
+        // 👉 CLIC : Redirection vers Détail
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ProfileVendeurActivity::class.java)
+
+            // Passer les données nécessaires (tu peux en passer plus)
+            intent.putExtra("vendeurId", vendeur.id)
+            intent.putExtra("vendeurUsername", vendeur.nom)
+            intent.putExtra("vendeurContact", vendeur.contact)
+            intent.putExtra("vendeurCity", vendeur.city)
+            intent.putExtra("vendeurDescription", vendeur.about)
+            intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+            intent.putExtra("vendeurAvatarImg", vendeur.file_url)
+            intent.putExtra("isSponsoredVendeur", vendeur.is_sponsored)
+
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = vendeurs.size

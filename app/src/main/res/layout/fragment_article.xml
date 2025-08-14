@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ThreePrimaryColor"
+        android:background="@color/secondprimaryColor"
         android:elevation="4dp">
 
         <!-- TopBar personnalisée -->
@@ -22,15 +22,17 @@
         <!-- app:tabIndicatorColor="@android:color/holo_blue_light" -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/fragmentArticleTabLayout"
-            app:tabMode="scrollable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/secondprimaryColor"
+            app:tabMode="scrollable"
+            app:tabGravity="center"
             app:tabTextAppearance="@style/TabTextSmall"
-            android:background="@color/primaryColor"
             app:tabIndicatorColor="#FFD700"
             app:tabSelectedTextColor="#FFD700"
-            app:tabIconTint="@color/my_tab_icon_color"
-            app:tabTextColor="#CCCCCC" />
+            app:tabTextColor="#CCCCCC"
+            app:tabIconTint="@color/my_tab_icon_color" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Contenu principal avec ViewPager2 -->

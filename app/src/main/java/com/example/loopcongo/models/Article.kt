@@ -10,7 +10,7 @@ data class Article(
     val sponsored_until: String?,
     val prix: String,
     val devise: String,
-    val nb_like: Int,
+    val nb_like: String,
     val about: String,
     val file_url: String,
     val user_avatar: String,

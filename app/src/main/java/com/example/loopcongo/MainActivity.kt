@@ -9,7 +9,7 @@ import android.view.MenuInflater
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.loopcongo.fragments.article.ArticleFragment
+import com.example.loopcongo.fragments.ArticleFragment
 import com.example.loopcongo.fragments.HomeFragment
 import com.example.loopcongo.fragments.vendeurs.VendeurMainFragment
 import com.example.loopcongo.models.Product
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
             // Couleur de la navigation bar (en bas)
             window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
         }

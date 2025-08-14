@@ -29,7 +29,6 @@ class ProfilePrestataireActivity : AppCompatActivity() {
     private lateinit var tvDescription: TextView
     private lateinit var avatar: ImageView
 
-
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
@@ -74,7 +73,6 @@ class ProfilePrestataireActivity : AppCompatActivity() {
                     Toast.makeText(this@ProfilePrestataireActivity, "Erreur récupération prestataire", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<PrestataireResponse>, t: Throwable) {
                 Toast.makeText(this@ProfilePrestataireActivity, "Erreur réseau: ${t.message}", Toast.LENGTH_SHORT).show()
             }

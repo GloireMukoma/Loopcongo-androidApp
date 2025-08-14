@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@color/secondprimaryColor">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Action Button -->
+        <ImageView
+            android:id="@+id/action2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_more"
+            android:contentDescription="More"/>
+    </LinearLayout>
+
+    <!-- Bloc Profil -->
+    <RelativeLayout
+        android:id="@+id/profileBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondprimaryColor"
+        android:padding="16dp">
+
+        <!-- Image profil -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardProfileImage"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <ImageView
+                android:id="@+id/profileVendeurAvatarImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar"
+                android:padding="2dp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Statistiques -->
+        <LinearLayout
+            android:id="@+id/statsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/cardProfileImage"
+            android:layout_alignTop="@id/cardProfileImage"
+            android:layout_marginStart="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Publications -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:id="@+id/profileVendeurNbArticlePublie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5297"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tvPublicationsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publications"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:layout_below="@id/profileVendeurNbArticlePublie"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+            <!-- Followers -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:id="@+id/profileVendeurNbLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,1 M"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tvFollowersLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Like(s)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:layout_below="@id/profileVendeurNbLike"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+            <!-- Suivis -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/profileVendeurNbAbonner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tvSuivisLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suivi(e)s"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:layout_below="@id/profileVendeurNbAbonner"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Nom utilisateur -->
+        <TextView
+            android:id="@+id/profileVendeurUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom utilisateur"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@id/cardProfileImage"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="1dp"/>
+
+        <!-- Type de vendeur -->
+        <TextView
+            android:id="@+id/profileVendeurType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type de vendeur"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_below="@id/profileVendeurUsername"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/profileVendeurPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0971737160"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_below="@id/profileVendeurType"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/profileVendeurCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lubumbashi"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_below="@id/profileVendeurPhone"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/profileVendeurDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Le Média de TOUS les Entrepreneurs 🧠 Informer · Inspirer · Fédérer"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_below="@id/profileVendeurCity"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="4dp"/>
+
+
+        <!-- Bouton WhatsApp -->
+        <Button
+            android:id="@+id/btnWhatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Discutez sur WhatsApp"
+            android:textColor="@color/primaryColor"
+            android:backgroundTint="@color/secondaryColor"
+            android:layout_below="@id/profileVendeurDescription"
+            android:layout_marginTop="8dp"/>
+    </RelativeLayout>
+
+    <!-- TabLayout -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/profileVendeurstabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        app:tabIndicatorColor="#FFD700"
+        app:tabSelectedTextColor="#FFD700"
+        app:tabIconTint="@color/my_tab_icon_color"
+        app:tabTextColor="#CCCCCC" />
+
+    <!-- ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/profileVendeursviewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

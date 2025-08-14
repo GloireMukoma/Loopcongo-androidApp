@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="18 $"
             android:textSize="15sp"
-            android:textColor="@color/greenPrimaryColor"
+            android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold" />
 
         <!-- Auteur -->

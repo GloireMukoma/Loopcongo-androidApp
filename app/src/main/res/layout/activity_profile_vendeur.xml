@@ -1,169 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#212529"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!-- Image de profil avec bord arrondi -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="4dp">
-
-            <ImageView
-                android:id="@+id/profilePic"
+            <!-- HEADER -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/avatar_1" />
-        </androidx.cardview.widget.CardView>
-
-        <!-- Métier -->
-        <TextView
-            android:id="@+id/metierName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Développeur"
-            android:textColor="#FFD700"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <!-- Description -->
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:paddingHorizontal="24dp"
-            android:text="Développeur Android | Passionné de Tech | Open Source 💻✨"
-            android:textAlignment="center"
-            android:textColor="#DDDDDD"
-            android:textSize="13sp" />
-
-        <!-- Statistiques -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:background="@color/secondprimaryColor"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:padding="16dp">
 
+                <!-- Top Bar with back arrow and 2 icons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <!-- Back Button -->
+                    <ImageView
+                        android:id="@+id/backButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_back"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <!-- Action Button 2 -->
+                    <ImageView
+                        android:id="@+id/action2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_more" />
+                </LinearLayout>
+
+                <!-- Profile info -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/profileVendeurAvatarImage"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/user_profile"
+                        android:scaleType="centerCrop"
+                        app:strokeColor="@android:color/holo_orange_light"
+                        app:strokeWidth="1dp"
+                        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-4dp">
+
+                        <LinearLayout
+                            android:id="@+id/usernameContainer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/profileVendeurUsername"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Gloire Mukoma"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:id="@+id/profileVendeurBadge"
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:src="@drawable/ic_badge"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginStart="3dp"
+                                app:tint="@android:color/holo_blue_dark"
+                                android:visibility="gone"/> <!-- Par défaut caché -->
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/profileVendeurPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+243 97 1737160"
+                            android:textColor="#D0D0D0"
+                            android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/profileVendeurCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ville"
+                            android:textColor="@color/secondaryColor"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!-- Description -->
                 <TextView
+                    android:id="@+id/profileVendeurDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="120"
-                    android:textColor="#FFD700"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:text="Description du profil utilisateur, les entrepreneurs Informer,  Inspirer, Fédérer"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Score / Articles / Comments / Likes -->
+                <!-- Statistiques -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
-                    android:textColor="#BBBBBB"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Articles"
+                            android:textColor="#D0D0D0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/profileVendeurNbArticlePublie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Commandes"
+                            android:textColor="#D0D0D0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/profileVendeurNbLike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="34"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Likes"
+                            android:textColor="#D0D0D0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/profileVendeurNbAbonner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="58"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+            <!-- REAL TABS avec TabLayout et ViewPager2 -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/profileVendeurstabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/primaryColor"
+                app:tabIndicatorColor="#FFD700"
+                app:tabSelectedTextColor="#FFD700"
+                app:tabIconTint="@color/my_tab_icon_color"
+                app:tabTextColor="#CCCCCC"
+                app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/profileVendeursviewPager"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- BASIC INFO -->
+            <!-- <LinearLayout
                 android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="80"
-                    android:textColor="#FFD700"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Following"
-                    android:textColor="#BBBBBB"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:padding="16dp">
 
                 <TextView
+                    android:text="BASIC INFORMATION"
+                    android:textStyle="bold"
+                    android:textColor="#333"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="245"
-                    android:textColor="#FFD700"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <TextView android:text="Owner" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="Clara Jones" android:textStyle="bold"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView android:text="Accounts" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="Minyx" android:textColor="#1E3D85"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView android:text="Has authority" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="No"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView android:text="Status" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="Qualified Lead" android:textStyle="bold"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+                <TextView android:text="Do not disturb" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="No"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>-->
+
+            <!-- LOCATION -->
+            <!--<LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Likes"
-                    android:textColor="#BBBBBB"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:padding="16dp">
+
+                    <TextView android:text="LOCATION" android:textStyle="bold"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                    <TextView android:text="Address" android:textColor="#888"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                    <TextView
+                        android:autoLink="all"
+                        android:textColor="#1E3D85"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="72 Springs Hill, Colorado Springs, Colorado, 80921\nUnited States" />
+                </LinearLayout> -->
+
         </LinearLayout>
 
-        <!-- Bouton -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#FFD700"
-                android:text="Discutez sur WhatsApp"
-                android:textColor="#212529"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- Tabs -->
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/profileVendeurstabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#212529"
-            app:tabIndicatorColor="#FFD700"
-            app:tabSelectedTextColor="#FFD700"
-            app:tabTextColor="#AAAAAA" />
-
-        <!-- ViewPager -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/profileVendeursviewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
