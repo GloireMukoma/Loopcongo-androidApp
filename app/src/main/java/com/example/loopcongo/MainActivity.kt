@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.fragments.ArticleFragment
 import com.example.loopcongo.fragments.HomeFragment
+import com.example.loopcongo.fragments.article.onglets.ArticleForAllCategoriesFragment
 import com.example.loopcongo.fragments.vendeurs.VendeurMainFragment
 import com.example.loopcongo.models.Product
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
     tools:context=".fragments.ArticleFragment">
 
     <!-- AppBar -->
@@ -15,8 +16,76 @@
         android:elevation="4dp">
 
         <!-- TopBar personnalisée -->
-        <include
-            layout="@layout/topbar" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@color/secondprimaryColor">
+
+                <!-- Ligne principale : Image + Champ de recherche + Notification -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="5dp">
+
+                    <!-- Image de profil -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="37dp"
+                        android:layout_height="37dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:padding="2dp"
+                        app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                        app:strokeColor="@android:color/holo_orange_light"
+                        app:strokeWidth="1dp"
+                        android:src="@drawable/user_profile" />
+
+                    <!-- Champ de recherche -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/search_bg"
+                        android:paddingHorizontal="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_search"
+                            app:tint="#cccccc" />
+
+                        <EditText
+                            android:id="@+id/searchArticleEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Rechercher un article..."
+                            android:textColor="#ffffff"
+                            android:textColorHint="#aaaaaa"
+                            android:textSize="14sp"
+                            android:background="@android:color/transparent"
+                            android:paddingStart="8dp"
+                            android:inputType="text" />
+                    </LinearLayout>
+
+                    <!-- Bouton de notification -->
+                    <ImageView
+                        android:id="@+id/notificationIcon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="2dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_notifications"
+                        android:contentDescription="Notifications" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         <!-- Tabs -->
         <!-- app:tabIndicatorColor="@android:color/holo_blue_light" -->

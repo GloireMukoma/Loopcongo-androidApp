@@ -87,6 +87,9 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.file_url)
             intent.putExtra("isSponsoredVendeur", vendeur.is_sponsored)
+            intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
+            intent.putExtra("vendeurTotalLikes", vendeur.total_likes)
+            intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
 
             context.startActivity(intent)
         }

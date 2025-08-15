@@ -1,5 +1,6 @@
 package com.example.loopcongo.adapters
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ProfileVendeurActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 import com.example.loopcongo.models.UserProfile
@@ -18,7 +20,7 @@ import java.util.*
 
 //StatutUserProfileAdapter
 
-class StatutUserProfileAdapter(private val userList: List<User>) :
+class StatutUserProfileAdapter(private val vendeurList: List<User>) :
     RecyclerView.Adapter<StatutUserProfileAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,22 +37,22 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
         return UserViewHolder(view)
     }
 
-    override fun getItemCount(): Int = userList.size
+    override fun getItemCount(): Int = vendeurList.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = userList[position]
+        val vendeur = vendeurList[position]
 
-        holder.userName.text = user.username
-        holder.totalArticle.text = "${user.total_articles} articles"
+        holder.userName.text = vendeur.username
+        holder.totalArticle.text = "${vendeur.total_articles} articles"
 
 
         //CHARGEMENT DES IMAGES (profil et derniere article publié)
         val baseUrl = "https://loopcongo.com/"
 
-        val profileUrl = user.profile_image?.let {
+        val profileUrl = vendeur.profile_image?.let {
             if (it.startsWith("http")) it else baseUrl + it
         }
-        val articleUrl = user.article_image?.let {
+        val articleUrl = vendeur.article_image?.let {
             if (it.startsWith("http")) it else baseUrl + it
         }
         // Charger l'image de profil (avatar)
@@ -66,6 +68,27 @@ class StatutUserProfileAdapter(private val userList: List<User>) :
             .placeholder(R.drawable.avatar)
             .centerCrop()
             .into(holder.articleImage)
+
+        // 👉 CLIC : Redirection vers Détail
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ProfileVendeurActivity::class.java)
+
+            // Passer les données nécessaires (tu peux en passer plus)
+            intent.putExtra("vendeurId", vendeur.id)
+            intent.putExtra("vendeurUsername", vendeur.username)
+            intent.putExtra("vendeurContact", vendeur.contact)
+            intent.putExtra("vendeurCity", vendeur.city)
+            intent.putExtra("vendeurDescription", vendeur.about)
+            intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+            intent.putExtra("vendeurAvatarImg", vendeur.profile_image)
+            intent.putExtra("isSponsoredVendeur", vendeur.is_sponsored)
+            intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
+            intent.putExtra("vendeurTotalLikes", 3)
+            intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
+
+            context.startActivity(intent)
+        }
 
         // Affiche "VIP" uniquement si is_sponsored == 1
         /*if (user.is_sponsored == 1) {

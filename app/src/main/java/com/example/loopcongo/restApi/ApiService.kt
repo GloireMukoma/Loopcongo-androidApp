@@ -10,6 +10,17 @@ interface ApiService {
     @GET("articles")
     fun getArticles(): Call<ArticleResponse>
 
+    //Get tout les articles par categorie
+    //@GET("articles/ctg/{category_id}")
+    //fun getArticlesByCategory(@Path("category_id") categoryId: Int): Call<List<Article>>
+
+    //Get tout les articles par categorie ainsi que le filtrage ou la recherche
+    @GET("articles/ctg/{category_id}")
+    fun getArticlesByCategory(
+        @Path("category_id") categoryId: Int,
+        @Query("search") search: String? = null
+    ): Call<List<Article>>
+
     // Endpoint pour récupérer les profils utilisateurs
     @GET("users")
     fun getUsersWithLastArticle(): Call<UserResponse>

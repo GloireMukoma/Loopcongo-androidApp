@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class ProfileVendeurActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,18 +31,24 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val vendeurUsername = intent.getStringExtra("vendeurUsername")
         val vendeurContact = intent.getStringExtra("vendeurContact")
         val vendeurCity = intent.getStringExtra("vendeurCity")
+
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
         val isSponsoredVendeur = intent.getIntExtra("isSponsoredVendeur", 0)
 
-        findViewById<TextView>(R.id.profileVendeurNbArticlePublie).text = "350"
-        findViewById<TextView>(R.id.profileVendeurNbLike).text = "470"
-        findViewById<TextView>(R.id.profileVendeurNbAbonner).text = "820"
+        val vendeurTotalArticles = intent.getIntExtra("vendeurTotalArticles", 0)
+        val vendeurTotalLikes = intent.getIntExtra("vendeurTotalLikes", 0)
+        val vendeurNbAbonner = intent.getIntExtra("vendeurNbAbonner", 0)
+
+        findViewById<TextView>(R.id.profileVendeurNbArticlePublie).text = vendeurTotalArticles.toString()
+        findViewById<TextView>(R.id.profileVendeurNbLike).text = vendeurTotalLikes.toString()
+        findViewById<TextView>(R.id.profileVendeurNbAbonner).text = vendeurNbAbonner.toString()
+
         findViewById<TextView>(R.id.profileVendeurUsername).text = vendeurUsername
-        //findViewById<TextView>(R.id.profileVendeurType).text = vendeurTypeCompte
         findViewById<TextView>(R.id.profileVendeurDescription).text = vendeurDescription
         findViewById<TextView>(R.id.profileVendeurPhone).text = vendeurContact
+        findViewById<TextView>(R.id.profileVendeurCity).text = vendeurCity
 
         val sponsorTextView = findViewById<ImageView>(R.id.profileVendeurBadge) // TextView pour le badge
         if (isSponsoredVendeur == 1) {
@@ -52,8 +57,6 @@ class ProfileVendeurActivity : AppCompatActivity() {
             sponsorTextView.visibility = View.GONE
         }
 
-
-
         val vendeurAvatar = findViewById<ImageView>(R.id.profileVendeurAvatarImage)
 
         Glide.with(this)
@@ -61,10 +64,8 @@ class ProfileVendeurActivity : AppCompatActivity() {
             .placeholder(R.drawable.avatar)
             .into(vendeurAvatar)
 
-
         val viewPager = findViewById<ViewPager2>(R.id.profileVendeursviewPager)
         val tabLayout = findViewById<TabLayout>(R.id.profileVendeurstabLayout)
-
 
         val vendeurId = intent.getIntExtra("vendeurId", -1) // -1 = valeur par défaut si pas trouvé
         // Passe l'ID au PagerAdapter

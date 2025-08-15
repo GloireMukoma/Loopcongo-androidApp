@@ -170,7 +170,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Commandes"
+                            android:text="Likes"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 
@@ -193,7 +193,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Likes"
+                            android:text="Abonnés"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 

@@ -20,7 +20,7 @@ class ArticleGridAdapter(private val articles: List<Article>) :
         val article_nom: TextView = view.findViewById(R.id.nom_article)
         val prix: TextView = view.findViewById(R.id.prix_article)
         val auteur: TextView = view.findViewById(R.id.auteur_article)
-        //val date: TextView = view.findViewById(R.id.date_article)
+        //val date: TextView = view.findViewById(R.id.datqae_article)
 
     }
 
