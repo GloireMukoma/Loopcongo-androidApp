@@ -1,18 +1,18 @@
 package com.example.loopcongo.restApi
+
+import com.example.loopcongo.database.LoginResponse
 import com.example.loopcongo.models.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
     // Endpoint pour récupérer les articles
     @GET("articles")
     fun getArticles(): Call<ArticleResponse>
 
-    //Get tout les articles par categorie
-    //@GET("articles/ctg/{category_id}")
-    //fun getArticlesByCategory(@Path("category_id") categoryId: Int): Call<List<Article>>
+    // Connexion d'un user
+    @POST("user/login")
+    fun login(@Body body: Map<String, String>): Call<LoginResponse>
 
     //Get tout les articles par categorie ainsi que le filtrage ou la recherche
     @GET("articles/ctg/{category_id}")
@@ -20,6 +20,9 @@ interface ApiService {
         @Path("category_id") categoryId: Int,
         @Query("search") search: String? = null
     ): Call<List<Article>>
+
+    @GET("commandes/vendeur/{id}")
+    fun getCommandesVendeur(@Path("id") vendeurId: Int): Call<CommandeResponse>
 
     // Endpoint pour récupérer les profils utilisateurs
     @GET("users")
@@ -55,7 +58,7 @@ interface ApiService {
 
     // Get un user + ses articles par son ID
     @GET("user/{id}")
-    fun getUserById(@Path("id") id: Int): Call<ApiResponse<UserData>>
+    fun getUserById(@Path("id") id: Int): Call<UserUniqueResponse>
 
     // Get les annonces des articles (afficher dans la caroussel)
     @GET("annonces/articles")

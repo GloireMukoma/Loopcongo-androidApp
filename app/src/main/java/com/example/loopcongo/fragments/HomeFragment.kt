@@ -13,22 +13,31 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.loopcongo.ProfileUserActivity
+import com.bumptech.glide.Glide
+import com.example.loopcongo.CommandesActivity
+import com.example.loopcongo.LoginActivity
+import com.example.loopcongo.ProfileUserConnectedActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.*
 import com.example.loopcongo.adapters.articles.TopArticleAdapter
 import com.example.loopcongo.adapters.articles.CarouselAnnonceArticleAdapter
+import com.example.loopcongo.database.AppDatabase
+import com.example.loopcongo.database.UserDao
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
+
+    private lateinit var userDao: UserDao
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler(Looper.getMainLooper())
 
@@ -43,12 +52,51 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // Récupère l'ImageView de l'avatar
-        val avatarImageView = view.findViewById<ImageView>(R.id.avatarImgProfileUser)
+        // Instance de la BD Room
+        val db = AppDatabase.getDatabase(requireContext())
+        userDao = db.userDao()
 
-        // Clic sur l'avatar -> redirection vers ProfilUtilisateurActivity
-        avatarImageView.setOnClickListener {
-            val intent = Intent(requireContext(), ProfileUserActivity::class.java)
+        // Récupère l'ImageView de l'avatar
+        val avatarIconUser = view.findViewById<ImageView>(R.id.avatarImgProfileUser)
+
+        // Utiliser lifecycleScope pour les fonctions suspend
+        lifecycleScope.launch {
+            val user = userDao.getUser() // récupère l’utilisateur connecté (ou null)
+
+            if (user != null) {
+                // Utilisateur connecté → afficher sa photo
+                if (!user.file_url.isNullOrEmpty()) {
+                    Glide.with(this@HomeFragment)
+                        .load(user.file_url)
+                        .placeholder(R.drawable.ic_person) // image par défaut
+                        .error(R.drawable.ic_person)
+                        .circleCrop()
+                        .into(avatarIconUser)
+                } else {
+                    avatarIconUser.setImageResource(R.drawable.ic_person)
+                }
+            } else {
+                // Pas d’utilisateur connecté → garder l’icon par défaut
+                avatarIconUser.setImageResource(R.drawable.ic_person)
+            }
+
+            // Clique sur l'avatar
+            avatarIconUser.setOnClickListener {
+                if (user == null) {
+                    // Pas d’utilisateur enregistré → rediriger vers login
+                    startActivity(Intent(requireContext(), LoginActivity::class.java))
+                } else {
+                    // Utilisateur existe → rediriger vers profil
+                    startActivity(Intent(requireContext(), ProfileUserConnectedActivity::class.java))
+                }
+            }
+        }
+
+
+        // Icon de notication, redirection vers l'activité des commandes
+        val iconNotification = view.findViewById<ImageView>(R.id.iconNotification)
+        iconNotification.setOnClickListener {
+            val intent = Intent(requireContext(), CommandesActivity::class.java)
             startActivity(intent)
         }
 
@@ -98,9 +146,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        // End données API REST
-
-
         // Gere la caroussel des annonces
         viewPager2 = view.findViewById(R.id.carouselArticleAnnnonce)
         viewPager2.offscreenPageLimit = 5
@@ -122,7 +167,6 @@ class HomeFragment : Fragment() {
                             sliderHandler.postDelayed(sliderRunnable, 3000)
                         }
                     })
-
                     // Lance la première fois le défilement auto
                     sliderHandler.postDelayed(sliderRunnable, 3000)
 
@@ -134,7 +178,6 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-
 
         return view
     }

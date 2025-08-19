@@ -6,12 +6,17 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loopcongo.fragments.userConnectedProfilOnglets.OngletArticleFragment
 import com.example.loopcongo.profileUserFragments.*
 
-class UserProfileViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+
+
+class UserProfileViewPagerAdapter(
+    fragmentActivity: FragmentActivity,
+    private val userId: Int
+) : FragmentStateAdapter(fragmentActivity) {
 
     private val fragments = listOf(
-        OngletArticleFragment(),
-        ActivitiesFragment(),
-        EmailsFragment()
+        OngletArticleFragment.newInstance(userId),
+        OngletArticleFragment.newInstance(userId),
+        OngletArticleFragment.newInstance(userId)
     )
 
     override fun getItemCount(): Int = fragments.size

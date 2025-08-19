@@ -45,14 +45,13 @@
 
             <!-- Bouton image login à droite (sans espace) -->
             <ImageView
-                android:id="@+id/loginIconBtn"
+                android:id="@+id/iconNotification"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="0dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_login"
-                android:contentDescription="Icône de connexion" />
+                android:src="@drawable/ic_notifications" />
         </RelativeLayout>
         <!-- Ligne 2 : Recherche -->
     </LinearLayout>

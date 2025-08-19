@@ -55,7 +55,7 @@
                     android:gravity="center_vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/profileImage"
+                        android:id="@+id/profileImageUserConnected"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_marginEnd="12dp"
@@ -70,6 +70,7 @@
                         android:layout_marginTop="-4dp">
 
                         <TextView
+                            android:id="@+id/nameUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Gloire mukoma"
@@ -77,6 +78,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/telephoneUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+243 97 1737160"
@@ -93,6 +95,7 @@
                 </LinearLayout>
                 <!-- Description -->
                 <TextView
+                    android:id="@+id/descriptionUserConnected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -164,11 +167,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Likes"
+                            android:text="Abonnés"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/nbAbonnerUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="58"
@@ -181,7 +185,7 @@
 
             <!-- REAL TABS avec TabLayout et ViewPager2 -->
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/userProfiletabLayout"
+                android:id="@+id/userConnectedProfiletabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/primaryColor"
@@ -192,7 +196,7 @@
                 app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/userProfileviewPager"
+                android:id="@+id/userConnectedProfileviewPager"
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

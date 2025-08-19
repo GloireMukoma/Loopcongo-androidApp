@@ -17,15 +17,24 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
-            android:name=".ProfilePrestataireActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".LoginActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".DetailCommandeActivity"
+            android:exported="false"
+            android:parentActivityName=".CommandesActivity" />
+        <activity
+            android:name=".CommandesActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ProfilePrestataireActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ProfilePrestataireConnectedActivity"
-            android:parentActivityName=".PrestataireActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:parentActivityName=".PrestataireActivity" />
         <activity
             android:name=".DetailPrestationActivity"
             android:exported="false"
@@ -42,14 +51,14 @@
         <activity
             android:name=".ProfileVendeurActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".PrestataireActivity" />
+            android:parentActivityName=".PrestataireActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PrestataireActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ProfileUserActivity"
+            android:name=".ProfileUserConnectedActivity"
             android:exported="false" />
         <activity
             android:name=".TabLayoutActivity"

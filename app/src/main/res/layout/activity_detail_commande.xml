@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- HEADER : Avatar + Auteur + Temps + Menu -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <!-- Avatar + Auteur -->
+            <LinearLayout
+                android:id="@+id/headerLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_alignParentStart="true">
+
+                <!-- Image de profil -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/userAvatarArticleDetail"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                    app:strokeColor="@android:color/holo_orange_light"
+                    app:strokeWidth="1dp"
+                    android:src="@drawable/user_profile" />
+
+                <!-- Auteur + Temps -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/auteurDetailArticle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alex tshimanga"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/timeAgoArticleDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0971737160"
+                        android:textColor="@color/gray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Icône trois points -->
+            <ImageView
+                android:id="@+id/menuIconArticleDetail"
+                android:layout_width="24dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_more_"
+                android:contentDescription="Menu"
+                android:padding="4dp"
+                app:tint="@color/black" />
+        </RelativeLayout>
+
+
+        <!-- Nom de l'article -->
+        <TextView
+            android:id="@+id/articleDetailNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom de l'article"
+            android:textColor="@color/primaryColor"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/prix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="18 CDF"
+            android:textColor="@color/primaryColor"
+            android:textSize="16dp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/articleDetaildescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description de l'article de lorem ipsum dolor conseptetur amet set consedeptist"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp" />
+
+        <!-- Image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/articleDetailImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shoes_men" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Bouton WhatsApp -->
+        <LinearLayout
+            android:id="@+id/contactButtonWhatsappDetailArticle"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:backgroundTint="@color/primaryColor"
+            android:background="@drawable/rounded_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_message"
+                app:tint="@color/secondaryColor"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discutez sur WhatsApp"
+                android:textColor="@color/secondaryColor"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="7dp"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Avatar dans CardView (aligné en haut) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="2dp"
+            android:layout_gravity="top">
+
+            <ImageView
+                android:id="@+id/articleImageItemCommande"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Texte à droite -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/nomArticleItemCommande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom article"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:src="@drawable/ic_person" />
+
+                <TextView
+                    android:id="@+id/usernameAcheteurItemCommande"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nom acheteur"
+                    android:textColor="@@android:color/holo_blue_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Texte contenu -->
+            <TextView
+                android:id="@+id/messageAcheteurItemCommande"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="texte de lannonce"
+                android:maxLines="2"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Image de l’article dans CardView, indentée -->
+</LinearLayout>

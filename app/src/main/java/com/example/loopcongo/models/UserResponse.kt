@@ -7,6 +7,14 @@ data class UserResponse(
     val data: List<User>
 )
 
+// Est utiliser quand l'utilisateur veut se connecter
+// L'API renvoie l'unique user qui s'est connecter
+data class UserUniqueResponse(
+    val status: Boolean,
+    val message: String,
+    val data: User // objet unique, null si login échoue
+)
+
 data class User(
     val id: Int,
     val username: String,
@@ -23,5 +31,10 @@ data class User(
     val article_nom: String?,
     val article_image: String?,
     val article_date: String?,
-    val total_articles: Int
+    val total_articles: Int,
+    // champ pour les faire correspondre aux données de l'api
+    // qu'il nous envoie quand l'utilisateur s'est connecter (login activité)
+    val nom: String,
+    val password: String,
+    val file_url: String
 )
