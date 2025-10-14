@@ -12,7 +12,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/secondprimaryColor"
+        android:background="@color/BleuFoncePrimaryColor"
         android:elevation="4dp">
 
         <!-- TopBar personnalisée -->
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:background="@color/secondprimaryColor">
+                android:background="@color/BleuFoncePrimaryColor">
 
                 <!-- Ligne principale : Image + Champ de recherche + Notification -->
                 <LinearLayout
@@ -93,7 +93,7 @@
             android:id="@+id/fragmentArticleTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondprimaryColor"
+            android:background="@color/BleuFoncePrimaryColor"
             app:tabMode="scrollable"
             app:tabGravity="center"
             app:tabTextAppearance="@style/TabTextSmall"
@@ -109,7 +109,6 @@
         android:id="@+id/fragmentArticleViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

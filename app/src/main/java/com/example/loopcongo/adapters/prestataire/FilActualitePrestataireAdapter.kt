@@ -41,7 +41,7 @@ class FilActualitePrestataireAdapter(
 
         Glide.with(mContext)
             .load("https://loopcongo.com/" + (publication?.image ?: ""))
-            .placeholder(R.drawable.chaussures)
+            .placeholder(R.drawable.loading)
             .into(image)
 
         // ✅ Gestion du clic pour ouvrir l'activité de détail

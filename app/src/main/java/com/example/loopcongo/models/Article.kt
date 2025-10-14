@@ -6,14 +6,15 @@ data class Article(
     val categorie_id: Int,
     val nom: String,
     val is_sponsored: Int,
-    val boost_type: String?,
-    val sponsored_until: String?,
+    val is_boosted: Int,
+    val boosted_until: String?,
     val prix: String,
     val devise: String,
     val nb_like: String,
     val about: String,
     val file_url: String,
     val user_avatar: String,
+    val user_contact: String,
     val created_at: String
 )
 

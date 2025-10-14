@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     app:cardCornerRadius="12dp"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="@color/BleuClairPrimaryColor"
     android:elevation="4dp">
 
     <LinearLayout
@@ -49,9 +49,9 @@
                     android:id="@+id/usernamePrestataire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Slobodan Poznic"
+                    android:text="Nom prestataitre"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <!-- Localisation (à droite) -->
@@ -75,9 +75,9 @@
                         android:id="@+id/localisationPrestataire"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="08:45AM"
+                        android:text="city"
                         android:textSize="12sp"
-                        android:textColor="#999999" />
+                        android:textColor="@color/gray" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Work Inquiry"
-                    android:textColor="#555555"
+                    android:textColor="@color/gray"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="I really like what you do on dribbble ..."
-                android:textColor="#888888"
+                android:textColor="@color/gray"
                 android:textSize="13sp"
                 android:maxLines="2"
                 android:ellipsize="end"

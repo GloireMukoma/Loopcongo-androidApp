@@ -18,7 +18,7 @@
         android:layout_marginBottom="3dp">
 
         <ImageView
-            android:id="@+id/topPrestataireStatutImageProfil"
+            android:id="@+id/topPrestataireProfilImg2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -28,12 +28,12 @@
 
     <!-- Nom de l'utilisateur -->
     <TextView
-        android:id="@+id/topPrestataireProfileUsername"
+        android:id="@+id/topPrestataireUserName2"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="TrèsLongNomExemple"
-        android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:maxLines="1"
         android:ellipsize="end"
@@ -41,7 +41,7 @@
 
     <!-- Profession -->
     <TextView
-        android:id="@+id/topPrestataireProfileProfession"
+        android:id="@+id/topPrestataireProfession2"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="ProfessionLongue"

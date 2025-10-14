@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@android:color/white">
+    android:background="@color/BleuFoncePrimaryColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top prestataire"
-            android:textSize="18sp"
+            android:text="TOP PRESTATAIRE"
+            android:textSize="13sp"
             android:textStyle="bold"
-            android:textColor="#212529"
+            android:textColor="@color/textColorPrimary"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="7dp"/>
 
@@ -47,15 +47,16 @@
             android:scrollbars="none"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            android:background="@drawable/bg_card_dark"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top prestation"
-            android:textSize="18sp"
-            android:textColor="#212529"
+            android:text="TOP PRESTATION"
+            android:textSize="13sp"
+            android:textColor="@color/textColorPrimary"
             android:textStyle="bold"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="3dp" />
@@ -64,7 +65,8 @@
             android:id="@+id/topPrestationsHomePageRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:nestedScrollingEnabled="false" />
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dark"/>
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>

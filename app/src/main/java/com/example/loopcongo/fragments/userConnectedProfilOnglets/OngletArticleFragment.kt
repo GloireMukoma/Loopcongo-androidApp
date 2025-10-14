@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.articles.UserArticleAdapter
-import com.example.loopcongo.models.ApiResponse
+import com.example.loopcongo.adapters.articles.UserConnectedOngletArticleAdapter
 import com.example.loopcongo.models.ArticleResponse
-import com.example.loopcongo.models.UserData
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +22,7 @@ import retrofit2.Response
 class OngletArticleFragment : Fragment() {
 
     private var userId: Int = 0 // sera passé via arguments
-    private lateinit var articlesListView: ListView
+    private lateinit var articlesRecyclerView: RecyclerView
 
     companion object {
         private const val ARG_USER_ID = "user_id"
@@ -47,26 +48,41 @@ class OngletArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.onglet_article_profil_user_connected, container, false)
-        articlesListView = view.findViewById(R.id.ongletArticlesProfilUserConnected)
+        articlesRecyclerView = view.findViewById(R.id.ongletArticlesProfilUserConnected)
         fetchUserArticles()
         return view
     }
 
     private fun fetchUserArticles() {
-        ApiClient.instance.getArticlesByVendeur(userId).enqueue(object : Callback<ArticleResponse> {
-            override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
-                if (response.isSuccessful && response.body()?.status == true) {
-                    val articles = response.body()?.data ?: emptyList()
-                    val adapter = UserArticleAdapter(requireContext(), articles)
-                    articlesListView.adapter = adapter
-                } else {
-                    Toast.makeText(requireContext(), response.body()?.message ?: "Erreur serveur", Toast.LENGTH_SHORT).show()
-                }
-            }
+        ApiClient.instance.getArticlesByVendeur(userId)
+            .enqueue(object : Callback<ArticleResponse> {
+                override fun onResponse(
+                    call: Call<ArticleResponse>,
+                    response: Response<ArticleResponse>
+                ) {
+                    if (response.isSuccessful && response.body()?.status == true) {
+                        val articles = response.body()?.data ?: emptyList()
 
-            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Erreur réseau: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
-            }
-        })
+                        articlesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+                        articlesRecyclerView.adapter = UserConnectedOngletArticleAdapter(requireContext(), articles)
+
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            response.body()?.message ?: "Erreur serveur",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Erreur réseau : ${t.localizedMessage}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
+
 }

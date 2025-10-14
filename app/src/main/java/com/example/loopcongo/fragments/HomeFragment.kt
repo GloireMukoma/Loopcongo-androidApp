@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        // Charger les données des profils utilisateurs de l'API REST
+        // Charger les données des profils utilisateurs de l'API REST (Top vendeur)
         val recyclerViewUsers = view.findViewById<RecyclerView>(R.id.statutUserProfileHomePageRecycler)
         recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 

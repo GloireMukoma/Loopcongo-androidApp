@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:layout_marginEnd="17dp"
+    android:background="@color/BleuClairPrimaryColor"
     android:padding="12dp">
 
     <!-- Ligne du haut : avatar + infos -->
@@ -50,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Le Monde"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="16sp" />
 
@@ -60,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="• 1 h"
-                    android:textColor="#888888"
+                    android:textColor="@color/gray"
                     android:textSize="12sp" />
             </LinearLayout>
             <!-- Profession -->
@@ -70,12 +71,12 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!--<ImageView
+                <ImageView
                    android:layout_width="16dp"
                    android:layout_height="16dp"
                    android:layout_marginEnd="3dp"
-                   app:tint="@android:color/holo_blue_light"
-                   android:src="@drawable/ic_citizen" />-->
+                   app:tint="@color/gray"
+                   android:src="@drawable/ic_citizen" />
 
                <TextView
                    android:id="@+id/professionFilActu"
@@ -102,7 +103,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="En direct, François Bayrou premier ministre : Bruno Retailleau a été reçu à Matignon vendredi soir"
                 android:textSize="14sp"
                 android:maxLines="3"/>

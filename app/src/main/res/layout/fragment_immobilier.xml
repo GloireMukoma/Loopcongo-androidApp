@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    tools:context=".fragments.ImmobilierFragment">
+
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/BleuFoncePrimaryColor"
+        android:elevation="4dp">
+
+        <!-- TopBar personnalisée -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@color/BleuFoncePrimaryColor">
+
+            <!-- Ligne principale : Image + Champ de recherche + Notification -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="5dp">
+
+                <!-- Image de profil -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="centerCrop"
+                    android:padding="2dp"
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                    app:strokeColor="@android:color/holo_orange_light"
+                    app:strokeWidth="1dp"
+                    android:src="@drawable/user_profile" />
+
+                <!-- Champ de recherche -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:background="@drawable/search_bg"
+                    android:paddingHorizontal="12dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="#cccccc" />
+
+                    <EditText
+                        android:id="@+id/searchArticleEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="Filtrer par quartier..."
+                        android:textColor="#ffffff"
+                        android:textColorHint="#aaaaaa"
+                        android:textSize="14sp"
+                        android:background="@android:color/transparent"
+                        android:paddingStart="8dp"
+                        android:inputType="text" />
+                </LinearLayout>
+
+                <!-- Bouton de notification -->
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="2dp"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_notifications"
+                    android:contentDescription="Notifications" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Tabs -->
+        <!-- app:tabIndicatorColor="@android:color/holo_blue_light" -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/fragmentImmobilierTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/BleuFoncePrimaryColor"
+            app:tabMode="scrollable"
+            app:tabGravity="center"
+            app:tabTextAppearance="@style/TabTextSmall"
+            app:tabIndicatorColor="#FFD700"
+            app:tabSelectedTextColor="#FFD700"
+            app:tabTextColor="#CCCCCC"
+            app:tabIconTint="@color/my_tab_icon_color" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenu principal avec ViewPager2 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fragmentImmobilierViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

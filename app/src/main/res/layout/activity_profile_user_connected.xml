@@ -14,7 +14,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/secondprimaryColor"
+                android:background="@color/BleuFoncePrimaryColor"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -41,10 +41,11 @@
 
                     <!-- Action Button 2 -->
                     <ImageView
-                        android:id="@+id/action2"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_more" />
+                        android:id="@+id/logoutBtnUserConnected"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:tint="@color/secondaryColor"
+                        android:src="@drawable/ic_logout" />
                 </LinearLayout>
 
                 <!-- Profile info -->
@@ -61,6 +62,8 @@
                         android:layout_marginEnd="12dp"
                         android:src="@drawable/user_profile"
                         android:scaleType="centerCrop"
+                        app:strokeColor="@color/secondaryColor"
+                        app:strokeWidth="2dp"
                         app:shapeAppearanceOverlay="@style/CircleImageView" />
 
                     <LinearLayout
@@ -188,7 +191,7 @@
                 android:id="@+id/userConnectedProfiletabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@color/primaryColor"
+                android:background="@color/BleuFoncePrimaryColor"
                 app:tabIndicatorColor="#FFD700"
                 app:tabSelectedTextColor="#FFD700"
                 app:tabIconTint="@color/my_tab_icon_color"

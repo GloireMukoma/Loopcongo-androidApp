@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Couleur de fond sombre -->
+    <solid android:color="@color/BleuClairPrimaryColor"/> <!-- un bleu/noir foncé -->
+
+    <!-- Coins arrondis -->
+    <corners android:radius="12dp"/>
+
+    <!-- Bordure subtile -->
+    <stroke
+        android:width="1dp"
+        android:color="#2A2B3C" /> <!-- gris très foncé -->
+
+    <!-- Ombre légère (nécessite Android 5.0+ si elevation) -->
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp"/>
+
+</shape>

@@ -21,10 +21,17 @@ interface ApiService {
         @Query("search") search: String? = null
     ): Call<List<Article>>
 
+    // Exemple : /api/immobiliers/search?city=Kinshasa&quartier=Gombe
+    @GET("immobiliers/search") // ← plus de "api/" ici
+    fun searchImmobiliers(
+        @Query("city") city: String?,
+        @Query("quartier") quartier: String?
+    ): Call<List<Immobilier>>
+
     @GET("commandes/vendeur/{id}")
     fun getCommandesVendeur(@Path("id") vendeurId: Int): Call<CommandeResponse>
 
-    // Endpoint pour récupérer les profils utilisateurs
+    // Endpoint pour récupérer les profils utilisateurs (recuperer les users avec leurs dernieres articles
     @GET("users")
     fun getUsersWithLastArticle(): Call<UserResponse>
 

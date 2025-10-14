@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@color/BleuFoncePrimaryColor">
 
     <!-- TopBar personnalisée -->
     <LinearLayout
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@color/secondprimaryColor">
+        android:background="@color/BleuFoncePrimaryColor">
 
         <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
         <RelativeLayout
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="-10dp"
-        android:background="#212529"
+        android:background="@color/BleuFoncePrimaryColor"
         app:tabMode="scrollable"
         app:tabIndicatorColor="#FFD700"
         app:tabSelectedTextColor="#FFD700"

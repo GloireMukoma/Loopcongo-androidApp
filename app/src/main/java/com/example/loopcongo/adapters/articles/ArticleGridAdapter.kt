@@ -36,7 +36,7 @@ class ArticleGridAdapter(private val articles: List<Article>) :
         // Charger image depuis URL
         Glide.with(holder.itemView.context)
             .load("https://loopcongo.com/" +article.file_url)
-            .placeholder(R.drawable.shoes)
+            .placeholder(R.drawable.loading)
             .into(holder.imgArticle)
 
         // Remplir les champs
@@ -64,6 +64,7 @@ class ArticleGridAdapter(private val articles: List<Article>) :
             intent.putExtra("article_auteur", article.user_nom)
             intent.putExtra("article_photo", article.file_url)
             intent.putExtra("user_avatar", article.user_avatar)
+            intent.putExtra("user_contact", article.user_contact)
 
             context.startActivity(intent)
         }

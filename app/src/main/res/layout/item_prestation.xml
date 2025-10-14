@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     card_view:cardCornerRadius="12dp"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="@color/BleuClairPrimaryColor"
     android:elevation="4dp">
 
     <LinearLayout
@@ -53,7 +53,7 @@
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:text="Description"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Domaine"
-                    android:textColor="#555555" />
+                    android:textColor="@color/gray" />
             </LinearLayout>
 
             <!-- Ligne localisation -->

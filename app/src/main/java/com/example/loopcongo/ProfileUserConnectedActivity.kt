@@ -1,8 +1,11 @@
 package com.example.loopcongo
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -24,7 +27,6 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
 
-
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -33,7 +35,7 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_profile_user_connected)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
 
         profileImage = findViewById(R.id.profileImageUserConnected)
         nameUserConnected = findViewById(R.id.nameUserConnected)
@@ -47,6 +49,37 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         // Récupérer la DB et le DAO
         val db = AppDatabase.getDatabase(this)
         val userDao = db.userDao()
+
+        // on se deconnecte lorsqu'on clique sur l'icon de deconnexion sur l'activité profile user connecté
+        val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserConnected)
+
+        logoutBtnUserConnected.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Déconnexion")
+                .setMessage("Voulez-vous vraiment vous déconnecter ?")
+                .setPositiveButton("Oui") { dialog, _ ->
+                    // Coroutine pour supprimer l'utilisateur de la base
+                    lifecycleScope.launch {
+                        userDao.clearUsers()
+
+                        // Redirection vers MainActivity
+                        val intent = Intent(this@ProfileUserConnectedActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Non") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+                .apply {
+                    // Modification des couleurs des boutons
+                    getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                    getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                }
+        }
+
 
         // Charger l'utilisateur depuis Room
         lifecycleScope.launch {
@@ -76,7 +109,7 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         val adapter = UserProfileViewPagerAdapter(this, userId)
         viewPager.adapter = adapter
 
-        val tabTitles = arrayOf("Article", "Commande", "Operations")
+        val tabTitles = arrayOf("Articles", "Operations")
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()

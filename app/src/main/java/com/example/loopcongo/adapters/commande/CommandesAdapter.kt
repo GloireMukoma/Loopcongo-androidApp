@@ -43,7 +43,7 @@ class CommandesAdapter(context: Context, commandes: List<Commande>) :
 
             Glide.with(context)
                 .load("https://loopcongo.com/${it.article_image}")
-                .placeholder(R.drawable.shoes)
+                .placeholder(R.drawable.loading)
                 .into(imgArticle)
         }
 

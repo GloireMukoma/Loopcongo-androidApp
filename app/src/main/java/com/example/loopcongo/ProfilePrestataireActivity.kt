@@ -40,7 +40,7 @@ class ProfilePrestataireActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.primaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
         tvUsername = findViewById(R.id.profilPrestataireUsername)

@@ -55,7 +55,7 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
             else ->
                 "• Non sponsorisé"
         }*/
-        if (vendeur.is_sponsored == 1) {
+        if (vendeur.is_certified == 1) {
             holder.badgeImage.visibility = View.VISIBLE
         } else {
             holder.badgeImage.visibility = View.GONE
@@ -86,7 +86,7 @@ class VendeurAdapter(private val vendeurs: List<Vendeur>) :
             intent.putExtra("vendeurDescription", vendeur.about)
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.file_url)
-            intent.putExtra("isSponsoredVendeur", vendeur.is_sponsored)
+            intent.putExtra("isCertifiedVendeur", vendeur.is_certified)
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
             intent.putExtra("vendeurTotalLikes", vendeur.total_likes)
             intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)

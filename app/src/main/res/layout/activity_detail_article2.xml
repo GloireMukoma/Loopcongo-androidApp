@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="@color/BleuClairPrimaryColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Image du produit avec CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <ImageView
+                android:id="@+id/articleDetailImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Détails du produit -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Titre -->
+            <TextView
+                android:id="@+id/articleDetailNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sac Mango"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+
+            <!-- Description courte -->
+            <TextView
+                android:id="@+id/articleDetaildescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Très bon état, à peine utilisé."
+                android:textSize="15sp"
+                android:textColor="@color/low_white"
+                android:layout_marginBottom="3dp" />
+
+            <!-- Prix -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Prix actuel -->
+                <TextView
+                    android:id="@+id/articleDetailPrix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20,00 €"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/low_white" />
+
+                <!-- Ancien prix barré -->
+                <TextView
+                    android:id="@+id/oldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="42,00 €"
+                    android:textSize="14sp"
+                    android:textColor="#BDBDBD"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Bouton moderne avec coins arrondis -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/contactSellerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contacter le vendeur"
+            android:textStyle="bold"
+            android:textColor="@color/secondaryColor"
+            android:layout_margin="12dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_message"
+            app:iconTint="@android:color/white"
+            android:backgroundTint="@color/BleuFoncePrimaryColor" />
+
+        <!-- Séparateur -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/BleuFoncePrimaryColor" />
+
+        <!-- Bas de page utilisateur/partage clo#FAFAFA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="10dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#FAFAFA">
+
+            <!-- Utilisateur -->
+            <LinearLayout
+                android:id="@+id/favButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="6dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_user"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/auteurDetailArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom utilisateur"
+                    android:textSize="14sp"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <!-- Partage -->
+            <LinearLayout
+                android:id="@+id/shareButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="6dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Partager"
+                    android:textSize="14sp"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

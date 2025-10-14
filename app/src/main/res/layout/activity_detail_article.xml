@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/BleuClairPrimaryColor"
     android:padding="12dp">
 
     <LinearLayout
@@ -29,8 +29,8 @@
                 <!-- Image de profil -->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/userAvatarArticleDetail"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginEnd="10dp"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/CircularImageStyle"
@@ -49,42 +49,53 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Auteur"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/timeAgoArticleDetail"
+                        android:id="@+id/userContactArticleDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Il y a 2h"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/secondaryColor"
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <!-- Icône trois points -->
-            <ImageView
-                android:id="@+id/menuIconArticleDetail"
-                android:layout_width="24dp"
-                android:layout_height="30dp"
+            <!--<ImageView
+            android:id="@+id/menuIconArticleDetail"
+            android:layout_width="24dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_more_"
+            android:contentDescription="Menu"
+            android:padding="4dp" darker_gray
+            app:tint="@color/secondaryColor" />-->
+
+            <TextView
+                android:id="@+id/articleDetailPrix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="180 $"
+                android:textColor="@color/white"
+                android:layout_marginEnd="5dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_more_"
-                android:contentDescription="Menu"
-                android:padding="4dp"
-                app:tint="@color/black" />
-        </RelativeLayout>
+                android:textSize="16sp" />
+    </RelativeLayout>
 
 
-        <!-- Nom de l'article -->
+    <!-- Nom de l'article -->
         <TextView
             android:id="@+id/articleDetailNom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nom de l'article"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp" />
@@ -95,14 +106,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description de l'article"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_marginTop="6dp" />
 
         <!-- Image -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="300dp"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
@@ -122,30 +133,25 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/articleDetailPrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="180 $"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/darker_gray"
                 android:layout_marginEnd="5dp"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp" />-->
 
-            <ImageView
-                android:id="@+id/likeCoeurImg"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/shoes_men" />
+            <!-- Imageview-->
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/articleDetailNbLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="21 Likes"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="13sp" />
+                android:textSize="13sp" />-->
         </LinearLayout>
 
         <!-- Bouton WhatsApp -->

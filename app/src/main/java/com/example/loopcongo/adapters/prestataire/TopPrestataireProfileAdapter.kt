@@ -18,14 +18,14 @@ class TopPrestataireProfileAdapter(
 ) : RecyclerView.Adapter<TopPrestataireProfileAdapter.PrestataireViewHolder>() {
 
     class PrestataireViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photoProfil: ImageView = itemView.findViewById(R.id.topPrestataireProfilImg)
-        val username: TextView = itemView.findViewById(R.id.topPrestataireUserName)
-        val profession: TextView = itemView.findViewById(R.id.topPrestataireProfession)
+        val photoProfil: ImageView = itemView.findViewById(R.id.topPrestataireProfilImg2)
+        val username: TextView = itemView.findViewById(R.id.topPrestataireUserName2)
+        val profession: TextView = itemView.findViewById(R.id.topPrestataireProfession2)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrestataireViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_top_prestataire, parent, false)
+            .inflate(R.layout.item_prestataire_profile_statut, parent, false)
         return PrestataireViewHolder(view)
     }
 

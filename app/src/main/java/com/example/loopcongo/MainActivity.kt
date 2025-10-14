@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.fragments.ArticleFragment
 import com.example.loopcongo.fragments.HomeFragment
+import com.example.loopcongo.fragments.ImmobilierFragment
 import com.example.loopcongo.fragments.article.onglets.ArticleForAllCategoriesFragment
 import com.example.loopcongo.fragments.vendeurs.VendeurMainFragment
 import com.example.loopcongo.models.Product
@@ -28,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Couleur de la status bar (en haut)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
             // Couleur de la navigation bar (en bas)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
         /*supportActionBar?.title = "Acceuil"
@@ -44,17 +45,13 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.bNavHome -> loadFragment(HomeFragment())
                 R.id.bNavArticle -> loadFragment(ArticleFragment())
-                R.id.bNavImmo -> {
-                    val intent = Intent(this, ArticleDetailActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
+                R.id.bNavImmo -> loadFragment(ImmobilierFragment())
                 R.id.bNavUsers -> loadFragment(VendeurMainFragment())
-                 R.id.bNavCitizens -> {
+                /*R.id.bNavCitizens -> {
                      val intent = Intent(this, PrestataireActivity::class.java)
                      startActivity(intent)
                      true
-                 }
+                 }*/
             }
             true
         }

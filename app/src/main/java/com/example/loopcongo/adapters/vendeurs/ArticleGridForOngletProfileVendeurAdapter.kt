@@ -43,8 +43,6 @@ class ArticleGridForOngletProfileVendeurAdapter(
             "$prix"
         }
 
-
-
         Glide.with(context)
             .load("https://loopcongo.com/" +article.file_url)
             .placeholder(R.drawable.shoes)

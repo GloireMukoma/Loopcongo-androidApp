@@ -38,7 +38,7 @@ class TopPrestationAdapter(
 
         Glide.with(holder.itemView.context)
             .load("https://loopcongo.com/" + (pub.image ?: "prestataires/prestations/job_default.jpg"))
-            .placeholder(R.drawable.shoes)
+            .placeholder(R.drawable.loading)
             .into(holder.imagePublication)
 
         // ✅ Gestion du clic pour ouvrir l'activité de détail

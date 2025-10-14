@@ -1,0 +1,51 @@
+package com.example.loopcongo.fragments
+
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import com.example.loopcongo.R
+import com.example.loopcongo.adapters.articles.ArticleViewPagerAdapter
+import com.example.loopcongo.adapters.immobiliers.ImmobilierGridAdapter
+import com.example.loopcongo.adapters.immobiliers.ImmobilierViewPagerAdapter
+import com.example.loopcongo.fragments.article.onglets.ArticleForAllCategoriesFragment
+import com.example.loopcongo.fragments.immobiliers.ImmobilierForAllCityFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+
+class ImmobilierFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_immobilier, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val searchEditText = view.findViewById<EditText>(R.id.searchArticleEditText)
+        val tabLayout = view.findViewById<TabLayout>(R.id.fragmentImmobilierTabLayout)
+        val viewPager = view.findViewById<ViewPager2>(R.id.fragmentImmobilierViewPager)
+
+        val pagerAdapter = ImmobilierViewPagerAdapter(this)
+        viewPager.adapter = pagerAdapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = pagerAdapter.cities[position]
+        }.attach()
+
+        // 🔹 Recherche par quartier corrigée
+        searchEditText.doOnTextChanged { text, _, _, _ ->
+            val currentFragment = childFragmentManager.fragments
+                .firstOrNull { it is ImmobilierForAllCityFragment } as? ImmobilierForAllCityFragment
+            currentFragment?.loadImmos(text?.toString())
+        }
+    }
+}

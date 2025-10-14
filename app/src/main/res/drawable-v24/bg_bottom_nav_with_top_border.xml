@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fond -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/BleuFoncePrimaryColor"/>
+        </shape>
+    </item>
+
+    <!-- Bordure top -->
+    <item
+        android:top="0dp"
+        android:left="0dp"
+        android:right="0dp">
+        <shape android:shape="rectangle">
+            <size android:height="1dp"/> <!-- épaisseur de la ligne -->
+            <solid android:color="#404040"/> <!-- couleur de la bordure -->
+        </shape>
+    </item>
+
+</layer-list>

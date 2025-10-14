@@ -20,10 +20,5 @@
         android:title="Vendeur"
         android:icon="@drawable/ic_users"/>
 
-    <item
-        android:id="@+id/bNavCitizens"
-        android:title="Prestataire"
-        android:icon="@drawable/ic_citizen"/>
-
 
 </menu>

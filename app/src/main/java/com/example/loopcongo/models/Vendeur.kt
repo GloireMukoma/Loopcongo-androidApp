@@ -6,9 +6,9 @@ data class Vendeur(
     val nb_abonner: Int,
     val total_articles: Int,
     val total_likes: Int,
-    val is_sponsored: Int,
-    val boost_type: String?,
-    val sponsored_until: String?,
+    val is_certified: Int,
+    val is_boosted: Int,
+    val boosted_until: String?,
     val password: String?,        // Facultatif si jamais tu ne veux pas l'utiliser
     val contact: String?,
     val city: String?,

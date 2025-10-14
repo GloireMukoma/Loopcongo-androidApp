@@ -23,8 +23,8 @@ class ProfileVendeurActivity : AppCompatActivity() {
 
         // Forcer la couleur de la status bar et de la navigation bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.secondprimaryColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
         // Récupération des données depuis l'Intent
@@ -35,7 +35,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
-        val isSponsoredVendeur = intent.getIntExtra("isSponsoredVendeur", 0)
+        val isCertifiedVendeur = intent.getIntExtra("isCertifiedVendeur", 0)
 
         val vendeurTotalArticles = intent.getIntExtra("vendeurTotalArticles", 0)
         val vendeurTotalLikes = intent.getIntExtra("vendeurTotalLikes", 0)
@@ -51,7 +51,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.profileVendeurCity).text = vendeurCity
 
         val sponsorTextView = findViewById<ImageView>(R.id.profileVendeurBadge) // TextView pour le badge
-        if (isSponsoredVendeur == 1) {
+        if (isCertifiedVendeur == 1) {
             sponsorTextView.visibility = View.VISIBLE
         } else {
             sponsorTextView.visibility = View.GONE

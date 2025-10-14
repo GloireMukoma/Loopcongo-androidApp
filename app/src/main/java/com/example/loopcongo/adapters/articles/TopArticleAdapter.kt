@@ -26,7 +26,7 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
         val nom = view.findViewById<TextView>(R.id.topArticleNom)
         val prix = view.findViewById<TextView>(R.id.topArticlePrix)
         val auteur = view.findViewById<TextView>(R.id.topArticleAuteur)
-        val nb_like = view.findViewById<TextView>(R.id.articleDetailNbLike)
+        //val nb_like = view.findViewById<TextView>(R.id.articleDetailNbLike)
         // val badge = view.findViewById<TextView>(R.id.articleBadge)
 
         nom.text = article?.nom
@@ -35,10 +35,12 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
 
         Glide.with(context)
             .load("https://loopcongo.com/${article?.file_url}")
+            .placeholder(R.drawable.loading)
             .into(image)
 
         Glide.with(context)
             .load("https://loopcongo.com/${article?.user_avatar}")
+            .placeholder(R.drawable.loading)
             .into(user_avatar)
 
         /*if (article?.is_sponsored == 1) {

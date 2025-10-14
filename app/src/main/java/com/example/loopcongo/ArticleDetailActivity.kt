@@ -2,15 +2,24 @@ package com.example.loopcongo
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 
 class ArticleDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_article)
+        //supportActionBar?.hide()
+
+        //forcer pour que la barre de notification et d'en bas prenne un couleur
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Couleur de la status bar (en haut)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        }
+        setContentView(R.layout.activity_detail_article2)
         supportActionBar?.title = "Article"
 
         val articleImg = findViewById<ImageView>(R.id.articleDetailImage)
@@ -19,9 +28,8 @@ class ArticleDetailActivity : AppCompatActivity() {
         val articlePrix = findViewById<TextView>(R.id.articleDetailPrix)
         val articleAuteur = findViewById<TextView>(R.id.auteurDetailArticle)
         val avatarUser = findViewById<ImageView>(R.id.userAvatarArticleDetail)
-        val articleNbLike = findViewById<TextView>(R.id.articleDetailNbLike)
-        val timeAgo = findViewById<TextView>(R.id.timeAgoArticleDetail)
-
+        //val articleNbLike = findViewById<TextView>(R.id.articleDetailNbLike)
+        val userContact = findViewById<TextView>(R.id.userContactArticleDetail)
 
         // Récupérer les extras
         val nom = intent.getStringExtra("article_nom")
@@ -33,26 +41,31 @@ class ArticleDetailActivity : AppCompatActivity() {
         val userAvatar = intent.getStringExtra("user_avatar")
         val createdAt = intent.getStringExtra("article_created_at")
         val nbLike = intent.getStringExtra("article_nbLike")
+        val user_contact = intent.getStringExtra("user_contact")
 
-        articleNom.text = nom
-        articlePrix.text = "Prix: $prixValue $devise"
+        articleNom.text = if (nom.isNullOrBlank()) {
+            "Nom non disponible"
+        } else {
+            nom
+        }
+        articlePrix.text = "$prixValue $devise"
         articleDescription.text = description
         articleAuteur.text = auteur
-        articleNbLike.text = " • ${nbLike ?: 0} Likes"
+        //articleNbLike.text = " • ${nbLike ?: 0} Likes"
 
-        timeAgo.text = "Il y 48min"
+        //userContact.text = user_contact
 
         Glide.with(this)
             .load("https://loopcongo.com/$image")
-            .placeholder(R.drawable.shoes)
+            .placeholder(R.drawable.loading)
             .into(articleImg)
 
-        Glide.with(this)
+        /*Glide.with(this)
             .load("https://loopcongo.com/$userAvatar")
-            .placeholder(R.drawable.shoes)
-            .into(avatarUser)
+            .placeholder(R.drawable.loading)
+            .into(avatarUser)*/
 
-        val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
+        /*val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
         //val numeroWhatsapp = intent.getStringExtra("numero_whatsapp") // récupéré depuis l’intent
         val numeroWhatsapp = "243971737160"
 
@@ -71,7 +84,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
 
     }
 }

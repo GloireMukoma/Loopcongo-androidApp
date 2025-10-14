@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/BleuFoncePrimaryColor"
+    android:padding="24dp"
+    tools:context=".BoostActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Icône de foudre -->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_boost"
+            app:tint="#FFD700"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booste ton profil"
+            android:textColor="#FFD700"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Sous-titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deviens plus visible, attire plus d’acheteurs et fais passer ton profil au niveau supérieur."
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="#DDDDDD"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Liste des avantages -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="middle"
+            android:dividerPadding="10dp">
+
+            <!-- 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_fleche_haut"
+                    app:tint="#FFB800"
+                    android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ton profil apparaît en haut de la liste des vendeurs."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="4dp">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_check"
+                    app:tint="#00C853"
+                    android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tes articles sont mis en avant sur la page d’accueil."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="4dp">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_star"
+                    app:tint="#9C27B0"
+                    android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Une étiquette “Boosté” s’affiche sur ton profil."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="4dp">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_eye"
+                    app:tint="#03A9F4"
+                    android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tes publications reçoivent plus de vues et de clics."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4dp">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_more_customers"
+                    app:tint="#4CAF50"
+                    android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tu gagnes en crédibilité et en confiance auprès des acheteurs."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Prix -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2$ ou 5.000FC / mois"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Bouton Continuer -->
+        <Button
+            android:id="@+id/boostBtnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFD700"
+            android:text="Continuer"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Note bas de page -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ton boost est actif immédiatement et valable 30 jours.\nRenouvelle-le à tout moment pour rester visible !"
+            android:textColor="#BBBBBB"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textAlignment="center" />
+    </LinearLayout>
+</ScrollView>

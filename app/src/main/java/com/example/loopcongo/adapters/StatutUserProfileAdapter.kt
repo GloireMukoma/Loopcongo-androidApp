@@ -65,7 +65,7 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
         // Charger l'image de fond (dernière image article ou image utilisateur par défaut)
         Glide.with(holder.itemView.context)
             .load(articleUrl ?: profileUrl)
-            .placeholder(R.drawable.avatar)
+            .placeholder(R.drawable.loading)
             .centerCrop()
             .into(holder.articleImage)
 
