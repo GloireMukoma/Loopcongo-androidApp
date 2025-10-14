@@ -23,3 +23,11 @@ data class ArticleResponse(
     val message: String,
     val data: List<Article>
 )
+// Classe qui represente les images de detail de l'article (API REST)
+data class DetailImage(
+    val id: Int,
+    val product_id: Int,
+    val file_url: String
+)
+
+

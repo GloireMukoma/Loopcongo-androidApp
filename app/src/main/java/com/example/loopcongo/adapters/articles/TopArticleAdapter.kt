@@ -51,6 +51,8 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
         // ✅ Gestion du clic pour ouvrir l'activité de détail
         view.setOnClickListener {
             val intent = Intent(context, ArticleDetailActivity::class.java)
+            intent.putExtra("user_id", article?.account_id)
+            intent.putExtra("article_id", article?.id)
             intent.putExtra("article_nom", article?.nom)
             intent.putExtra("article_prix", article?.prix)
             intent.putExtra("article_devise", article?.devise)

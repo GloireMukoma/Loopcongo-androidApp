@@ -31,5 +31,11 @@
     <color name="text_sub">#BDBDBD</color>
     <color name="accent_yellow">#FFD700</color>
 
+    <color name="background_dark">#0E1230</color>
+    <color name="primeColor1">#1D2453</color>
+    <color name="primeColor2">#5A69A6</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="hint_text">#A4A8C3</color>
+    <color name="primeColor3">#00D084</color>
 
 </resources>

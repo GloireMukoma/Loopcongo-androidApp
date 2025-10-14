@@ -3,9 +3,11 @@ package com.example.loopcongo.restApi
 import com.example.loopcongo.database.LoginResponse
 import com.example.loopcongo.models.*
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
+
     // Endpoint pour récupérer les articles
     @GET("articles")
     fun getArticles(): Call<ArticleResponse>
@@ -20,6 +22,13 @@ interface ApiService {
         @Path("category_id") categoryId: Int,
         @Query("search") search: String? = null
     ): Call<List<Article>>
+
+    @GET("article/detail/imgs/{id}")
+    suspend fun getArticleDetailImages(@Path("id") id: Int): Response<List<DetailImage>>
+
+    // Est utiliser sur le bouton voir profil sur l'activité detailArticle pour voir le profile user
+    @GET("user/userById/{id}")
+    suspend fun userById(@Path("id") id: Int): Response<UserUniqueResponse>
 
     // Exemple : /api/immobiliers/search?city=Kinshasa&quartier=Gombe
     @GET("immobiliers/search") // ← plus de "api/" ici
