@@ -30,25 +30,6 @@
             android:layout_marginBottom="8dp"
             android:dividerPadding="6dp" />
 
-
-        <!-- Bouton bleu principal -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/btnChoisirChambres"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Choisir chambres"
-                android:textAllCaps="false"
-                android:textColor="@color/secondaryColor"
-                android:backgroundTint="@color/BleuFoncePrimaryColor"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif-medium" />
-        </LinearLayout>
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,6 +108,31 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <!-- Bouton bleu principal avec icône WhatsApp -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnChoisirChambres"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Discuter sur WhatsApp"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryColor"
+                android:backgroundTint="@color/BleuClairPrimaryColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:drawableStart="@drawable/ic_message"
+                app:drawableTint="@color/primeColor3"
+                android:drawablePadding="8dp" />
+            <!-- Espace entre l'icône et le texte -->
+
+        </LinearLayout>
+
 
 
     </LinearLayout>
