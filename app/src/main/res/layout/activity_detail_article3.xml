@@ -11,6 +11,67 @@
         android:orientation="vertical"
         android:padding="12dp">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/BleuClairPrimaryColor"> <!-- Choisis la couleur que tu veux -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!-- Section auteur -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="-7dp">
+
+                    <!-- Image de profil -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/avatarAuteurdetailArticle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="10dp"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                        app:strokeColor="@android:color/holo_orange_light"
+                        app:strokeWidth="1dp"
+                        android:src="@drawable/user_profile" />
+
+                    <TextView
+                        android:id="@+id/nomAuteurdetailImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nom de l’auteur"
+                        android:layout_marginTop="-5dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/white" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/btnVoirProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_border"
+                        android:text="Profil"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primeColor3"
+                        android:textSize="13sp"
+                        android:backgroundTint="@color/BleuFoncePrimaryColor" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- Image principale -->
         <ImageView
             android:id="@+id/imagePrincipaldetailArticle"
@@ -62,50 +123,6 @@
                     android:textColor="@color/primeColor3" />
 
                 <!-- Section auteur -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp">
-
-                    <!-- Image de profil -->
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/avatarAuteurdetailArticle"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="10dp"
-                        android:scaleType="centerCrop"
-                        app:shapeAppearanceOverlay="@style/CircularImageStyle"
-                        app:strokeColor="@android:color/holo_orange_light"
-                        app:strokeWidth="1dp"
-                        android:src="@drawable/user_profile" />
-
-                    <TextView
-                        android:id="@+id/nomAuteurdetailImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nom de l’auteur"
-                        android:textSize="16sp"
-                        android:textColor="@color/white" />
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/btnVoirProfil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Profil"
-                        android:textAllCaps="false"
-                        android:textColor="@color/secondaryColor"
-                        android:textSize="13sp"
-                        android:paddingHorizontal="8dp"
-                        android:backgroundTint="@color/BleuFoncePrimaryColor" />
-                </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -118,7 +135,7 @@
             <Button
                 android:id="@+id/btnChoisirChambres"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="54dp"
                 android:text="Discuter sur WhatsApp"
                 android:textAllCaps="false"
                 android:textColor="@color/secondaryColor"
@@ -132,8 +149,6 @@
             <!-- Espace entre l'icône et le texte -->
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 </ScrollView>

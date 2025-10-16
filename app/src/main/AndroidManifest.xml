@@ -51,7 +51,7 @@
             android:parentActivityName=".PrestataireActivity"
             android:theme="@style/Theme.Loopcongo" />
         <activity
-            android:name=".ArticleDetailActivity"
+            android:name=".DetailArticleActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

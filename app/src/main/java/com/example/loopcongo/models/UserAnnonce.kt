@@ -1,23 +1,24 @@
 package com.example.loopcongo.models
 
-data class ArticleAnnonce(
+data class UserAnnonce(
     val id: Int,
-    val userId: Int,
+    val user_id: Int,
     val titre: String,
     val description: String,
     val annonce_image: String,  // URL ou chemin image
-    val dateDebut: String,
-    val dateFin: String,
+    val date_debut: String,
+    val date_fin: String,
     val statut: String,
-    val nomUser: String,
-    val typeAccount: String,
+    val nom: String, // Nom de l'utilisateur (vendeur)
+    val type_account: String,
     val contact: String,
     val city: String,
-    val fileUrl: String        // URL photo profil user
+    val file_url: String,     // URL photo profil user
+    val created_at: String
 )
 
 data class AnnonceResponse(
     val status: Boolean,
     val message: String,
-    val data: List<ArticleAnnonce>
+    val data: List<UserAnnonce>
 )

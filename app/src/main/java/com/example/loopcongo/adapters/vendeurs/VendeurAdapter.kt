@@ -1,23 +1,18 @@
 package com.example.loopcongo.adapters.vendeurs
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.loopcongo.ArticleDetailActivity
-import com.example.loopcongo.DetailOffrePrestationActivity
 import com.example.loopcongo.ProfileVendeurActivity
 import com.example.loopcongo.R
-import com.example.loopcongo.models.OffrePrestation
-import com.example.loopcongo.models.Vendeur
+import com.example.loopcongo.models.User
 
-class VendeurAdapter(private val vendeurs: List<Vendeur>) :
+class VendeurAdapter(private val vendeurs: List<User>) :
     RecyclerView.Adapter<VendeurAdapter.VendeurViewHolder>() {
 
     inner class VendeurViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

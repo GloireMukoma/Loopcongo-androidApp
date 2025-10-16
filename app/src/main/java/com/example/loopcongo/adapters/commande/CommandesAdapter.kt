@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.loopcongo.ArticleDetailActivity
 import com.example.loopcongo.DetailCommandeActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Commande

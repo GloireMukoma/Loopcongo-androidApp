@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.loopcongo.ArticleDetailActivity
+import com.example.loopcongo.DetailArticleActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Article
 
@@ -52,7 +52,7 @@ class ArticleGridAdapter(private val articles: List<Article>) :
         // 👉 CLIC : Redirection vers Détail
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, ArticleDetailActivity::class.java)
+            val intent = Intent(context, DetailArticleActivity::class.java)
 
             // Passer les données nécessaires (tu peux en passer plus)
 

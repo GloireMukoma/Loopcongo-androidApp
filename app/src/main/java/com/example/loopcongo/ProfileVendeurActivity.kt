@@ -75,7 +75,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Articles"
-                1 -> "Infos"
+                1 -> "Annonces"
                 else -> "Onglet ${position + 1}"
             }
         }.attach()

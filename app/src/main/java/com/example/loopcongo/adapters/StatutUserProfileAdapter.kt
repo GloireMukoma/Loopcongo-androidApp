@@ -12,8 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.ProfileVendeurActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
-import com.example.loopcongo.models.UserProfile
-import com.example.loopcongo.models.Vendeur
 import com.google.android.material.imageview.ShapeableImageView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -82,7 +80,7 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
             intent.putExtra("vendeurDescription", vendeur.about)
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.profile_image)
-            intent.putExtra("isSponsoredVendeur", vendeur.is_sponsored)
+            intent.putExtra("isSponsoredVendeur", vendeur.is_certified)
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
             intent.putExtra("vendeurTotalLikes", 3)
             intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)

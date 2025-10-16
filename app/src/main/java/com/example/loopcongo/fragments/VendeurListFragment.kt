@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.vendeurs.VendeurAdapter
-import com.example.loopcongo.models.Vendeur
-import com.example.loopcongo.models.VendeurResponse
+import com.example.loopcongo.models.User
+import com.example.loopcongo.models.UserResponse
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +21,7 @@ class VendeurListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var vendeurAdapter: VendeurAdapter
-    private val vendeurs = mutableListOf<Vendeur>()
+    private val vendeurs = mutableListOf<User>()
     private var type: String? = null
 
     companion object {
@@ -54,8 +54,8 @@ class VendeurListFragment : Fragment() {
     }
 
     private fun loadVendeurs() {
-        ApiClient.instance.getVendeurs().enqueue(object : Callback<VendeurResponse> {
-            override fun onResponse(call: Call<VendeurResponse>, response: Response<VendeurResponse>) {
+        ApiClient.instance.getVendeurs().enqueue(object : Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     val allVendeurs = response.body()?.data ?: emptyList()
 
@@ -70,7 +70,7 @@ class VendeurListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<VendeurResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Échec: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })

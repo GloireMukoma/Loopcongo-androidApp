@@ -9,8 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.loopcongo.ArticleDetailActivity
-import com.example.loopcongo.DetailPrestationActivity
+import com.example.loopcongo.DetailArticleActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Article
 
@@ -50,7 +49,7 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
         }*/
         // ✅ Gestion du clic pour ouvrir l'activité de détail
         view.setOnClickListener {
-            val intent = Intent(context, ArticleDetailActivity::class.java)
+            val intent = Intent(context, DetailArticleActivity::class.java)
             intent.putExtra("user_id", article?.account_id)
             intent.putExtra("article_id", article?.id)
             intent.putExtra("article_nom", article?.nom)
@@ -58,6 +57,7 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
             intent.putExtra("article_devise", article?.devise)
             intent.putExtra("article_description", article?.about)
             intent.putExtra("article_nbLike", article?.nb_like ?: "0")
+            intent.putExtra("article_auteur", article?.user_nom)
             intent.putExtra("article_auteur", article?.user_nom)
             intent.putExtra("article_photo", article?.file_url)
             intent.putExtra("user_avatar", article?.user_avatar)

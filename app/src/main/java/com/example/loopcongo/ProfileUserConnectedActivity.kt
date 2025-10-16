@@ -42,7 +42,6 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserConnected)
 
-
         tabLayout = findViewById(R.id.userConnectedProfiletabLayout)
         viewPager = findViewById(R.id.userConnectedProfileviewPager)
 

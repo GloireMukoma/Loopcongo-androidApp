@@ -50,7 +50,7 @@ interface ApiService {
 
     // Appelle GET sur /api/vendeurs
     @GET("vendeurs")
-    fun getVendeurs(): Call<VendeurResponse>
+    fun getVendeurs(): Call<UserResponse>
 
     // Get la liste des prestataires
     @GET("prestataires")
@@ -76,9 +76,18 @@ interface ApiService {
     @GET("user/{id}")
     fun getUserById(@Path("id") id: Int): Call<UserUniqueResponse>
 
+    // Get un user premium pour l'afficher dans la popup des utilisateurs premium
+    @GET("user/random-premium")
+    fun getRandomPremiumUser(): Call<RandomPremiumUserResponse>
+
     // Get les annonces des articles (afficher dans la caroussel)
-    @GET("annonces/articles")
+    @GET("user/annonces")
     fun getAnnoncesArticlesCaroussel(): Call<AnnonceResponse>
+
+    // Get les annonces du vendeur est les afficher dans l'onglet annonces du tablayout
+    //de l'activité profile user
+    @GET("user/annonces/get/{id}")
+    fun getAnnoncesByVendeur(@Path("id") vendeurId: Int): Call<AnnonceResponse>
 
     // Recuperer les prestations d'un prestataire par son id
     // 🔹 Exemple : GET /prestations?prestataire_id=5

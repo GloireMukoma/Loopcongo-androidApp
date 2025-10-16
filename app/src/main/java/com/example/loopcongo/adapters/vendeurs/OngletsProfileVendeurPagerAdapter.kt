@@ -3,6 +3,7 @@ package com.example.loopcongo.adapters.vendeurs
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.loopcongo.fragments.profilevendeurs.ProfilVendeursOngletAnnonceFragment
 import com.example.loopcongo.fragments.profilevendeurs.ProfilVendeursOngletArticleFragment
 
 
@@ -16,7 +17,7 @@ class OngletsProfileVendeurPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> ProfilVendeursOngletArticleFragment.newInstance(vendeurId)
-            1 -> ProfilVendeursOngletArticleFragment.newInstance(vendeurId)
+            1 -> ProfilVendeursOngletAnnonceFragment.newInstance(vendeurId)
             else -> throw IllegalArgumentException("Position d'onglet invalide")
         }
     }

@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ArticleDetailActivity : AppCompatActivity() {
+class DetailArticleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +35,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         // ✅ Récupération des vues
         val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailArticle)
         val auteur = findViewById<TextView>(R.id.nomAuteurdetailImage)
+        //val sponsoredbadje = findViewById<TextView>(R.id.numeroAuteurdetailImage)
 
         val description = findViewById<TextView>(R.id.detailArticleDescription)
         val avatarAuteur = findViewById<ShapeableImageView>(R.id.avatarAuteurdetailArticle)
@@ -55,7 +55,6 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         val desc = intent.getStringExtra("article_description")
         val nbLike = intent.getStringExtra("article_nbLike") ?: "0"
-
 
         auteur.text = user
         description.text = desc
@@ -96,30 +95,31 @@ class ArticleDetailActivity : AppCompatActivity() {
                     // Appel de l'API pour récupérer le vendeur par son ID
                     val response = ApiClient.instance.userById(userId)
                     if (response.isSuccessful && response.body() != null) {
-                        val user = response.body()!!.data
+                        val vendeur = response.body()!!.data
 
                         // Préparer l'Intent pour ProfileVendeurActivity
-                        val intent = Intent(this@ArticleDetailActivity, ProfileVendeurActivity::class.java)
-                        intent.putExtra("vendeurId", user.id)
-                        intent.putExtra("vendeurUsername", user.username)
-                        intent.putExtra("vendeurContact", user.contact)
-                        intent.putExtra("vendeurCity", user.city)
-                        intent.putExtra("vendeurDescription", user.about)
-                        intent.putExtra("vendeurTypeAccount", user.type_account)
-                        intent.putExtra("vendeurAvatarImg", user.file_url)
-                        intent.putExtra("isCertifiedVendeur", user.is_sponsored ?: 0)
-                        intent.putExtra("vendeurTotalArticles", user.total_articles ?: 0)
-                        intent.putExtra("vendeurTotalLikes", user.total_articles ?: 0)
-                        intent.putExtra("vendeurNbAbonner", user.nb_abonner ?: 0)
+                        val intent = Intent(this@DetailArticleActivity, ProfileVendeurActivity::class.java)
+                        intent.putExtra("vendeurId", vendeur.id)
+                        intent.putExtra("vendeurUsername", vendeur.nom)
+                        intent.putExtra("vendeurContact", vendeur.contact)
+                        intent.putExtra("vendeurCity", vendeur.city)
+                        intent.putExtra("vendeurDescription", vendeur.about)
+                        intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+                        intent.putExtra("vendeurAvatarImg", vendeur.file_url)
+                        intent.putExtra("isCertifiedVendeur", vendeur.is_certified ?: 0)
+                        intent.putExtra("vendeurTotalArticles", vendeur.total_articles ?: 0)
+                        intent.putExtra("vendeurTotalLikes", vendeur.total_articles ?: 0)
+                        intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner ?: 0)
+
 
                         // Lancer l'activité
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this@ArticleDetailActivity, "Impossible de récupérer le profil", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DetailArticleActivity, "Impossible de récupérer le profil", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    Toast.makeText(this@ArticleDetailActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -139,13 +139,13 @@ class ArticleDetailActivity : AppCompatActivity() {
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@ArticleDetailActivity, "Erreur de chargement des images", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DetailArticleActivity, "Erreur de chargement des images", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ArticleDetailActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -182,7 +182,7 @@ class ArticleDetailActivity : AppCompatActivity() {
                     layoutParams = imgParams
                     scaleType = ImageView.ScaleType.CENTER_CROP
                     background = ContextCompat.getDrawable(
-                        this@ArticleDetailActivity,
+                        this@DetailArticleActivity,
                         R.drawable.rounded_image_background
                     )
                     clipToOutline = true // ✅ arrondir les coins

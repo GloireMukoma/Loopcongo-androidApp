@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
-import com.example.loopcongo.models.ArticleAnnonce
+import com.example.loopcongo.models.UserAnnonce
 
-class CarouselAnnonceArticleAdapter(private val context: Context, private val annonces: List<ArticleAnnonce>) :
+class CarouselAnnonceArticleAdapter(private val context: Context, private val annonces: List<UserAnnonce>) :
     RecyclerView.Adapter<CarouselAnnonceArticleAdapter.AnnonceViewHolder>() {
 
     inner class AnnonceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
