@@ -1,5 +1,6 @@
 package com.example.loopcongo.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,21 +9,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.loopcongo.CommandesActivity
-import com.example.loopcongo.LoginActivity
-import com.example.loopcongo.ProfileUserConnectedActivity
-import com.example.loopcongo.R
+import com.example.loopcongo.*
 import com.example.loopcongo.adapters.*
+import com.example.loopcongo.adapters.articles.ArticleForPopupRandomUserPremiumAdapter
 import com.example.loopcongo.adapters.articles.TopArticleAdapter
 import com.example.loopcongo.adapters.articles.CarouselAnnonceArticleAdapter
 import com.example.loopcongo.database.AppDatabase
@@ -179,6 +177,106 @@ class HomeFragment : Fragment() {
             }
         })
 
+        // Affichage de la popup des users premium
+        showRandomPremiumUserPopup(requireContext())
+
         return view
+    }
+    // Affiche la popup des users premiums et leurs articles
+    fun showRandomPremiumUserPopup(context: Context) {
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.popup_premium_user_and_articles, null)
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.popupPremiumUserRecyclerView)
+        val viewProfileBtn: Button = view.findViewById(R.id.popupPremiumUserViewProfilBtn)
+        val userName: TextView = view.findViewById(R.id.popupPremiumUsername)
+        val numero: TextView = view.findViewById(R.id.popupPremiumUserNumero)
+        val userImage: ImageView = view.findViewById(R.id.popupPremiumUserAvatarImg)
+
+        val adapter = ArticleForPopupRandomUserPremiumAdapter(context, listOf())
+
+        // LayoutManager pour une grille de 2 colonnes, défilable verticalement
+        recyclerView.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        // defilement horizontal (caroussel)
+        //recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapter
+
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(view)
+            .create()
+
+        // Récupère le bouton "close"
+        val closeIcon = view.findViewById<ImageView>(R.id.closeIconPremiumPopup)
+        closeIcon.setOnClickListener {
+            dialog.dismiss() // ✅ Ferme la popup
+        }
+
+        dialog.show()
+
+        // Appel API
+        ApiClient.instance.getRandomPremiumUser().enqueue(object : Callback<RandomPremiumUserResponse> {
+            override fun onResponse(
+                call: Call<RandomPremiumUserResponse>,
+                response: Response<RandomPremiumUserResponse>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    val body = response.body()!!
+                    if (body.status && body.user != null) {
+
+                        // Rediriger vers le profil du vendeur lorsqu'on clique sur le bouton voir profil
+                        viewProfileBtn.setOnClickListener {
+                            // Ici tu peux rediriger vers l'activité profil complet si nécessaire
+                            val intent = Intent(context, ProfileVendeurActivity::class.java)
+
+                            // Passer les données nécessaires (tu peux en passer plus)
+                            intent.putExtra("vendeurId", body.user.id)
+                            intent.putExtra("vendeurUsername", body.user.nom)
+                            intent.putExtra("vendeurContact", body.user.contact)
+                            intent.putExtra("vendeurCity", body.user.city)
+                            intent.putExtra("vendeurDescription", body.user.about)
+                            intent.putExtra("vendeurTypeAccount", body.user.type_account)
+                            intent.putExtra("vendeurAvatarImg", body.user.file_url)
+                            intent.putExtra("isCertifiedVendeur", body.user.is_certified)
+                            intent.putExtra("vendeurTotalArticles", body.user.total_articles)
+                            intent.putExtra("vendeurTotalLikes", body.user.total_likes)
+                            intent.putExtra("vendeurNbAbonner", body.user.nb_abonner)
+
+                            context.startActivity(intent)
+                        }
+
+                        userName.text = body.user.nom
+                        numero.text = body.user.contact
+
+                        // verifier si l'user est premium pour avoir l'icon de certification
+                        if (body.user.subscription_type == "premium" && body.user.subscription_status == "active") {
+                            view.findViewById<ImageView>(R.id.popupPremiumUserVerifiedIcon).visibility = View.VISIBLE
+                        } else {
+                            view.findViewById<ImageView>(R.id.popupPremiumUserVerifiedIcon).visibility = View.GONE
+                        }
+
+                        Glide.with(context)
+                            .load("https://loopcongo.com/${body.user.file_url}")
+                            .placeholder(R.drawable.loading)
+                            .into(userImage)
+
+                        adapter.updateData(body.articles ?: emptyList())
+                    } else {
+                        Toast.makeText(context, "Aucun utilisateur premium trouvé", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                } else {
+                    Toast.makeText(context, "Erreur API", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+            }
+
+            override fun onFailure(call: Call<RandomPremiumUserResponse>, t: Throwable) {
+                Toast.makeText(context, "Erreur: ${t.message}", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+        })
+
+
     }
 }

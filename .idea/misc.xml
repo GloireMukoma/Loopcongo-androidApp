@@ -30,6 +30,8 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/rounded_image_background.xml" value="0.165" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/search_bg.xml" value="0.1695" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable/ic_badje.xml" value="0.14" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable/ic_boost.xml" value="0.136" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable/ic_subscription.xml" value="0.136" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_article.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_boost.xml" value="0.19021739130434784" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_citizen.xml" value="0.17753623188405798" />
@@ -83,6 +85,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_api.xml" value="0.2033514492753623" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid.xml" value="0.14" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid_for_onglet_profil_vendeur.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_popup_premium_user.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_user_connected_onglet.xml" value="0.1875" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_articles.xml" value="0.15715579710144928" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_carousel_article_annonce.xml" value="0.19972826086956522" />

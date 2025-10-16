@@ -1,105 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
-    android:padding="8dp">
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp">
 
-    <!-- Bandeau jaune avec titre et icône X -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFD600"
-        android:padding="12dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Publicité"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <ImageView
-            android:id="@+id/close_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:tint="#000000"/>
-    </RelativeLayout>
-
-    <!-- Section profil -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingVertical="8dp">
+        android:orientation="vertical"
+        android:background="@android:color/white">
 
-        <ImageView
-            android:id="@+id/popupPremiumUserAvatarImg"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_user"
-            android:scaleType="centerCrop"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/darker_gray"
-            android:clipToOutline="true"
-            android:contentDescription="Profile Picture"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Bandeau bleu foncé avec titre et icône X -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:background="@color/BleuFoncePrimaryColor"
+            android:padding="12dp">
 
             <TextView
-                android:id="@+id/popupPremiumUsername"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="username"
+                android:text="Sponsorisé"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="#000000"/>
+                android:textColor="@color/secondaryColor" />
 
-            <TextView
-                android:id="@+id/popupPremiumUserNumero"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/closeIconPremiumPopup"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="@color/secondaryColor"/>
+        </RelativeLayout>
+
+        <!-- Section profil -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <!-- Avatar dans CardView circulaire -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageView
+                    android:id="@+id/popupPremiumUserAvatarImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_user"
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/darker_gray"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Infos utilisateur -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="0971737160"
-                android:textSize="14sp"
-                android:textColor="#555555"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/popupPremiumUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="username"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/popupPremiumUserVerifiedIcon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_badge"
+                        app:tint="@android:color/holo_blue_dark"
+                        android:visibility="gone" /> <!-- caché par défaut -->
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/popupPremiumUserNumero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="contact"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"/>
+            </LinearLayout>
         </LinearLayout>
+
+        <!-- Titre des articles -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Articles :"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/black"/>
+
+        <!-- RecyclerView en grille 2 colonnes -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popupPremiumUserRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"/>
+
+        <!-- Bouton voir profil couleur:#FFFFFF -->
+        <Button
+            android:id="@+id/popupPremiumUserViewProfilBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voir profil"
+            android:backgroundTint="@color/BleuFoncePrimaryColor"
+            android:textColor="@color/secondaryColor"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
-
-    <!-- Titre de la section articles -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Articles déjà publiés :"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:paddingVertical="8dp"
-        android:textColor="#000000"/>
-
-    <!-- Grille de produits -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popupPremiumUserRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="8dp"/>
-
-    <!-- Bouton voir profil -->
-    <Button
-        android:id="@+id/popupPremiumUserViewProfilBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Voir profil"
-        android:backgroundTint="#009688"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"/>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

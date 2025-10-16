@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@android:color/white">
+    android:background="@color/BleuFoncePrimaryColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,21 +74,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:textColor="@color/primaryColor"
+                android:textColor="@color/white"
                 android:hint="Password"
-                android:background="@null"
+                android:background="@color/BleuClairPrimaryColor"
                 android:padding="12dp"
                 android:inputType="textPassword" />
 
-            <ImageView
+            <!-- <ImageView
                 android:id="@+id/showPassword"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_encontinu"
-                app:tint="#808080" />
+                app:tint="#808080" />-->
         </LinearLayout>
 
-        <!-- Remember me + Forgot password -->
+        <!-- Remember me + Forgot password
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 android:text="Forgot Password ?"
                 android:textColor="#808080"
                 android:textSize="14sp" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <!-- Login Button -->
         <Button
@@ -127,7 +127,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don’t have account ?"
+            android:text="Vous n'avez pas de compte ?"
             android:textColor="#808080"
             android:layout_marginTop="32dp" />
 
@@ -135,7 +135,7 @@
             android:id="@+id/btnCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Account"
+            android:text="Crée un compte"
             android:textColor="@android:color/black"
             android:backgroundTint="#A8E6CF"
             android:layout_marginTop="8dp" />

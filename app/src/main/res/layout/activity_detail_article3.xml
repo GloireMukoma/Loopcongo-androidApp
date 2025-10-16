@@ -29,8 +29,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="-7dp">
+                    android:gravity="center_vertical">
 
                     <!-- Image de profil -->
                     <com.google.android.material.imageview.ShapeableImageView
@@ -41,7 +40,7 @@
                         android:scaleType="centerCrop"
                         app:shapeAppearanceOverlay="@style/CircularImageStyle"
                         app:strokeColor="@android:color/holo_orange_light"
-                        app:strokeWidth="1dp"
+                        app:strokeWidth="2dp"
                         android:src="@drawable/user_profile" />
 
                     <TextView
@@ -61,8 +60,7 @@
                     <Button
                         android:id="@+id/btnVoirProfil"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button_border"
+                        android:layout_height="40dp"
                         android:text="Profil"
                         android:textAllCaps="false"
                         android:textColor="@color/primeColor3"

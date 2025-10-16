@@ -19,30 +19,31 @@ class ArticleForPopupRandomUserPremiumAdapter(
 ) : RecyclerView.Adapter<ArticleForPopupRandomUserPremiumAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val img: ImageView = view.findViewById(R.id.productImage)
-        val name: TextView = view.findViewById(R.id.productName)
-        val price: TextView = view.findViewById(R.id.productPrice)
+        val img: ImageView = view.findViewById(R.id.imgArticlePopupPremiumUser)
+        val name: TextView = view.findViewById(R.id.nomArticlePopupPremiumUser)
+        val price: TextView = view.findViewById(R.id.prixArticlePopupPremiumUser)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.item_product, parent, false)
+            .inflate(R.layout.item_article_popup_premium_user, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
         holder.name.text = product.nom
-        holder.price.text = product.prix
+        holder.price.text = "${product.prix} ${product.devise}"
+
         Glide.with(context)
-            .load("https://loopcongo.com/${product.image}")
+            .load("https://loopcongo.com/${product.file_url}")
             .placeholder(R.drawable.loading)
             .into(holder.img)
     }
 
     override fun getItemCount(): Int = products.size
 
-    fun updateData(newData: List<Product>) {
+    fun updateData(newData: List<Article>) {
         products = newData
         notifyDataSetChanged()
     }

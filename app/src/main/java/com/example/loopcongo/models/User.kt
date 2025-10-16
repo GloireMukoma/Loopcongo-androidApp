@@ -55,7 +55,7 @@ data class RandomPremiumUserResponse(
     val status: Boolean,
     val message: String,
     val user: User?,
-    val articles: List<Product>?
+    val articles: List<Article>?
 )
 
 
