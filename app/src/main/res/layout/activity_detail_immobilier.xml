@@ -13,7 +13,7 @@
 
         <!-- Image principale -->
         <ImageView
-            android:id="@+id/imagePrincipaldetailArticle"
+            android:id="@+id/imagePrincipaldetailImmobilier"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginBottom="12dp"
@@ -22,15 +22,12 @@
 
         <!-- Conteneur dynamique pour les images de détail -->
         <LinearLayout
-            android:id="@+id/containerImagesDetail"
+            android:id="@+id/containerImagesDetailImmobilier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:dividerPadding="6dp" />
-
-        <!-- NEW DESIGN START -->
 
         <!-- Informations principales avec fond et bordure -->
         <LinearLayout
@@ -65,13 +62,21 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_home"
+                        app:tint="@android:color/holo_blue_dark" />
+
                     <TextView
-                        android:id="@+id/detailNomArticle"
+                        android:id="@+id/detailTypeImmobilier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Salle"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <!-- Petit espace -->
@@ -80,7 +85,28 @@
                     android:layout_height="0dp" />
 
                 <!-- Statut -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_encontinu"
+                        app:tint="@android:color/holo_blue_dark" />
+
+                    <TextView
+                        android:id="@+id/statutDetailImmobilier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wi-Fi gratuit"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Description avec icône -->
@@ -90,16 +116,16 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="6dp">
 
-                <!-- <ImageView
+                <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginEnd="3dp"
                     android:layout_marginTop="1dp"
                     android:src="@drawable/ic_text"
-                    app:tint="@android:color/holo_blue_dark" />-->
+                    app:tint="@android:color/holo_blue_dark" />
 
                 <TextView
-                    android:id="@+id/detailArticleDescription"
+                    android:id="@+id/detailImmobilierDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bel appartement moderne avec vue sur la ville."
@@ -109,13 +135,14 @@
 
             <!-- Prix -->
             <TextView
-                android:id="@+id/prixDetailArticle"
+                android:id="@+id/prixDetailImmobilier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="180 $"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp" />
 
             <!-- Auteur + Bouton profil -->
             <LinearLayout
@@ -139,7 +166,7 @@
                         app:tint="@android:color/holo_blue_dark" />
 
                     <TextView
-                        android:id="@+id/nomAuteurdetailImage"
+                        android:id="@+id/nomAuteurdetailImmobilier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="username"
@@ -148,7 +175,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btnVoirProfil"
+                    android:id="@+id/btnVoirProfilDetailImmobilier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Profil"
@@ -161,17 +188,16 @@
             </LinearLayout>
 
         </LinearLayout>
-        <!-- NEW DESIGN END -->
-
 
         <!-- Bouton bleu principal avec icône WhatsApp -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="12dp">
 
             <Button
-                android:id="@+id/btnChoisirChambres"
+                android:id="@+id/chatWhatsappBtnDetailImmobilier"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:text="Discuter sur WhatsApp"
@@ -184,8 +210,6 @@
                 android:drawableStart="@drawable/ic_message"
                 app:drawableTint="@color/primeColor3"
                 android:drawablePadding="8dp" />
-            <!-- Espace entre l'icône et le texte -->
-
         </LinearLayout>
 
     </LinearLayout>

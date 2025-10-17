@@ -37,6 +37,11 @@ interface ApiService {
         @Query("quartier") quartier: String?
     ): Call<List<Immobilier>>
 
+    @GET("immobiliers/similar/images/{immoId}")
+    suspend fun getImmobiliersDetailImages(
+        @Path("immoId") immoId: Int
+    ): Response<List<DetailImage>>
+
     @GET("commandes/vendeur/{id}")
     fun getCommandesVendeur(@Path("id") vendeurId: Int): Call<CommandeResponse>
 

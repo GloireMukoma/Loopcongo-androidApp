@@ -2,12 +2,12 @@ package com.example.loopcongo
 
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DetailArticleActivity : AppCompatActivity() {
+class DetailImmobilierActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,48 +29,43 @@ class DetailArticleActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
-        setContentView(R.layout.activity_detail_article3)
-        supportActionBar?.title = "Détail de l'article"
+        setContentView(R.layout.activity_detail_immobilier)
+        supportActionBar?.title = "Détail de l'immobilier"
 
         // ✅ Récupération des vues
-        val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailArticle)
-        val auteur = findViewById<TextView>(R.id.nomAuteurdetailImage)
+        val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailImmobilier)
+        val auteur = findViewById<TextView>(R.id.nomAuteurdetailImmobilier)
         //val sponsoredbadje = findViewById<TextView>(R.id.numeroAuteurdetailImage)
+        val type = findViewById<TextView>(R.id.detailTypeImmobilier)
 
-        val nomArticle = findViewById<TextView>(R.id.detailNomArticle)
-        val description = findViewById<TextView>(R.id.detailArticleDescription)
+        val description = findViewById<TextView>(R.id.detailImmobilierDescription)
         //val avatarAuteur = findViewById<ShapeableImageView>(R.id.avatarAuteurdetailArticle)
+        val status = findViewById<TextView>(R.id.statutDetailImmobilier)
 
-        val prix = findViewById<TextView>(R.id.prixDetailArticle)
+        val prix = findViewById<TextView>(R.id.prixDetailImmobilier)
 
         // ✅ Récupération des extras
-        val id = intent.getIntExtra("article_id", 0)
-        val nom = intent.getStringExtra("article_nom")
-        val image = intent.getStringExtra("article_photo")
+        val immoId = intent.getIntExtra("immoId", 0)
+        // ID du vendeur
+        val userId = intent.getIntExtra("userId", 0)
 
-        val user = intent.getStringExtra("article_auteur")
-        val auteurAvatarUrl = intent.getStringExtra("user_avatar")
+        val typeimmo = intent.getStringExtra("typeImmo")
+        val statut = intent.getStringExtra("statut")
 
-        val article_prix = intent.getStringExtra("article_prix")
-        val devise = intent.getStringExtra("article_devise")
+        val city = intent.getStringExtra("city")
+        val quartier = intent.getStringExtra("quartier")
 
-        val desc = intent.getStringExtra("article_description")
-        val nbLike = intent.getStringExtra("article_nbLike") ?: "0"
+        val immoPrix = intent.getStringExtra("prix")
+        val address = intent.getStringExtra("address")
 
-        nomArticle.text = nom
-        auteur.text = user
-        description.text = desc
+        val immoDescription = intent.getStringExtra("description")
+        val image = intent.getStringExtra("ImmoImage") ?: "0"
 
-        prix.text = "$article_prix $devise"
+        type.text = typeimmo
+        description.text = immoDescription
+        prix.text = "$ ${immoPrix}"
 
-        // Charger l'image de profil de l'auteur
-        /*if (!auteurAvatarUrl.isNullOrEmpty()) {
-            Glide.with(this)
-                .load("https://loopcongo.com/$auteurAvatarUrl")
-                .placeholder(R.drawable.user_profile)
-                .error(R.drawable.user_profile)
-                .into(avatarAuteur)
-        }*/
+        status.text = statut
 
         // ✅ Charger l'image principale
         Glide.with(this)
@@ -79,17 +74,15 @@ class DetailArticleActivity : AppCompatActivity() {
             .into(imagePrincipale)
 
         // ✅ Charger les images de détail depuis l'API
-        if (id != 0) {
-            fetchDetailImages(id)
+        if (userId != 0) {
+            fetchDetailImagesImmobiliers(immoId)
         } else {
             Toast.makeText(this, "ID de l'article invalide", Toast.LENGTH_SHORT).show()
         }
 
-    // Redirection vers le profile du vendeur
-        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfil)
+        // Redirection vers le profile du vendeur
+        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilDetailImmobilier)
         btnVoirProfil.setOnClickListener {
-
-            val userId = intent.getIntExtra("user_id", 0) // ID du vendeur passé depuis l'Intent
 
             // Appel API dans une coroutine
             lifecycleScope.launch {
@@ -100,7 +93,7 @@ class DetailArticleActivity : AppCompatActivity() {
                         val vendeur = response.body()!!.data
 
                         // Préparer l'Intent pour ProfileVendeurActivity
-                        val intent = Intent(this@DetailArticleActivity, ProfileVendeurActivity::class.java)
+                        val intent = Intent(this@DetailImmobilierActivity, ProfileVendeurActivity::class.java)
                         intent.putExtra("vendeurId", vendeur.id)
                         intent.putExtra("vendeurUsername", vendeur.nom)
                         intent.putExtra("vendeurContact", vendeur.contact)
@@ -113,15 +106,14 @@ class DetailArticleActivity : AppCompatActivity() {
                         intent.putExtra("vendeurTotalLikes", vendeur.total_articles ?: 0)
                         intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner ?: 0)
 
-
                         // Lancer l'activité
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this@DetailArticleActivity, "Impossible de récupérer le profil", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DetailImmobilierActivity, "Impossible de récupérer le profil", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DetailImmobilierActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -130,10 +122,10 @@ class DetailArticleActivity : AppCompatActivity() {
     }
 
     // 🔹 Récupération asynchrone des images de détail
-    private fun fetchDetailImages(articleId: Int) {
+    private fun fetchDetailImagesImmobiliers(immoId: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = ApiClient.instance.getArticleDetailImages(articleId)
+                val response = ApiClient.instance.getImmobiliersDetailImages(immoId)
                 if (response.isSuccessful) {
                     val images = response.body() ?: emptyList()
                     withContext(Dispatchers.Main) {
@@ -141,13 +133,13 @@ class DetailArticleActivity : AppCompatActivity() {
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@DetailArticleActivity, "Erreur de chargement des images", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DetailImmobilierActivity, "Erreur de chargement des images", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DetailImmobilierActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -155,7 +147,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
     // 🔹 Affichage dynamique des images en lignes de 2
     private fun displayDetailImages(images: List<DetailImage>) {
-        val container = findViewById<LinearLayout>(R.id.containerImagesDetail)
+        val container = findViewById<LinearLayout>(R.id.containerImagesDetailImmobilier)
         container.removeAllViews()
 
         if (images.isEmpty()) return
@@ -184,7 +176,7 @@ class DetailArticleActivity : AppCompatActivity() {
                     layoutParams = imgParams
                     scaleType = ImageView.ScaleType.CENTER_CROP
                     background = ContextCompat.getDrawable(
-                        this@DetailArticleActivity,
+                        this@DetailImmobilierActivity,
                         R.drawable.rounded_image_background
                     )
                     clipToOutline = true // ✅ arrondir les coins
@@ -192,7 +184,7 @@ class DetailArticleActivity : AppCompatActivity() {
                 }
 
                 Glide.with(this)
-                    .load(imageUrl)
+                    .load("https://loopcongo.com/${imageUrl}")
                     .placeholder(R.drawable.loading)
                     .into(imageView)
 
@@ -224,7 +216,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
         // ✅ Chargement fluide de l'image
         Glide.with(this)
-            .load(imageUrl)
+            .load("https://loopcongo.com/${imageUrl}")
             .placeholder(R.drawable.loading)
             .into(imageView)
 

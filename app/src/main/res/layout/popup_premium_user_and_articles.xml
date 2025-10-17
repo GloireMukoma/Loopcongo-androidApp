@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="640dp"
     android:layout_margin="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="640dp"
         android:orientation="vertical"
         android:background="@android:color/white">
 
@@ -24,8 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sponsorisé"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:textSize="15sp"
                 android:textColor="@color/secondaryColor" />
 
             <ImageView
@@ -48,23 +47,15 @@
             android:paddingEnd="8dp">
 
             <!-- Avatar dans CardView circulaire -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/popupPremiumUserAvatarImg"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
                 android:layout_marginEnd="12dp"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="4dp"
-                android:clipChildren="true"
-                android:clipToPadding="true">
-
-                <ImageView
-                    android:id="@+id/popupPremiumUserAvatarImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_user"
-                    android:scaleType="centerCrop"
-                    android:background="@android:color/darker_gray"/>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginTop="3dp"
+                android:src="@drawable/user_profile"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
 
             <!-- Infos utilisateur -->
             <LinearLayout
@@ -106,11 +97,20 @@
                     android:text="contact"
                     android:textSize="14sp"
                     android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/popupPremiumUserCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:text="Lubumbashi"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/holo_blue_dark"/>
             </LinearLayout>
         </LinearLayout>
 
         <!-- Titre des articles -->
-        <TextView
+        <!-- <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Articles :"
@@ -119,7 +119,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="2dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"/>-->
 
         <!-- RecyclerView en grille 2 colonnes -->
         <androidx.recyclerview.widget.RecyclerView

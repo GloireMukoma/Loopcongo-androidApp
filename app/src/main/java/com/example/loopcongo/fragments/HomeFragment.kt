@@ -27,6 +27,7 @@ import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.database.UserDao
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
+import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -189,9 +190,12 @@ class HomeFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.popupPremiumUserRecyclerView)
         val viewProfileBtn: Button = view.findViewById(R.id.popupPremiumUserViewProfilBtn)
+
         val userName: TextView = view.findViewById(R.id.popupPremiumUsername)
         val numero: TextView = view.findViewById(R.id.popupPremiumUserNumero)
-        val userImage: ImageView = view.findViewById(R.id.popupPremiumUserAvatarImg)
+
+        val city: TextView = view.findViewById(R.id.popupPremiumUserCity)
+        val userImage: ShapeableImageView = view.findViewById(R.id.popupPremiumUserAvatarImg)
 
         val adapter = ArticleForPopupRandomUserPremiumAdapter(context, listOf())
 
@@ -247,6 +251,7 @@ class HomeFragment : Fragment() {
 
                         userName.text = body.user.nom
                         numero.text = body.user.contact
+                        city.text = body.user.city
 
                         // verifier si l'user est premium pour avoir l'icon de certification
                         if (body.user.subscription_type == "premium" && body.user.subscription_status == "active") {

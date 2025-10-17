@@ -17,6 +17,10 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".DetailImmobilierActivity"
+            android:exported="false" />
+        <activity
             android:name=".PlanAbonnementActivity"
             android:exported="false" />
         <activity

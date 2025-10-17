@@ -7,7 +7,7 @@
     app:cardElevation="3dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="7dp"
+    android:layout_marginTop="10dp"
     android:backgroundTint="@color/BleuClairPrimaryColor">
 
     <LinearLayout
@@ -81,8 +81,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginEnd="4dp"
                         app:tint="@android:color/holo_blue_dark"
                         android:src="@drawable/ic_phone" />
@@ -105,8 +105,8 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginEnd="4dp"
                         app:tint="@android:color/holo_blue_dark"
                         android:src="@drawable/ic_location" />

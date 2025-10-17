@@ -36,7 +36,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nom de l'immobilier"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textSize="13sp"
                 android:maxLines="2"
