@@ -23,6 +23,9 @@ interface ApiService {
         @Query("search") search: String? = null
     ): Call<List<Article>>
 
+    @DELETE("product/delete/{id}")
+    suspend fun deleteArticle(@Path("id") id: Int): Response<Unit>
+
     @GET("article/detail/imgs/{id}")
     suspend fun getArticleDetailImages(@Path("id") id: Int): Response<List<DetailImage>>
 
@@ -41,6 +44,11 @@ interface ApiService {
     suspend fun getImmobiliersDetailImages(
         @Path("immoId") immoId: Int
     ): Response<List<DetailImage>>
+
+    // Get tout les immobiliers publiés par un vendeur par son id
+    @GET("user/immobiliers/get/{user_id}")
+    fun getImmobiliersByUser(@Path("user_id") userId: Int): Call<ImmobilierResponse>
+
 
     @GET("commandes/vendeur/{id}")
     fun getCommandesVendeur(@Path("id") vendeurId: Int): Call<CommandeResponse>

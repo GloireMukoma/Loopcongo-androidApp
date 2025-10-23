@@ -27,7 +27,7 @@
 
         <!-- Image de profil utilisateur à gauche -->
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/avatarImgProfileUser"
+            android:id="@+id/avatarImgProfileUserConnected"
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:layout_marginEnd="8dp"

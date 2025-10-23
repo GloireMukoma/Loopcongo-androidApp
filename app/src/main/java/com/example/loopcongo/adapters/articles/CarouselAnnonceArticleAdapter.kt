@@ -29,7 +29,7 @@ class CarouselAnnonceArticleAdapter(private val context: Context, private val an
         val annonce = annonces[position]
         holder.titreAnnonce.text = annonce.titre
         holder.descriptionAnnonce.text = annonce.titre
-        Glide.with(context).load("https://loopcongo.com/" +annonce.annonce_image).into(holder.imageAnnonce)
+        Glide.with(context).load("https://loopcongo.com/" +annonce.image).into(holder.imageAnnonce)
     }
 
     override fun getItemCount(): Int = annonces.size

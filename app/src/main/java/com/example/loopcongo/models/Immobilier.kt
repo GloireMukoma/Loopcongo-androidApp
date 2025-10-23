@@ -12,3 +12,9 @@ data class Immobilier(
     val about: String,
     val file_url: String
 )
+
+data class ImmobilierResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Immobilier>
+)

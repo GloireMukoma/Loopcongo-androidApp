@@ -50,11 +50,20 @@ class LoginActivity : AppCompatActivity() {
                         val user = response.body()!!.data
                         if (user != null) {
                             lifecycleScope.launch {
+                                // Sauvegarder l'utilisateur localement
                                 userDao.clearUsers()
                                 userDao.insertUser(user)
 
-                                // Aller vers ProfileActivity
-                                startActivity(Intent(this@LoginActivity, ProfileUserConnectedActivity::class.java))
+                                // Vérifier le type de compte
+                                val nextActivity = when (user.type_account?.lowercase()) {
+                                    "vendeur" -> ProfileUserConnectedActivity::class.java
+                                    "immobilier" -> UserImmobilierConnectedActivity::class.java
+                                    else -> ProfileUserConnectedActivity::class.java // fallback
+                                }
+
+                                // Démarrer l'activité correspondante
+                                val intent = Intent(this@LoginActivity, nextActivity)
+                                startActivity(intent)
                                 finish()
                             }
                         }
@@ -69,5 +78,5 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-
 }
+

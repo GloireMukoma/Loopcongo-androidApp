@@ -14,7 +14,7 @@
 
         <!-- Image de l’article -->
         <ImageView
-            android:id="@+id/articleImageUserConnectedOnglet"
+            android:id="@+id/imageImmobilierUserConnectedOnglet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -23,7 +23,7 @@
 
         <!-- Icône suppression en haut à droite -->
         <ImageView
-            android:id="@+id/btnDeleteArticleUserConnectedOnglet"
+            android:id="@+id/btnDeleteImmobilierUserConnectedOnglet"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="top|end"
@@ -46,7 +46,7 @@
 
             <!-- Titre -->
             <TextView
-                android:id="@+id/articleNomUserConnectedOnglet"
+                android:id="@+id/descImmobilierUserConnectedOnglet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nom de l'article"
@@ -56,21 +56,9 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
-            <!-- description -->
-            <TextView
-                android:id="@+id/articleDescUserConnectedOnglet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="description article"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:maxLines="2"
-                android:layout_marginTop="4dp" />
-
             <!-- Prix -->
             <TextView
-                android:id="@+id/articlePrixUserConnectedOnglet"
+                android:id="@+id/prixImmobilierUserConnectedOnglet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Prix"
@@ -78,6 +66,18 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:layout_marginTop="4dp" />
+
+            <!-- Quartier -->
+            <TextView
+                android:id="@+id/quartierImmobilierUserConnectedOnglet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prix"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+
 
             <!-- Auteur avec icône -->
 

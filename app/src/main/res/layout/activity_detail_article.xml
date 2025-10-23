@@ -45,7 +45,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/auteurDetailArticle"
+                        android:id="@+id/nomAuteurdetailImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Auteur"
@@ -57,7 +57,7 @@
                         android:id="@+id/userContactArticleDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Il y a 2h"
+                        android:text="+243XXXXXXXXX"
                         android:textColor="@color/secondaryColor"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -77,21 +77,22 @@
             app:tint="@color/secondaryColor" />-->
 
             <TextView
-                android:id="@+id/articleDetailPrix"
+                android:id="@+id/prixDetailArticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="180 $"
-                android:textColor="@color/white"
+                android:textColor="@android:color/holo_blue_dark"
                 android:layout_marginEnd="5dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:textSize="16sp" />
+                android:textStyle="bold"
+                android:textSize="17sp" />
     </RelativeLayout>
 
 
     <!-- Nom de l'article -->
         <TextView
-            android:id="@+id/articleDetailNom"
+            android:id="@+id/detailNomArticle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nom de l'article"
@@ -102,7 +103,7 @@
 
         <!-- Description -->
         <TextView
-            android:id="@+id/articleDetaildescription"
+            android:id="@+id/detailArticleDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description de l'article"
@@ -119,12 +120,22 @@
             app:cardElevation="2dp">
 
             <ImageView
-                android:id="@+id/articleDetailImage"
+                android:id="@+id/imagePrincipaldetailArticle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shoes_men" />
         </androidx.cardview.widget.CardView>
+
+        <!-- Conteneur dynamique pour les images de détail -->
+        <LinearLayout
+            android:id="@+id/containerImagesDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:dividerPadding="6dp" />
 
         <!-- Prix et Likes -->
         <LinearLayout

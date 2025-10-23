@@ -5,7 +5,7 @@ data class UserAnnonce(
     val user_id: Int,
     val titre: String,
     val description: String,
-    val annonce_image: String,  // URL ou chemin image
+    val image: String,  // URL ou chemin image
     val date_debut: String,
     val date_fin: String,
     val statut: String,

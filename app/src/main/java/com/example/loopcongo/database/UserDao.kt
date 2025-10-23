@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM users LIMIT 1")
+    @Query("SELECT * FROM users LIMIT 1") // récupère le premier utilisateur connecté
     suspend fun getUser(): User?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -15,4 +15,5 @@ interface UserDao {
 
     @Query("DELETE FROM users")
     suspend fun clearUsers()
+
 }

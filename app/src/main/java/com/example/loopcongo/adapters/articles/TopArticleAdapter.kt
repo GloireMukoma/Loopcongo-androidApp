@@ -58,7 +58,7 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
             intent.putExtra("article_description", article?.about)
             intent.putExtra("article_nbLike", article?.nb_like ?: "0")
             intent.putExtra("article_auteur", article?.user_nom)
-            intent.putExtra("article_auteur", article?.user_nom)
+            intent.putExtra("user_contact", article?.user_contact)
             intent.putExtra("article_photo", article?.file_url)
             intent.putExtra("user_avatar", article?.user_avatar)
             context.startActivity(intent)

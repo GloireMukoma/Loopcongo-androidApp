@@ -1,34 +1,31 @@
-package com.example.loopcongo.fragments.userConnectedProfilOnglets
+package com.example.loopcongo.fragments.userImmobilierConnectedOnglets
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.articles.UserConnectedOngletArticleAdapter
-import com.example.loopcongo.models.ArticleResponse
+import com.example.loopcongo.adapters.userImmobilierConnected.UserConnectedOngletImmobilierAdapter
+import com.example.loopcongo.models.ImmobilierResponse
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// L'onglet article de tablayout de l'utilisateur connecté
-class OngletArticleFragment : Fragment() {
+class OngletImmobilierFragment : Fragment() {
 
     private var userId: Int = 0 // sera passé via arguments
-    private lateinit var articlesRecyclerView: RecyclerView
+    private lateinit var immobilierRecyclerView: RecyclerView
 
     companion object {
         private const val ARG_USER_ID = "user_id"
 
-        fun newInstance(userId: Int): OngletArticleFragment {
-            val fragment = OngletArticleFragment()
+        fun newInstance(userId: Int): OngletImmobilierFragment {
+            val fragment = OngletImmobilierFragment()
             val bundle = Bundle()
             bundle.putInt(ARG_USER_ID, userId)
             fragment.arguments = bundle
@@ -47,24 +44,25 @@ class OngletArticleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.onglet_article_profil_user_connected, container, false)
-        articlesRecyclerView = view.findViewById(R.id.ongletArticlesProfilUserConnectedRecyclerView)
-        fetchUserArticles()
+        val view = inflater.inflate(R.layout.onglet_immobilier_profil_user_connected, container, false)
+        immobilierRecyclerView = view.findViewById(R.id.userImmobilierConnectedRecyclerView)
+        fetchUserImmobiliers()
         return view
     }
 
-    private fun fetchUserArticles() {
-        ApiClient.instance.getArticlesByVendeur(userId)
-            .enqueue(object : Callback<ArticleResponse> {
+    private fun fetchUserImmobiliers() {
+        ApiClient.instance.getImmobiliersByUser(userId)
+            .enqueue(object : Callback<ImmobilierResponse> {
                 override fun onResponse(
-                    call: Call<ArticleResponse>,
-                    response: Response<ArticleResponse>
+                    call: Call<ImmobilierResponse>,
+                    response: Response<ImmobilierResponse>
                 ) {
                     if (response.isSuccessful && response.body()?.status == true) {
-                        val articles = response.body()?.data ?: emptyList()
+                        val biens = response.body()?.data ?: emptyList()
 
-                        articlesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-                        articlesRecyclerView.adapter = UserConnectedOngletArticleAdapter(requireContext(), articles.toMutableList())
+                        immobilierRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+                        immobilierRecyclerView.adapter =
+                            UserConnectedOngletImmobilierAdapter(requireContext(), biens.toMutableList())
 
                     } else {
                         Toast.makeText(
@@ -75,7 +73,7 @@ class OngletArticleFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ImmobilierResponse>, t: Throwable) {
                     Toast.makeText(
                         requireContext(),
                         "Erreur réseau : ${t.localizedMessage}",
@@ -84,5 +82,6 @@ class OngletArticleFragment : Fragment() {
                 }
             })
     }
+
 
 }

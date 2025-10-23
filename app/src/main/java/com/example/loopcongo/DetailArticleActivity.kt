@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
@@ -29,12 +30,14 @@ class DetailArticleActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
-        setContentView(R.layout.activity_detail_article3)
+        setContentView(R.layout.activity_detail_article)
         supportActionBar?.title = "Détail de l'article"
 
         // ✅ Récupération des vues
         val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailArticle)
         val auteur = findViewById<TextView>(R.id.nomAuteurdetailImage)
+
+        val contact = findViewById<TextView>(R.id.userContactArticleDetail)
         //val sponsoredbadje = findViewById<TextView>(R.id.numeroAuteurdetailImage)
 
         val nomArticle = findViewById<TextView>(R.id.detailNomArticle)
@@ -51,6 +54,8 @@ class DetailArticleActivity : AppCompatActivity() {
         val user = intent.getStringExtra("article_auteur")
         val auteurAvatarUrl = intent.getStringExtra("user_avatar")
 
+        val userContact = intent.getStringExtra("user_contact")
+
         val article_prix = intent.getStringExtra("article_prix")
         val devise = intent.getStringExtra("article_devise")
 
@@ -59,6 +64,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
         nomArticle.text = nom
         auteur.text = user
+        contact.text = userContact
         description.text = desc
 
         prix.text = "$article_prix $devise"
@@ -85,8 +91,31 @@ class DetailArticleActivity : AppCompatActivity() {
             Toast.makeText(this, "ID de l'article invalide", Toast.LENGTH_SHORT).show()
         }
 
-    // Redirection vers le profile du vendeur
-        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfil)
+        // Redirection vers la conversation WhatsApp
+        val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
+
+        discuterBtn.setOnClickListener {
+            if (!userContact.isNullOrEmpty()) {
+                val message = "Bonjour, je suis intéressé par votre article sur LoopCongo."
+                val url = "https://wa.me/$userContact?text=${Uri.encode(message)}"
+
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(this, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
+
+        // Redirection vers le profile du vendeur
+        /*val btnVoirProfil = findViewById<Button>(R.id.contactButtonWhatsappDetailArticle)
         btnVoirProfil.setOnClickListener {
 
             val userId = intent.getIntExtra("user_id", 0) // ID du vendeur passé depuis l'Intent
@@ -124,7 +153,7 @@ class DetailArticleActivity : AppCompatActivity() {
                     Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
 
         // Redirection vers le profile du vendeur
     }
@@ -238,28 +267,6 @@ class DetailArticleActivity : AppCompatActivity() {
         // ✅ Afficher au centre
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
     }
-
-
-    /*val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
-//val numeroWhatsapp = intent.getStringExtra("numero_whatsapp") // récupéré depuis l’intent
-val numeroWhatsapp = "243971737160"
-
-discuterBtn.setOnClickListener {
-    if (!numeroWhatsapp.isEmpty()) {
-        val message = "Bonjour, je suis intéressé par votre article sur LoopCongo."
-        val url = "https://wa.me/$numeroWhatsapp?text=${Uri.encode(message)}"
-
-        try {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
-        }
-    } else {
-        Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
-    }
-}*/
 
 
 }

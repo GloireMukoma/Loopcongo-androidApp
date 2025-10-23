@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         userDao = db.userDao()
 
         // Récupère l'ImageView de l'avatar
-        val avatarIconUser = view.findViewById<ImageView>(R.id.avatarImgProfileUser)
+        val avatarIconUserConnected = view.findViewById<ImageView>(R.id.avatarImgProfileUserConnected)
 
         // Utiliser lifecycleScope pour les fonctions suspend
         lifecycleScope.launch {
@@ -70,25 +70,32 @@ class HomeFragment : Fragment() {
                         .placeholder(R.drawable.ic_person) // image par défaut
                         .error(R.drawable.ic_person)
                         .circleCrop()
-                        .into(avatarIconUser)
+                        .into(avatarIconUserConnected)
                 } else {
-                    avatarIconUser.setImageResource(R.drawable.ic_person)
+                    avatarIconUserConnected.setImageResource(R.drawable.ic_person)
                 }
             } else {
                 // Pas d’utilisateur connecté → garder l’icon par défaut
-                avatarIconUser.setImageResource(R.drawable.ic_person)
+                avatarIconUserConnected.setImageResource(R.drawable.ic_person)
             }
 
             // Clique sur l'avatar
-            avatarIconUser.setOnClickListener {
+            avatarIconUserConnected.setOnClickListener {
                 if (user == null) {
                     // Pas d’utilisateur enregistré → rediriger vers login
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
                 } else {
-                    // Utilisateur existe → rediriger vers profil
-                    startActivity(Intent(requireContext(), ProfileUserConnectedActivity::class.java))
+                    // Utilisateur existe → rediriger selon le type de compte
+                    val nextActivity = when (user.type_account?.lowercase()) {
+                        "vendeur" -> ProfileUserConnectedActivity::class.java
+                        "immobilier" -> UserImmobilierConnectedActivity::class.java
+                        else -> ProfileUserConnectedActivity::class.java // fallback si autre type
+                    }
+
+                    startActivity(Intent(requireContext(), nextActivity))
                 }
             }
+
         }
 
 

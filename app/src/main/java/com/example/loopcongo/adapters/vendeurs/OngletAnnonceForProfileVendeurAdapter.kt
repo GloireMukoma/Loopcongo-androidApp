@@ -45,7 +45,7 @@ class OngletAnnonceForProfileVendeurAdapter(
 
         // ✅ Glide pour charger l’image
         Glide.with(context)
-            .load("https://loopcongo.com/${annonce.annonce_image}") // ⚠️ nom du champ à adapter selon ton modèle JSON
+            .load("https://loopcongo.com/${annonce.image}") // ⚠️ nom du champ à adapter selon ton modèle JSON
             .centerCrop()
             .placeholder(R.drawable.loading)
             .error(R.drawable.loading)

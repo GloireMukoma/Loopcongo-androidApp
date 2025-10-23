@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UserImmobilierConnectedActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/BleuFoncePrimaryColor"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top Bar with back arrow and 2 icons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Back Button -->
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <!-- Action Button 2 -->
+                <ImageView
+                    android:id="@+id/logoutBtnUserImmoConnected"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:tint="@color/secondaryColor"
+                    android:src="@drawable/ic_logout" />
+            </LinearLayout>
+
+            <!-- Profile info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImageUserImmoConnected"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/user_profile"
+                    android:scaleType="centerCrop"
+                    app:strokeColor="@color/secondaryColor"
+                    app:strokeWidth="2dp"
+                    app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-4dp">
+
+                    <TextView
+                        android:id="@+id/userNameImmoConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gloire mukoma"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/telephoneUserImmoConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+243 97 1737160"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mon profil"
+                        android:textColor="@color/secondaryColor"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- Description -->
+            <TextView
+                android:id="@+id/descriptionUserImmoConnected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:text="Description du profil utilisateur, les entrepreneurs Informer,  Inspirer, Fédérer"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- Score / Articles / Comments / Likes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Biens"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbBienPublieUserImmoConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Commandes"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbCommandUserImmoConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="34"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Abonnés"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbAbonnerUserImmoConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="58"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- REAL TABS avec TabLayout et ViewPager2 -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/userImmoConnectedProfiletabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/BleuFoncePrimaryColor"
+            app:tabIndicatorColor="#FFD700"
+            app:tabSelectedTextColor="#FFD700"
+            app:tabIconTint="@color/my_tab_icon_color"
+            app:tabTextColor="#CCCCCC"
+            app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/userImmoConnectedProfileviewPager"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- BASIC INFO -->
+        <!-- <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:text="BASIC INFORMATION"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView android:text="Owner" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="Clara Jones" android:textStyle="bold"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+            <TextView android:text="Accounts" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="Minyx" android:textColor="#1E3D85"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+            <TextView android:text="Has authority" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="No"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+            <TextView android:text="Status" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="Qualified Lead" android:textStyle="bold"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+            <TextView android:text="Do not disturb" android:textColor="#888"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:text="No"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>-->
+
+        <!-- LOCATION -->
+        <!--<LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView android:text="LOCATION" android:textStyle="bold"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="Address" android:textColor="#888"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView
+                    android:autoLink="all"
+                    android:textColor="#1E3D85"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="72 Springs Hill, Colorado Springs, Colorado, 80921\nUnited States" />
+            </LinearLayout> -->
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
