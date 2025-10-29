@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
+            android:name=".CustomerConnectedActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserImmobilierConnectedActivity"
             android:exported="false" />
         <activity
@@ -64,7 +67,10 @@
         <activity
             android:name=".ProfileVendeurActivity"
             android:exported="false"
-            android:parentActivityName=".PrestataireActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ProfileVendeurImmobilierActivity"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PrestataireActivity"

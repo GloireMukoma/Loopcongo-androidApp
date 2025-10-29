@@ -130,6 +130,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/nbArticlesPublierUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="12"
@@ -153,6 +154,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/nbCommandUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="34"

@@ -26,6 +26,12 @@ interface ApiService {
     @DELETE("product/delete/{id}")
     suspend fun deleteArticle(@Path("id") id: Int): Response<Unit>
 
+    @DELETE("immobilier/delete/{id}")
+    suspend fun deleteImmobilier(@Path("id") id: Int): Response<Unit>
+
+    @DELETE("user/annonce/delete/{id}")
+    suspend fun deleteAnnonce(@Path("id") id: Int): Response<Unit>
+
     @GET("article/detail/imgs/{id}")
     suspend fun getArticleDetailImages(@Path("id") id: Int): Response<List<DetailImage>>
 
@@ -65,29 +71,24 @@ interface ApiService {
     @GET("vendeurs")
     fun getVendeurs(): Call<UserResponse>
 
-    // Get la liste des prestataires
-    @GET("prestataires")
-    fun getPrestataires(): Call<PrestataireListResponse>
-
     //Get les prestations deja publiés
     @GET("prestations")
     fun getPublications(): Call<PrestationResponse>
-
-    // Get la liste des top prestataire (sponsorisés)
-    @GET("prestataires/sponsored")
-    fun getTopPrestataires(): Call<PrestataireListResponse>
 
     //Get la liste des publications des prestataires qui sont sponsorisés
     @GET("prestations/sponsorisees")
     fun getSponsorisedPublications(): Call<PrestationSponsoriseesResponse>
 
-    // Get la liste des annonces des prestataires (a charger dans la caroussel home)
-    @GET("prest/annonces/actives")
-    fun getPrestataireAnnonces(): Call<AnnoncePrestataireResponse>
-
     // Get un user + ses articles par son ID
     @GET("user/{id}")
     fun getUserById(@Path("id") id: Int): Call<UserUniqueResponse>
+
+    // get les statistiques d'un user: nb d'articles publiés+ nb de command
+    @GET("user/statistics/get/{id}")
+    suspend fun getUserStats(@Path("id") userId: Int): UserStatsResponse
+
+    @GET("user/immo/statistics/get/{id}")
+    suspend fun getUserImmoStats(@Path("id") userId: Int): UserStatsResponse
 
     // Get un user premium pour l'afficher dans la popup des utilisateurs premium
     @GET("user/random-premium")
@@ -113,5 +114,17 @@ interface ApiService {
     fun getPrestataireById(
         @Path("id") id: Int
     ): Call<PrestataireResponse>
+
+    // Get la liste des top prestataire (sponsorisés)
+    @GET("prestataires/sponsored")
+    fun getTopPrestataires(): Call<PrestataireListResponse>
+
+    // Get la liste des annonces des prestataires (a charger dans la caroussel home)
+    @GET("prest/annonces/actives")
+    fun getPrestataireAnnonces(): Call<AnnoncePrestataireResponse>
+
+    // Get la liste des prestataires
+    @GET("prestataires")
+    fun getPrestataires(): Call<PrestataireListResponse>
 
 }

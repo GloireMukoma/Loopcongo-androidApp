@@ -7,7 +7,7 @@
     app:cardElevation="3dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="14dp"
     android:backgroundTint="@color/BleuClairPrimaryColor">
 
     <LinearLayout

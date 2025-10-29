@@ -1,11 +1,10 @@
-package com.example.loopcongo.adapters.userImmobilierConnected
+package com.example.loopcongo.adapters.userImmobilierProfile
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.loopcongo.fragments.userImmobilierConnectedOnglets.OngletAnnonceFragment
-import com.example.loopcongo.fragments.userImmobilierConnectedOnglets.OngletImmobilierFragment
-import com.example.loopcongo.fragments.userImmobilierConnectedOnglets.OngletOperationsFragment
+import com.example.loopcongo.fragments.profilevendeursImmobilier.OngletAnnonceFragment
+import com.example.loopcongo.fragments.profilevendeursImmobilier.OngletImmobilierFragment
 
 
 class OngletsProfileUserImmobilierPagerAdapter(
@@ -13,18 +12,15 @@ class OngletsProfileUserImmobilierPagerAdapter(
     private val userId: Int
 ) : FragmentStateAdapter(activity) {
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             // Onglet 1 : les biens immobiliers publiés par l'utilisateur
             0 -> OngletImmobilierFragment.newInstance(userId)
 
-            // Onglet 1 : les biens immobiliers publiés par l'utilisateur
-            1 -> OngletAnnonceFragment.newInstance(userId)
-
             // Onglet 2 : les annonces immobilières de l'utilisateur (par ex. en location ou vente)
-            2 -> OngletOperationsFragment()
+            1 -> OngletAnnonceFragment.newInstance(userId)
 
             else -> throw IllegalArgumentException("Position d'onglet invalide")
         }

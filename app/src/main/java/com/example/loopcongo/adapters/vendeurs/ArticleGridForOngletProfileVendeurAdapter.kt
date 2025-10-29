@@ -54,7 +54,6 @@ class ArticleGridForOngletProfileVendeurAdapter(
             val intent = Intent(context, DetailArticleActivity::class.java)
 
             // Passer les données nécessaires (tu peux en passer plus)
-
             intent.putExtra("article_nom", article.nom)
             intent.putExtra("article_prix", article.prix)
             intent.putExtra("article_devise", article.devise)

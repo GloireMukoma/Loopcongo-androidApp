@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.loopcongo.adapters.UserProfileViewPagerAdapter
 import com.example.loopcongo.adapters.prestataire.ProfilePrestataireViewPagerAdapter
 import com.example.loopcongo.models.Prestataire
 import com.example.loopcongo.models.PrestataireResponse

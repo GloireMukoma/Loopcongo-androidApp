@@ -11,10 +11,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.loopcongo.R
-import com.example.loopcongo.adapters.UserProfileViewPagerAdapter
+import com.example.loopcongo.adapters.userVendeurConnected.OngletsUserViewPagerAdapter
 import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.database.User
+import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,8 +24,15 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
 
     private lateinit var profileImage: ShapeableImageView
     private lateinit var nameUserConnected: TextView
+
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
+
+    private lateinit var nbArticlesPublierUserConnected: TextView
+    private lateinit var nbCommandUserConnected: TextView
+
+    private lateinit var nbAbonnerUserConnected: TextView
+
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -42,12 +49,41 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserConnected)
 
+        nbArticlesPublierUserConnected = findViewById(R.id.nbArticlesPublierUserConnected)
+        nbCommandUserConnected = findViewById(R.id.nbCommandUserConnected)
+        nbAbonnerUserConnected = findViewById(R.id.nbAbonnerUserConnected)
+
+
         tabLayout = findViewById(R.id.userConnectedProfiletabLayout)
         viewPager = findViewById(R.id.userConnectedProfileviewPager)
 
         // Récupérer la DB et le DAO
         val db = AppDatabase.getDatabase(this)
         val userDao = db.userDao()
+
+        // Statistique de l'utilisateur: nb article + nb commande
+        lifecycleScope.launch {
+            val user = userDao.getUser() // méthode à adapter selon ta DAO
+            user?.let {
+                val userId = it.id
+
+                try {
+                    // Requet a l'api pour nous retourne le nb d'article et de commandes
+                    // faire sur les articles publiés par un utilisateur
+                    val response = ApiClient.instance.getUserStats(userId)
+
+                    // Mettre à jour les TextView avec les données
+                    nbArticlesPublierUserConnected.text = response.nb_articles.toString()
+                    nbCommandUserConnected.text = response.nb_commandes.toString()
+                    nbAbonnerUserConnected.text = "0" // à compléter plus tard
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    nbArticlesPublierUserConnected.text = "--"
+                    nbCommandUserConnected.text = "--"
+                    nbAbonnerUserConnected.text = "--"
+                }
+            }
+        }
 
         // on se deconnecte lorsqu'on clique sur l'icon de deconnexion sur l'activité profile user connecté
         val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserConnected)
@@ -105,10 +141,10 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         }
     }
     private fun setupViewPager(userId: Int) {
-        val adapter = UserProfileViewPagerAdapter(this, userId)
+        val adapter = OngletsUserViewPagerAdapter(this, userId)
         viewPager.adapter = adapter
 
-        val tabTitles = arrayOf("Articles", "Operations")
+        val tabTitles = arrayOf("Articles", "Annonces", "Options")
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()

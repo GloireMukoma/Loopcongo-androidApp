@@ -146,12 +146,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Articles"
+                            android:text="Immobiliers"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/profileVendeurNbArticlePublie"
+                            android:id="@+id/nbImmoPublierProfileVendeurImmo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="12"
@@ -170,12 +170,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Annonces"
+                            android:text="Commandes"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/profileVendeurNbAnnonce"
+                            android:id="@+id/nbAnnonceProfileVendeurImmo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="34"
@@ -198,7 +198,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/profileVendeurNbAbonner"
+                            android:id="@+id/nbAbonnerProfileVendeurImmo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="58"

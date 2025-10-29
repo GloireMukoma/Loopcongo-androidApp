@@ -58,5 +58,12 @@ data class RandomPremiumUserResponse(
     val articles: List<Article>?
 )
 
+data class UserStatsResponse(
+    val user_id: Int,
+    val nb_articles: Int,
+    val nb_commandes: Int,
+    val nb_annonces: Int
+)
+
 
 

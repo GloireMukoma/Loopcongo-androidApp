@@ -16,10 +16,10 @@ class OngletOptionsVendeurAdapter(context: Context, private val items: List<Sett
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.item_options, parent, false)
+            .inflate(R.layout.item_operations, parent, false)
 
-        val icon = view.findViewById<ImageView>(R.id.iconSetting)
-        val title = view.findViewById<TextView>(R.id.textSetting)
+        val icon = view.findViewById<ImageView>(R.id.iconOperation)
+        val title = view.findViewById<TextView>(R.id.textOperation)
 
         val item = items[position]
         icon.setImageResource(item.iconRes)

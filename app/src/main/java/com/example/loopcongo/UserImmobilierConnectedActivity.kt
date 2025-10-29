@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.adapters.userImmobilierConnected.OngletsProfileUserImmobilierPagerAdapter
 import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.database.User
+import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,6 +25,10 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
     private lateinit var nameUserConnected: TextView
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
+
+    private lateinit var nbBienPublieUserImmoConnected: TextView
+    private lateinit var nbCommandUserImmoConnected: TextView
+    private lateinit var nbAbonnerUserImmoConnected: TextView
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -40,12 +45,40 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         telephoneUserConnected = findViewById(R.id.telephoneUserImmoConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserImmoConnected)
 
+        nbBienPublieUserImmoConnected = findViewById(R.id.nbBienPublieUserImmoConnected)
+        nbCommandUserImmoConnected = findViewById(R.id.nbCommandUserImmoConnected)
+        nbAbonnerUserImmoConnected = findViewById(R.id.nbAbonnerUserImmoConnected)
+
         tabLayout = findViewById(R.id.userImmoConnectedProfiletabLayout)
         viewPager = findViewById(R.id.userImmoConnectedProfileviewPager)
 
         // Récupérer la DB et le DAO
         val db = AppDatabase.getDatabase(this)
         val userDao = db.userDao()
+
+        // Statistique de l'utilisateur: nb article + nb commande
+        lifecycleScope.launch {
+            val user = userDao.getUser() // méthode à adapter selon ta DAO
+            user?.let {
+                val userId = it.id
+
+                try {
+                    // Requet a l'api pour nous retourne le nb d'article et de commandes
+                    // faire sur les articles publiés par un utilisateur
+                    val response = ApiClient.instance.getUserImmoStats(userId)
+
+                    // Mettre à jour les TextView avec les données
+                    nbBienPublieUserImmoConnected.text = response.nb_articles.toString()
+                    nbCommandUserImmoConnected.text = response.nb_commandes.toString()
+                    nbAbonnerUserImmoConnected.text = "0" // à compléter plus tard
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    nbBienPublieUserImmoConnected.text = "--"
+                    nbCommandUserImmoConnected.text = "--"
+                    nbAbonnerUserImmoConnected.text = "--"
+                }
+            }
+        }
 
         // on se deconnecte lorsqu'on clique sur l'icon de deconnexion sur l'activité profile user connecté
         val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserImmoConnected)
@@ -77,7 +110,6 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
                 }
         }
 
-
         // Charger l'utilisateur depuis Room
         lifecycleScope.launch {
             val user: User? = userDao.getUser()
@@ -107,7 +139,7 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         // Noms des onglets (personnalisables)
-        val tabTitles = arrayOf("Immobiliers", "Opérations")
+        val tabTitles = arrayOf("Immobiliers", "Annonces", "Options")
 
         // Sécurise l’accès au tableau (évite crash si le nombre d’onglets change)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

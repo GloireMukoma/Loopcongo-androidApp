@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.example.loopcongo.adapters.userImmobilierProfile.OngletsProfileUserImmobilierPagerAdapter
 import com.example.loopcongo.adapters.vendeurs.OngletsProfileVendeurPagerAdapter
 import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.tabs.TabLayout
@@ -18,12 +19,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ProfileVendeurActivity : AppCompatActivity() {
+class ProfileVendeurImmobilierActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_profile_vendeur)
+        setContentView(R.layout.activity_profile_vendeur_immobilier)
         supportActionBar?.title = "Profil"
 
         // Forcer la couleur de la status bar et de la navigation bar
@@ -42,15 +43,10 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
         val isCertifiedVendeur = intent.getIntExtra("isCertifiedVendeur", 0)
 
-        val vendeurTotalArticles = intent.getIntExtra("vendeurTotalArticles", 0)
-        val vendeurTotalLikes = intent.getIntExtra("vendeurTotalLikes", 0)
-        val vendeurNbAbonner = intent.getIntExtra("vendeurNbAbonner", 0)
-
         // Statistique de l'utilisateur: nb article + nb commande
-
-        val profileVendeurNbArticlePublie = findViewById<TextView>(R.id.profileVendeurNbArticlePublie)
-        val profileVendeurNbAnnonce = findViewById<TextView>(R.id.profileVendeurNbAnnonce)
-        val profileVendeurNbAbonner = findViewById<TextView>(R.id.profileVendeurNbAbonner)
+        val nbImmoPublierProfileVendeurImmo = findViewById<TextView>(R.id.nbImmoPublierProfileVendeurImmo)
+        val nbAnnonceProfileVendeurImmo = findViewById<TextView>(R.id.nbAnnonceProfileVendeurImmo)
+        val nbAbonnerProfileVendeurImmo = findViewById<TextView>(R.id.nbAbonnerProfileVendeurImmo)
 
         val vendeurId = intent.getIntExtra("vendeurId", -1) // -1 = valeur par défaut si pas trouvé
 
@@ -59,25 +55,25 @@ class ProfileVendeurActivity : AppCompatActivity() {
                 try {
                     // ⚙️ Appel réseau sur thread IO
                     val response = withContext(Dispatchers.IO) {
-                        ApiClient.instance.getUserStats(vendeurId)
+                        ApiClient.instance.getUserImmoStats(vendeurId)
                     }
 
                     // 🧠 Mise à jour des TextView sur le thread principal
-                    profileVendeurNbArticlePublie.text = response.nb_articles.toString()
-                    profileVendeurNbAnnonce.text = response.nb_annonces.toString()
-                    profileVendeurNbAbonner.text = "0" // à compléter plus tard
+                    nbImmoPublierProfileVendeurImmo.text = response.nb_articles.toString()
+                    nbAnnonceProfileVendeurImmo.text = response.nb_annonces.toString()
+                    nbAbonnerProfileVendeurImmo.text = "0" // à compléter plus tard
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    profileVendeurNbArticlePublie.text = "--"
-                    profileVendeurNbAnnonce.text = "--"
-                    profileVendeurNbAbonner.text = "--"
+                    nbImmoPublierProfileVendeurImmo.text = "--"
+                    nbAnnonceProfileVendeurImmo.text = "--"
+                    nbAbonnerProfileVendeurImmo.text = "--"
                 }
             }
         } else {
             // 🚨 Aucun ID trouvé dans l’intent
-            profileVendeurNbArticlePublie.text = "--"
-            profileVendeurNbAnnonce.text = "--"
-            profileVendeurNbAbonner.text = "--"
+            nbImmoPublierProfileVendeurImmo.text = "--"
+            nbAnnonceProfileVendeurImmo.text = "--"
+            nbAbonnerProfileVendeurImmo.text = "--"
         }
 
 
@@ -103,13 +99,14 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val viewPager = findViewById<ViewPager2>(R.id.profileVendeursviewPager)
         val tabLayout = findViewById<TabLayout>(R.id.profileVendeurstabLayout)
 
+
         // Passe l'ID au PagerAdapter
-        val pagerAdapter = OngletsProfileVendeurPagerAdapter(this, vendeurId)
+        val pagerAdapter = OngletsProfileUserImmobilierPagerAdapter(this, vendeurId)
         viewPager.adapter = pagerAdapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Articles"
+                0 -> "Immobiliers"
                 1 -> "Annonces"
                 else -> "Onglet ${position + 1}"
             }

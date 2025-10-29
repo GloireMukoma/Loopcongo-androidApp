@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.ProfileVendeurActivity
+import com.example.loopcongo.ProfileVendeurImmobilierActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 
@@ -41,15 +42,6 @@ class VendeurAdapter(private val vendeurs: List<User>) :
         holder.city.text = vendeur.city
         holder.about.text = vendeur.about ?: "Aucune description"
 
-        // Affiche boost_type ou texte par défaut
-        /*holder.boost.text = when {
-            vendeur.is_sponsored == 1 && !vendeur.boost_type.isNullOrBlank() ->
-                "• ${vendeur.boost_type.uppercase()}"
-            vendeur.is_sponsored == 1 ->
-                "• Sponsorisé"
-            else ->
-                "• Non sponsorisé"
-        }*/
         if (vendeur.is_certified == 1) {
             holder.badgeImage.visibility = View.VISIBLE
         } else {
@@ -71,9 +63,18 @@ class VendeurAdapter(private val vendeurs: List<User>) :
         // 👉 CLIC : Redirection vers Détail
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, ProfileVendeurActivity::class.java)
 
-            // Passer les données nécessaires (tu peux en passer plus)
+            // Vérifie le type de compte du vendeur
+            val intent = when (vendeur.type_account?.lowercase()) {
+                "vendeur" -> Intent(context, ProfileVendeurActivity::class.java)
+                "immobilier" -> Intent(context, ProfileVendeurImmobilierActivity::class.java)
+                else -> {
+                    // Par défaut, redirige vers ProfileVendeurActivity
+                    Intent(context, ProfileVendeurActivity::class.java)
+                }
+            }
+
+            // Passer les données nécessaires
             intent.putExtra("vendeurId", vendeur.id)
             intent.putExtra("vendeurUsername", vendeur.nom)
             intent.putExtra("vendeurContact", vendeur.contact)

@@ -29,7 +29,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         }
 
-        setContentView(R.layout.activity_detail_immobilier)
+        setContentView(R.layout.activity_detail_immobilier2)
         supportActionBar?.title = "Détail de l'immobilier"
 
         // ✅ Récupération des vues
@@ -81,7 +81,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
         }
 
         // Redirection vers le profile du vendeur
-        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilDetailImmobilier)
+        val btnVoirProfil = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
         btnVoirProfil.setOnClickListener {
 
             // Appel API dans une coroutine

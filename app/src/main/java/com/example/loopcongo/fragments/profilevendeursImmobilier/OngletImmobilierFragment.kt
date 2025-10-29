@@ -1,4 +1,4 @@
-package com.example.loopcongo.fragments.userImmobilierConnectedOnglets
+package com.example.loopcongo.fragments.profilevendeursImmobilier
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.userImmobilierConnected.UserConnectedOngletImmobilierAdapter
+import com.example.loopcongo.adapters.immobiliers.ImmobilierGridAdapter
 import com.example.loopcongo.models.ImmobilierResponse
 import com.example.loopcongo.restApi.ApiClient
 import retrofit2.Call
@@ -44,8 +44,13 @@ class OngletImmobilierFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.onglet_immobilier_profil_user_connected, container, false)
-        immobilierRecyclerView = view.findViewById(R.id.userImmobilierConnectedRecyclerView)
+        val view = inflater.inflate(R.layout.onglet_immobilier_profil_vendeur, container, false)
+        immobilierRecyclerView = view.findViewById(R.id.userImmobilierProfileVendeurRecyclerView)
+
+        // Initialisation RecyclerView
+        immobilierRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        immobilierRecyclerView.setHasFixedSize(true)
+
         fetchUserImmobiliers()
         return view
     }
@@ -60,10 +65,8 @@ class OngletImmobilierFragment : Fragment() {
                     if (response.isSuccessful && response.body()?.status == true) {
                         val biens = response.body()?.data ?: emptyList()
 
-                        immobilierRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-                        immobilierRecyclerView.adapter =
-                            UserConnectedOngletImmobilierAdapter(requireContext(), biens.toMutableList())
-
+                        // ⚡ Adapter
+                        immobilierRecyclerView.adapter = ImmobilierGridAdapter(biens)
                     } else {
                         Toast.makeText(
                             requireContext(),

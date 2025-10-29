@@ -11,21 +11,21 @@
 
     <!-- Icône gauche -->
     <ImageView
-        android:id="@+id/iconSetting"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:id="@+id/iconOperation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:tint="@color/gray"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_alert" />
 
     <!-- Titre -->
     <TextView
-        android:id="@+id/textSetting"
+        android:id="@+id/textOperation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginStart="10dp"
-        android:text="Public Profile"
+        android:text="Public operation"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
@@ -35,5 +35,5 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         app:tint="#999"
-        android:src="@drawable/ic_more" />
+        android:src="@drawable/ic_arrow" />
 </LinearLayout>
