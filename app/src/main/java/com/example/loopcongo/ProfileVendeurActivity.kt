@@ -58,7 +58,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         if (vendeurId != -1) {
             lifecycleScope.launch {
                 try {
-                    // ⚙️ Appel réseau sur thread IO
+                    // Appel réseau sur thread IO
                     val response = withContext(Dispatchers.IO) {
                         ApiClient.instance.getUserStats(vendeurId)
                     }

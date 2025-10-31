@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#1a1a1a00"
+    android:padding="10dp"
+    android:elevation="2dp"
+    android:layout_marginHorizontal="6dp"
+    android:clipToOutline="true"
+    android:backgroundTint="#1a1a1a00">
+
+    <!-- Ligne principale : avatar + contenu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Avatar -->
+        <!-- Avatar arrondi -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:id="@+id/avatarImgUserDemande"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/user1"
+                android:scaleType="centerCrop"
+                android:contentDescription="avatar" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Bloc texte -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Message -->
+            <TextView
+                android:id="@+id/msgUserDemande"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bonjour, je suis à la recherche d'une maison à louer, coté golf plateau"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginBottom="4dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <!-- Détails : like count et temps -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/usernameDemande"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textSize="12sp"
+                    android:textColor="#555555"
+                    android:layout_marginEnd="4dp"/>
+
+                <TextView
+                    android:id="@+id/timeDemande"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Il y a 4 mois"
+                    android:textSize="12sp"
+                    android:textColor="#555555"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bouton Répondre -->
+    <LinearLayout
+        android:id="@+id/repondreDemandeImmoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:backgroundTint="#3F51B5"
+        android:background="@drawable/rounded_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="10dp"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/whatsapp"
+            app:tint="@color/white"
+            android:layout_marginEnd="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:text="Repondre"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -111,6 +111,10 @@ interface ApiService {
     @GET("user/immo/statistics/get/{id}")
     suspend fun getUserImmoStats(@Path("id") userId: Int): UserStatsResponse
 
+    // Get les demandes immobiliers laissés par les utilisateurs
+    @GET("user/immo/demandes")
+    fun getUserImmoDemandes(): Call<ApiResponseDemande>
+
     // Get un user premium pour l'afficher dans la popup des utilisateurs premium
     @GET("user/random-premium")
     fun getRandomPremiumUser(): Call<RandomPremiumUserResponse>

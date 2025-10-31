@@ -1,11 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true"
+    android:background="#F9F9F9">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/immobilierForAllCityRecyclerView"
-        android:layout_margin="4dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <!-- 🔹 Bouton pour toutes les demandes -->
+        <Button
+            android:id="@+id/btnVoirToutesDemandes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voir toutes les demandes"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#3F51B5"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginBottom="12dp"
+            android:drawablePadding="8dp"
+            android:stateListAnimator="@null"
+            android:clipToOutline="true"
+            android:elevation="4dp"/>
+
+        <!-- Carrousel demandes -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/immoUserDemandeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:minHeight="120dp"
+            android:nestedScrollingEnabled="false"/>
+
+        <!-- Grille biens immobiliers -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/immobilierForAllCityRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

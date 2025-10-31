@@ -18,3 +18,20 @@ data class ImmobilierResponse(
     val message: String,
     val data: List<Immobilier>
 )
+
+data class ImmoUserDemande(
+    val demande_id: Int,
+    val user_id: Int,
+    val username: String,
+    val contact: String,
+    val message: String,
+    val avatar: String?,
+    val created_at: String
+)
+
+data class ApiResponseDemande(
+    val status: String,
+    val total: Int,
+    val demandes: List<ImmoUserDemande>
+)
+
