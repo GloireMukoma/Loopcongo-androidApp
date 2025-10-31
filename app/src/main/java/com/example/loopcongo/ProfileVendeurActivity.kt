@@ -3,6 +3,7 @@ package com.example.loopcongo
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +41,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
-        val isCertifiedVendeur = intent.getIntExtra("isCertifiedVendeur", 0)
+        val isCertifiedVendeur = intent.getStringExtra("isCertifiedVendeur")
 
         val vendeurTotalArticles = intent.getIntExtra("vendeurTotalArticles", 0)
         val vendeurTotalLikes = intent.getIntExtra("vendeurTotalLikes", 0)
@@ -87,7 +88,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.profileVendeurCity).text = vendeurCity
 
         val sponsorTextView = findViewById<ImageView>(R.id.profileVendeurBadge) // TextView pour le badge
-        if (isCertifiedVendeur == 1) {
+        if (isCertifiedVendeur == "1") {
             sponsorTextView.visibility = View.VISIBLE
         } else {
             sponsorTextView.visibility = View.GONE
@@ -108,12 +109,34 @@ class ProfileVendeurActivity : AppCompatActivity() {
         viewPager.adapter = pagerAdapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.setIcon(R.drawable.ic_article)
+                1 -> tab.setIcon(R.drawable.ic_annonce)
+            }
+        }.attach()
+
+        //Modifier la taille des icônes après la liaison
+        for (i in 0 until tabLayout.tabCount) {
+            val tab = (tabLayout.getTabAt(i)?.view as? ViewGroup)
+            tab?.let { tabView ->
+                val iconView = tabView.findViewById<ImageView>(com.google.android.material.R.id.icon)
+                iconView?.layoutParams?.apply {
+                    width = 60 // largeur en pixels ou utiliser des dp convertis
+                    height = 60 // hauteur en pixels
+                }
+                iconView?.requestLayout()
+            }
+        }
+
+
+
+        /*TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Articles"
                 1 -> "Annonces"
                 else -> "Onglet ${position + 1}"
             }
-        }.attach()
+        }.attach()*/
     }
 
 }

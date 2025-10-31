@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +23,15 @@ import com.example.loopcongo.*
 import com.example.loopcongo.adapters.*
 import com.example.loopcongo.adapters.articles.ArticleForPopupRandomUserPremiumAdapter
 import com.example.loopcongo.adapters.articles.TopArticleAdapter
-import com.example.loopcongo.adapters.articles.CarouselAnnonceArticleAdapter
+import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
 import com.example.loopcongo.database.AppDatabase
+import com.example.loopcongo.database.CustomerDao
 import com.example.loopcongo.database.UserDao
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.imageview.ShapeableImageView
+import com.example.loopcongo.database.User as DbUser
+import com.example.loopcongo.database.Customer as DbCustomer
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +41,8 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
 
     private lateinit var userDao: UserDao
+    private lateinit var customerDao: CustomerDao
+
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler(Looper.getMainLooper())
 
@@ -54,55 +60,20 @@ class HomeFragment : Fragment() {
         // Instance de la BD Room
         val db = AppDatabase.getDatabase(requireContext())
         userDao = db.userDao()
+        customerDao = db.customerDao()
 
         // Récupère l'ImageView de l'avatar
         val avatarIconUserConnected = view.findViewById<ImageView>(R.id.avatarImgProfileUserConnected)
 
-        // Utiliser lifecycleScope pour les fonctions suspend
+        // Met à jour l'avatar et configure le clic
         lifecycleScope.launch {
-            val user = userDao.getUser() // récupère l’utilisateur connecté (ou null)
-
-            if (user != null) {
-                // Utilisateur connecté → afficher sa photo
-                if (!user.file_url.isNullOrEmpty()) {
-                    Glide.with(this@HomeFragment)
-                        .load(user.file_url)
-                        .placeholder(R.drawable.ic_person) // image par défaut
-                        .error(R.drawable.ic_person)
-                        .circleCrop()
-                        .into(avatarIconUserConnected)
-                } else {
-                    avatarIconUserConnected.setImageResource(R.drawable.ic_person)
-                }
-            } else {
-                // Pas d’utilisateur connecté → garder l’icon par défaut
-                avatarIconUserConnected.setImageResource(R.drawable.ic_person)
-            }
-
-            // Clique sur l'avatar
-            avatarIconUserConnected.setOnClickListener {
-                if (user == null) {
-                    // Pas d’utilisateur enregistré → rediriger vers login
-                    startActivity(Intent(requireContext(), LoginActivity::class.java))
-                } else {
-                    // Utilisateur existe → rediriger selon le type de compte
-                    val nextActivity = when (user.type_account?.lowercase()) {
-                        "vendeur" -> ProfileUserConnectedActivity::class.java
-                        "immobilier" -> UserImmobilierConnectedActivity::class.java
-                        else -> ProfileUserConnectedActivity::class.java // fallback si autre type
-                    }
-
-                    startActivity(Intent(requireContext(), nextActivity))
-                }
-            }
-
+            updateAvatarAndListener(avatarIconUserConnected)
         }
 
-
         // Icon de notication, redirection vers l'activité des commandes
-        val iconNotification = view.findViewById<ImageView>(R.id.iconNotification)
+        val iconNotification = view.findViewById<ImageView>(R.id.iconSubscription)
         iconNotification.setOnClickListener {
-            val intent = Intent(requireContext(), CommandesActivity::class.java)
+            val intent = Intent(requireContext(), SubscriptionActivity::class.java)
             startActivity(intent)
         }
 
@@ -157,11 +128,25 @@ class HomeFragment : Fragment() {
         viewPager2.offscreenPageLimit = 5
         viewPager2.isNestedScrollingEnabled = false
 
-        ApiClient.instance.getAnnoncesArticlesCaroussel().enqueue(object : Callback<AnnonceResponse> {
+        ApiClient.instance.getUserAnnoncesCaroussel().enqueue(object : Callback<AnnonceResponse> {
             override fun onResponse(call: Call<AnnonceResponse>, response: Response<AnnonceResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val annonces = response.body()!!.data
-                    viewPager2.adapter = CarouselAnnonceArticleAdapter(requireContext(), annonces)
+                    //viewPager2.adapter = CarouselUserAnnonceAdapter(requireContext(), annonces)
+                    viewPager2.adapter = CarouselUserAnnonceAdapter(requireContext(), annonces) { annonce ->
+                        val intent = Intent(requireContext(), DetailAnnonceActivity::class.java)
+                        intent.putExtra("id", annonce.id)
+                        intent.putExtra("user_id", annonce.user_id)
+                        intent.putExtra("titre", annonce.titre)
+                        intent.putExtra("description", annonce.description)
+                        intent.putExtra("image", annonce.image)
+                        intent.putExtra("username", annonce.username)
+                        intent.putExtra("city", annonce.city)
+                        intent.putExtra("contact", annonce.contact)
+                        intent.putExtra("file_url", annonce.file_url)
+                        startActivity(intent)
+                    }
+
 
                     val sliderRunnable = Runnable {
                         viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
@@ -242,7 +227,7 @@ class HomeFragment : Fragment() {
 
                             // Passer les données nécessaires (tu peux en passer plus)
                             intent.putExtra("vendeurId", body.user.id)
-                            intent.putExtra("vendeurUsername", body.user.nom)
+                            intent.putExtra("vendeurUsername", body.user.username)
                             intent.putExtra("vendeurContact", body.user.contact)
                             intent.putExtra("vendeurCity", body.user.city)
                             intent.putExtra("vendeurDescription", body.user.about)
@@ -256,7 +241,7 @@ class HomeFragment : Fragment() {
                             context.startActivity(intent)
                         }
 
-                        userName.text = body.user.nom
+                        userName.text = body.user.username
                         numero.text = body.user.contact
                         city.text = body.user.city
 
@@ -282,13 +267,55 @@ class HomeFragment : Fragment() {
                     dialog.dismiss()
                 }
             }
-
             override fun onFailure(call: Call<RandomPremiumUserResponse>, t: Throwable) {
                 Toast.makeText(context, "Erreur: ${t.message}", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         })
+    }
+    private suspend fun updateAvatarAndListener(avatar: ImageView) {
+        // Récupère les comptes connectés
+        val user = userDao.getUser()       // vendeur ou immobilier
+        val customer = customerDao.getCustomer() // client
+        val currentAccount: Any? = user ?: customer
 
+        // Met à jour l'image de l'avatar
+        val imageUrl = when (currentAccount) {
+            is DbUser -> currentAccount.file_url
+            is DbCustomer -> currentAccount.file_url
+            else -> null
+        }
 
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(requireContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .circleCrop()
+                .into(avatar)
+        } else {
+            avatar.setImageResource(R.drawable.ic_person)
+        }
+
+        // Configure le listener sur l'avatar
+        avatar.setOnClickListener {
+            lifecycleScope.launch {
+                val latestUser = userDao.getUser()
+                val latestCustomer = customerDao.getCustomer()
+                val account = latestUser ?: latestCustomer
+
+                val nextActivity = when (account) {
+                    is DbUser -> when (account.type_account?.lowercase()) {
+                        "vendeur" -> ProfileUserConnectedActivity::class.java
+                        "immobilier" -> UserImmobilierConnectedActivity::class.java
+                        else -> ProfileUserConnectedActivity::class.java
+                    }
+                    is DbCustomer -> CustomerConnectedActivity::class.java
+                    else -> LoginActivity::class.java
+                }
+
+                startActivity(Intent(requireContext(), nextActivity))
+            }
+        }
     }
 }

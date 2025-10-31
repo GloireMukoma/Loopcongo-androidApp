@@ -12,8 +12,8 @@
     <!-- IMAGE DE L'ARTICLE -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/topArticleImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="102dp"
+        android:layout_height="102dp"
         android:layout_marginEnd="12dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img"

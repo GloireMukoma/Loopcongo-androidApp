@@ -45,7 +45,6 @@ class ProfilVendeursOngletAnnonceFragment : Fragment() {
         val divider = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(divider)
 
-
         articleAdapter = OngletAnnonceForProfileVendeurAdapter(requireContext(), emptyList())
         recyclerView.adapter = articleAdapter
 

@@ -1,6 +1,6 @@
 package com.example.loopcongo.models
 
-// NB:  User = Vendeur
+// NB:  User = Vendeur ou Immobilier
 data class User(
     val id: Int,
     val type_account: String?,
@@ -12,7 +12,7 @@ data class User(
     val subscription_status: String?,
     val subscription_start: String?,
     val subscription_end: String?,
-    val is_certified: Int?,
+    val is_certified: String?,
     val password: String?,
     val contact: String?,
     val city: String?,
@@ -27,7 +27,9 @@ data class User(
     val article_image: String?,
     val article_date: String?,
     val total_articles: Int?,
-    val total_likes: Int?
+    val total_likes: Int?,
+
+    val interets: String? // Champ du compte client
 )
 
 // Ce modele gere les utilisateurs ainsi que leurs dernières articles qu'ils ont publié
@@ -64,6 +66,5 @@ data class UserStatsResponse(
     val nb_commandes: Int,
     val nb_annonces: Int
 )
-
 
 

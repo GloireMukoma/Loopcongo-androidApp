@@ -115,7 +115,7 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
             val user: User? = userDao.getUser()
             user?.let {
                 // Afficher les données dans la vue
-                nameUserConnected.text = it.nom ?: "Utilisateur"
+                nameUserConnected.text = it.username ?: "Utilisateur"
                 telephoneUserConnected.text = it.contact ?: "N/A"
                 descriptionUserConnected.text = it.about ?: ""
 

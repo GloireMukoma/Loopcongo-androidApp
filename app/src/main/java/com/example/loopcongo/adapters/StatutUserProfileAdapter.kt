@@ -80,9 +80,9 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
             intent.putExtra("vendeurDescription", vendeur.about)
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.profile_image)
-            intent.putExtra("isSponsoredVendeur", vendeur.is_certified)
+            intent.putExtra("isCertifiedVendeur", vendeur.is_certified)
+
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
-            intent.putExtra("vendeurTotalLikes", 3)
             intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
 
             context.startActivity(intent)

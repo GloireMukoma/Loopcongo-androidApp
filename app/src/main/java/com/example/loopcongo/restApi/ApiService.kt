@@ -1,6 +1,5 @@
 package com.example.loopcongo.restApi
 
-import com.example.loopcongo.database.LoginResponse
 import com.example.loopcongo.models.*
 import retrofit2.Call
 import retrofit2.Response
@@ -11,6 +10,13 @@ interface ApiService {
     // Endpoint pour récupérer les articles
     @GET("articles")
     fun getArticles(): Call<ArticleResponse>
+
+    // Get les articles des vendeurs auxquels un client s'est abonnés
+    // les afficher dans l'onglet des articles des abonnements
+    @GET("products/customer/abonnes/{customerId}")
+    suspend fun getArticlesByAbonnements(
+        @Path("customerId") customerId: Int
+    ): Response<ArticleResponse>
 
     // Connexion d'un user
     @POST("user/login")
@@ -38,6 +44,21 @@ interface ApiService {
     // Est utiliser sur le bouton voir profil sur l'activité detailArticle pour voir le profile user
     @GET("user/userById/{id}")
     suspend fun userById(@Path("id") id: Int): Response<UserUniqueResponse>
+
+    // Recuperer les infos du compte client qui s'est connecté
+    @GET("user/customer/get/{id}")
+    suspend fun getCustomerById(@Path("id") id: Int): Response<CustomerResponse>
+
+    @GET("abonnements/customer/get/{customerId}")
+    suspend fun getAbonnementsByCustomer(
+        @Path("customerId") customerId: Int
+    ): Response<List<User>>
+
+    // Récupère les articles des vendeurs auxquels le client est abonné
+    @GET("products/customer/abonnements/get/{customerId}")
+    suspend fun getArticlesByCustomerAbonnements(
+        @Path("customerId") customerId: Int
+    ): Response<List<Article>>
 
     // Exemple : /api/immobiliers/search?city=Kinshasa&quartier=Gombe
     @GET("immobiliers/search") // ← plus de "api/" ici
@@ -96,7 +117,7 @@ interface ApiService {
 
     // Get les annonces des articles (afficher dans la caroussel)
     @GET("user/annonces")
-    fun getAnnoncesArticlesCaroussel(): Call<AnnonceResponse>
+    fun getUserAnnoncesCaroussel(): Call<AnnonceResponse>
 
     // Get les annonces du vendeur est les afficher dans l'onglet annonces du tablayout
     //de l'activité profile user

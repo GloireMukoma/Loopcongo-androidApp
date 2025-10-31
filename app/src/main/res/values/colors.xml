@@ -18,6 +18,7 @@
     <color name="textColorPrimary">#9AA0B2</color>
     <color name="contourColor">#2A2B3C</color>
 
+    <color name="moveColor">#9C27B0</color>
 
     <color name="bottomNavItemNoSelect">#8c8b8b</color>
     <color name="noir_fonce">#000000</color>

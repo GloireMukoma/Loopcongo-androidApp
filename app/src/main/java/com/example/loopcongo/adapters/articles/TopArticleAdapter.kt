@@ -42,11 +42,6 @@ class TopArticleAdapter(context: Context, articles: List<Article>) :
             .placeholder(R.drawable.loading)
             .into(user_avatar)
 
-        /*if (article?.is_sponsored == 1) {
-            badge.visibility = View.VISIBLE
-        } else {
-            badge.visibility = View.GONE
-        }*/
         // ✅ Gestion du clic pour ouvrir l'activité de détail
         view.setOnClickListener {
             val intent = Intent(context, DetailArticleActivity::class.java)

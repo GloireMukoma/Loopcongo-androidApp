@@ -92,7 +92,7 @@ class DetailArticleActivity : AppCompatActivity() {
         }
 
         // Redirection vers la conversation WhatsApp
-        val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
+        val discuterBtn = findViewById<LinearLayout>(R.id.btnWhatsappDetailArticle)
 
         discuterBtn.setOnClickListener {
             if (!userContact.isNullOrEmpty()) {

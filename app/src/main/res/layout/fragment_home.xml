@@ -19,51 +19,47 @@
         android:clipToOutline="true">
         <!-- fond foncé arrondi comme une card -->
 
-    <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
-
-        <!-- Image de profil utilisateur à gauche -->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/avatarImgProfileUserConnected"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="8dp"
-            android:scaleType="centerCrop"
-            android:padding="2dp"
-            app:shapeAppearanceOverlay="@style/CircularImageStyle"
-            app:strokeColor="@color/secondaryColor"
-            app:strokeWidth="2dp"
-            android:src="@drawable/user_profile" />
-
-        <!-- Logo centré -->
-        <ImageView
-            android:id="@+id/logoImage"
-            android:layout_width="165dp"
-            android:layout_height="33dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/loop_logo"
-            android:contentDescription="Logo" />
-
-        <!-- Bouton image login à droite (sans espace) -->
-        <ImageView android:id="@+id/iconNotification"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_notifications" />
-
-    </RelativeLayout>
-    <!-- Ligne 2 : Recherche -->
-    </LinearLayout>
-
-        <!-- Le contenu défilable -->
-        <!-- <ScrollView
+        <!-- Ligne 1 : Profil + Logo centré + Bouton à droite -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">-->
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
+
+            <!-- Image de profil utilisateur à gauche -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImgProfileUserConnected"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                app:strokeColor="@color/secondaryColor"
+                app:strokeWidth="2dp"
+                android:src="@drawable/user_profile" />
+
+            <!-- Logo centré -->
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="165dp"
+                android:layout_height="33dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/loop_logo"
+                android:contentDescription="Logo" />
+
+            <!-- Bouton image login à droite (sans espace) -->
+            <ImageView android:id="@+id/iconSubscription"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_centerVertical="true"
+                app:tint="@color/moveColor"
+                android:src="@drawable/ic_star" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <!-- TopBar personnalisée -->
 
     <LinearLayout
     android:layout_width="match_parent"
@@ -72,54 +68,57 @@
     android:background="@null"
     android:padding="12dp">
 
-    <!-- Carousel -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/carouselArticleAnnnonce"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:clipToPadding="false"
-        android:background="@color/BleuClairPrimaryColor"
-        android:clipToOutline="true"
-        android:elevation="2dp"/>
+        <!-- Carousel -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/carouselArticleAnnnonce"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:clipToPadding="false"
+            android:background="@color/BleuClairPrimaryColor"
+            android:clipToOutline="true"
+            android:elevation="2dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TOP VENDEURS"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="7dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOP VENDEURS"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="7dp"/>
 
-    <!-- Liste horizontale des profils utilisateurs (top vendeur) -->
-        <!--android:clipToPadding="false"-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/statutUserProfileHomePageRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:overScrollMode="never"
-        android:padding="9dp"
-        android:scrollbars="none"
-        android:background="@drawable/bg_card_dark"/>
+        <!-- Liste horizontale des profils utilisateurs (top vendeur) -->
+            <!--android:clipToPadding="false"-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/statutUserProfileHomePageRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:overScrollMode="never"
+            android:padding="9dp"
+            android:scrollbars="none"
+            android:background="@drawable/bg_card_dark"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TOP ARTICLES"
-        android:textSize="13sp"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginBottom="7dp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOP ARTICLES"
+            android:textSize="13sp"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginBottom="7dp"
+            android:textStyle="bold" />
 
-    <ListView
-        android:id="@+id/topArticlesHomePageRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/ligne_diviseur"
-        android:dividerHeight="0.2dp"
-        android:background="@drawable/bg_card_dark"/>
+        <!-- Liste des articles -->
+        <ListView
+            android:id="@+id/topArticlesHomePageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/ligne_diviseur"
+            android:dividerHeight="0.2dp"
+            android:background="@drawable/bg_card_dark"
+            android:nestedScrollingEnabled="true" />
+
     </LinearLayout>
-        <!-- </ScrollView>-->
-    </LinearLayout>
+
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -115,13 +116,12 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                 }
         }
 
-
         // Charger l'utilisateur depuis Room
         lifecycleScope.launch {
             val user: User? = userDao.getUser()
             user?.let {
                 // Afficher les données dans la vue
-                nameUserConnected.text = it.nom ?: "Utilisateur"
+                nameUserConnected.text = it.username ?: "Utilisateur"
                 telephoneUserConnected.text = it.contact ?: "N/A"
                 descriptionUserConnected.text = it.about ?: ""
 
@@ -144,9 +144,41 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         val adapter = OngletsUserViewPagerAdapter(this, userId)
         viewPager.adapter = adapter
 
+        // Association TabLayout + ViewPager
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.setIcon(R.drawable.ic_article)  // produit ou article
+                1 -> tab.setIcon(R.drawable.ic_annonce)  // annonce
+                2 -> tab.setIcon(R.drawable.ic_settings) // options ou paramètres
+            }
+        }.attach()
+
+        // Applique une couleur active/inactive aux icônes
+        tabLayout.tabIconTint = ContextCompat.getColorStateList(this, R.color.tab_icon_color)
+
+        // (Optionnel) Modifier la taille des icônes
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val icon = tab?.icon
+                icon?.setBounds(0, 0, 60, 60) // taille active
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                val icon = tab?.icon
+                icon?.setBounds(0, 0, 60, 60) // taille normale
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+    }
+
+    /*private fun setupViewPager(userId: Int) {
+        val adapter = OngletsUserViewPagerAdapter(this, userId)
+        viewPager.adapter = adapter
+
         val tabTitles = arrayOf("Articles", "Annonces", "Options")
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
-    }
+    }*/
 }

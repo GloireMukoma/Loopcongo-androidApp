@@ -89,9 +89,10 @@
                         android:textColor="@color/white"
                         android:textSize="13sp" />
                     <TextView
+                        android:id="@+id/cityCustomerConnected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mon profil"
+                        android:text="city"
                         android:textColor="@color/secondaryColor"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -99,7 +100,7 @@
             </LinearLayout>
             <!-- Description -->
             <TextView
-                android:id="@+id/aboutCustomerConnected"
+                android:id="@+id/interetsCustomerConnected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -126,7 +127,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Articles"
+                        android:text="Abonnements"
                         android:textColor="#D0D0D0"
                         android:textSize="12sp" />
 
@@ -191,7 +192,7 @@
 
         <!-- REAL TABS avec TabLayout et ViewPager2 -->
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/userConnectedProfiletabLayout"
+            android:id="@+id/customerConnectedtabLayout"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/BleuFoncePrimaryColor"
@@ -202,7 +203,7 @@
             app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/userConnectedProfileviewPager"
+            android:id="@+id/customerConnectedviewPager"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

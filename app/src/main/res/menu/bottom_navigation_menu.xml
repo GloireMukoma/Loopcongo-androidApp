@@ -11,6 +11,10 @@
         android:icon="@drawable/ic_shopping"/>
 
     <item
+        android:id="@+id/bNavPublish"
+        android:title="Publier"
+        android:icon="@drawable/ic_publish"/>
+    <item
         android:id="@+id/bNavImmo"
         android:title="Immobilier"
         android:icon="@drawable/ic_immobilier"/>

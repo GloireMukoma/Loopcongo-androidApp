@@ -2,6 +2,7 @@ package com.example.loopcongo
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -61,6 +62,11 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.bNavHome -> loadFragment(HomeFragment())
                 R.id.bNavArticle -> loadFragment(ArticleFragment())
+                R.id.bNavPublish ->  {
+                    val url = "https://loopcongo.com/from-android/product/form/"
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
                 R.id.bNavImmo -> loadFragment(ImmobilierFragment())
                 R.id.bNavUsers -> loadFragment(VendeurMainFragment())
                 /*R.id.bNavCitizens -> {

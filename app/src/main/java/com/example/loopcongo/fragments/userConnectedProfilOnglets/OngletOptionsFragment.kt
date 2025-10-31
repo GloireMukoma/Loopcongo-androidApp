@@ -64,7 +64,7 @@ class OngletOptionsFragment : Fragment() {
                 }
 
                 // Encoder le nom si nécessaire
-                val encodedName = URLEncoder.encode(user.nom, "UTF-8")
+                val encodedName = URLEncoder.encode(user.username, "UTF-8")
 
                 // Construire l'URL ou exécuter l'action selon l'item
                 when (item.title) {

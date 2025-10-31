@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/BleuClairPrimaryColor"
-    android:padding="12dp">
+    tools:context=".DetailAnnonceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <!-- HEADER : Avatar + Auteur + Temps + Menu -->
         <RelativeLayout
@@ -28,7 +30,7 @@
 
                 <!-- Image de profil -->
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/userAvatarArticleDetail"
+                    android:id="@+id/userAvatarAnnonceDetail"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginEnd="10dp"
@@ -45,7 +47,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/nomAuteurdetailImage"
+                        android:id="@+id/usernameAnnonceDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Auteur"
@@ -54,7 +56,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/userContactArticleDetail"
+                        android:id="@+id/userContactAnnonceDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="+243XXXXXXXXX"
@@ -63,21 +65,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Icône trois points -->
-            <!--<ImageView
-            android:id="@+id/menuIconArticleDetail"
-            android:layout_width="24dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_more_"
-            android:contentDescription="Menu"
-            android:padding="4dp" darker_gray
-            app:tint="@color/secondaryColor" />-->
-
             <Button
-                android:id="@+id/btnVoirProfilDetailArticle"
+                android:id="@+id/btnVoirProfilAnnonceDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profil"
@@ -88,41 +77,29 @@
                 android:layout_centerVertical="true"
                 android:backgroundTint="@color/white"
                 android:fontFamily="sans-serif-medium" />
-    </RelativeLayout>
+        </RelativeLayout>
 
 
-    <!-- Nom de l'article -->
+        <!-- Nom de l'article -->
         <TextView
-            android:id="@+id/detailNomArticle"
+            android:id="@+id/titreAnnonceDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nom de l'article"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp" />
 
         <!-- Description -->
         <TextView
-            android:id="@+id/detailArticleDescription"
+            android:id="@+id/descriptionAnnonceDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description de l'article"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_marginTop="6dp" />
-
-        <TextView
-            android:id="@+id/prixDetailArticle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="180 $"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginEnd="5dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:textSize="16sp" />
 
         <!-- Image -->
         <androidx.cardview.widget.CardView
@@ -133,54 +110,16 @@
             app:cardElevation="2dp">
 
             <ImageView
-                android:id="@+id/imagePrincipaldetailArticle"
+                android:id="@+id/imageAnnonceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shoes_men" />
         </androidx.cardview.widget.CardView>
 
-        <!-- Conteneur dynamique pour les images de détail -->
-        <LinearLayout
-            android:id="@+id/containerImagesDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:dividerPadding="6dp" />
-
-        <!-- Prix et Likes -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <!--<TextView
-                android:id="@+id/articleDetailPrix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="180 $"
-                android:textColor="@android:color/darker_gray"
-                android:layout_marginEnd="5dp"
-                android:textStyle="bold"
-                android:textSize="16sp" />-->
-
-            <!-- Imageview-->
-
-            <!--<TextView
-                android:id="@+id/articleDetailNbLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="21 Likes"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="13sp" />-->
-        </LinearLayout>
-
         <!-- Bouton WhatsApp -->
         <LinearLayout
-            android:id="@+id/btnWhatsappDetailArticle"
+            android:id="@+id/btnWhatsappAnnonceDetail"
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:backgroundTint="@color/white"

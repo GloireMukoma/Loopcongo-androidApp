@@ -17,6 +17,10 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
+            android:parentActivityName=".MainActivity"
+            android:name=".DetailAnnonceActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerConnectedActivity"
             android:exported="false" />
         <activity
@@ -30,6 +34,7 @@
             android:name=".PlanAbonnementActivity"
             android:exported="false" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".SubscriptionActivity"
             android:exported="false" />
         <activity

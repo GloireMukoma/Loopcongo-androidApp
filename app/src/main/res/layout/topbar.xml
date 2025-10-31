@@ -22,7 +22,7 @@
 
             <!-- Image de profil -->
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/profileImage"
+                android:id="@+id/avatarImgProfileUserConnected"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginEnd="8dp"
@@ -65,12 +65,12 @@
 
             <!-- Bouton de notification -->
             <ImageView
-                android:id="@+id/notificationIcon"
+                android:id="@+id/subscriptionIcon"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="2dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_notifications"
+                android:src="@drawable/ic_star"
                 android:contentDescription="Notifications" />
         </LinearLayout>
 

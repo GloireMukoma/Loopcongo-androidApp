@@ -9,7 +9,7 @@ data class UserAnnonce(
     val date_debut: String,
     val date_fin: String,
     val statut: String,
-    val nom: String, // Nom de l'utilisateur (vendeur)
+    val username: String, // Nom de l'utilisateur (vendeur)
     val type_account: String,
     val contact: String,
     val city: String,

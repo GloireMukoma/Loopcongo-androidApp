@@ -37,12 +37,12 @@ class VendeurAdapter(private val vendeurs: List<User>) :
         val vendeur = vendeurs[position]
 
         // Affichage nom et description
-        holder.nom.text = vendeur.nom
+        holder.nom.text = vendeur.username
         holder.phone.text = vendeur.contact
         holder.city.text = vendeur.city
         holder.about.text = vendeur.about ?: "Aucune description"
 
-        if (vendeur.is_certified == 1) {
+        if (vendeur.is_certified == "1") {
             holder.badgeImage.visibility = View.VISIBLE
         } else {
             holder.badgeImage.visibility = View.GONE
@@ -76,7 +76,7 @@ class VendeurAdapter(private val vendeurs: List<User>) :
 
             // Passer les données nécessaires
             intent.putExtra("vendeurId", vendeur.id)
-            intent.putExtra("vendeurUsername", vendeur.nom)
+            intent.putExtra("vendeurUsername", vendeur.username)
             intent.putExtra("vendeurContact", vendeur.contact)
             intent.putExtra("vendeurCity", vendeur.city)
             intent.putExtra("vendeurDescription", vendeur.about)
