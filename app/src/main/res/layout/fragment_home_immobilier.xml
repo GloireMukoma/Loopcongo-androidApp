@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BleuFoncePrimaryColor">
+
+    <!-- 🔹 TopBar FIXE -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@color/BleuFoncePrimaryColor"
+        android:elevation="4dp"
+        android:clipToOutline="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="0dp">
+
+            <!-- Image de profil -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImgProfileUserConnected"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                app:strokeColor="@color/secondaryColor"
+                app:strokeWidth="2dp"
+                android:src="@drawable/user_profile" />
+
+            <!-- Logo centré -->
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="165dp"
+                android:layout_height="33dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/loop_logo"
+                android:contentDescription="Logo" />
+
+            <!-- Bouton à droite -->
+            <ImageView
+                android:id="@+id/iconSubscription"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                app:tint="@color/moveColor"
+                android:src="@drawable/ic_star" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 🔹 Contenu scrollable -->
+    <ScrollView
+        android:layout_below="@id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Section Offres -->
+            <!--<TextView
+                android:id="@+id/titleOffres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Annonces"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />-->
+
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Des promotions, des réductions et des offres spécialement pour vous"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />-->
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/offreImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/lubumbashi" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#80000000"
+                    android:gravity="top">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Offres de Fin d'Année"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bénéficiez de 15 % de réduction sur les séjours"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btnVoirOffres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Voir les offres"
+                        android:textAllCaps="false"
+                        android:backgroundTint="@android:color/holo_blue_dark"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Carrousel demandes -->
+            <TextView
+                android:id="@+id/titleOffres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Demandes"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/immoUserDemandeRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <!-- Section Inspiration -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nos villes"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retrouvez tout nos annonces immobiliers dans diffrentes villes de la RDC."
+                android:textSize="14sp"
+                android:textColor="@color/low_white"
+                android:layout_marginBottom="5dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemCityImmobilierHomePageRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -35,3 +35,11 @@ data class ApiResponseDemande(
     val demandes: List<ImmoUserDemande>
 )
 
+data class ItemCityImmo(
+    val int: Int,
+    val cityName: String,
+    val nbImmoPublish: String,
+    val imgUrl: String
+)
+
+

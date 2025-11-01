@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.adapters.articles.ArticleForPopupRandomUserPremiumAdapter
 import com.example.loopcongo.fragments.ArticleFragment
 import com.example.loopcongo.fragments.HomeFragment
+import com.example.loopcongo.fragments.HomeImmobilierFragment
 import com.example.loopcongo.fragments.ImmobilierFragment
 import com.example.loopcongo.fragments.article.onglets.ArticleForAllCategoriesFragment
 import com.example.loopcongo.fragments.vendeurs.VendeurMainFragment
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
                 }
-                R.id.bNavImmo -> loadFragment(ImmobilierFragment())
+                R.id.bNavImmo -> loadFragment(HomeImmobilierFragment())
                 R.id.bNavUsers -> loadFragment(VendeurMainFragment())
                 /*R.id.bNavCitizens -> {
                      val intent = Intent(this, PrestataireActivity::class.java)

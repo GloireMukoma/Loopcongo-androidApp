@@ -17,7 +17,7 @@ class ImmoUserDemandeAdapter(private val demandes: List<ImmoUserDemande>) :
         val username: TextView = view.findViewById(R.id.usernameDemande)
         val message: TextView = view.findViewById(R.id.msgUserDemande)
         val time: TextView = view.findViewById(R.id.timeDemande)
-        val btnRepondre: LinearLayout = view.findViewById(R.id.repondreDemandeImmoBtn)
+        //val btnRepondre: LinearLayout = view.findViewById(R.id.repondreDemandeImmoBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemandeViewHolder {
@@ -40,9 +40,9 @@ class ImmoUserDemandeAdapter(private val demandes: List<ImmoUserDemande>) :
             .circleCrop()
             .into(holder.avatar)
 
-        holder.btnRepondre.setOnClickListener {
+        /*holder.btnRepondre.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Répondre à ${demande.username}", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     override fun getItemCount() = demandes.size

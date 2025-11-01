@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="205dp"
+    android:layout_margin="4dp"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <!-- On utilise un FrameLayout pour superposer les textes sur l'image -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/imageCityItemImmo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lshi" />
+
+        <!-- Textes superposés en haut à gauche -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_gravity="top|start">
+
+            <TextView
+                android:id="@+id/cityNameItemImmo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kinshasa"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/nombreBiensItemImmo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="120 biens"
+                android:textSize="14sp"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>
