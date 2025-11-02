@@ -19,6 +19,14 @@ data class ImmobilierResponse(
     val data: List<Immobilier>
 )
 
+data class ImmobilierResponse2(
+    val status: Int,
+    val city: String,
+    val count: Int,
+    val data: List<Immobilier>
+)
+
+
 data class ImmoUserDemande(
     val demande_id: Int,
     val user_id: Int,

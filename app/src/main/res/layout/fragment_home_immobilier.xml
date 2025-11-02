@@ -86,7 +86,18 @@
                 android:textSize="14sp"
                 android:layout_marginBottom="12dp" />-->
 
-            <androidx.cardview.widget.CardView
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/carouselImmobilierAnnonce"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:overScrollMode="never"
+                android:layout_marginBottom="8dp"/>
+
+
+            <!--<androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="185dp"
                 app:cardCornerRadius="12dp"
@@ -132,18 +143,39 @@
                         android:backgroundTint="@android:color/holo_blue_dark"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView> -->
 
             <!-- Carrousel demandes -->
-            <TextView
-                android:id="@+id/titleOffres"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Demandes"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp">
+
+                <!-- Titre -->
+                <TextView
+                    android:id="@+id/titleOffres"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Demandes"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <!-- Bouton à droite -->
+                <Button
+                    android:id="@+id/btnVoirDemandesUsers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voir tout"
+                    android:textAllCaps="false"
+                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/immoUserDemandeRecyclerView"

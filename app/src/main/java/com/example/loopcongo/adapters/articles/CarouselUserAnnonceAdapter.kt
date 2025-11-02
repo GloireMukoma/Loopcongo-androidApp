@@ -18,9 +18,9 @@ class CarouselUserAnnonceAdapter(
 ) : RecyclerView.Adapter<CarouselUserAnnonceAdapter.AnnonceViewHolder>() {
 
     inner class AnnonceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageAnnonce: ImageView = view.findViewById(R.id.carouselAnnonceArticleImage)
-        val titreAnnonce: TextView = view.findViewById(R.id.carousselAnnonceArticleTitre)
-        val descriptionAnnonce: TextView = view.findViewById(R.id.carousselAnnonceArticleDescription)
+        val imageAnnonce: ImageView = view.findViewById(R.id.carouselAnnonceImage)
+        val titreAnnonce: TextView = view.findViewById(R.id.carousselAnnonceTitre)
+        val descriptionAnnonce: TextView = view.findViewById(R.id.carousselAnnonceDescription)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnonceViewHolder {

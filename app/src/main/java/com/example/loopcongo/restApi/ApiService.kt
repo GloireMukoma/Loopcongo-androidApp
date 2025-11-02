@@ -76,6 +76,12 @@ interface ApiService {
     @GET("user/immobiliers/get/{user_id}")
     fun getImmobiliersByUser(@Path("user_id") userId: Int): Call<ImmobilierResponse>
 
+    // Exemple : https://loopcongo.com/api/immobiliers?city=Kinshasa
+    @GET("city/immobiliers")
+    fun getImmobiliersByCity(
+        @Query("city") city: String
+    ): Call<ImmobilierResponse2>
+
 
     @GET("commandes/vendeur/{id}")
     fun getCommandesVendeur(@Path("id") vendeurId: Int): Call<CommandeResponse>

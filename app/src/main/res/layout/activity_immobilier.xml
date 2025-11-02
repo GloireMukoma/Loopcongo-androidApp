@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/BleuFoncePrimaryColor">
+
+    <!-- 🔹 Champ de recherche stylé (caché par défaut) -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@drawable/search_bg"
+        android:paddingHorizontal="12dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"> <!-- caché au départ -->
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@android:drawable/ic_menu_search"
+            app:tint="#cccccc" />
+
+        <EditText
+            android:id="@+id/searchImmobilierEditText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="Filtrer par quartier..."
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa"
+            android:textSize="14sp"
+            android:background="@android:color/transparent"
+            android:paddingStart="8dp"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- RecyclerView des biens -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/immobiliersRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"/>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBarImmo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</LinearLayout>

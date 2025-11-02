@@ -43,8 +43,12 @@ class OngletAnnonceFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Ajoute une ligne qui separe les items des annonces comme dans une listview
-        val divider = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(divider)
+        // 🔹 Ajouter le divider par défaut
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            (recyclerView.layoutManager as LinearLayoutManager).orientation
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
 
 
         articleAdapter = OngletAnnonceUserConnectedAdapter(requireContext(), mutableListOf())

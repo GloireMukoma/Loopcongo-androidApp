@@ -17,9 +17,17 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
-            android:parentActivityName=".MainActivity"
-            android:name=".DetailAnnonceActivity"
+            android:parentActivityName=".ImmobilierActivity"
+            android:name=".DemandesUsersActivity"
             android:exported="false" />
+        <activity
+            android:name=".ImmobilierActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailAnnonceActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CustomerConnectedActivity"
             android:exported="false" />
@@ -34,9 +42,9 @@
             android:name=".PlanAbonnementActivity"
             android:exported="false" />
         <activity
-            android:parentActivityName=".MainActivity"
             android:name=".SubscriptionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

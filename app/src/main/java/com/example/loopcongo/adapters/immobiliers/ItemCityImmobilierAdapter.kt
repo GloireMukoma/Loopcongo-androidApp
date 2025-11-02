@@ -1,5 +1,6 @@
 package com.example.loopcongo.adapters.immobiliers
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ImmobilierActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.ItemCityImmo
 
@@ -34,6 +36,14 @@ class ItemCityImmobilierAdapter(
         Glide.with(holder.itemView.context)
             .load(item.imgUrl)
             .into(holder.imageVille)
+
+        //Action au clic
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ImmobilierActivity::class.java)
+            intent.putExtra("cityName", item.cityName)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = items.size

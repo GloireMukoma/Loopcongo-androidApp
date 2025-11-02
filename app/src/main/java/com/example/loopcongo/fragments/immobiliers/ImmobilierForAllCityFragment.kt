@@ -61,7 +61,7 @@ class ImmobilierForAllCityFragment : Fragment() {
         immoRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // 🔹 Adapters
-        demandeAdapter = ImmoUserDemandeAdapter(demandes)
+        demandeAdapter = ImmoUserDemandeAdapter(demandes, R.layout.item_demande)
         immoAdapter = ImmobilierGridAdapter(immobiliers)
 
         demandeRecycler.adapter = demandeAdapter

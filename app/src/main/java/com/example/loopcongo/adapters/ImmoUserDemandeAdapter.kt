@@ -4,12 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.ImmoUserDemande
 
-class ImmoUserDemandeAdapter(private val demandes: List<ImmoUserDemande>) :
+class ImmoUserDemandeAdapter(
+    private val demandes: List<ImmoUserDemande>,
+    @LayoutRes private val itemLayout: Int // 🔹 Layout à utiliser
+    ) :
     RecyclerView.Adapter<ImmoUserDemandeAdapter.DemandeViewHolder>() {
 
     inner class DemandeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,7 +26,7 @@ class ImmoUserDemandeAdapter(private val demandes: List<ImmoUserDemande>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemandeViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_demande, parent, false)
+            .inflate(itemLayout, parent, false) // 🔹 Utilise le layout passé
         return DemandeViewHolder(view)
     }
 
