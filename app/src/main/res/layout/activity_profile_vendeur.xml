@@ -25,14 +25,13 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingBottom="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="3dp">
 
-                    <!-- Back Button -->
                     <ImageView
-                        android:id="@+id/backButton"
+                        android:id="@+id/action2"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_back"/>
+                        android:src="@drawable/ic_back" />
 
                     <View
                         android:layout_width="0dp"
@@ -40,11 +39,19 @@
                         android:layout_weight="1" />
 
                     <!-- Action Button 2 -->
-                    <ImageView
-                        android:id="@+id/action2"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_more" />
+                    <Button
+                        android:id="@+id/btnSubscribeProfileVendeur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="9dp"
+                        android:text="S'abonner"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/rounded_button_bg"
+                        android:gravity="center" />
                 </LinearLayout>
 
                 <!-- Profile info -->
@@ -154,7 +161,7 @@
                             android:id="@+id/profileVendeurNbArticlePublie"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />
@@ -178,7 +185,7 @@
                             android:id="@+id/profileVendeurNbAnnonce"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="34"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />
@@ -201,7 +208,7 @@
                             android:id="@+id/profileVendeurNbAbonner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="58"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />

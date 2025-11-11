@@ -8,12 +8,12 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp">
 
-    <!-- On utilise un FrameLayout pour superposer les textes sur l'image -->
+    <!-- On superpose tout avec un FrameLayout -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Image -->
+        <!-- Image principale -->
         <ImageView
             android:id="@+id/imageCityItemImmo"
             android:layout_width="match_parent"
@@ -21,7 +21,13 @@
             android:scaleType="centerCrop"
             android:src="@drawable/lshi" />
 
-        <!-- Textes superposés en haut à gauche -->
+        <!-- ✅ Couche sombre semi-transparente pour améliorer la lisibilité -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#66000000" /> <!-- 40% d’opacité (noir transparent) -->
+
+        <!-- Textes superposés -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +42,11 @@
                 android:text="Kinshasa"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:shadowColor="#99000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
             <TextView
                 android:id="@+id/nombreBiensItemImmo"
@@ -44,8 +54,13 @@
                 android:layout_height="wrap_content"
                 android:text="120 biens"
                 android:textSize="14sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:shadowColor="#99000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
         </LinearLayout>
+
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>

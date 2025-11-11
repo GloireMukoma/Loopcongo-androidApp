@@ -86,7 +86,7 @@
             android:textStyle="bold"
             android:textColor="@color/textColorPrimary"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="7dp"/>
+            android:layout_marginBottom="5dp"/>
 
         <!-- Liste horizontale des profils utilisateurs (top vendeur) -->
             <!--android:clipToPadding="false"-->
@@ -96,9 +96,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:overScrollMode="never"
-            android:padding="9dp"
-            android:scrollbars="none"
-            android:background="@drawable/bg_card_dark"/>
+            android:padding="2dp"
+            android:scrollbars="none" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/ligne_diviseur"
-            android:dividerHeight="0.2dp"
+            android:dividerHeight="0.3dp"
             android:background="@drawable/bg_card_dark"
             android:nestedScrollingEnabled="true" />
 

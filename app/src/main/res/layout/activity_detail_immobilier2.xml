@@ -28,7 +28,7 @@
 
                 <!-- Image de profil -->
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/userAvatarArticleDetail"
+                    android:id="@+id/userAvatarImmoDetail"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginEnd="10dp"
@@ -54,12 +54,20 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/userContactArticleDetail"
+                        android:id="@+id/userContactImmoDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="+243XXXXXXXXX"
                         android:textColor="@color/secondaryColor"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/userCityImmoDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="city"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -89,16 +97,16 @@
                 android:textSize="17sp" />
 
             <Button
-                android:id="@+id/btnVoirProfilDetailImmobilier"
+                android:id="@+id/btnVoirProfilDetailImmo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profil"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@android:color/holo_blue_dark"
                 android:fontFamily="sans-serif-medium" />
         </RelativeLayout>
 

@@ -25,8 +25,8 @@ class VendeurMainFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
-    private val tabTitles = listOf("Vendeur", "Immobilier", "Fournisseur")
-    private val types = listOf("vendeur", "immobilier", "fournisseur")
+    private val tabTitles = listOf("Vendeur", "Immobilier")
+    private val types = listOf("vendeur", "immobilier")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

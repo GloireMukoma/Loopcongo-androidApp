@@ -8,32 +8,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.loopcongo.DemandesUsersActivity
-import com.example.loopcongo.DetailAnnonceActivity
-import com.example.loopcongo.R
+import com.bumptech.glide.Glide
+import com.example.loopcongo.*
 import com.example.loopcongo.adapters.ImmoUserDemandeAdapter
 import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
 import com.example.loopcongo.adapters.immobiliers.ItemCityImmobilierAdapter
-import com.example.loopcongo.models.AnnonceResponse
-import com.example.loopcongo.models.ApiResponseDemande
-import com.example.loopcongo.models.ImmoUserDemande
-import com.example.loopcongo.models.ItemCityImmo
+import com.example.loopcongo.database.*
+import com.example.loopcongo.database.Customer
+import com.example.loopcongo.database.User
+import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeImmobilierFragment : Fragment() {
 
+    private lateinit var userDao: UserDao
+    private lateinit var customerDao: CustomerDao
+
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler(Looper.getMainLooper())
 
-    private lateinit var recyclerInspiration: RecyclerView
+    private lateinit var recyclerItemImmobilierCity: RecyclerView
     private lateinit var adapter: ItemCityImmobilierAdapter
 
     private lateinit var demandeRecycler: RecyclerView
@@ -47,12 +52,31 @@ class HomeImmobilierFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_immobilier, container, false)
 
+        // Instance de la BD Room
+        val db = AppDatabase.getDatabase(requireContext())
+        userDao = db.userDao()
+        customerDao = db.customerDao()
+
+        // Récupère l'ImageView de l'avatar de l'utilisateur connecté
+        val avatarIconUserConnected = view.findViewById<ImageView>(R.id.avatarImgProfileUserConnectedImmo)
+
+        // Met à jour l'avatar et configure le clic
+        lifecycleScope.launch {
+            updateAvatarAndListener(avatarIconUserConnected)
+        }
+
+        // Icon (etoile) d'abonnement
+        val iconSubscription = view.findViewById<ImageView>(R.id.iconSubscription)
+        iconSubscription.setOnClickListener {
+            val intent = Intent(requireContext(), SubscriptionActivity::class.java)
+            startActivity(intent)
+        }
+
         val btnVoirOffres = view.findViewById<Button>(R.id.btnVoirDemandesUsers)
         btnVoirOffres.setOnClickListener {
             val intent = Intent(requireContext(), DemandesUsersActivity::class.java)
             startActivity(intent)
         }
-
 
         // Gere la caroussel des annonces
         viewPager2 = view.findViewById(R.id.carouselImmobilierAnnonce)
@@ -77,7 +101,6 @@ class HomeImmobilierFragment : Fragment() {
                         intent.putExtra("file_url", annonce.file_url)
                         startActivity(intent)
                     }
-
 
                     val sliderRunnable = Runnable {
                         viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
@@ -111,18 +134,41 @@ class HomeImmobilierFragment : Fragment() {
         demandeAdapter = ImmoUserDemandeAdapter(demandes,  R.layout.item_demande)
         demandeRecycler.adapter = demandeAdapter
 
-        recyclerInspiration = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
-        recyclerInspiration.layoutManager =
+        /*recyclerItemImmobilierCity = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
+        recyclerItemImmobilierCity.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        val inspirations = listOf(
-            ItemCityImmo(1,"Kinshasa", "120 biens", "https://content.r9cdn.net/rimg/dimg/78/42/61c54939-city-44780-16e3f996927.jpg?width=1200&height=630&xhint=1500&yhint=593&crop=true"),
-            ItemCityImmo(2,"Lubumbashi", "85 biens", "https://www.congodurable.net/wp-content/uploads/2018/12/Violences-%C3%A0-Lubumbashi.jpg"),
-            ItemCityImmo(3,"Goma", "42 biens", "https://content.r9cdn.net/rimg/dimg/78/42/61c54939-city-44780-16e3f996927.jpg?width=1200&height=630&xhint=1500&yhint=593&crop=true")
+        val immobiliers = listOf(
+            ItemCityImmo(2, "Lubumbashi", "85 biens", R.drawable.lubumbashi),
+            ItemCityImmo(2, "Kolwezi", "85 biens", R.drawable.kolwezi),
+            ItemCityImmo(1, "Kinshasa", "120 biens", R.drawable.kinshasa),
+            ItemCityImmo(3, "Likasi", "42 biens", R.drawable.likasi)
         )
 
-        adapter = ItemCityImmobilierAdapter(inspirations)
-        recyclerInspiration.adapter = adapter
+        adapter = ItemCityImmobilierAdapter(immobiliers)
+        recyclerItemImmobilierCity.adapter = adapter*/
+
+        recyclerItemImmobilierCity = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
+        recyclerItemImmobilierCity.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        // Appel API
+        ApiClient.instance.getCities().enqueue(object : Callback<ImmobilierResponse> {
+            override fun onResponse(call: Call<ImmobilierResponse>, response: Response<ImmobilierResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val cities = response.body()!!.data
+
+                    val adapter = ItemCityImmobilierAdapter(cities)
+                    recyclerItemImmobilierCity.adapter = adapter
+                } else {
+                    Toast.makeText(requireContext(), "Erreur de chargement des villes", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ImmobilierResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         loadDemandes()
 
@@ -146,5 +192,51 @@ class HomeImmobilierFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur de chargement des demandes", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private suspend fun updateAvatarAndListener(avatar: ImageView) {
+        // Récupère les comptes connectés
+        val user = userDao.getUser()       // vendeur ou immobilier
+        val customer = customerDao.getCustomer() // client
+        val currentAccount: Any? = user ?: customer
+
+        // Met à jour l'image de l'avatar
+        val imageUrl = when (currentAccount) {
+            is User -> currentAccount.file_url
+            is Customer -> currentAccount.file_url
+            else -> null
+        }
+
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(requireContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .circleCrop()
+                .into(avatar)
+        } else {
+            avatar.setImageResource(R.drawable.ic_person)
+        }
+
+        // Configure le listener sur l'avatar
+        avatar.setOnClickListener {
+            lifecycleScope.launch {
+                val latestUser = userDao.getUser()
+                val latestCustomer = customerDao.getCustomer()
+                val account = latestUser ?: latestCustomer
+
+                val nextActivity = when (account) {
+                    is User -> when (account.type_account?.lowercase()) {
+                        "vendeur" -> ProfileUserConnectedActivity::class.java
+                        "immobilier" -> UserImmobilierConnectedActivity::class.java
+                        else -> ProfileUserConnectedActivity::class.java
+                    }
+                    is Customer -> CustomerConnectedActivity::class.java
+                    else -> LoginActivity::class.java
+                }
+
+                startActivity(Intent(requireContext(), nextActivity))
+            }
+        }
     }
 }

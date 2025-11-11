@@ -43,6 +43,7 @@ class ArticleGridAdapter(private var articles: List<Article>) :
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailArticleActivity::class.java).apply {
+                putExtra("article_id", article.id)
                 putExtra("article_nom", article.nom)
                 putExtra("article_prix", article.prix)
                 putExtra("article_devise", article.devise)
@@ -52,6 +53,7 @@ class ArticleGridAdapter(private var articles: List<Article>) :
                 putExtra("article_photo", article.file_url)
                 putExtra("user_avatar", article.user_avatar)
                 putExtra("user_contact", article.user_contact)
+                putExtra("user_id", article.account_id)
             }
             context.startActivity(intent)
         }

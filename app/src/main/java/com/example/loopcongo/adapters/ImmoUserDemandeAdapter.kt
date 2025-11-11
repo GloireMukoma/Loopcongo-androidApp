@@ -35,7 +35,9 @@ class ImmoUserDemandeAdapter(
 
         holder.username.text = demande.username
         holder.message.text = demande.message
-        holder.time.text = demande.created_at
+
+        holder.time.text = "• Il y a ${demande.created_at}"
+
 
         // Chargement de l'image (avec Glide)
         Glide.with(holder.itemView.context)

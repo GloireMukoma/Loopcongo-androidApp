@@ -82,11 +82,11 @@
                 android:layout_height="wrap_content"
                 android:text="Profil"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@android:color/holo_blue_dark"
                 android:fontFamily="sans-serif-medium" />
     </RelativeLayout>
 

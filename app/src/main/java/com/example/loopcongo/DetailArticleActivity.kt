@@ -42,7 +42,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
         val nomArticle = findViewById<TextView>(R.id.detailNomArticle)
         val description = findViewById<TextView>(R.id.detailArticleDescription)
-        //val avatarAuteur = findViewById<ShapeableImageView>(R.id.avatarAuteurdetailArticle)
+        val avatarAuteur = findViewById<ShapeableImageView>(R.id.userAvatarArticleDetail)
 
         val prix = findViewById<TextView>(R.id.prixDetailArticle)
 
@@ -55,12 +55,9 @@ class DetailArticleActivity : AppCompatActivity() {
         val auteurAvatarUrl = intent.getStringExtra("user_avatar")
 
         val userContact = intent.getStringExtra("user_contact")
-
         val article_prix = intent.getStringExtra("article_prix")
         val devise = intent.getStringExtra("article_devise")
-
         val desc = intent.getStringExtra("article_description")
-        val nbLike = intent.getStringExtra("article_nbLike") ?: "0"
 
         nomArticle.text = nom
         auteur.text = user
@@ -70,13 +67,13 @@ class DetailArticleActivity : AppCompatActivity() {
         prix.text = "$article_prix $devise"
 
         // Charger l'image de profil de l'auteur
-        /*if (!auteurAvatarUrl.isNullOrEmpty()) {
+        if (!auteurAvatarUrl.isNullOrEmpty()) {
             Glide.with(this)
                 .load("https://loopcongo.com/$auteurAvatarUrl")
                 .placeholder(R.drawable.user_profile)
                 .error(R.drawable.user_profile)
                 .into(avatarAuteur)
-        }*/
+        }
 
         // ✅ Charger l'image principale
         Glide.with(this)
@@ -111,11 +108,8 @@ class DetailArticleActivity : AppCompatActivity() {
             }
         }
 
-
-
-
         // Redirection vers le profile du vendeur
-        /*val btnVoirProfil = findViewById<Button>(R.id.contactButtonWhatsappDetailArticle)
+        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilDetailArticle)
         btnVoirProfil.setOnClickListener {
 
             val userId = intent.getIntExtra("user_id", 0) // ID du vendeur passé depuis l'Intent
@@ -153,7 +147,7 @@ class DetailArticleActivity : AppCompatActivity() {
                     Toast.makeText(this@DetailArticleActivity, "Erreur réseau", Toast.LENGTH_SHORT).show()
                 }
             }
-        }*/
+        }
 
         // Redirection vers le profile du vendeur
     }

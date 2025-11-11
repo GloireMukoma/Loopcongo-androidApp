@@ -10,7 +10,16 @@ data class Immobilier(
     val prix: String,
     val address: String,
     val about: String,
-    val file_url: String
+    val file_url: String,
+
+    // Utiliser pour afficher les items des villes sur la page d'accueil immobiliers
+    val cityName: String,
+    val nbImmoPublish: String,
+    val imgUrl: String,
+
+    val username: String,
+    val userImage: String,
+    val contact: String
 )
 
 data class ImmobilierResponse(
@@ -25,7 +34,6 @@ data class ImmobilierResponse2(
     val count: Int,
     val data: List<Immobilier>
 )
-
 
 data class ImmoUserDemande(
     val demande_id: Int,
@@ -47,7 +55,6 @@ data class ItemCityImmo(
     val int: Int,
     val cityName: String,
     val nbImmoPublish: String,
-    val imgUrl: String
+    val imgUrl: Int
 )
-
 

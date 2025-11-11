@@ -17,6 +17,8 @@ class SubscriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boost)
 
+        supportActionBar?.title = "Abonnement"
+
         val btnContinue: Button = findViewById(R.id.subscriptionBtnContinue)
 
         btnContinue.setOnClickListener {

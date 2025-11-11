@@ -39,8 +39,12 @@ class DetailImmobilierActivity : AppCompatActivity() {
         val type = findViewById<TextView>(R.id.detailTypeImmobilier)
 
         val description = findViewById<TextView>(R.id.detailImmobilierDescription)
-        //val avatarAuteur = findViewById<ShapeableImageView>(R.id.avatarAuteurdetailArticle)
+        val avatar = findViewById<ShapeableImageView>(R.id.userAvatarImmoDetail)
         val status = findViewById<TextView>(R.id.statutDetailImmobilier)
+
+        val userContact = findViewById<TextView>(R.id.userContactImmoDetail)
+        val usercity = findViewById<TextView>(R.id.userCityImmoDetail)
+
 
         val prix = findViewById<TextView>(R.id.prixDetailImmobilier)
 
@@ -61,17 +65,32 @@ class DetailImmobilierActivity : AppCompatActivity() {
         val immoDescription = intent.getStringExtra("description")
         val image = intent.getStringExtra("ImmoImage") ?: "0"
 
+        val username = intent.getStringExtra("username")
+        val userImageProfil = intent.getStringExtra("userImage")
+
+        val contact = intent.getStringExtra("userContact")
+
         type.text = typeimmo
         description.text = immoDescription
         prix.text = "$ ${immoPrix}"
 
         status.text = statut
+        auteur.text = username
+
+        userContact.text = contact
+        usercity.text = city
 
         // ✅ Charger l'image principale
         Glide.with(this)
             .load("https://loopcongo.com/$image")
             .placeholder(R.drawable.loading)
             .into(imagePrincipale)
+
+        // Charger l'image du profil user
+        Glide.with(this)
+            .load("https://loopcongo.com/$userImageProfil")
+            .placeholder(R.drawable.loading)
+            .into(avatar)
 
         // ✅ Charger les images de détail depuis l'API
         if (userId != 0) {
@@ -81,7 +100,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
         }
 
         // Redirection vers le profile du vendeur
-        val btnVoirProfil = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
+        val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilDetailImmo)
         btnVoirProfil.setOnClickListener {
 
             // Appel API dans une coroutine

@@ -59,6 +59,11 @@ class ImmobilierGridAdapter(private val immobiliers: List<Immobilier>) :
             intent.putExtra("description", immobilier.about)
             intent.putExtra("ImmoImage", immobilier.file_url)
 
+            intent.putExtra("username", immobilier.username)
+            intent.putExtra("userImage", immobilier.userImage)
+            intent.putExtra("userContact", immobilier.contact)
+
+
             context.startActivity(intent)
         }
     }

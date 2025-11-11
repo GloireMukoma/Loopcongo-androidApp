@@ -70,9 +70,9 @@ class HomeFragment : Fragment() {
             updateAvatarAndListener(avatarIconUserConnected)
         }
 
-        // Icon de notication, redirection vers l'activité des commandes
-        val iconNotification = view.findViewById<ImageView>(R.id.iconSubscription)
-        iconNotification.setOnClickListener {
+        // Icon (etoile) d'abonnement
+        val iconSubscription = view.findViewById<ImageView>(R.id.iconSubscription)
+        iconSubscription.setOnClickListener {
             val intent = Intent(requireContext(), SubscriptionActivity::class.java)
             startActivity(intent)
         }

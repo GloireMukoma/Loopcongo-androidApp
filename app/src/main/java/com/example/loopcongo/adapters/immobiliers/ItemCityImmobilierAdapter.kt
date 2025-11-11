@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.ImmobilierActivity
 import com.example.loopcongo.R
+import com.example.loopcongo.models.Immobilier
 import com.example.loopcongo.models.ItemCityImmo
 
 class ItemCityImmobilierAdapter(
-    private val items: List<ItemCityImmo>
+    private val items: List<Immobilier>
 ) : RecyclerView.Adapter<ItemCityImmobilierAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,7 +36,14 @@ class ItemCityImmobilierAdapter(
 
         Glide.with(holder.itemView.context)
             .load(item.imgUrl)
+            .placeholder(R.drawable.loading)
             .into(holder.imageVille)
+
+        //holder.imageVille.setImageResource(item.imgUrl)
+
+        /*Glide.with(holder.itemView.context)
+            .load(item.imgUrl)
+            .into(holder.imageVille)*/
 
         //Action au clic
         holder.itemView.setOnClickListener {

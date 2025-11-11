@@ -1,17 +1,23 @@
 package com.example.loopcongo
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.loopcongo.adapters.vendeurs.OngletsProfileVendeurPagerAdapter
+import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -39,21 +45,111 @@ class ProfileVendeurActivity : AppCompatActivity() {
         val vendeurCity = intent.getStringExtra("vendeurCity")
 
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
-        val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
         val isCertifiedVendeur = intent.getStringExtra("isCertifiedVendeur")
 
-        val vendeurTotalArticles = intent.getIntExtra("vendeurTotalArticles", 0)
-        val vendeurTotalLikes = intent.getIntExtra("vendeurTotalLikes", 0)
-        val vendeurNbAbonner = intent.getIntExtra("vendeurNbAbonner", 0)
+        val vendeurId = intent.getIntExtra("vendeurId", -1)
+        val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
+
+        val subscribeUserBtn = findViewById<Button>(R.id.btnSubscribeProfileVendeur)
+
+        subscribeUserBtn.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("S'abonner")
+                .setMessage("Voulez-vous vous abonner à cet utilisateur ?")
+                .setPositiveButton("Oui") { dialog, _ ->
+                    lifecycleScope.launch {
+                        val db = AppDatabase.getDatabase(this@ProfileVendeurActivity)
+                        val userDao = db.userDao()
+                        val customerDao = db.customerDao()
+
+                        val user = userDao.getUser()        // vendeur connecté ?
+                        val customer = customerDao.getCustomer() // client connecté ?
+
+                        if (user != null) {
+                            // 👇 Cas : utilisateur vendeur connecté
+                            val userType = "vendeur"
+
+                            try {
+                                val response = ApiClient.instance.saveUserAbonnement(
+                                    userType,
+                                    user.id,
+                                    vendeurId,
+                                    vendeurTypeCompte ?: ""
+                                )
+
+                                if (response.isSuccessful) {
+                                    Toast.makeText(
+                                        this@ProfileVendeurActivity,
+                                        response.body()?.message ?: "Abonnement réussi",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(
+                                        this@ProfileVendeurActivity,
+                                        "Erreur : ${response.code()}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } catch (e: Exception) {
+                                Toast.makeText(
+                                    this@ProfileVendeurActivity,
+                                    "Erreur : ${e.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                        } else if (customer != null) {
+                            // 👇 Cas : client connecté
+                            val userType = "customer"
+
+                            try {
+                                val response = ApiClient.instance.saveUserAbonnement(
+                                    userType,
+                                    customer.id,
+                                    vendeurId,
+                                    vendeurTypeCompte ?: ""
+                                )
+
+                                if (response.isSuccessful) {
+                                    Toast.makeText(
+                                        this@ProfileVendeurActivity,
+                                        response.body()?.message ?: "Abonnement réussi",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(
+                                        this@ProfileVendeurActivity,
+                                        "Erreur : ${response.code()}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } catch (e: Exception) {
+                                Toast.makeText(
+                                    this@ProfileVendeurActivity,
+                                    "Erreur : ${e.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            // 👇 Aucun compte connecté
+                            Toast.makeText(
+                                this@ProfileVendeurActivity,
+                                "Aucun compte connecté.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Non") { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
 
         // Statistique de l'utilisateur: nb article + nb commande
-
         val profileVendeurNbArticlePublie = findViewById<TextView>(R.id.profileVendeurNbArticlePublie)
         val profileVendeurNbAnnonce = findViewById<TextView>(R.id.profileVendeurNbAnnonce)
         val profileVendeurNbAbonner = findViewById<TextView>(R.id.profileVendeurNbAbonner)
-
-        val vendeurId = intent.getIntExtra("vendeurId", -1) // -1 = valeur par défaut si pas trouvé
 
         if (vendeurId != -1) {
             lifecycleScope.launch {
@@ -66,7 +162,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
                     // 🧠 Mise à jour des TextView sur le thread principal
                     profileVendeurNbArticlePublie.text = response.nb_articles.toString()
                     profileVendeurNbAnnonce.text = response.nb_annonces.toString()
-                    profileVendeurNbAbonner.text = "0" // à compléter plus tard
+                    profileVendeurNbAbonner.text = response.nb_abonnes.toString()
                 } catch (e: Exception) {
                     e.printStackTrace()
                     profileVendeurNbArticlePublie.text = "--"

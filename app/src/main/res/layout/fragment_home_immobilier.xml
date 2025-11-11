@@ -23,7 +23,7 @@
 
             <!-- Image de profil -->
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/avatarImgProfileUserConnected"
+                android:id="@+id/avatarImgProfileUserConnectedImmo"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginEnd="8dp"

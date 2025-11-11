@@ -54,6 +54,17 @@ interface ApiService {
         @Path("customerId") customerId: Int
     ): Response<List<User>>
 
+    // Enregistrer les abonnements des utilisateurs
+    @FormUrlEncoded
+    @POST("user/abonnement/save")
+    suspend fun saveUserAbonnement(
+        @Field("user_type") userType: String,
+        @Field("customer_id") customerId: Int,
+        @Field("vendeur_id") vendeurId: Int,
+        @Field("vendeur_type") vendeurType: String
+    ): Response<AbonnementResponse>
+
+
     // Récupère les articles des vendeurs auxquels le client est abonné
     @GET("products/customer/abonnements/get/{customerId}")
     suspend fun getArticlesByCustomerAbonnements(
@@ -114,12 +125,22 @@ interface ApiService {
     @GET("user/statistics/get/{id}")
     suspend fun getUserStats(@Path("id") userId: Int): UserStatsResponse
 
+    // Get le nb d'abonnement d'un utilisateur
+    @GET("customer/abonnements/count/{customerId}")
+    suspend fun getNbAbonnementCustomer(
+        @Path("customerId") customerId: Int
+    ): NbAbonnementResponse
+
     @GET("user/immo/statistics/get/{id}")
     suspend fun getUserImmoStats(@Path("id") userId: Int): UserStatsResponse
 
     // Get les demandes immobiliers laissés par les utilisateurs
     @GET("user/immo/demandes")
     fun getUserImmoDemandes(): Call<ApiResponseDemande>
+
+    // Retourne le nombre des biens publiés pour chaque
+    @GET("immobilier/nb/city")
+    fun getCities(): Call<ImmobilierResponse>
 
     // Get un user premium pour l'afficher dans la popup des utilisateurs premium
     @GET("user/random-premium")

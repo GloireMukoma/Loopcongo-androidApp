@@ -52,21 +52,22 @@ class ArticleGridForOngletProfileVendeurAdapter(
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailArticleActivity::class.java)
-
-            // Passer les données nécessaires (tu peux en passer plus)
+            intent.putExtra("user_id", article.account_id)
+            intent.putExtra("article_id", article.id)
             intent.putExtra("article_nom", article.nom)
             intent.putExtra("article_prix", article.prix)
             intent.putExtra("article_devise", article.devise)
             intent.putExtra("article_description", article.about)
             intent.putExtra("article_nbLike", article.nb_like ?: "0")
             intent.putExtra("article_auteur", article.user_nom)
+            intent.putExtra("user_contact", article.user_contact)
             intent.putExtra("article_photo", article.file_url)
             intent.putExtra("user_avatar", article.user_avatar)
 
             context.startActivity(intent)
         }
-    }
 
+    }
     override fun getItemCount(): Int = articles.size
 
     fun updateData(newArticles: List<Article>) {
