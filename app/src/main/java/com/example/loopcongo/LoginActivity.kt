@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -38,6 +39,14 @@ class LoginActivity : AppCompatActivity() {
 
         val edtPassword = findViewById<EditText>(R.id.editTextPasswordLogin)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+        val createAccount = findViewById<Button>(R.id.createAccount)
+        createAccount.setOnClickListener {
+            val url = "https://loopcongo.com/user/account_create"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+
+        }
 
         btnLogin.setOnClickListener {
             val password = edtPassword.text.toString().trim()

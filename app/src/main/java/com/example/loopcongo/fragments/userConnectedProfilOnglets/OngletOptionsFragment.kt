@@ -38,10 +38,10 @@ class OngletOptionsFragment : Fragment() {
 
         // ✅ Liste des éléments du menu de l'onglet "Options"
         val items = listOf(
-            SettingItem(R.drawable.ic_citizen, "Publier un article"),
-            SettingItem(R.drawable.ic_citizen, "Publier une annonce"),
-            SettingItem(R.drawable.ic_delete_, "Abonnement"),
-            SettingItem(R.drawable.ic_person, "A propos"),
+            SettingItem(R.drawable.ic_publish_product, "Publier un article"),
+            SettingItem(R.drawable.ic_annonce_, "Publier une annonce"),
+            SettingItem(R.drawable.ic_stars_, "Abonnement"),
+            SettingItem(R.drawable.ic_person_, "A propos"),
             //SettingItem(R.drawable.ic_encontinu, "Certifier mon compte")
         )
 

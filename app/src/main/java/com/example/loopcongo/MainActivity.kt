@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.toolbarTitle) // si tu utilises custom layout
         textView.setTextColor(Color.RED)*/
 
-
         loadFragment(HomeFragment())
         // import la barre de navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.navigation_view)
@@ -132,6 +131,5 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
 
 }

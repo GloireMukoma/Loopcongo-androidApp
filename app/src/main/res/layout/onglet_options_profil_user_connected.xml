@@ -11,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/low_white"
-        android:dividerHeight="0.5dp"
+        android:dividerHeight="1dp"
         android:listSelector="?android:attr/selectableItemBackground"
         android:paddingTop="8dp"
         android:layout_margin="10dp"
         android:paddingBottom="8dp"
         android:clipToPadding="false"/>
+
+
 </LinearLayout>

@@ -51,6 +51,7 @@
                         android:id="@+id/titreUserAnnonce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
                         android:text="Le Monde"
                         android:textColor="@color/black"
                         android:textStyle="bold"

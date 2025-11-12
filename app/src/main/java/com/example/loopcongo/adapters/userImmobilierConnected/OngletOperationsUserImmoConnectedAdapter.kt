@@ -19,7 +19,7 @@ class OngletOperationsUserImmoConnectedAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val icon: ImageView = view.findViewById(R.id.iconOperation)
         private val title: TextView = view.findViewById(R.id.textOperation)
-        private val arrow: ImageView = view.findViewById(R.id.arrowSetting)
+        //private val arrow: ImageView = view.findViewById(R.id.arrowSetting)
 
         fun bind(iconRes: Int, titleText: String) {
             icon.setImageResource(iconRes)

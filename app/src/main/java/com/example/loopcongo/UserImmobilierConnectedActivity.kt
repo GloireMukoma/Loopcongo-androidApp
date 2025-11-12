@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -27,7 +28,7 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
     private lateinit var descriptionUserConnected: TextView
 
     private lateinit var nbBienPublieUserImmoConnected: TextView
-    private lateinit var nbCommandUserImmoConnected: TextView
+    private lateinit var nbAnnoncesUserImmoConnected: TextView
     private lateinit var nbAbonnerUserImmoConnected: TextView
 
     private lateinit var tabLayout: TabLayout
@@ -46,7 +47,7 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         descriptionUserConnected = findViewById(R.id.descriptionUserImmoConnected)
 
         nbBienPublieUserImmoConnected = findViewById(R.id.nbBienPublieUserImmoConnected)
-        nbCommandUserImmoConnected = findViewById(R.id.nbCommandUserImmoConnected)
+        nbAnnoncesUserImmoConnected = findViewById(R.id.nbAnnoncesUserImmoConnected)
         nbAbonnerUserImmoConnected = findViewById(R.id.nbAbonnerUserImmoConnected)
 
         tabLayout = findViewById(R.id.userImmoConnectedProfiletabLayout)
@@ -69,12 +70,12 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
 
                     // Mettre à jour les TextView avec les données
                     nbBienPublieUserImmoConnected.text = response.nb_articles.toString()
-                    nbCommandUserImmoConnected.text = response.nb_commandes.toString()
-                    nbAbonnerUserImmoConnected.text = "0" // à compléter plus tard
+                    nbAnnoncesUserImmoConnected.text = response.nb_annonces.toString()
+                    nbAbonnerUserImmoConnected.text = response.nb_abonnes.toString() // à compléter plus tard
                 } catch (e: Exception) {
                     e.printStackTrace()
                     nbBienPublieUserImmoConnected.text = "--"
-                    nbCommandUserImmoConnected.text = "--"
+                    nbAnnoncesUserImmoConnected.text = "--"
                     nbAbonnerUserImmoConnected.text = "--"
                 }
             }
@@ -84,10 +85,10 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserImmoConnected)
 
         logoutBtnUserConnected.setOnClickListener {
-            AlertDialog.Builder(this)
+            val dialog = AlertDialog.Builder(this)
                 .setTitle("Déconnexion")
                 .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                .setPositiveButton("Oui") { dialog, _ ->
+                .setPositiveButton("Oui") { dialogInterface, _ ->
                     // Coroutine pour supprimer l'utilisateur de la base
                     lifecycleScope.launch {
                         userDao.clearUsers()
@@ -97,17 +98,26 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
-                    dialog.dismiss()
+                    dialogInterface.dismiss()
                 }
-                .setNegativeButton("Non") { dialog, _ ->
-                    dialog.dismiss()
+                .setNegativeButton("Non") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
                 }
-                .show()
-                .apply {
-                    // Modification des couleurs des boutons
-                    getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-                    getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-                }
+                .create()
+
+            // Définir le fond blanc
+            //dialog.window?.setBackgroundDrawableResource(android.R.color.white)
+
+            // Changer la couleur du texte du titre et du message
+            dialog.setOnShowListener {
+                //dialog.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.BLACK)
+                //dialog.findViewById<TextView>(android.R.id.title)?.setTextColor(Color.BLACK)
+                // Pour les boutons
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLUE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLUE)
+            }
+
+            dialog.show()
         }
 
         // Charger l'utilisateur depuis Room
@@ -138,17 +148,21 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         val adapter = OngletsProfileUserImmobilierPagerAdapter(this, userId)
         viewPager.adapter = adapter
 
-        // Noms des onglets (personnalisables)
-        val tabTitles = arrayOf("Immobiliers", "Annonces", "Options")
+        // Icônes des onglets (drawable ressources)
+        val tabIcons = arrayOf(
+            R.drawable.ic_home, // icône pour Immobiliers
+            R.drawable.ic_annonce,     // icône pour Annonces
+            R.drawable.ic_settings       // icône pour Options
+        )
 
-        // Sécurise l’accès au tableau (évite crash si le nombre d’onglets change)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            if (position in tabTitles.indices) {
-                tab.text = tabTitles[position]
+            if (position in tabIcons.indices) {
+                tab.setIcon(tabIcons[position])
             } else {
                 tab.text = "Onglet ${position + 1}"
             }
         }.attach()
     }
+
 
 }

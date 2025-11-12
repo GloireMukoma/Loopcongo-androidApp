@@ -85,9 +85,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+243 97 1737160"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="12sp" />
                         <TextView
+                            android:id="@+id/cityUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mon profil"
@@ -133,7 +134,7 @@
                             android:id="@+id/nbArticlesPublierUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />
@@ -149,15 +150,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Commandes"
+                            android:text="Annonces"
                             android:textColor="#D0D0D0"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/nbCommandUserConnected"
+                            android:id="@+id/nbAnnoncesUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="34"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />
@@ -180,7 +181,7 @@
                             android:id="@+id/nbAbonnerUserConnected"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="58"
+                            android:text="..."
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
                             android:textSize="18sp" />

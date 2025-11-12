@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.DetailAnnonceActivity
 import com.example.loopcongo.DetailArticleActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Article
@@ -50,6 +51,21 @@ class OngletAnnonceForProfileVendeurAdapter(
             .placeholder(R.drawable.loading)
             .error(R.drawable.loading)
             .into(holder.img)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailAnnonceActivity::class.java).apply {
+                putExtra("id", annonce.id)
+                putExtra("user_id", annonce.user_id)
+                putExtra("titre", annonce.titre)
+                putExtra("description", annonce.description)
+                putExtra("image", annonce.image)
+                putExtra("username", annonce.username)
+                putExtra("city", annonce.city)
+                putExtra("contact", annonce.contact)
+                putExtra("file_url", annonce.file_url)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = annonces.size

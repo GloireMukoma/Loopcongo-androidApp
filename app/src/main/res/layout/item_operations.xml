@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="14dp"
+    android:paddingVertical="5dp"
     android:paddingHorizontal="10dp"
     android:gravity="center_vertical"
     android:background="?android:attr/selectableItemBackground">
@@ -14,7 +14,6 @@
         android:id="@+id/iconOperation"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:tint="@color/gray"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_alert" />
 
@@ -30,10 +29,10 @@
         android:textSize="16sp" />
 
     <!-- Flèche droite -->
-    <ImageView
+    <!--<ImageView
         android:id="@+id/arrowSetting"
         android:layout_width="20dp"
         android:layout_height="20dp"
         app:tint="#999"
-        android:src="@drawable/ic_arrow" />
+        android:src="@drawable/ic_arrow" />-->
 </LinearLayout>

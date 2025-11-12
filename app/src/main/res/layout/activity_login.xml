@@ -18,7 +18,7 @@
         android:layout_height="56dp"
         android:gravity="center"
         android:text="Se connecter ou s'inscrire"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/secondaryColor"
         android:textStyle="bold"
         android:textSize="18sp"
         android:fontFamily="sans-serif-medium"
@@ -32,8 +32,8 @@
 
     <ImageButton
         android:id="@+id/btnClose"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:tint="#FFFFFF"
@@ -93,14 +93,14 @@
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
         android:background="@drawable/bg_rounded_input"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/labelEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Big rounded button (visually disabled style) -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -109,27 +109,39 @@
         android:textAllCaps="false"
         android:textSize="15sp"
         android:fontFamily="sans-serif-medium"
-        android:background="@drawable/bg_rounded_button"
-        android:textColor="@color/secondaryColor"
-        android:enabled="false"
+        android:textColor="@android:color/white"
+        app:cornerRadius="28dp"
+        app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintTop_toBottomOf="@id/editTextPasswordLogin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/createAccount"
+    <View
+        android:id="@+id/dividerCreateAccount"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="18dp"
-        android:text="Créer un compte"
-        android:textAllCaps="false"
-        android:textSize="15sp"
-        android:fontFamily="sans-serif-medium"
-        android:background="@drawable/bg_rounded_button"
-        android:textColor="@color/secondaryColor"
-        android:enabled="false"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="#2b3144"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createAccount"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="CREER UN COMPTE"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/white"
+        app:cornerRadius="28dp"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_constraintTop_toBottomOf="@id/dividerCreateAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

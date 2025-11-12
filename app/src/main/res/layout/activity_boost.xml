@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Passer à Premium"
+            android:text="Passe à Premium"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Une étiquette “Boosté” s’affiche sur ton profil."
+                    android:text="Une icone s’affiche a coté de ton nom utilisateur."
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
             </LinearLayout>

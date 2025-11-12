@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.DetailAnnonceActivity
 import com.example.loopcongo.DetailArticleActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.Article
@@ -46,7 +47,7 @@ class OngletAnnonceUserConnectedAdapter(
 
         holder.titre.text = annonce.titre
         holder.description.text = annonce.description
-        holder.date.text = getRelativeTime(annonce.created_at)
+        holder.date.text = annonce.created_at
 
         Glide.with(context)
             .load("https://loopcongo.com/${annonce.image}") // ⚠️ adapter selon ton JSON
@@ -57,15 +58,37 @@ class OngletAnnonceUserConnectedAdapter(
 
         // Gestion du clic sur l'icône suppression
         holder.deletedIcon.setOnClickListener {
-            AlertDialog.Builder(context)
+            val dialog = AlertDialog.Builder(context)
                 .setTitle("Supprimer l'annonce")
                 .setMessage("Êtes-vous sûr de vouloir supprimer cette annonce ?")
                 .setPositiveButton("Oui") { _, _ ->
                     deleteAnnonce(annonce.id, position)
                 }
                 .setNegativeButton("Non", null)
-                .show()
+                .create()
+
+            // Définir le fond blanc
+            dialog.window?.setBackgroundDrawableResource(android.R.color.white)
+
+            dialog.show()
         }
+
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailAnnonceActivity::class.java).apply {
+                putExtra("id", annonce.id)
+                putExtra("user_id", annonce.user_id)
+                putExtra("titre", annonce.titre)
+                putExtra("description", annonce.description)
+                putExtra("image", annonce.image)
+                putExtra("username", annonce.username)
+                putExtra("city", annonce.city)
+                putExtra("contact", annonce.contact)
+                putExtra("file_url", annonce.file_url)
+            }
+            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int = annonces.size
@@ -104,28 +127,6 @@ class OngletAnnonceUserConnectedAdapter(
         }
     }
 
-    // Calcule du temps relatif
-    fun getRelativeTime(dateString: String): String {
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val past = format.parse(dateString) ?: return ""
-        val now = Date()
-
-        val diff = now.time - past.time
-        val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
-        val hours = TimeUnit.MILLISECONDS.toHours(diff)
-        val days = TimeUnit.MILLISECONDS.toDays(diff)
-        val months = days / 30
-        val years = days / 365
-
-        return when {
-            minutes < 1 -> "Il y a quelques secondes"
-            minutes < 60 -> "Il y a $minutes minutes"
-            hours < 24 -> "Il y a $hours heures"
-            days < 30 -> "Il y a $days jours"
-            months < 12 -> "Il y a $months mois"
-            else -> "Il y a $years ans"
-        }
-    }
 
     // Annule les coroutines si besoin
     fun clear() {

@@ -2,6 +2,7 @@ package com.example.loopcongo
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,14 +27,15 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
     private lateinit var profileImage: ShapeableImageView
     private lateinit var nameUserConnected: TextView
 
+    private lateinit var cityUserConnected: TextView
+
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
 
     private lateinit var nbArticlesPublierUserConnected: TextView
-    private lateinit var nbCommandUserConnected: TextView
+    private lateinit var nbAnnoncesUserConnected: TextView
 
     private lateinit var nbAbonnerUserConnected: TextView
-
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -47,13 +49,15 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
 
         profileImage = findViewById(R.id.profileImageUserConnected)
         nameUserConnected = findViewById(R.id.nameUserConnected)
+
+        cityUserConnected = findViewById(R.id.cityUserConnected)
+
         telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserConnected)
 
         nbArticlesPublierUserConnected = findViewById(R.id.nbArticlesPublierUserConnected)
-        nbCommandUserConnected = findViewById(R.id.nbCommandUserConnected)
+        nbAnnoncesUserConnected = findViewById(R.id.nbAnnoncesUserConnected)
         nbAbonnerUserConnected = findViewById(R.id.nbAbonnerUserConnected)
-
 
         tabLayout = findViewById(R.id.userConnectedProfiletabLayout)
         viewPager = findViewById(R.id.userConnectedProfileviewPager)
@@ -75,12 +79,12 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
 
                     // Mettre à jour les TextView avec les données
                     nbArticlesPublierUserConnected.text = response.nb_articles.toString()
-                    nbCommandUserConnected.text = response.nb_commandes.toString()
-                    nbAbonnerUserConnected.text = "0" // à compléter plus tard
+                    nbAnnoncesUserConnected.text = response.nb_annonces.toString()
+                    nbAbonnerUserConnected.text = response.nb_abonnes.toString() // à compléter plus tard
                 } catch (e: Exception) {
                     e.printStackTrace()
                     nbArticlesPublierUserConnected.text = "--"
-                    nbCommandUserConnected.text = "--"
+                    nbAnnoncesUserConnected.text = "--"
                     nbAbonnerUserConnected.text = "--"
                 }
             }
@@ -90,10 +94,10 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserConnected)
 
         logoutBtnUserConnected.setOnClickListener {
-            AlertDialog.Builder(this)
+            val dialog = AlertDialog.Builder(this)
                 .setTitle("Déconnexion")
                 .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                .setPositiveButton("Oui") { dialog, _ ->
+                .setPositiveButton("Oui") { dialogInterface, _ ->
                     // Coroutine pour supprimer l'utilisateur de la base
                     lifecycleScope.launch {
                         userDao.clearUsers()
@@ -103,17 +107,26 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
-                    dialog.dismiss()
+                    dialogInterface.dismiss()
                 }
-                .setNegativeButton("Non") { dialog, _ ->
-                    dialog.dismiss()
+                .setNegativeButton("Non") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
                 }
-                .show()
-                .apply {
-                    // Modification des couleurs des boutons
-                    getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-                    getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-                }
+                .create()
+
+            // Fond blanc
+            //dialog.window?.setBackgroundDrawableResource(android.R.color.white)
+
+            // Changer la couleur du texte du titre et du message
+            dialog.setOnShowListener {
+                //dialog.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.BLACK)
+                //dialog.findViewById<TextView>(android.R.id.title)?.setTextColor(Color.BLACK)
+                // Pour les boutons
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLUE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLUE)
+            }
+
+            dialog.show()
         }
 
         // Charger l'utilisateur depuis Room
@@ -123,6 +136,8 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                 // Afficher les données dans la vue
                 nameUserConnected.text = it.username ?: "Utilisateur"
                 telephoneUserConnected.text = it.contact ?: "N/A"
+
+                cityUserConnected.text = it.city ?: "N/A"
                 descriptionUserConnected.text = it.about ?: ""
 
                 // Passer l'id de l'utilisateur afin d'afficher les articles dans le tablayout

@@ -54,14 +54,12 @@ class OngletOperationsFragment : Fragment() {
             R.drawable.ic_home,
             R.drawable.ic_arrow,
             R.drawable.ic_subscription,
-            R.drawable.ic_encontinu
         )
 
         val operations = listOf(
             "Publier un immobilier",
             "Publier une annonce",
             "Abonnement",
-            "Certifier mon compte"
         )
 
         val adapter = OngletOperationsUserImmoConnectedAdapter(requireContext(), icons, operations) { selectedOperation ->
