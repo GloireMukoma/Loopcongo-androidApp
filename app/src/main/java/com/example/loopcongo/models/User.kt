@@ -65,7 +65,8 @@ data class UserStatsResponse(
     val nb_articles: Int,
     val nb_commandes: Int,
     val nb_annonces: Int,
-    val nb_abonnes: Int
+    val nb_abonnes: Int,
+    val is_certified: String?
 )
 
 

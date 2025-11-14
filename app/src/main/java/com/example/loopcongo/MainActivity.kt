@@ -78,15 +78,36 @@ class MainActivity : AppCompatActivity() {
 
                         when {
                             vendeur != null -> {
-                                // ✅ Si c’est un vendeur, redirection vers la page de publication
-                                val url = "https://loopcongo.com/from-android/product/form/${vendeur.id}"
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                                startActivity(intent)
+                                // Vérifier le type de compte du vendeur
+                                val typeCompte = vendeur.type_account?.lowercase() ?: ""
+
+                                if (typeCompte == "vendeur") {
+                                    // 🔹 Si c’est un vendeur normal
+                                    val url = "https://loopcongo.com/from-android/product/form/${vendeur.id}"
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                                    startActivity(intent)
+
+                                } else if (typeCompte == "immobilier") {
+                                    // 🔹 Si c’est un vendeur immobilier
+                                    val ville = vendeur.city ?: "inconnu"
+                                    val url = "https://loopcongo.com/from-android/immobilier/form/${vendeur.id}/${ville}"
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                                    startActivity(intent)
+
+                                } else {
+                                    // 🔹 Type de compte inconnu
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Type de compte non reconnu.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
 
                             client != null -> {
-                                // 🚫 Si c’est un client, affichage d’un message
+                                // 🚫 Si c’est un client
                                 Toast.makeText(
                                     this@MainActivity,
                                     "Les clients ne peuvent pas publier d’articles.",

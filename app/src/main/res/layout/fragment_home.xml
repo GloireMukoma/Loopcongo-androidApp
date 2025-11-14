@@ -25,18 +25,18 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="0dp"> <!-- Plus de padding horizontal -->
 
-            <!-- Image de profil utilisateur à gauche -->
+            <!-- Image de profil utilisateur à gauche
+             app:strokeColor="@color/secondaryColor"
+                app:strokeWidth="2dp"-->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/avatarImgProfileUserConnected"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
                 android:padding="2dp"
                 app:shapeAppearanceOverlay="@style/CircularImageStyle"
-                app:strokeColor="@color/secondaryColor"
-                app:strokeWidth="2dp"
-                android:src="@drawable/user_profile" />
+                android:src="@drawable/ic_login" />
 
             <!-- Logo centré -->
             <ImageView

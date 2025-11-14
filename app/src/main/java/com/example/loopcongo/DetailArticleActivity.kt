@@ -125,7 +125,7 @@ class DetailArticleActivity : AppCompatActivity() {
                         // Préparer l'Intent pour ProfileVendeurActivity
                         val intent = Intent(this@DetailArticleActivity, ProfileVendeurActivity::class.java)
                         intent.putExtra("vendeurId", vendeur.id)
-                        intent.putExtra("vendeurUsername", vendeur.nom)
+                        intent.putExtra("vendeurUsername", vendeur.username)
                         intent.putExtra("vendeurContact", vendeur.contact)
                         intent.putExtra("vendeurCity", vendeur.city)
                         intent.putExtra("vendeurDescription", vendeur.about)
@@ -135,7 +135,6 @@ class DetailArticleActivity : AppCompatActivity() {
                         intent.putExtra("vendeurTotalArticles", vendeur.total_articles ?: 0)
                         intent.putExtra("vendeurTotalLikes", vendeur.total_articles ?: 0)
                         intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner ?: 0)
-
 
                         // Lancer l'activité
                         startActivity(intent)

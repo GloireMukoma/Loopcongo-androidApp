@@ -289,12 +289,12 @@ class HomeFragment : Fragment() {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(requireContext())
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_person)
-                .error(R.drawable.ic_person)
+                .placeholder(R.drawable.ic_login)
+                .error(R.drawable.ic_login)
                 .circleCrop()
                 .into(avatar)
         } else {
-            avatar.setImageResource(R.drawable.ic_person)
+            avatar.setImageResource(R.drawable.ic_login)
         }
 
         // Configure le listener sur l'avatar

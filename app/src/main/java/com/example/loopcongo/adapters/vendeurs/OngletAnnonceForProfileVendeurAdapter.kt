@@ -42,7 +42,7 @@ class OngletAnnonceForProfileVendeurAdapter(
 
         holder.titre.text = annonce.titre
         holder.description.text = annonce.description
-        holder.date.text = getRelativeTime(annonce.created_at)
+        holder.date.text = annonce.created_at
 
         // ✅ Glide pour charger l’image
         Glide.with(context)
@@ -75,28 +75,5 @@ class OngletAnnonceForProfileVendeurAdapter(
         notifyDataSetChanged()
     }
 
-
-    // Calcule des minutes passés après publication d'une annonce
-    fun getRelativeTime(dateString: String): String {
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val past = format.parse(dateString) ?: return ""
-        val now = Date()
-
-        val diff = now.time - past.time
-        val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
-        val hours = TimeUnit.MILLISECONDS.toHours(diff)
-        val days = TimeUnit.MILLISECONDS.toDays(diff)
-        val months = days / 30
-        val years = days / 365
-
-        return when {
-            minutes < 1 -> "Il y a quelques secondes"
-            minutes < 60 -> "Il y a $minutes minutes"
-            hours < 24 -> "Il y a $hours heures"
-            days < 30 -> "Il y a $days jours"
-            months < 12 -> "Il y a $months mois"
-            else -> "Il y a $years ans"
-        }
-    }
 }
 

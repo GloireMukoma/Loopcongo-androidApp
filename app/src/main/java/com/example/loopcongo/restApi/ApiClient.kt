@@ -1,5 +1,10 @@
 package com.example.loopcongo.restApi
 
+import com.example.loopcongo.models.User
+import com.example.loopcongo.models.UserUniqueResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 object ApiClient {
     private const val BASE_URL = "https://loopcongo.com/api/"
 
@@ -10,4 +15,18 @@ object ApiClient {
             .build()
             .create(ApiService::class.java)
     }
+
+    // Fonction pour mettre a jour les données de l'utilisateur connecté en local
+    /*suspend fun updateUserConnectedData(userId: Int): User? = withContext(Dispatchers.IO) {
+        try {
+            val response = instance.getUserById(userId).execute()
+            if (response.isSuccessful && response.body()?.status == true) {
+                response.body()?.data
+            } else null
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }*/
+
 }

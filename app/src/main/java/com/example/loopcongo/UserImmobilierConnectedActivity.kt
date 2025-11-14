@@ -24,10 +24,13 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
 
     private lateinit var profileImage: ShapeableImageView
     private lateinit var nameUserConnected: TextView
+
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
 
+    private lateinit var cityUserImmoConnected: TextView
     private lateinit var nbBienPublieUserImmoConnected: TextView
+
     private lateinit var nbAnnoncesUserImmoConnected: TextView
     private lateinit var nbAbonnerUserImmoConnected: TextView
 
@@ -45,6 +48,8 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
         nameUserConnected = findViewById(R.id.userNameImmoConnected)
         telephoneUserConnected = findViewById(R.id.telephoneUserImmoConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserImmoConnected)
+
+        cityUserImmoConnected = findViewById(R.id.cityUserImmoConnected)
 
         nbBienPublieUserImmoConnected = findViewById(R.id.nbBienPublieUserImmoConnected)
         nbAnnoncesUserImmoConnected = findViewById(R.id.nbAnnoncesUserImmoConnected)
@@ -113,8 +118,8 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
                 //dialog.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.BLACK)
                 //dialog.findViewById<TextView>(android.R.id.title)?.setTextColor(Color.BLACK)
                 // Pour les boutons
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLUE)
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLUE)
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
             }
 
             dialog.show()
@@ -128,6 +133,7 @@ class UserImmobilierConnectedActivity : AppCompatActivity() {
                 nameUserConnected.text = it.username ?: "Utilisateur"
                 telephoneUserConnected.text = it.contact ?: "N/A"
                 descriptionUserConnected.text = it.about ?: ""
+                cityUserImmoConnected.text = it.city ?: ""
 
                 // Passer l'id de l'utilisateur afin d'afficher les articles dans le tablayout
                 setupViewPager(it.id)

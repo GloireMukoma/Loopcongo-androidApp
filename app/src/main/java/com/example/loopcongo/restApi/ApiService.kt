@@ -107,7 +107,8 @@ interface ApiService {
 
     // Appelle GET sur /api/vendeurs
     @GET("vendeurs")
-    fun getVendeurs(): Call<UserResponse>
+    fun getVendeurs(@Query("username") username: String? = null): Call<UserResponse>
+
 
     //Get les prestations deja publiés
     @GET("prestations")

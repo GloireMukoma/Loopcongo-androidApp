@@ -4,39 +4,30 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
+import com.example.loopcongo.adapters.vendeurs.SettingItem
 
-class OngletOperationsUserImmoConnectedAdapter(
-    private val context: Context,
-    private val iconResList: List<Int>,
-    private val operationNames: List<String>,
-    private val onItemClick: (String) -> Unit
-) : RecyclerView.Adapter<OngletOperationsUserImmoConnectedAdapter.ViewHolder>() {
+class OngletOperationsAdapter(
+    context: Context,
+    private val items: List<SettingItem>
+) : ArrayAdapter<SettingItem>(context, 0, items) {
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val icon: ImageView = view.findViewById(R.id.iconOperation)
-        private val title: TextView = view.findViewById(R.id.textOperation)
-        //private val arrow: ImageView = view.findViewById(R.id.arrowSetting)
-
-        fun bind(iconRes: Int, titleText: String) {
-            icon.setImageResource(iconRes)
-            title.text = titleText
-            itemView.setOnClickListener { onItemClick(titleText) }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context)
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val item = getItem(position)
+        val view = convertView ?: LayoutInflater.from(context)
             .inflate(R.layout.item_operations, parent, false)
-        return ViewHolder(view)
-    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(iconResList[position], operationNames[position])
-    }
+        val icon = view.findViewById<ImageView>(R.id.iconOperation)
+        val title = view.findViewById<TextView>(R.id.textOperation)
 
-    override fun getItemCount(): Int = operationNames.size
+        item?.let {
+            icon.setImageResource(it.iconRes)
+            title.text = it.title
+        }
+
+        return view
+    }
 }

@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nom de l'article"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
@@ -70,7 +70,7 @@
                 android:id="@+id/quartierImmobilierUserConnectedOnglet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prix"
+                android:text="quartier"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="12sp"

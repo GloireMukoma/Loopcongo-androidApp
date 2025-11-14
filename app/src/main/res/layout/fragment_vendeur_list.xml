@@ -8,5 +8,5 @@
         android:layout_height="match_parent" />
 </FrameLayout>
 <!-- ce fragment implemente une reyclerview generique pour tout
-type de vendeur (vendeur, immobilier, fournissuer)
+type de vendeur (vendeur, immobilier)
 -->

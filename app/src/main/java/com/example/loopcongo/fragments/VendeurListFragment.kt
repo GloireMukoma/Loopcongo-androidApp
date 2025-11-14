@@ -28,9 +28,6 @@ import retrofit2.Response
 
 class VendeurListFragment : Fragment() {
 
-    private lateinit var userDao: UserDao
-    private lateinit var customerDao: CustomerDao
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var vendeurAdapter: VendeurAdapter
     private val vendeurs = mutableListOf<User>()
@@ -61,25 +58,27 @@ class VendeurListFragment : Fragment() {
         vendeurAdapter = VendeurAdapter(vendeurs)
         recyclerView.adapter = vendeurAdapter
 
-        loadVendeurs()
+        loadVendeurs(null) // initial (pas de recherche)
 
         return view
     }
 
-    private fun loadVendeurs() {
-        ApiClient.instance.getVendeurs().enqueue(object : Callback<UserResponse> {
+    fun filterVendeursFromApi(query: String) {
+        loadVendeurs(if (query.isEmpty()) null else query)
+    }
+
+    private fun loadVendeurs(username: String?) {
+        ApiClient.instance.getVendeurs(username).enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     val allVendeurs = response.body()?.data ?: emptyList()
-
-                    // Filtrer les vendeurs selon leur type_account
                     val filtered = allVendeurs.filter { it.type_account == type }
 
                     vendeurs.clear()
                     vendeurs.addAll(filtered)
                     vendeurAdapter.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(requireContext(), "Erreur lors du chargement.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Erreur de chargement.", Toast.LENGTH_SHORT).show()
                 }
             }
 

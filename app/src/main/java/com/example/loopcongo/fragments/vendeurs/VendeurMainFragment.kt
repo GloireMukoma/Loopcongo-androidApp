@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -35,24 +37,18 @@ class VendeurMainFragment : Fragment() {
         tabLayout = view.findViewById(R.id.vendeurFragmentabLayout)
         viewPager = view.findViewById(R.id.vendeurFragmentviewPager)
 
-        // Instance de la BD Room
+        val searchVendeurInput = view.findViewById<EditText>(R.id.searchVendeurInput)
+
         val db = AppDatabase.getDatabase(requireContext())
         userDao = db.userDao()
         customerDao = db.customerDao()
 
-        // Récupère l'ImageView de l'avatar
         val avatarIconUserConnected = view.findViewById<ImageView>(R.id.avatarImgProfileUserConnected)
+        lifecycleScope.launch { updateAvatarAndListener(avatarIconUserConnected) }
 
-        // Met à jour l'avatar et configure le clic
-        lifecycleScope.launch {
-            updateAvatarAndListener(avatarIconUserConnected)
-        }
-
-        // Icon abonnements
         val iconSubscription = view.findViewById<ImageView>(R.id.subscriptionIcon)
         iconSubscription.setOnClickListener {
-            val intent = Intent(requireContext(), SubscriptionActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), SubscriptionActivity::class.java))
         }
 
         val adapter = object : FragmentStateAdapter(this) {
@@ -65,6 +61,14 @@ class VendeurMainFragment : Fragment() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+
+        // 🔍 Recherche en temps réel — déclenchée à chaque changement de texte
+        searchVendeurInput.doOnTextChanged { text, _, _, _ ->
+            val currentFragment =
+                childFragmentManager.findFragmentByTag("f${viewPager.currentItem}") as? VendeurListFragment
+            currentFragment?.filterVendeursFromApi(text?.toString()?.trim().orEmpty())
+        }
+
 
         return view
     }

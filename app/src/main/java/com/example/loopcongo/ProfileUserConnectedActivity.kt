@@ -4,6 +4,7 @@ package com.example.loopcongo
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -28,6 +29,7 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
     private lateinit var nameUserConnected: TextView
 
     private lateinit var cityUserConnected: TextView
+    private lateinit var badge: ImageView
 
     private lateinit var telephoneUserConnected: TextView
     private lateinit var descriptionUserConnected: TextView
@@ -51,6 +53,7 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
         nameUserConnected = findViewById(R.id.nameUserConnected)
 
         cityUserConnected = findViewById(R.id.cityUserConnected)
+        badge = findViewById(R.id.profileVendeurBadgeUserConnected)
 
         telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
         descriptionUserConnected = findViewById(R.id.descriptionUserConnected)
@@ -81,6 +84,12 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                     nbArticlesPublierUserConnected.text = response.nb_articles.toString()
                     nbAnnoncesUserConnected.text = response.nb_annonces.toString()
                     nbAbonnerUserConnected.text = response.nb_abonnes.toString() // à compléter plus tard
+
+                    if (response.is_certified == "1") {
+                        badge.visibility = View.VISIBLE
+                    } else {
+                        badge.visibility = View.GONE
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                     nbArticlesPublierUserConnected.text = "--"
@@ -125,15 +134,16 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLUE)
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLUE)
             }
-
             dialog.show()
         }
 
+        // Charger l'utilisateur depuis Room
         // Charger l'utilisateur depuis Room
         lifecycleScope.launch {
             val user: User? = userDao.getUser()
             user?.let {
                 // Afficher les données dans la vue
+
                 nameUserConnected.text = it.username ?: "Utilisateur"
                 telephoneUserConnected.text = it.contact ?: "N/A"
 
