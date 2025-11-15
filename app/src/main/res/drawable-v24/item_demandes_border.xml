@@ -10,5 +10,5 @@
         android:color="@color/moveColor" /> <!-- change selon ta couleur -->
 
     <!-- Coins arrondis -->
-    <corners android:radius="8dp" />
+    <corners android:radius="10dp" />
 </shape>

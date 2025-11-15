@@ -3,16 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ongletAnnonceUserImmoConnectedRecyclerView"
+    <ListView
+        android:id="@+id/listViewAnnonceUserImmoConnected"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:verticalSpacing="12dp"
-        android:horizontalSpacing="12dp"
-        android:layout_margin="8dp"
-        android:clipToPadding="false"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:scrollbars="none" />
+        android:divider="@color/low_white"
+        android:layout_marginHorizontal="10dp"
+        android:dividerHeight="1dp" />
 
 </FrameLayout>

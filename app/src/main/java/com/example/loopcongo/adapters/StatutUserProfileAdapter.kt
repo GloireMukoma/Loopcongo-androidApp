@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.ProfileVendeurActivity
+import com.example.loopcongo.ProfileVendeurImmobilierActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 import com.google.android.material.imageview.ShapeableImageView
@@ -70,9 +71,13 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
         // 👉 CLIC : Redirection vers Détail
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, ProfileVendeurActivity::class.java)
+            val intent = when (vendeur.type_account?.lowercase()) {
+                "vendeur" -> Intent(context, ProfileVendeurActivity::class.java)
+                "immobilier" -> Intent(context, ProfileVendeurImmobilierActivity::class.java)
+                else -> return@setOnClickListener // Si type inconnu, ne rien faire
+            }
 
-            // Passer les données nécessaires (tu peux en passer plus)
+            // Passer les mêmes données
             intent.putExtra("vendeurId", vendeur.id)
             intent.putExtra("vendeurUsername", vendeur.username)
             intent.putExtra("vendeurContact", vendeur.contact)
@@ -81,12 +86,12 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.profile_image)
             intent.putExtra("isCertifiedVendeur", vendeur.is_certified)
-
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
             intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
 
             context.startActivity(intent)
         }
+
 
         // Affiche "VIP" uniquement si is_sponsored == 1
         /*if (user.is_sponsored == 1) {
@@ -99,22 +104,4 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
 
     }
 
-    // Convertir la date en "Il y a..."
-    private fun getTimeAgo(dateStr: String): String {
-        return try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val past = sdf.parse(dateStr) ?: return "Inconnu"
-            val now = Date()
-            val seconds = (now.time - past.time) / 1000
-
-            when {
-                seconds < 60 -> "À l'instant"
-                seconds < 3600 -> "Il y a ${seconds / 60} min"
-                seconds < 86400 -> "Il y a ${seconds / 3600} h"
-                else -> "Il y a ${seconds / 86400} j"
-            }
-        } catch (e: Exception) {
-            "Date invalide"
-        }
-    }
 }

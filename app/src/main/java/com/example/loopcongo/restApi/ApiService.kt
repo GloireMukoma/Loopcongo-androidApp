@@ -139,6 +139,10 @@ interface ApiService {
     @GET("user/immo/demandes")
     fun getUserImmoDemandes(): Call<ApiResponseDemande>
 
+    // Liste des biens des users abonnés (caroussel immobilier)
+    @GET("immo/subscribed")
+    fun getImmosSubscribeUsers(): Call<List<Immobilier>>
+
     // Retourne le nombre des biens publiés pour chaque
     @GET("immobilier/nb/city")
     fun getCities(): Call<ImmobilierResponse>

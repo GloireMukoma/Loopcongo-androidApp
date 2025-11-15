@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:layout_margin="8dp">
+    android:padding="10dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -91,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/gray"
                     android:text="texte de lannonce"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:maxLines="2"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -103,6 +104,7 @@
             android:layout_gravity="top|end"
             android:layout_margin="4dp"
             android:src="@drawable/ic_delete"
+            android:background="@drawable/bg_delete_icon"
             android:contentDescription="Supprimer annonce"
             app:tint="@android:color/holo_red_dark"/>
     </FrameLayout>

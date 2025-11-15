@@ -1,10 +1,13 @@
 package com.example.loopcongo.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
@@ -35,21 +38,40 @@ class ImmoUserDemandeAdapter(
 
         holder.username.text = demande.username
         holder.message.text = demande.message
+        holder.time.text = "• ${demande.created_at}"
 
-        holder.time.text = "• Il y a ${demande.created_at}"
-
-
-        // Chargement de l'image (avec Glide)
+        // Charger avatar avec Glide
         Glide.with(holder.itemView.context)
             .load(demande.avatar)
             .placeholder(R.drawable.user1)
             .circleCrop()
             .into(holder.avatar)
 
-        /*holder.btnRepondre.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Répondre à ${demande.username}", Toast.LENGTH_SHORT).show()
-        }*/
+        // --- ACTION QUAND ON CLIQUE SUR L'ITEM ---
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+
+            val contactCustomer = demande.contact ?: ""
+
+            if (contactCustomer.isEmpty()) {
+                Toast.makeText(context, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val message = "Bonjour, concernant votre demande immobilière sur LoopCongo, nous avons trouvé une solution pour vous.\n\n" +
+                    "Votre demande : ${demande.message}"
+
+            val url = "https://wa.me/$contactCustomer?text=${Uri.encode(message)}"
+
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(context, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
 
     override fun getItemCount() = demandes.size
 }

@@ -30,10 +30,12 @@
             android:layout_margin="6dp"
             android:src="@drawable/ic_delete_"
             app:tint="@android:color/holo_red_dark"
-            android:padding="6dp"
+            android:background="@drawable/bg_delete_icon"
+            android:padding="10dp"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="Supprimer l'article" />
+
 
         <!-- Bloc texte superposé en bas avec fond semi-transparent -->
         <LinearLayout
@@ -62,7 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="description article"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:maxLines="2"

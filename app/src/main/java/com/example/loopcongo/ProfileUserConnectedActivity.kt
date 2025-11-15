@@ -131,8 +131,8 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                 //dialog.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.BLACK)
                 //dialog.findViewById<TextView>(android.R.id.title)?.setTextColor(Color.BLACK)
                 // Pour les boutons
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.BLUE)
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.BLUE)
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
             }
             dialog.show()
         }

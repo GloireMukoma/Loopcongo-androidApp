@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.*
 import com.example.loopcongo.adapters.ImmoUserDemandeAdapter
 import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
+import com.example.loopcongo.adapters.immobiliers.CarouselImmobiliersHomePageAdapter
 import com.example.loopcongo.adapters.immobiliers.ItemCityImmobilierAdapter
 import com.example.loopcongo.database.*
 import com.example.loopcongo.database.Customer
@@ -83,24 +84,12 @@ class HomeImmobilierFragment : Fragment() {
         viewPager2.offscreenPageLimit = 5
         viewPager2.isNestedScrollingEnabled = false
 
-        ApiClient.instance.getUserAnnoncesCaroussel().enqueue(object : Callback<AnnonceResponse> {
-            override fun onResponse(call: Call<AnnonceResponse>, response: Response<AnnonceResponse>) {
+        ApiClient.instance.getImmosSubscribeUsers().enqueue(object : Callback<List<Immobilier>> {
+            override fun onResponse(call: Call<List<Immobilier>>, response: Response<List<Immobilier>>) {
                 if (response.isSuccessful && response.body() != null) {
-                    val annonces = response.body()!!.data
-                    //viewPager2.adapter = CarouselUserAnnonceAdapter(requireContext(), annonces)
-                    viewPager2.adapter = CarouselUserAnnonceAdapter(requireContext(), annonces) { annonce ->
-                        val intent = Intent(requireContext(), DetailAnnonceActivity::class.java)
-                        intent.putExtra("id", annonce.id)
-                        intent.putExtra("user_id", annonce.user_id)
-                        intent.putExtra("titre", annonce.titre)
-                        intent.putExtra("description", annonce.description)
-                        intent.putExtra("image", annonce.image)
-                        intent.putExtra("username", annonce.username)
-                        intent.putExtra("city", annonce.city)
-                        intent.putExtra("contact", annonce.contact)
-                        intent.putExtra("file_url", annonce.file_url)
-                        startActivity(intent)
-                    }
+                    val annonces = response.body()!!
+
+                    viewPager2.adapter = CarouselImmobiliersHomePageAdapter(requireContext(), annonces)
 
                     val sliderRunnable = Runnable {
                         viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
@@ -112,17 +101,20 @@ class HomeImmobilierFragment : Fragment() {
                             sliderHandler.postDelayed(sliderRunnable, 3000)
                         }
                     })
-                    // Lance la première fois le défilement auto
+
+                    // Défilement auto
                     sliderHandler.postDelayed(sliderRunnable, 3000)
 
                 } else {
                     Toast.makeText(requireContext(), "Réponse vide ou invalide", Toast.LENGTH_SHORT).show()
                 }
             }
-            override fun onFailure(call: Call<AnnonceResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<Immobilier>>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
+
 
         // Caroussel des items des demandes
         demandeRecycler = view.findViewById(R.id.immoUserDemandeRecyclerView)

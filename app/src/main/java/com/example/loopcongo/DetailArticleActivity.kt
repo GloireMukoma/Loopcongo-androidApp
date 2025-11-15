@@ -25,10 +25,9 @@ class DetailArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ✅ Couleur de la status bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        // Couleur de la navigation bar (en bas)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         setContentView(R.layout.activity_detail_article)
         supportActionBar?.title = "Détail de l'article"
@@ -93,7 +92,11 @@ class DetailArticleActivity : AppCompatActivity() {
 
         discuterBtn.setOnClickListener {
             if (!userContact.isNullOrEmpty()) {
-                val message = "Bonjour, je suis intéressé par votre article sur LoopCongo."
+
+                val articleLink = "https://loopcongo.com/detail/$id"
+                val message = "Bonjour, je suis intéressé par votre article sur LoopCongo.\n" +
+                        "Lien de l'article : $articleLink"
+
                 val url = "https://wa.me/$userContact?text=${Uri.encode(message)}"
 
                 try {
@@ -107,6 +110,7 @@ class DetailArticleActivity : AppCompatActivity() {
                 Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         // Redirection vers le profile du vendeur
         val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilDetailArticle)
@@ -163,7 +167,7 @@ class DetailArticleActivity : AppCompatActivity() {
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@DetailArticleActivity, "Erreur de chargement des images", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DetailArticleActivity, "Pas d'images de detail", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {

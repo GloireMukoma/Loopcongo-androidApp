@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -39,16 +40,11 @@ class OngletAnnonceFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.onglet_annonce_profil_user_immobilier_connected, container, false)
 
-        recyclerView = view.findViewById(R.id.ongletAnnonceUserImmoConnectedRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // Ajoute une ligne qui separe les items des annonces comme dans une listview
-        val divider = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(divider)
-
+        val listView = view.findViewById<ListView>(R.id.listViewAnnonceUserImmoConnected)
 
         articleAdapter = OngletAnnonceUserConnectedAdapter(requireContext(), mutableListOf())
-        recyclerView.adapter = articleAdapter
+        listView.adapter = articleAdapter
+
 
         if (vendeurId != 0) {
             loadAnnonceVendeur(vendeurId)

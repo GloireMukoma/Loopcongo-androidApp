@@ -9,7 +9,7 @@
     android:elevation="2dp"
     android:layout_marginVertical="6dp"
     android:layout_marginHorizontal="3dp"
-    android:background="@android:color/white"
+    android:background="@drawable/item_demandes_border"
     android:clipToOutline="true">
 
     <!-- Ligne principale : avatar + contenu -->
@@ -51,10 +51,10 @@
                 android:layout_height="wrap_content"
                 android:text="Bonjour, je suis à la recherche d'une maison à louer, coté golf plateau"
                 android:textSize="14sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:lineSpacingExtra="2dp"
                 android:layout_marginBottom="4dp"
-                android:maxLines="3"
+                android:maxLines="2"
                 android:ellipsize="end" />
 
             <!-- Détails : like count et temps -->
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="Username"
                     android:textSize="12sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
 
                     android:layout_marginEnd="4dp"/>
 
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:text="• Il y a 4 mois"
                     android:textSize="12sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/gray"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

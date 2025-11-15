@@ -28,6 +28,8 @@ class DemandesUsersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demandes_users)
+        supportActionBar?.title = "Demandes des utilisateurs"
+
 
         // Couleur de la status bar (en haut)
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
@@ -43,13 +45,6 @@ class DemandesUsersActivity : AppCompatActivity() {
         // 🔹 Adapter
         demandeAdapter = ImmoUserDemandeAdapter(demandes, R.layout.item_demande2)
         demandeRecycler.adapter = demandeAdapter
-
-        // 🔹 Ajouter le divider par défaut
-        val dividerItemDecoration = DividerItemDecoration(
-            demandeRecycler.context,
-            (demandeRecycler.layoutManager as LinearLayoutManager).orientation
-        )
-        demandeRecycler.addItemDecoration(dividerItemDecoration)
 
         // 🔹 Charger les demandes
         loadDemandes()
