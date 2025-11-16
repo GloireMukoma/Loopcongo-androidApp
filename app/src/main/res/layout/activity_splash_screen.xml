@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BleuFoncePrimaryColor"
+    tools:context=".LoadAppActivity">
+
+    <!-- Logo principal centré -->
+    <ImageView
+        android:id="@+id/logo_center"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:contentDescription="Logo application"
+        android:src="@drawable/loop_icon"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <!-- Bas de page : From + petit logo -->
+    <LinearLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/text_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="from"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:textColor="#8A8A8A" />
+
+        <ImageView
+            android:id="@+id/ic_facebook_small"
+            android:layout_width="102dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-6dp"
+            android:contentDescription="Facebook logo"
+            android:src="@drawable/loopcongo"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

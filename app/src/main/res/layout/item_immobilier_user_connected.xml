@@ -30,6 +30,7 @@
             android:layout_margin="6dp"
             android:src="@drawable/ic_delete_"
             app:tint="@android:color/holo_red_dark"
+            android:background="@drawable/bg_delete_icon"
             android:padding="6dp"
             android:clickable="true"
             android:focusable="true"

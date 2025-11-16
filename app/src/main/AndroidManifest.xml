@@ -10,16 +10,28 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/loop_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/loop_icon"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
+
         <activity
-            android:parentActivityName=".ImmobilierActivity"
+            android:name=".LoadAppActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity
             android:name=".DemandesUsersActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ImmobilierActivity" />
         <activity
             android:name=".ImmobilierActivity"
             android:exported="false"
@@ -95,16 +107,11 @@
         <activity
             android:name=".TabLayoutActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
     </application>
 
 </manifest>
