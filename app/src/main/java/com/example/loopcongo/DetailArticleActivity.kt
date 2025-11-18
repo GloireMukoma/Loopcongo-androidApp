@@ -93,7 +93,7 @@ class DetailArticleActivity : AppCompatActivity() {
         discuterBtn.setOnClickListener {
             if (!userContact.isNullOrEmpty()) {
 
-                val articleLink = "https://loopcongo.com/detail/$id"
+                val articleLink = "https://loopcongo.com/product/detail/$id"
                 val message = "Bonjour, je suis intéressé par votre article sur LoopCongo.\n" +
                         "Lien de l'article : $articleLink"
 

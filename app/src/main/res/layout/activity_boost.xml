@@ -5,13 +5,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/BleuFoncePrimaryColor"
-    android:padding="24dp"
+    android:paddingVertical="15dp"
+    android:paddingHorizontal="24dp"
     tools:context=".SubscriptionActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Barre en haut : Abonnement + Bouton -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/action2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back" />
+
+            <!-- Texte Abonnement -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:text="Abonnement"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Bouton S'abonner -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAboutDevelopper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A propos"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                app:cornerRadius="25dp"
+                app:backgroundTint="@android:color/holo_blue_dark" />
+        </LinearLayout>
+
+    <!-- Contenu existant -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal">
 
         <!-- Icône de foudre -->
@@ -177,5 +225,8 @@
             android:textSize="12sp"
             android:gravity="center"
             android:textAlignment="center" />
+
+    </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

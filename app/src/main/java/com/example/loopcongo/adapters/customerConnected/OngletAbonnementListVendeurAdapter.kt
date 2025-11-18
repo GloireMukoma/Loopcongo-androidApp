@@ -33,7 +33,7 @@ class OngletAbonnementListVendeurAdapter(
 
         // Chargement de l'image du vendeur (ou image par défaut)
         Glide.with(holder.itemView.context)
-            .load(vendeur.file_url ?: "")
+            .load("https://loopcongo.com/${vendeur.file_url}")
             .placeholder(R.drawable.avatar)
             .into(holder.imgAvatar)
 

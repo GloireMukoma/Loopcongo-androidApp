@@ -5,8 +5,10 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import com.example.loopcongo.database.AppDatabase
 
 import androidx.lifecycle.lifecycleScope
@@ -17,10 +19,20 @@ class SubscriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boost)
 
-        supportActionBar?.title = "Abonnement"
+        window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        // Couleur de la navigation bar (en bas)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
+
+        supportActionBar?.hide()
+        //supportActionBar?.title = "Abonnement"
+
+        val btnAboutDevelopper = findViewById<Button>(R.id.btnAboutDevelopper)
+        btnAboutDevelopper.setOnClickListener {
+            val intent = Intent(this, AboutAppActivity::class.java)
+            startActivity(intent)
+        }
 
         val btnContinue: Button = findViewById(R.id.subscriptionBtnContinue)
-
         btnContinue.setOnClickListener {
             lifecycleScope.launch {
                 val user = AppDatabase.getDatabase(this@SubscriptionActivity).userDao().getUser()
@@ -35,5 +47,6 @@ class SubscriptionActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
     }
 }

@@ -31,7 +31,7 @@
             android:src="@drawable/ic_delete_"
             app:tint="@android:color/holo_red_dark"
             android:background="@drawable/bg_delete_icon"
-            android:padding="6dp"
+            android:padding="8dp"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="Supprimer l'article" />

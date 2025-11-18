@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -131,10 +132,10 @@ class CustomerConnectedActivity : AppCompatActivity() {
 
         // 🔹 Gestion déconnexion
         logoutBtn.setOnClickListener {
-            AlertDialog.Builder(this)
+            val dialog = AlertDialog.Builder(this)
                 .setTitle("Déconnexion")
                 .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                .setPositiveButton("Oui") { dialog, _ ->
+                .setPositiveButton("Oui") { dialogInterface, _ ->
                     lifecycleScope.launch {
                         customerDao.clearCustomers()
                         val intent = Intent(this@CustomerConnectedActivity, MainActivity::class.java)
@@ -142,11 +143,21 @@ class CustomerConnectedActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-                    dialog.dismiss()
                 }
-                .setNegativeButton("Non") { dialog, _ -> dialog.dismiss() }
-                .show()
+                .setNegativeButton("Non") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                .create()
+
+            // 👉 Modifier les couleurs après affichage
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
+            }
+
+            dialog.show()
         }
+        // 🔹 Gestion déconnexion
     }
 
     private fun afficherInfosClient(customer: Customer) {

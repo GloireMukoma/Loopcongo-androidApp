@@ -2,6 +2,7 @@ package com.example.loopcongo.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,15 +54,24 @@ class OngletAnnonceUserConnectedAdapter(
             val dialog = AlertDialog.Builder(context)
                 .setTitle("Supprimer l’annonce")
                 .setMessage("Êtes-vous sûr de vouloir supprimer cette annonce ?")
-                .setPositiveButton("Oui") { _, _ ->
+                .setPositiveButton("Oui") { dialog, _ ->
                     deleteAnnonce(annonce.id, position)
+                    dialog.dismiss() // ferme le popup après action
                 }
-                .setNegativeButton("Non", null)
+                .setNegativeButton("Non") { dialog, _ ->
+                    dialog.dismiss() // ferme le popup
+                }
                 .create()
 
-            dialog.window?.setBackgroundDrawableResource(android.R.color.white)
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
+            }
+
             dialog.show()
         }
+
+
 
         // 🔥 Clic pour afficher le détail
         view.setOnClickListener {

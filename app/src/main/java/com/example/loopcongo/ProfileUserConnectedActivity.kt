@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -106,7 +107,7 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
             val dialog = AlertDialog.Builder(this)
                 .setTitle("Déconnexion")
                 .setMessage("Voulez-vous vraiment vous déconnecter ?")
-                .setPositiveButton("Oui") { dialogInterface, _ ->
+                .setPositiveButton("Oui") { dialog, _ ->
                     // Coroutine pour supprimer l'utilisateur de la base
                     lifecycleScope.launch {
                         userDao.clearUsers()
@@ -116,26 +117,21 @@ class ProfileUserConnectedActivity : AppCompatActivity() {
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
-                    dialogInterface.dismiss()
+                    dialog.dismiss()
                 }
-                .setNegativeButton("Non") { dialogInterface, _ ->
-                    dialogInterface.dismiss()
+                .setNegativeButton("Non") { dialog, _ ->
+                    dialog.dismiss()
                 }
-                .create()
+                .create() // Crée le dialog sans l'afficher encore
 
-            // Fond blanc
-            //dialog.window?.setBackgroundDrawableResource(android.R.color.white)
-
-            // Changer la couleur du texte du titre et du message
             dialog.setOnShowListener {
-                //dialog.findViewById<TextView>(android.R.id.message)?.setTextColor(Color.BLACK)
-                //dialog.findViewById<TextView>(android.R.id.title)?.setTextColor(Color.BLACK)
-                // Pour les boutons
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(Color.WHITE)
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(Color.WHITE)
             }
-            dialog.show()
+
+            dialog.show() // Affiche le dialog après avoir configuré le OnShowListener
         }
+
 
         // Charger l'utilisateur depuis Room
         // Charger l'utilisateur depuis Room

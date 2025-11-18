@@ -92,7 +92,6 @@ class OngletListVendeurCustomerAbonnementFragment : Fragment() {
 
             startActivity(intent)
         }
-
         recyclerView.adapter = adapter
 
         // 🔹 Charger les abonnements depuis l’API

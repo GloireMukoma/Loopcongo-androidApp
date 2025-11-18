@@ -10,6 +10,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.loopcongo.AboutAppActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.SubscriptionActivity
 import com.example.loopcongo.adapters.userImmobilierConnected.OngletOperationsAdapter
@@ -76,7 +77,8 @@ class OngletOperationsFragment : Fragment() {
                     }
 
                     "A propos" -> {
-                        Toast.makeText(requireContext(), "Page à propos en cours...", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(requireContext(), AboutAppActivity::class.java)
+                        startActivity(intent)
                     }
 
                     else -> {

@@ -5,8 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.loopcongo.database.AppDatabase
@@ -30,14 +32,25 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
         supportActionBar?.hide()
+
+        val btnClose = findViewById<ImageButton>(R.id.btnClose)
+        btnClose.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
+        }
 
         // 🔹 DB Room
         val db = AppDatabase.getDatabase(this)
         userDao = db.userDao()
         customerDao = db.customerDao()
 
-        val edtPassword = findViewById<EditText>(R.id.editTextPasswordLogin)
+        val editTextContactLogin = findViewById<EditText>(R.id.editTextContactLogin)
+        val editTextPasswordLogin = findViewById<EditText>(R.id.editTextPasswordLogin)
+
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
         val createAccount = findViewById<Button>(R.id.createAccount)
@@ -45,35 +58,44 @@ class LoginActivity : AppCompatActivity() {
             val url = "https://loopcongo.com/user/account_create"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
-
         }
 
         btnLogin.setOnClickListener {
-            val password = edtPassword.text.toString().trim()
-            if (password.isEmpty()) {
-                Toast.makeText(this, "Veuillez entrer le mot de passe", Toast.LENGTH_SHORT).show()
+            // 🔹 Préparer les données
+            val contact = editTextContactLogin.text.toString().trim()
+            val password = editTextPasswordLogin.text.toString().trim()
+
+            if (contact.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Veuillez entrer votre contact et mot de passe", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val body = mapOf("password" to password)
+            val body = mapOf(
+                "contact" to contact,
+                "password" to password
+            )
 
             // 🔹 Appel API pour login
             ApiClient.instance.login(body).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if (response.isSuccessful && response.body()?.status == true) {
+
                         val apiUser: ApiUser? = response.body()?.data
+
                         if (apiUser != null) {
                             lifecycleScope.launch {
                                 saveAccount(apiUser) // Sauvegarde dans Room
 
-                                // 🔹 Redirection selon type
+                                // 🔹 Choix de l'écran après connexion
                                 val nextActivity = when (apiUser.type?.lowercase()) {
                                     "user" -> when (apiUser.type_account?.lowercase()) {
                                         "vendeur" -> ProfileUserConnectedActivity::class.java
                                         "immobilier" -> UserImmobilierConnectedActivity::class.java
                                         else -> ProfileUserConnectedActivity::class.java
                                     }
+
                                     "customer" -> CustomerConnectedActivity::class.java
+
                                     else -> ProfileUserConnectedActivity::class.java
                                 }
 
@@ -83,16 +105,19 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(this@LoginActivity, "Erreur: données utilisateur manquantes", Toast.LENGTH_SHORT).show()
                         }
+
                     } else {
-                        Toast.makeText(this@LoginActivity, "Mot de passe incorrect", Toast.LENGTH_SHORT).show()
+                        val err = response.body()?.message ?: "Contact ou mot de passe incorrect"
+                        Toast.makeText(this@LoginActivity, err, Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "Erreur réseau: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Erreur réseau : ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         }
+
     }
 
     // 🔹 Fonction pour sauvegarder User ou Customer dans Room

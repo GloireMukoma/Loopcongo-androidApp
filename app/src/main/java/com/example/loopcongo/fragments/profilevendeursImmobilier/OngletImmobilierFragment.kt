@@ -62,6 +62,7 @@ class OngletImmobilierFragment : Fragment() {
                     call: Call<ImmobilierResponse>,
                     response: Response<ImmobilierResponse>
                 ) {
+                    if (!isAdded) return
                     if (response.isSuccessful && response.body()?.status == true) {
                         val biens = response.body()?.data ?: emptyList()
 

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:background="@color/BleuFoncePrimaryColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!-- Logo de l'entreprise -->
+        <ImageView
+            android:id="@+id/companyLogo"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            android:src="@drawable/loopcongo"
+            android:padding="4dp" />
+
+        <!-- Nom de l'entreprise -->
+
+        <!-- Slogan / activité principale -->
+        <TextView
+            android:id="@+id/companyRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Développement Mobile • Web • Solutions Digitales"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="-30dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/companyDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loop Systems est une startup spécialisée dans la développement d’applications mobiles, plateformes web, APIs,et solutions numériques modernes et performantes.
+"
+            android:textSize="14sp"
+            android:textColor="@color/low_white"
+            android:gravity="center"
+            android:layout_marginTop="18dp" />
+
+        <!-- Séparateur -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:background="#DDDDDD" />
+
+        <!-- Section Contact -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nous contacter"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/gray"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+243 97 77 18 960"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/secondaryColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="loopcongo.contact@gmail.com"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/secondaryColor" />
+
+        <!-- Boutons Contact -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <!-- WhatsApp -->
+            <LinearLayout
+                android:id="@+id/whatsappButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_button_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/whatsapp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WhatsApp"
+                    android:textSize="17sp"
+                    android:textColor="#fff"
+                    android:layout_marginStart="6dp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="1dp" />
+
+            <!-- Email -->
+            <!--<LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_button_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="14sp"
+                    android:textColor="#fff"
+                    android:layout_marginStart="6dp" />
+            </LinearLayout>-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -68,19 +68,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Label Email -->
-    <TextView
-        android:id="@+id/labelEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mot de passe"
-        android:textColor="#BFC7D9"
-        android:textSize="13sp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Rounded EditText -->
+    <EditText
+        android:id="@+id/editTextContactLogin"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:hint="Entrez votre contact"
+        android:textColorHint="#B3FFFFFF"
+        android:textColor="#FFFFFF"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:background="@drawable/bg_rounded_input"
+        android:inputType="phone"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <EditText
         android:id="@+id/editTextPasswordLogin"
         android:layout_width="0dp"
@@ -94,9 +100,10 @@
         android:background="@drawable/bg_rounded_input"
         android:inputType="textPassword"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/labelEmail"
+        app:layout_constraintTop_toBottomOf="@id/editTextContactLogin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:autofillHints="" />
 
     <!-- Big rounded button (visually disabled style) -->
     <com.google.android.material.button.MaterialButton
@@ -119,7 +126,7 @@
         android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ou"
+        android:text="OU"
         android:fontFamily="sans-serif"
         android:textColor="#BFC7D9"
         android:textSize="13sp"

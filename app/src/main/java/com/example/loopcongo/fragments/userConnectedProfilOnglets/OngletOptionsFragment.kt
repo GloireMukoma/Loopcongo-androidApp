@@ -11,6 +11,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.loopcongo.AboutAppActivity
 import com.example.loopcongo.SubscriptionActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.vendeurs.OngletOptionsVendeurAdapter
@@ -82,8 +83,9 @@ class OngletOptionsFragment : Fragment() {
                         val intent = Intent(requireContext(), SubscriptionActivity::class.java)
                         startActivity(intent)
                     }
-                    "Certifier mon compte" -> {
-                        Toast.makeText(requireContext(), "Ouvrir la page de certification", Toast.LENGTH_SHORT).show()
+                    "A propos" -> {
+                        val intent = Intent(requireContext(), AboutAppActivity::class.java)
+                        startActivity(intent)
                     }
                     else -> {
                         Toast.makeText(requireContext(), "Action inconnue", Toast.LENGTH_SHORT).show()
