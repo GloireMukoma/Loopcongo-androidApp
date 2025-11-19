@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,10 +25,9 @@ class DetailImmobilierActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ✅ Couleur de la status bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        }
+        //Couleur de la status bar
+        window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         setContentView(R.layout.activity_detail_immobilier2)
         supportActionBar?.title = "Détail de l'immobilier"
@@ -35,7 +35,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
         // ✅ Récupération des vues
         val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailImmobilier)
         val auteur = findViewById<TextView>(R.id.nomAuteurdetailImmobilier)
-        //val sponsoredbadje = findViewById<TextView>(R.id.numeroAuteurdetailImage)
+        val addressImmo = findViewById<TextView>(R.id.adresseImmobilierDetail)
         val type = findViewById<TextView>(R.id.detailTypeImmobilier)
 
         val description = findViewById<TextView>(R.id.detailImmobilierDescription)
@@ -43,9 +43,6 @@ class DetailImmobilierActivity : AppCompatActivity() {
         val status = findViewById<TextView>(R.id.statutDetailImmobilier)
 
         val userContact = findViewById<TextView>(R.id.userContactImmoDetail)
-        val usercity = findViewById<TextView>(R.id.userCityImmoDetail)
-
-
         val prix = findViewById<TextView>(R.id.prixDetailImmobilier)
 
         // ✅ Récupération des extras
@@ -74,11 +71,11 @@ class DetailImmobilierActivity : AppCompatActivity() {
         description.text = immoDescription
         prix.text = "$ ${immoPrix}"
 
-        status.text = statut
+        status.text = " • ${statut}"
         auteur.text = username
 
         userContact.text = contact
-        usercity.text = city
+        addressImmo.text = address
 
         // ✅ Charger l'image principale
         Glide.with(this)
@@ -112,9 +109,9 @@ class DetailImmobilierActivity : AppCompatActivity() {
                         val vendeur = response.body()!!.data
 
                         // Préparer l'Intent pour ProfileVendeurActivity
-                        val intent = Intent(this@DetailImmobilierActivity, ProfileVendeurActivity::class.java)
+                        val intent = Intent(this@DetailImmobilierActivity, ProfileVendeurImmobilierActivity::class.java)
                         intent.putExtra("vendeurId", vendeur.id)
-                        intent.putExtra("vendeurUsername", vendeur.nom)
+                        intent.putExtra("vendeurUsername", vendeur.username)
                         intent.putExtra("vendeurContact", vendeur.contact)
                         intent.putExtra("vendeurCity", vendeur.city)
                         intent.putExtra("vendeurDescription", vendeur.about)
@@ -138,6 +135,29 @@ class DetailImmobilierActivity : AppCompatActivity() {
         }
 
         // Redirection vers le profile du vendeur
+
+        val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailImmo)
+
+        discuterBtn.setOnClickListener {
+            if (!contact.isNullOrEmpty()) {
+
+                val immoLink = "https://loopcongo.com/immo/detail/$immoId"
+                val message = "Bonjour, je suis intéressé par votre immobilier sur LoopCongo.\n" +
+                        "Lien de l'immobilier : $immoLink"
+
+                val url = "https://wa.me/$userContact?text=${Uri.encode(message)}"
+
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(this, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     // 🔹 Récupération asynchrone des images de détail
@@ -249,28 +269,5 @@ class DetailImmobilierActivity : AppCompatActivity() {
         // ✅ Afficher au centre
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
     }
-
-
-    /*val discuterBtn = findViewById<LinearLayout>(R.id.contactButtonWhatsappDetailArticle)
-//val numeroWhatsapp = intent.getStringExtra("numero_whatsapp") // récupéré depuis l’intent
-val numeroWhatsapp = "243971737160"
-
-discuterBtn.setOnClickListener {
-    if (!numeroWhatsapp.isEmpty()) {
-        val message = "Bonjour, je suis intéressé par votre article sur LoopCongo."
-        val url = "https://wa.me/$numeroWhatsapp?text=${Uri.encode(message)}"
-
-        try {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
-        }
-    } else {
-        Toast.makeText(this, "Numéro WhatsApp introuvable", Toast.LENGTH_SHORT).show()
-    }
-}*/
-
 
 }

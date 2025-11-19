@@ -91,9 +91,16 @@ class HomeImmobilierFragment : Fragment() {
 
                     viewPager2.adapter = CarouselImmobiliersHomePageAdapter(requireContext(), annonces)
 
-                    val sliderRunnable = Runnable {
+                    /*val sliderRunnable = Runnable {
                         viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
+                    }*/
+                    val sliderRunnable = Runnable {
+                        val size = annonces.size
+                        if (size > 0) {
+                            viewPager2.currentItem = (viewPager2.currentItem + 1) % size
+                        }
                     }
+
 
                     viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                         override fun onPageSelected(position: Int) {

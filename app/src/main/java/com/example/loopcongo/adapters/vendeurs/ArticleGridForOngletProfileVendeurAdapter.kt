@@ -45,7 +45,7 @@ class ArticleGridForOngletProfileVendeurAdapter(
 
         Glide.with(context)
             .load("https://loopcongo.com/" +article.file_url)
-            .placeholder(R.drawable.shoes)
+            .placeholder(R.drawable.loading)
             .into(holder.articleImage)
 
         // 👉 CLIC : Redirection vers Détail

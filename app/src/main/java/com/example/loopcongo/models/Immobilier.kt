@@ -19,6 +19,7 @@ data class Immobilier(
 
     val username: String,
     val userImage: String,
+    val user_avatar: String,
     val contact: String
 )
 

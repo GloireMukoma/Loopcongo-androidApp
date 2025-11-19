@@ -18,7 +18,8 @@ class ArticleViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragmen
         Pair(6, "Sac"),
         Pair(7, "Babouches"),
         Pair(8, "Vehicules"),
-        Pair(9, "Autres")
+        Pair(9, "Electroniques"),
+        Pair(10, "Autres")
     )
 
     override fun getItemCount(): Int = categories.size

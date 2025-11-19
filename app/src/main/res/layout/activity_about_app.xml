@@ -37,19 +37,14 @@
             android:id="@+id/companyDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Loop Systems est une startup spécialisée dans la développement d’applications mobiles, plateformes web, APIs,et solutions numériques modernes et performantes.
+            android:text="Loop System est une startup spécialisée dans le développement d’applications mobiles, plateformes web, APIs,et solutions numériques modernes et performantes.
 "
             android:textSize="14sp"
             android:textColor="@color/low_white"
             android:gravity="center"
             android:layout_marginTop="18dp" />
 
-        <!-- Séparateur -->
-        <View
-            android:layout_width="80dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="20dp"
-            android:background="#DDDDDD" />
+
 
         <!-- Section Contact -->
         <TextView
@@ -59,23 +54,32 @@
             android:textSize="16sp"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/gray"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Séparateur -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/secondaryColor" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+243 97 77 18 960"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/secondaryColor" />
+            android:textColor="@color/low_white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="loopcongo.contact@gmail.com"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/secondaryColor" />
+            android:textColor="@color/low_white" />
 
         <!-- Boutons Contact -->
         <LinearLayout
@@ -96,16 +100,17 @@
                 android:background="@drawable/rounded_button_bg"
                 android:padding="10dp">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/whatsapp" />
+                    android:src="@drawable/whatsapp" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WhatsApp"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     android:textColor="#fff"
                     android:layout_marginStart="6dp" />
             </LinearLayout>

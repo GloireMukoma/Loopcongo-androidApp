@@ -6,10 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -34,9 +31,14 @@ class ProfileVendeurActivity : AppCompatActivity() {
         supportActionBar?.title = "Profil"
 
         // Forcer la couleur de la status bar et de la navigation bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+
+        val btnClose = findViewById<ImageView>(R.id.flecheBack)
+        btnClose.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
         }
 
         // Récupération des données depuis l'Intent

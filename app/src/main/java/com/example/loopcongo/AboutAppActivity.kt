@@ -14,7 +14,7 @@ class AboutAppActivity : AppCompatActivity() {
         setContentView(R.layout.activity_about_app)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         val whatsappButton = findViewById<LinearLayout>(R.id.whatsappButton) // Mets l'id de ton LinearLayout
         val phoneNumber = "+243977718960"

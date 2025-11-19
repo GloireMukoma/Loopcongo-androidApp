@@ -61,7 +61,7 @@ class CarouselImmobiliersHomePageAdapter(
                 putExtra("description", immo.about)
                 putExtra("ImmoImage", immo.file_url)
                 putExtra("username", immo.username)
-                putExtra("userImage", immo.userImage)
+                putExtra("userImage", immo.user_avatar)
                 putExtra("userContact", immo.contact)
             }
             context.startActivity(intent)
