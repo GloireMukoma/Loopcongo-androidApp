@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:text="Adresse"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Description -->
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:text="Description de l'article"
             android:textColor="@color/low_white"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:layout_marginTop="6dp" />
 
 
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:text="Salle"
                     android:textColor="@color/gray"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <!-- Petit espace -->

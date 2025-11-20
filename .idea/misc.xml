@@ -82,6 +82,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_view.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_profile_view2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_super_admin_connected.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_tab_layout.xml" value="0.10709046454767726" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_user_immobilier_connected.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/article_item.xml" value="0.2006340579710145" />
@@ -107,6 +108,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/fragment_vendeur.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/fragment_vendeur_list.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/fragment_vendeur_main.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_account.xml" value="0.17527173913043478" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_annonce_user_connected.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_api.xml" value="0.2033514492753623" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid.xml" value="0.14" />
@@ -155,6 +157,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_vendeur_onglet_abonnement_customer_connected.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_abonnements_customer_connected_list_vendeur.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_acceuil_prestataire.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_accounts_superadmin_connected.xml" value="0.1503623188405797" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_annonce_profil_user_immobilier_connected.xml" value="0.14356884057971014" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_article_customer_abonnement_connected.xml" value="0.16802536231884058" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/onglet_article_profil_user_connected.xml" value="0.1875" />

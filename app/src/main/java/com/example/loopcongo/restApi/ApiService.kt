@@ -126,6 +126,14 @@ interface ApiService {
     @GET("user/statistics/get/{id}")
     suspend fun getUserStats(@Path("id") userId: Int): UserStatsResponse
 
+    // Get les stats pour le super admin(nb de compte crée, nb article, nb des comptes abonnés)
+    @GET("admin/stats/get")
+    suspend fun getSuperAdminStats(): SuperAdminStatsResponse
+
+    // get la liste des comptes crées (onglets compte super admin)
+    @GET("admin/accounts/all")
+    suspend fun getAllUsers(): List<User>
+
     // Get le nb d'abonnement d'un utilisateur
     @GET("customer/abonnements/count/{customerId}")
     suspend fun getNbAbonnementCustomer(

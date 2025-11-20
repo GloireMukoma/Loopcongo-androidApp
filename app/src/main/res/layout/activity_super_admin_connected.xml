@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SuperAdminConnectedActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/BleuFoncePrimaryColor"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top Bar with back arrow and 2 icons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Back Button -->
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <!-- Action Button 2 -->
+                <ImageView
+                    android:id="@+id/logoutBtnUserConnected"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:tint="@color/secondaryColor"
+                    android:src="@drawable/ic_logout" />
+            </LinearLayout>
+
+            <!-- Profile info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImageUserConnected"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/user_profile"
+                    android:scaleType="centerCrop"
+                    app:strokeColor="@color/secondaryColor"
+                    app:strokeWidth="2dp"
+                    app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-4dp">
+
+                    <LinearLayout
+                        android:id="@+id/usernameContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/nameUserConnected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Username"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/profileVendeurBadgeUserConnected"
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@drawable/ic_badge"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginStart="3dp"
+                            app:tint="@android:color/holo_blue_dark"
+                            android:visibility="gone"/> <!-- Par défaut caché -->
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/telephoneUserConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+243 97 1737160"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/cityUserConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Super Administrateur"
+                        android:textColor="@color/secondaryColor"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- Description -->
+            <TextView
+                android:id="@+id/descriptionUserConnected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:text="Description du profil utilisateur, les entrepreneurs Informer,  Inspirer, Fédérer"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- Score / Articles / Comments / Likes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Utilisateurs"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbAccountsAdminConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="..."
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Articles"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbArticlesAdminConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="..."
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Abonnements"
+                        android:textColor="#D0D0D0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/nbAbonnementAdminConnected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="..."
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- REAL TABS avec TabLayout et ViewPager2 -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/superAdminConnectedtTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/BleuFoncePrimaryColor"
+            app:tabIndicatorColor="#FFD700"
+            app:tabSelectedTextColor="#FFD700"
+            app:tabIconTint="@color/my_tab_icon_color"
+            app:tabTextColor="#CCCCCC"
+            app:tabTextAppearance="@style/CustomTabLayoutTextMinuscules"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/superAdminConnectedViewPager"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
