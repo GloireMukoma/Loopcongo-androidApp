@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:layout_margin="3dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardUseCompatPadding="false">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Image de l’article -->
+        <ImageView
+            android:id="@+id/articleImageSuperAdminOnglet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="Image de l’article"
+            android:src="@drawable/shoes_men" />
+
+        <!-- Icône suppression en haut à droite -->
+        <ImageView
+            android:id="@+id/btnDeleteArticleSuperAdminOnglet"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="6dp"
+            android:src="@drawable/ic_delete_"
+            app:tint="@android:color/holo_red_dark"
+            android:background="@drawable/bg_delete_icon"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Supprimer l'article" />
+
+
+        <!-- Bloc texte superposé en bas avec fond semi-transparent -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@drawable/degrade_background_color"
+            android:padding="6dp">
+
+            <!-- Titre -->
+            <TextView
+                android:id="@+id/articleNomSuperAdminOnglet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nom de l'article"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Auteur avec icône -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_person"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/usernameArticleSuperAdminOnglet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Auteur"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- Prix -->
+            <TextView
+                android:id="@+id/articlePrixSuperAdminOnglet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prix"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

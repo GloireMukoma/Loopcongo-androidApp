@@ -86,6 +86,12 @@ class LoginActivity : AppCompatActivity() {
                             lifecycleScope.launch {
                                 saveAccount(apiUser) // Sauvegarde dans Room
 
+                                if (apiUser.id == 1) {
+                                    startActivity(Intent(this@LoginActivity, SuperAdminConnectedActivity::class.java))
+                                    finish()
+                                    return@launch
+                                }
+
                                 // 🔹 Choix de l'écran après connexion
                                 val nextActivity = when (apiUser.type?.lowercase()) {
                                     "user" -> when (apiUser.type_account?.lowercase()) {
@@ -123,6 +129,24 @@ class LoginActivity : AppCompatActivity() {
     // 🔹 Fonction pour sauvegarder User ou Customer dans Room
     private suspend fun saveAccount(apiUser: ApiUser) {
         when (apiUser.type?.lowercase()) {
+
+            "admin" -> {
+                // Traitement pour l'admin
+                val dbUser = DbUser(
+                    id = apiUser.id,
+                    type = "admin",
+                    type_account = "admin",
+                    username = apiUser.username ?: "Admin",
+                    is_certified = apiUser.is_certified,
+                    contact = apiUser.contact ?: "",
+                    city = apiUser.city ?: "",
+                    file_url = apiUser.file_url ?: "",
+                    about = apiUser.about ?: "",
+                    created_at = apiUser.created_at ?: ""
+                )
+                userDao.clearUsers()
+                userDao.insertUser(dbUser)
+            }
             "user" -> {
                 val dbUser = DbUser(
                     id = apiUser.id,

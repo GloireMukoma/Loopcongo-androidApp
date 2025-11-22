@@ -16,11 +16,17 @@ import com.example.loopcongo.adapters.superAdminConnected.OngletsSuperAdminViewP
 import com.example.loopcongo.adapters.userVendeurConnected.OngletsUserViewPagerAdapter
 import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.database.User
+import com.example.loopcongo.models.SubscriptionStatsResponse
 import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SuperAdminConnectedActivity : AppCompatActivity() {
 
@@ -33,6 +39,12 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
     private lateinit var nbAccountsAdminConnected: TextView
     private lateinit var nbArticlesAdminConnected: TextView
     private lateinit var nbAbonnementAdminConnected: TextView
+
+    private lateinit var nbAbonnerBasic: TextView
+    private lateinit var nbAbonnerPro: TextView
+    private lateinit var nbAbonnerPremium: TextView
+    private lateinit var totalActive: TextView
+
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -47,15 +59,21 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
 
         // ---- INITIALISATION DES VUES ----
-        profileImage = findViewById(R.id.profileImageUserConnected)
-        badge = findViewById(R.id.profileVendeurBadgeUserConnected)
+        //profileImage = findViewById(R.id.profileImageUserConnected)
 
-        nameUserConnected = findViewById(R.id.nameUserConnected)
-        telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
+        //badge = findViewById(R.id.profileVendeurBadgeUserConnected)
+        //nameUserConnected = findViewById(R.id.nameUserConnected)
+        //telephoneUserConnected = findViewById(R.id.telephoneUserConnected)
 
         nbAccountsAdminConnected = findViewById(R.id.nbAccountsAdminConnected)
         nbArticlesAdminConnected = findViewById(R.id.nbArticlesAdminConnected)
         nbAbonnementAdminConnected = findViewById(R.id.nbAbonnementAdminConnected)
+
+        // Statistique des abonnements
+        nbAbonnerBasic = findViewById(R.id.nbAbonnerBasic)
+        nbAbonnerPro = findViewById(R.id.nbAbonnerPro)
+        nbAbonnerPremium = findViewById(R.id.nbAbonnerPremium)
+        totalActive = findViewById(R.id.totalActive)
 
         tabLayout = findViewById(R.id.superAdminConnectedtTabLayout)
         viewPager = findViewById(R.id.superAdminConnectedViewPager)
@@ -69,20 +87,26 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
             try {
                 val response = ApiClient.instance.getSuperAdminStats()
 
-                nbAccountsAdminConnected.text = response.nbAccounts.toString()
-                nbArticlesAdminConnected.text = response.nbArticles.toString()
-                nbAbonnementAdminConnected.text = response.nbAbonnements.toString()
+                withContext(Dispatchers.Main) {
+                    nbAccountsAdminConnected.text = response.nbAccounts.toString()
+                    nbArticlesAdminConnected.text = response.nbArticles.toString()
+                    nbAbonnementAdminConnected.text = response.nbAbonnements.toString()
 
-                // Affiche le badge si tu veux
-                badge.visibility = View.VISIBLE
+                    //badge.visibility = View.VISIBLE
+                }
 
             } catch (e: Exception) {
                 e.printStackTrace()
-                nbAccountsAdminConnected.text = "--"
-                nbArticlesAdminConnected.text = "--"
-                nbAbonnementAdminConnected.text = "--"
+
+                withContext(Dispatchers.Main) {
+                    nbAccountsAdminConnected.text = "--"
+                    nbArticlesAdminConnected.text = "--"
+                    nbAbonnementAdminConnected.text = "--"
+                }
             }
         }
+
+        loadStats()
 
         // ---- LOGOUT ----
         val logoutBtnUserConnected = findViewById<ImageView>(R.id.logoutBtnUserConnected)
@@ -111,12 +135,12 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
         }
 
         // ---- CHARGER LES INFOS DU SUPER ADMIN ----
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             val user = userDao.getUser()
 
             user?.let {
-                nameUserConnected.text = it.username ?: "Super Admin"
-                telephoneUserConnected.text = it.contact ?: "N/A"
+                //nameUserConnected.text = it.username ?: "Super Admin"
+                //telephoneUserConnected.text = it.contact ?: "N/A"
 
                 if (!it.file_url.isNullOrEmpty()) {
                     Glide.with(this@SuperAdminConnectedActivity)
@@ -127,10 +151,33 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
                     profileImage.setImageResource(R.drawable.ic_person)
                 }
             }
-        }
+        }*/
 
         // ---- CONFIG TABLAYOUT ----
         setupViewPager()
+    }
+
+    // Statistique des abonnements
+    private fun loadStats() {
+        ApiClient.instance.getSubscriptionStats()
+            .enqueue(object : Callback<SubscriptionStatsResponse> {
+                override fun onResponse(
+                    call: Call<SubscriptionStatsResponse>,
+                    response: Response<SubscriptionStatsResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val data = response.body()!!.data
+
+                        totalActive.text = data.total_active.toString()
+                        nbAbonnerBasic.text = data.basic.toString()
+                        nbAbonnerPro.text = data.pro.toString()
+                        nbAbonnerPremium.text = data.premium.toString()
+                        //txtWaiting.text = "En attente : ${data.waiting}"
+                    }
+                }
+
+                override fun onFailure(call: Call<SubscriptionStatsResponse>, t: Throwable) {}
+            })
     }
 
     private fun setupViewPager() {
@@ -141,7 +188,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
             when (pos) {
                 0 -> tab.setIcon(R.drawable.ic_users)
                 1 -> tab.setIcon(R.drawable.ic_article)
-                2 -> tab.setIcon(R.drawable.ic_subscription)
+                2 -> tab.setIcon(R.drawable.ic_star)
             }
         }.attach()
 

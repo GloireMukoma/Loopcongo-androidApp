@@ -20,6 +20,8 @@
 
     <color name="moveColor">#9C27B0</color>
 
+    <color name="lowWhiteTextColor">#D0D0D0</color>
+
     <color name="bottomNavItemNoSelect">#8c8b8b</color>
     <color name="noir_fonce">#000000</color>
 

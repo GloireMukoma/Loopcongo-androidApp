@@ -10,8 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.loopcongo.R
-import com.example.loopcongo.adapters.superAdminConnected.AccountCreatedArrayAdapter
-import com.example.loopcongo.models.User
+import com.example.loopcongo.adapters.superAdminConnected.AccountCreatedAdapter
 import com.example.loopcongo.restApi.ApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +21,7 @@ class OngletAccountsCreatedFragment : Fragment() {
     private lateinit var listView: ListView
     private lateinit var progressBar: ProgressBar
     private lateinit var txtEmpty: TextView
-    private lateinit var adapter: AccountCreatedArrayAdapter
+    private lateinit var adapter: AccountCreatedAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +35,7 @@ class OngletAccountsCreatedFragment : Fragment() {
         txtEmpty = view.findViewById(R.id.txtEmptyAccounts)
 
         // Adapter vide au début
-        adapter = AccountCreatedArrayAdapter(requireContext(), emptyList())
+        adapter = AccountCreatedAdapter(requireContext(), emptyList())
         listView.adapter = adapter
 
         fetchAccounts()
@@ -56,7 +55,7 @@ class OngletAccountsCreatedFragment : Fragment() {
                     progressBar.visibility = View.GONE
 
                     if (users.isNotEmpty()) {
-                        adapter = AccountCreatedArrayAdapter(requireContext(), users)
+                        adapter = AccountCreatedAdapter(requireContext(), users)
                         listView.adapter = adapter
                     } else {
                         txtEmpty.visibility = View.VISIBLE

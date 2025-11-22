@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 
-class AccountCreatedArrayAdapter(
+class AccountCreatedAdapter(
     context: Context,
     private val users: List<User>
 ) : ArrayAdapter<User>(context, 0, users) {
@@ -40,7 +40,7 @@ class AccountCreatedArrayAdapter(
 
         // Image
         Glide.with(context)
-            .load(user.file_url)
+            .load("https://loopcongo.com/${user.file_url}")
             .placeholder(R.drawable.avatar)
             .centerCrop()
             .into(imgProfile)

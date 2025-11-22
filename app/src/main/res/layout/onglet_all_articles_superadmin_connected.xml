@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Barre de recherche -->
+    <EditText
+        android:id="@+id/searchBarArticlesSuperAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Rechercher un article..."
+        android:padding="10dp"
+        android:background="@drawable/search_input_bg"
+        android:layout_margin="10dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/ic_menu_search" />
+
+    <!-- Message vide -->
+    <TextView
+        android:id="@+id/txtEmptyArticlesSuperAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aucun article trouvé"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Liste des articles -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ongletAllArticlesSuperAdminConnectedRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:scrollbars="none" />
+
+    <!-- Loader centré -->
+    <ProgressBar
+        android:id="@+id/progressBarArticlesSuperAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

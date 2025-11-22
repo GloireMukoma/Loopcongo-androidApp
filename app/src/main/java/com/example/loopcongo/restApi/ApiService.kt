@@ -130,9 +130,23 @@ interface ApiService {
     @GET("admin/stats/get")
     suspend fun getSuperAdminStats(): SuperAdminStatsResponse
 
+    // Stats des abonnements (nb de basic, pro, premium)
+    @GET("admin/subscriptions/stats")
+    fun getSubscriptionStats(): Call<SubscriptionStatsResponse>
+
+    // Get les comptes deja abonnés
+    @GET("admin/subscribedUsers/get")
+    fun getSubscribedUsers(): Call<List<User>>
+
+
     // get la liste des comptes crées (onglets compte super admin)
     @GET("admin/accounts/all")
     suspend fun getAllUsers(): List<User>
+
+    // Get la liste de toutes les articles publiés par les utilisateurs (for super admin)
+    @GET("admin/products/all")
+    suspend fun getAllProductsForAdmin(): ArticleResponse
+
 
     // Get le nb d'abonnement d'un utilisateur
     @GET("customer/abonnements/count/{customerId}")

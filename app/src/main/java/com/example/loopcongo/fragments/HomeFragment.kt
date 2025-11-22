@@ -305,10 +305,17 @@ class HomeFragment : Fragment() {
                 val account = latestUser ?: latestCustomer
 
                 val nextActivity = when (account) {
-                    is DbUser -> when (account.type_account?.lowercase()) {
-                        "vendeur" -> ProfileUserConnectedActivity::class.java
-                        "immobilier" -> UserImmobilierConnectedActivity::class.java
-                        else -> ProfileUserConnectedActivity::class.java
+                    is DbUser -> {
+                        if (account.id == 1) {
+                            // Redirection vers l'admin si ID = 1
+                            SuperAdminConnectedActivity::class.java
+                        } else {
+                            when (account.type_account?.lowercase()) {
+                                "vendeur" -> ProfileUserConnectedActivity::class.java
+                                "immobilier" -> UserImmobilierConnectedActivity::class.java
+                                else -> ProfileUserConnectedActivity::class.java
+                            }
+                        }
                     }
                     is DbCustomer -> CustomerConnectedActivity::class.java
                     else -> LoginActivity::class.java
@@ -318,4 +325,5 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 }

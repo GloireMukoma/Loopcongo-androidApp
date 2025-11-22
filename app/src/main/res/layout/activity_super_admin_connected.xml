@@ -26,7 +26,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="15dp">
 
                 <!-- Back Button -->
                 <ImageView
@@ -34,6 +34,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_back"/>
+
+                <TextView
+                    android:id="@+id/statsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TABLEAU DE BORD"
+                    android:textColor="#D0D0D0"
+                    android:layout_marginStart="12dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -49,6 +59,7 @@
                     android:src="@drawable/ic_logout" />
             </LinearLayout>
 
+
             <!-- Profile info -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,75 +69,140 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImageUserConnected"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginEnd="12dp"
-                    android:src="@drawable/user_profile"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/loop_icon"
                     android:scaleType="centerCrop"
-                    app:strokeColor="@color/secondaryColor"
-                    app:strokeWidth="2dp"
                     app:shapeAppearanceOverlay="@style/CircleImageView" />
 
+                <!-- Statistiques -->
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:id="@+id/statsLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-4dp">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-4dp"
+                    android:gravity="center_vertical">
 
+
+                    <!-- TOTAL ACTIVE -->
                     <LinearLayout
-                        android:id="@+id/usernameContainer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingEnd="20dp">
 
                         <TextView
-                            android:id="@+id/nameUserConnected"
+                            android:id="@+id/totalActive"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Username"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp" />
+                            android:text="..."
+                            android:textColor="#D0D0D0"
+                            android:textStyle="bold"
+                            android:textSize="18sp" />
 
-                        <ImageView
-                            android:id="@+id/profileVendeurBadgeUserConnected"
-                            android:layout_width="17dp"
-                            android:layout_height="17dp"
-                            android:src="@drawable/ic_badge"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginStart="3dp"
-                            app:tint="@android:color/holo_blue_dark"
-                            android:visibility="gone"/> <!-- Par défaut caché -->
+                        <TextView
+                            android:id="@+id/txtTotalActiveLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Actifs"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="13sp"/>
                     </LinearLayout>
 
+                    <!-- BASIC abonnés -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingEnd="20dp">
 
-                    <TextView
-                        android:id="@+id/telephoneUserConnected"
+                        <TextView
+                            android:id="@+id/nbAbonnerBasic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="..."
+                            android:textColor="#D0D0D0"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/tvPublicationsLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Basic"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <!-- PRO abonnés -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+243 97 1737160"
-                        android:textColor="#D0D0D0"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:id="@+id/cityUserConnected"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingEnd="20dp">
+
+                        <TextView
+                            android:id="@+id/nbAbonnerPro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="..."
+                            android:textColor="#D0D0D0"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/tvFollowersLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pro"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <!-- PREMIUM abonnés -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Super Administrateur"
-                        android:textColor="@color/secondaryColor"
-                        android:textSize="12sp" />
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/nbAbonnerPremium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="..."
+                            android:textColor="#D0D0D0"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/tvSuivisLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Premium"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
+
             <!-- Description -->
-            <TextView
+            <!--<TextView
                 android:id="@+id/descriptionUserConnected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
-                android:text="Description du profil utilisateur, les entrepreneurs Informer,  Inspirer, Fédérer"
+                android:text="Compte du super administrateur."
                 android:textSize="14sp"
-                android:layout_marginBottom="4dp"/>
+                android:layout_marginBottom="4dp"/>-->
 
             <!-- Score / Articles / Comments / Likes -->
             <LinearLayout

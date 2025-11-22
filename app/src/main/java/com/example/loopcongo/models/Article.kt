@@ -4,6 +4,7 @@ data class Article(
 
     val account_id: Int,
     val user_nom: String,
+    val username: String,
     val categorie_id: Int,
     val nom: String,
     val is_sponsored: Int,
