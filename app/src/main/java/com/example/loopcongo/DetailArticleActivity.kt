@@ -24,6 +24,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         // Couleur de la navigation bar (en bas)

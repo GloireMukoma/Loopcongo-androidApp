@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-
         android:background="@color/BleuFoncePrimaryColor"
         android:elevation="4dp"
         android:clipToOutline="true">
@@ -75,7 +74,6 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:clipToPadding="false"
-            android:background="@color/BleuClairPrimaryColor"
             android:clipToOutline="true"
             android:elevation="2dp"/>
 

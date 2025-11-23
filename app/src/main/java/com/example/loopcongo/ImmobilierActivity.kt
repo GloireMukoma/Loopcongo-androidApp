@@ -9,26 +9,31 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
 import com.example.loopcongo.adapters.immobiliers.ImmobilierGridAdapter
+import com.example.loopcongo.database.*
 import com.example.loopcongo.models.AnnonceResponse
 import com.example.loopcongo.models.Immobilier
 import com.example.loopcongo.models.ImmobilierResponse2
 import com.example.loopcongo.restApi.ApiClient
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ImmobilierActivity : AppCompatActivity() {
+
+    private lateinit var userDao: UserDao
+    private lateinit var customerDao: CustomerDao
 
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler(Looper.getMainLooper())
@@ -45,15 +50,28 @@ class ImmobilierActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_immobilier)
+        supportActionBar?.hide()
 
         // Couleur de la status bar (en haut)
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         // Couleur de la navigation bar (en bas)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
+
+        // Instance de la BD Room
+        val db = AppDatabase.getDatabase(this@ImmobilierActivity)
+        userDao = db.userDao()
+        customerDao = db.customerDao()
+
+        // Récupère l'ImageView de l'avatar
+        val avatarImgUserConnected = findViewById<ImageView>(R.id.avatarImgUserConnected)
+
+        // Met à jour l'avatar et configure le clic
+        lifecycleScope.launch {
+            updateAvatarAndListener(avatarImgUserConnected)
+        }
 
         recyclerView = findViewById(R.id.immobiliersRecyclerView)
         progressBar = findViewById(R.id.progressBarImmo)
-        searchLayout = findViewById(R.id.searchLayout)
         searchImmobilierEditText = findViewById(R.id.searchImmobilierEditText)
 
         recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -139,6 +157,59 @@ class ImmobilierActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private suspend fun updateAvatarAndListener(avatar: ImageView) {
+        // Récupère les comptes connectés
+        val user = userDao.getUser()       // vendeur ou immobilier
+        val customer = customerDao.getCustomer() // client
+        val currentAccount: Any? = user ?: customer
+
+        // Met à jour l'image de l'avatar
+        val imageUrl = when (currentAccount) {
+            is User -> currentAccount.file_url
+            is Customer -> currentAccount.file_url
+            else -> null
+        }
+
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_login)
+                .error(R.drawable.ic_login)
+                .circleCrop()
+                .into(avatar)
+        } else {
+            avatar.setImageResource(R.drawable.ic_login)
+        }
+
+        // Configure le listener sur l'avatar
+        avatar.setOnClickListener {
+            lifecycleScope.launch {
+                val latestUser = userDao.getUser()
+                val latestCustomer = customerDao.getCustomer()
+                val account = latestUser ?: latestCustomer
+
+                val nextActivity = when (account) {
+                    is User -> {
+                        if (account.id == 1) {
+                            // Redirection vers l'admin si ID = 1
+                            SuperAdminConnectedActivity::class.java
+                        } else {
+                            when (account.type_account?.lowercase()) {
+                                "vendeur" -> ProfileUserConnectedActivity::class.java
+                                "immobilier" -> UserImmobilierConnectedActivity::class.java
+                                else -> ProfileUserConnectedActivity::class.java
+                            }
+                        }
+                    }
+                    is Customer -> CustomerConnectedActivity::class.java
+                    else -> LoginActivity::class.java
+                }
+
+                startActivity(Intent(this@ImmobilierActivity, nextActivity))
+            }
         }
     }
 }

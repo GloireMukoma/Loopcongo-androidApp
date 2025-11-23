@@ -45,7 +45,6 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
     private lateinit var nbAbonnerPremium: TextView
     private lateinit var totalActive: TextView
 
-
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -57,6 +56,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_super_admin_connected)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         // ---- INITIALISATION DES VUES ----
         //profileImage = findViewById(R.id.profileImageUserConnected)

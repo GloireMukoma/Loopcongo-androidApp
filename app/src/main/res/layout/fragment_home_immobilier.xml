@@ -30,9 +30,7 @@
                 android:scaleType="centerCrop"
                 android:padding="2dp"
                 app:shapeAppearanceOverlay="@style/CircularImageStyle"
-                app:strokeColor="@color/secondaryColor"
-                app:strokeWidth="2dp"
-                android:src="@drawable/user_profile" />
+                android:src="@drawable/ic_login" />
 
             <!-- Logo centré -->
             <ImageView

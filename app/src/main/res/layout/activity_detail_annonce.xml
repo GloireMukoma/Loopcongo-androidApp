@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/BleuClairPrimaryColor"
+    android:background="@color/BleuFoncePrimaryColor"
     tools:context=".DetailAnnonceActivity">
 
     <LinearLayout
@@ -13,7 +13,47 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <!-- HEADER : Avatar + Auteur + Temps + Menu -->
+        <!-- Top Bar with back arrow and 2 icons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back"/>
+
+            <TextView
+                android:id="@+id/statsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail de l'annonce"
+                android:textColor="#D0D0D0"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:background="#2b3144" />
+
+        <!-- Avatar + Auteur + Temps + Menu -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

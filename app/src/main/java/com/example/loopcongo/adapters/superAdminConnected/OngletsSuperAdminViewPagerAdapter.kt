@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loopcongo.fragments.superAdminConnected.OngletAccountsCreatedFragment
 import com.example.loopcongo.fragments.superAdminConnected.OngletArticlesFragment
+import com.example.loopcongo.fragments.superAdminConnected.OngletWaitingUsersAbonnementFragment
 import com.example.loopcongo.fragments.superAdminConnected.SubscriptionStatsFragment
 
 class OngletsSuperAdminViewPagerAdapter(
@@ -18,7 +19,7 @@ class OngletsSuperAdminViewPagerAdapter(
         return when (position) {
             0 -> OngletAccountsCreatedFragment()
             1 -> OngletArticlesFragment()
-            2 -> SubscriptionStatsFragment()
+            2 -> OngletWaitingUsersAbonnementFragment()
             else -> Fragment()
         }
     }

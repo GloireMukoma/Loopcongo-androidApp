@@ -4,38 +4,75 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="8dp"
     android:background="@color/BleuFoncePrimaryColor">
 
-    <!-- 🔹 Champ de recherche stylé (caché par défaut) -->
+    <!-- TopBar personnalisée -->
     <LinearLayout
-        android:id="@+id/searchLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:background="@drawable/search_bg"
-        android:paddingHorizontal="12dp"
-        android:gravity="center_vertical"
-        android:visibility="gone"> <!-- caché au départ -->
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@color/BleuFoncePrimaryColor">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="#cccccc" />
+        <!-- Ligne principale : Image + Champ de recherche + Notification -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <EditText
-            android:id="@+id/searchImmobilierEditText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="Filtrer par quartier..."
-            android:textColor="#ffffff"
-            android:textColorHint="#aaaaaa"
-            android:textSize="14sp"
-            android:background="@android:color/transparent"
-            android:paddingStart="8dp"
-            android:inputType="text" />
+            <!-- Image de profil -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImgUserConnected"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircularImageStyle"
+                android:src="@drawable/user_profile" />
+
+            <!-- Champ de recherche -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/search_bg"
+                android:paddingHorizontal="12dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:tint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/searchImmobilierEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="Filtrer par quartier..."
+                    android:textColor="#ffffff"
+                    android:textColorHint="#aaaaaa"
+                    android:textSize="14sp"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="8dp"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <!-- Bouton de notification
+            <ImageView
+                android:id="@+id/subscriptionIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="3dp"
+                app:tint="@color/moveColor"
+                android:src="@drawable/ic_star"
+                android:contentDescription="Notifications" /> -->
+        </LinearLayout>
+
     </LinearLayout>
 
     <!-- RecyclerView des biens -->
@@ -44,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginHorizontal="8dp"
         android:paddingTop="8dp"/>
 
     <!-- ProgressBar -->

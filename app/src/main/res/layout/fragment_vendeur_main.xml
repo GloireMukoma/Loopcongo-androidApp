@@ -21,7 +21,9 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="5dp">
 
-            <!-- Image de profil -->
+            <!-- Image de profil
+             app:strokeColor="@android:color/holo_orange_light"
+                app:strokeWidth="1dp"-->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/avatarImgProfileUserConnected"
                 android:layout_width="37dp"
@@ -30,9 +32,7 @@
                 android:scaleType="centerCrop"
                 android:padding="2dp"
                 app:shapeAppearanceOverlay="@style/CircularImageStyle"
-                app:strokeColor="@android:color/holo_orange_light"
-                app:strokeWidth="1dp"
-                android:src="@drawable/user_profile" />
+                android:src="@drawable/ic_login" />
 
             <!-- Champ de recherche -->
             <LinearLayout

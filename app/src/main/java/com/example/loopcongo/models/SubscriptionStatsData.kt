@@ -13,3 +13,4 @@ data class SubscriptionStatsData(
     val premium: Int,
     val waiting: Int
 )
+

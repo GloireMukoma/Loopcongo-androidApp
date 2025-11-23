@@ -13,6 +13,7 @@ class DetailAnnonceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_annonce)
+        supportActionBar?.hide()
 
         // Récupération des vues
         val userAvatar = findViewById<ShapeableImageView>(R.id.userAvatarAnnonceDetail)

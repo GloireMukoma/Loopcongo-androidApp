@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/progressBarAccounts"
@@ -25,6 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@null"
+        android:divider="@color/low_white"
+        android:layout_marginHorizontal="18dp"
+        android:dividerHeight="1dp"
         android:paddingTop="10dp"/>
 </LinearLayout>

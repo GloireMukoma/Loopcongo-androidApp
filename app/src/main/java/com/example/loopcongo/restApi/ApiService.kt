@@ -138,6 +138,21 @@ interface ApiService {
     @GET("admin/subscribedUsers/get")
     fun getSubscribedUsers(): Call<List<User>>
 
+    // Get la liste des utilisateurs qui ont deja envoyés leur abonnement (en attente de validation)
+    @GET("admin/abonnement/users/waiting")
+    suspend fun getWaitingUsersAbonnements(): List<User>
+
+    // Valider un abonnement
+    @POST("admin/abonnements/validate/{userId}")
+    suspend fun validateAbonnement(
+        @Path("userId") userId: Int
+    ): Response<Unit>
+
+    // Rejeter un abonnement
+    @POST("admin/abonnements/reject/{userId}")
+    suspend fun rejectAbonnement(
+        @Path("userId") userId: Int
+    ): Response<Unit>
 
     // get la liste des comptes crées (onglets compte super admin)
     @GET("admin/accounts/all")

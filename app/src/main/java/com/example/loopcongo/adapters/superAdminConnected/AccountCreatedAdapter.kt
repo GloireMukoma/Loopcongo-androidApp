@@ -1,12 +1,14 @@
 package com.example.loopcongo.adapters.superAdminConnected
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
@@ -26,14 +28,21 @@ class AccountCreatedAdapter(
         val txtUsername = view.findViewById<TextView>(R.id.username)
         val txtPhone = view.findViewById<TextView>(R.id.phone)
         val txtLocation = view.findViewById<TextView>(R.id.location)
-        val txtAbout = view.findViewById<TextView>(R.id.about)
+        val txtStatus = view.findViewById<TextView>(R.id.status)
         val badge = view.findViewById<ImageView>(R.id.vendeurBadgeSponsor)
 
         // Remplissage
         txtUsername.text = user.username
         txtPhone.text = user.contact
         txtLocation.text = user.city
-        txtAbout.text = user.about
+        txtStatus.text = user.status
+
+        // Couleur selon le status
+        when (user.status.lowercase()) {
+            "waiting" -> txtStatus.setTextColor(Color.RED)
+            "active"  -> txtStatus.setTextColor(ContextCompat.getColor(view.context, android.R.color.holo_blue_dark))
+            else -> txtStatus.setTextColor(Color.GRAY) // couleur par défaut
+        }
 
         // Badge SPONSOR
         badge.visibility = if (user.is_certified == "1") View.VISIBLE else View.GONE

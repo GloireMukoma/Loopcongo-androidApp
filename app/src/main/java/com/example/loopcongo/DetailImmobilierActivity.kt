@@ -24,6 +24,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         //Couleur de la status bar
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)

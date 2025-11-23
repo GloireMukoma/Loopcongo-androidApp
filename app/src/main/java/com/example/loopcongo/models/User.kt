@@ -29,7 +29,17 @@ data class User(
     val total_articles: Int?,
     val total_likes: Int?,
 
-    val interets: String? // Champ du compte client
+    val interets: String?, // Champ du compte client
+
+    // Infos de la transactions suite a un abonnement
+    val transaction_id: Int,
+    val plan: String,
+    val duree: String?,
+    val method: String?,
+    val numero: String?,
+    val status: String,
+    val heure_paiement: String,
+    val date_demande: String
 )
 
 // Ce modele gere les utilisateurs ainsi que leurs dernières articles qu'ils ont publié
