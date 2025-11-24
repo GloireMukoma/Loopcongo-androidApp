@@ -1,0 +1,132 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="10dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Avatar dans CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/imgProfileVendeur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Infos utilisateur -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp">
+
+            <!-- Ligne Username + Badge + Status -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Username -->
+                <TextView
+                    android:id="@+id/usernameVendeur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom utilisateur"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <!-- Badge à côté du Username -->
+                <ImageView
+                    android:id="@+id/vendeurBadgeSponsor"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_badge"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:visibility="gone"/>
+
+                <!-- Status aligné à droite -->
+                <!-- Container horizontal pour l'icône et le texte -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_gravity="end"
+                    android:layout_weight="1">
+
+                    <!-- Icône de localisation
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/ic_location"
+                        app:tint="@android:color/holo_blue_dark" />-->
+
+                    <!-- Nom de la ville -->
+                    <TextView
+                        android:id="@+id/locationItemVendeur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="City"
+                        android:textSize="13sp"
+                        android:textColor="@color/gray"
+                        android:gravity="end"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- Téléphone -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="4dp"
+                    app:tint="@android:color/holo_blue_dark"
+                    android:src="@drawable/ic_phone" />
+
+                <TextView
+                    android:id="@+id/phoneItemVendeur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+243 97 1737160"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/aboutVendeur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="texte de l'annonce"
+                android:maxLines="2"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

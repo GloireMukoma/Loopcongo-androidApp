@@ -43,7 +43,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
     private lateinit var nbAbonnerBasic: TextView
     private lateinit var nbAbonnerPro: TextView
     private lateinit var nbAbonnerPremium: TextView
-    private lateinit var totalActive: TextView
+    private lateinit var nbAbonnementEnAttente: TextView
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
@@ -56,7 +56,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_super_admin_connected)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
+        //window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         // ---- INITIALISATION DES VUES ----
         //profileImage = findViewById(R.id.profileImageUserConnected)
@@ -73,7 +73,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
         nbAbonnerBasic = findViewById(R.id.nbAbonnerBasic)
         nbAbonnerPro = findViewById(R.id.nbAbonnerPro)
         nbAbonnerPremium = findViewById(R.id.nbAbonnerPremium)
-        totalActive = findViewById(R.id.totalActive)
+        nbAbonnementEnAttente = findViewById(R.id.nbAbonnementEnAttente)
 
         tabLayout = findViewById(R.id.superAdminConnectedtTabLayout)
         viewPager = findViewById(R.id.superAdminConnectedViewPager)
@@ -168,7 +168,7 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val data = response.body()!!.data
 
-                        totalActive.text = data.total_active.toString()
+                        nbAbonnementEnAttente.text = data.waiting.toString()
                         nbAbonnerBasic.text = data.basic.toString()
                         nbAbonnerPro.text = data.pro.toString()
                         nbAbonnerPremium.text = data.premium.toString()

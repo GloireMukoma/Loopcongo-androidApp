@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //supportActionBar?.hide()
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
         //forcer pour que la barre de notification et d'en bas prenne un couleur
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

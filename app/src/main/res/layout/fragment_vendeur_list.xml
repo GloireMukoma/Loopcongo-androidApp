@@ -1,12 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:id="@+id/vendeurListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</FrameLayout>
-<!-- ce fragment implemente une reyclerview generique pour tout
-type de vendeur (vendeur, immobilier)
--->
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+
+        android:paddingTop="10dp"/>
+
+</LinearLayout>
+
+    <!--
+     android:divider="@color/low_white"
+      android:dividerHeight="1dp"
+    ce fragment implemente une reyclerview generique pour tout
+    type de vendeur (vendeur, immobilier)
+    -->

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,7 @@ import retrofit2.Response
 
 class VendeurListFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var vendeurListView: ListView
     private lateinit var vendeurAdapter: VendeurAdapter
     private val vendeurs = mutableListOf<User>()
     private var type: String? = null
@@ -53,29 +54,35 @@ class VendeurListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_vendeur_list, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        vendeurAdapter = VendeurAdapter(vendeurs)
-        recyclerView.adapter = vendeurAdapter
+        vendeurListView = view.findViewById(R.id.vendeurListView)
 
-        loadVendeurs(null) // initial (pas de recherche)
+        // Utilisation de ton ArrayAdapter
+        vendeurAdapter = VendeurAdapter(requireContext(), vendeurs)
+        vendeurListView.adapter = vendeurAdapter
+
+        loadVendeurs(null) // Chargement initial
 
         return view
     }
 
+    // Appel depuis l’activité principale pour filtrer
     fun filterVendeursFromApi(query: String) {
         loadVendeurs(if (query.isEmpty()) null else query)
     }
 
     private fun loadVendeurs(username: String?) {
         ApiClient.instance.getVendeurs(username).enqueue(object : Callback<UserResponse> {
+
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     val allVendeurs = response.body()?.data ?: emptyList()
+
+                    // Filtrer par type
                     val filtered = allVendeurs.filter { it.type_account == type }
 
                     vendeurs.clear()
                     vendeurs.addAll(filtered)
+
                     vendeurAdapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(requireContext(), "Erreur de chargement.", Toast.LENGTH_SHORT).show()

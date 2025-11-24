@@ -1,6 +1,7 @@
 package com.example.loopcongo.adapters.superAdminConnected
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.loopcongo.ProfileVendeurActivity
+import com.example.loopcongo.ProfileVendeurImmobilierActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 
@@ -37,19 +40,48 @@ class WaitingUsersAbonnementAdapter(
         val img = view.findViewById<ImageView>(R.id.imgUserPending)
         val name = view.findViewById<TextView>(R.id.txtNamePending)
         val phone = view.findViewById<TextView>(R.id.txtPhonePending)
-        val status = view.findViewById<TextView>(R.id.txtTypeStatus)
+        val heureEnvoie = view.findViewById<TextView>(R.id.txtHeureEnvoieArgent)
         val menu = view.findViewById<ImageView>(R.id.btnMenuPending)
+        val dateDemande = view.findViewById<TextView>(R.id.dateDemande)
+        val textStatus = view.findViewById<TextView>(R.id.textStatus)
 
         // Filling data
         name.text = user.username
-        phone.text = user.contact
-        status.text = user.status
+        phone.text = user.numero // Numero utilisé de compte utilisé pour envoyer l'argent
+        heureEnvoie.text = " • ${user.heure_paiement}"
+        dateDemande.text = user.date_demande
+        textStatus.text = user.status
 
         // Couleur selon le status
         when (user.status.lowercase()) {
-            "waiting" -> status.setTextColor(Color.RED)
-            "active"  -> status.setTextColor(ContextCompat.getColor(view.context, android.R.color.holo_blue_dark))
-            else -> status.setTextColor(Color.GRAY) // couleur par défaut
+            "waiting" -> textStatus.setTextColor(Color.RED)
+            "active"  -> textStatus.setTextColor(ContextCompat.getColor(view.context, android.R.color.holo_blue_dark))
+            else -> textStatus.setTextColor(Color.GRAY) // couleur par défaut
+        }
+
+        //CLIC : Redirection vers Détail
+        view.setOnClickListener {
+            val ctx = view.context
+
+            val intent = when (user.type_account?.lowercase()) {
+                "vendeur" -> Intent(ctx, ProfileVendeurActivity::class.java)
+                "immobilier" -> Intent(ctx, ProfileVendeurImmobilierActivity::class.java)
+                else -> Intent(ctx, ProfileVendeurActivity::class.java)
+            }
+
+            intent.putExtra("vendeurId", user.id)
+            intent.putExtra("vendeurUsername", user.username)
+            intent.putExtra("vendeurContact", user.contact)
+            intent.putExtra("vendeurCity", user.city)
+            intent.putExtra("vendeurDescription", user.about)
+            intent.putExtra("vendeurTypeAccount", user.type_account)
+            intent.putExtra("vendeurAvatarImg", user.file_url)
+            intent.putExtra("isCertifiedVendeur", user.is_certified)
+            intent.putExtra("vendeurTotalArticles", user.total_articles)
+            intent.putExtra("vendeurTotalLikes", user.total_likes)
+            intent.putExtra("vendeurNbAbonner", user.nb_abonner)
+
+            ctx.startActivity(intent)
         }
 
         Glide.with(context)

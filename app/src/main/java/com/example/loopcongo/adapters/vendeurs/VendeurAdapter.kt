@@ -1,9 +1,11 @@
 package com.example.loopcongo.adapters.vendeurs
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,68 +15,59 @@ import com.example.loopcongo.ProfileVendeurImmobilierActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 
-class VendeurAdapter(private val vendeurs: List<User>) :
-    RecyclerView.Adapter<VendeurAdapter.VendeurViewHolder>() {
+class VendeurAdapter(
+    context: Context,
+    private val vendeurs: List<User>
+) : ArrayAdapter<User>(context, 0, vendeurs) {
 
-    inner class VendeurViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgProfile: ImageView = itemView.findViewById(R.id.imgProfileVendeur)
-        val nom: TextView = itemView.findViewById(R.id.usernameVendeur)
-        val phone: TextView = itemView.findViewById(R.id.phoneItemVendeur)
-        val city: TextView = itemView.findViewById(R.id.locationItemVendeur)
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view: View = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.item_vendeur2, parent, false)
 
-        //val boost: TextView = itemView.findViewById(R.id.statutSponsoredOrNot)
-        val about: TextView = itemView.findViewById(R.id.aboutVendeur)
-        val badgeImage: ImageView = itemView.findViewById(R.id.vendeurBadgeSponsor)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendeurViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_vendeur, parent, false)
-        return VendeurViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: VendeurViewHolder, position: Int) {
         val vendeur = vendeurs[position]
 
-        // Affichage nom et description
-        holder.nom.text = vendeur.username
-        holder.phone.text = vendeur.contact
-        holder.city.text = vendeur.city
-        holder.about.text = vendeur.about ?: "Aucune description"
+        // Views
+        val imgProfile = view.findViewById<ImageView>(R.id.imgProfileVendeur)
+        val nom = view.findViewById<TextView>(R.id.usernameVendeur)
+        val phone = view.findViewById<TextView>(R.id.phoneItemVendeur)
+        val city = view.findViewById<TextView>(R.id.locationItemVendeur)
+        val about = view.findViewById<TextView>(R.id.aboutVendeur)
+        val badgeImage = view.findViewById<ImageView>(R.id.vendeurBadgeSponsor)
 
+        // Texte
+        nom.text = vendeur.username
+        phone.text = vendeur.contact
+        city.text = vendeur.city
+        about.text = vendeur.about ?: "Aucune description"
+
+        // Badge certifié
         if (vendeur.is_certified == "1") {
-            holder.badgeImage.visibility = View.VISIBLE
+            badgeImage.visibility = View.VISIBLE
         } else {
-            holder.badgeImage.visibility = View.GONE
+            badgeImage.visibility = View.GONE
         }
 
-        // Chargement de l'image
+        // Image de profil
         val imageUrl = if (!vendeur.file_url.isNullOrEmpty()) {
             "https://loopcongo.com/${vendeur.file_url}"
         } else {
             "https://loopcongo.com/default-avatar.jpg"
         }
-        Glide.with(holder.itemView.context)
+
+        Glide.with(context)
             .load(imageUrl)
-            .placeholder(R.drawable.avatar) // Optionnel : image temporaire
-            .error(R.drawable.avatar)       // Optionnel : image si erreur
-            .into(holder.imgProfile)
+            .placeholder(R.drawable.avatar)
+            .error(R.drawable.avatar)
+            .into(imgProfile)
 
-        // 👉 CLIC : Redirection vers Détail
-        holder.itemView.setOnClickListener {
-            val context = holder.itemView.context
-
-            // Vérifie le type de compte du vendeur
+        // Clic → Profil
+        view.setOnClickListener {
             val intent = when (vendeur.type_account?.lowercase()) {
                 "vendeur" -> Intent(context, ProfileVendeurActivity::class.java)
                 "immobilier" -> Intent(context, ProfileVendeurImmobilierActivity::class.java)
-                else -> {
-                    // Par défaut, redirige vers ProfileVendeurActivity
-                    Intent(context, ProfileVendeurActivity::class.java)
-                }
+                else -> Intent(context, ProfileVendeurActivity::class.java)
             }
 
-            // Passer les données nécessaires
             intent.putExtra("vendeurId", vendeur.id)
             intent.putExtra("vendeurUsername", vendeur.username)
             intent.putExtra("vendeurContact", vendeur.contact)
@@ -89,7 +82,7 @@ class VendeurAdapter(private val vendeurs: List<User>) :
 
             context.startActivity(intent)
         }
-    }
 
-    override fun getItemCount(): Int = vendeurs.size
+        return view
+    }
 }
