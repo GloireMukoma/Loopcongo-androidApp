@@ -14,36 +14,41 @@ import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.ImmoUserDemande
 
-class ImmoUserDemandeAdapter(
-    context: Context,
-    @LayoutRes private val itemLayout: Int,
-    private val demandes: List<ImmoUserDemande>
-) : ArrayAdapter<ImmoUserDemande>(context, itemLayout, demandes) {
+class ImmoUserDemandeRecyclerAdapter(
+    private val demandes: List<ImmoUserDemande>,
+    @LayoutRes private val itemLayout: Int
+) : RecyclerView.Adapter<ImmoUserDemandeRecyclerAdapter.DemandeViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context)
+    inner class DemandeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val avatar: ImageView = view.findViewById(R.id.avatarImgUserDemande)
+        val username: TextView = view.findViewById(R.id.usernameDemande)
+        val message: TextView = view.findViewById(R.id.msgUserDemande)
+        val time: TextView = view.findViewById(R.id.timeDemande)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemandeViewHolder {
+        val view = LayoutInflater.from(parent.context)
             .inflate(itemLayout, parent, false)
+        return DemandeViewHolder(view)
+    }
 
+    override fun onBindViewHolder(holder: DemandeViewHolder, position: Int) {
         val demande = demandes[position]
 
-        val avatar = view.findViewById<ImageView>(R.id.avatarImgUserDemande)
-        val username = view.findViewById<TextView>(R.id.usernameDemande)
-        val message = view.findViewById<TextView>(R.id.msgUserDemande)
-        val time = view.findViewById<TextView>(R.id.timeDemande)
+        holder.username.text = demande.username
+        holder.message.text = demande.message
+        holder.time.text = "• ${demande.created_at}"
 
-        username.text = demande.username
-        message.text = demande.message
-        time.text = "• ${demande.created_at}"
-
-        // Charger avatar
-        Glide.with(context)
+        // Charger l’avatar
+        Glide.with(holder.itemView.context)
             .load(demande.avatar)
             .placeholder(R.drawable.user1)
             .circleCrop()
-            .into(avatar)
+            .into(holder.avatar)
 
-        // --- CLICK SUR L’ITEM ---
-        view.setOnClickListener {
+        // Action lors du clic
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
             val contactCustomer = demande.contact ?: ""
 
             if (contactCustomer.isEmpty()) {
@@ -63,7 +68,7 @@ class ImmoUserDemandeAdapter(
                 Toast.makeText(context, "WhatsApp n’est pas installé", Toast.LENGTH_SHORT).show()
             }
         }
-
-        return view
     }
+
+    override fun getItemCount(): Int = demandes.size
 }

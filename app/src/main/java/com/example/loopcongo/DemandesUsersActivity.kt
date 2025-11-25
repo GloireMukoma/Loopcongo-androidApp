@@ -1,10 +1,10 @@
 package com.example.loopcongo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -20,7 +20,7 @@ import retrofit2.Response
 
 class DemandesUsersActivity : AppCompatActivity() {
 
-    private lateinit var demandeRecycler: RecyclerView
+    private lateinit var demandeListView: ListView
     private lateinit var demandeAdapter: ImmoUserDemandeAdapter
     private val demandes = mutableListOf<ImmoUserDemande>()
     private lateinit var progressBar: ProgressBar
@@ -28,25 +28,29 @@ class DemandesUsersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demandes_users)
-        supportActionBar?.title = "Demandes des utilisateurs"
+        supportActionBar?.hide()
 
-
-        // Couleur de la status bar (en haut)
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        // Couleur de la navigation bar (en bas)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        //window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
-        demandeRecycler = findViewById(R.id.demandesRecyclerView)
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
+        }
+
+        demandeListView = findViewById(R.id.demandesListView)
         progressBar = findViewById(R.id.progressBarDemandes)
 
-        // 🔹 LinearLayoutManager vertical pour que les dividers fonctionnent
-        demandeRecycler.layoutManager = LinearLayoutManager(this)
+        // 🔹 Adapter pour ListView
+        demandeAdapter = ImmoUserDemandeAdapter(
+            this,
+            R.layout.item_demande2,
+            demandes
+        )
+        demandeListView.adapter = demandeAdapter
 
-        // 🔹 Adapter
-        demandeAdapter = ImmoUserDemandeAdapter(demandes, R.layout.item_demande2)
-        demandeRecycler.adapter = demandeAdapter
-
-        // 🔹 Charger les demandes
         loadDemandes()
     }
 
@@ -59,6 +63,7 @@ class DemandesUsersActivity : AppCompatActivity() {
                 response: Response<ApiResponseDemande>
             ) {
                 progressBar.visibility = View.GONE
+
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!.demandes
                     demandes.clear()

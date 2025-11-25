@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.loopcongo.*
 import com.example.loopcongo.adapters.ImmoUserDemandeAdapter
+import com.example.loopcongo.adapters.ImmoUserDemandeRecyclerAdapter
 import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
 import com.example.loopcongo.adapters.immobiliers.CarouselImmobiliersHomePageAdapter
 import com.example.loopcongo.adapters.immobiliers.ItemCityImmobilierAdapter
@@ -44,7 +45,7 @@ class HomeImmobilierFragment : Fragment() {
 
     private lateinit var demandeRecycler: RecyclerView
 
-    private lateinit var demandeAdapter: ImmoUserDemandeAdapter
+    private lateinit var demandeAdapter: ImmoUserDemandeRecyclerAdapter
     private val demandes = mutableListOf<ImmoUserDemande>()
 
     override fun onCreateView(
@@ -130,8 +131,9 @@ class HomeImmobilierFragment : Fragment() {
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        demandeAdapter = ImmoUserDemandeAdapter(demandes,  R.layout.item_demande)
+        demandeAdapter = ImmoUserDemandeRecyclerAdapter(demandes,  R.layout.item_demande)
         demandeRecycler.adapter = demandeAdapter
+
 
         /*recyclerItemImmobilierCity = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
         recyclerItemImmobilierCity.layoutManager =

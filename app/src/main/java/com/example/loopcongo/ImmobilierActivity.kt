@@ -44,6 +44,9 @@ class ImmobilierActivity : AppCompatActivity() {
     private lateinit var searchLayout: LinearLayout
     private lateinit var searchImmobilierEditText: EditText
 
+    private lateinit var cityImmobiliers: TextView
+
+
     private var fullList: List<Immobilier> = listOf()
     private lateinit var cityName: String
 
@@ -56,6 +59,13 @@ class ImmobilierActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
         // Couleur de la navigation bar (en bas)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
+
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
+        }
 
         // Instance de la BD Room
         val db = AppDatabase.getDatabase(this@ImmobilierActivity)
@@ -70,6 +80,13 @@ class ImmobilierActivity : AppCompatActivity() {
             updateAvatarAndListener(avatarImgUserConnected)
         }
 
+        // 🔹 Titre de la barre d'action
+        cityName = intent.getStringExtra("cityName") ?: "Lubumbashi"
+        //title = "Biens à $cityName"
+
+        cityImmobiliers = findViewById(R.id.cityImmobiliers)
+        cityImmobiliers.text = "Immobiliers à $cityName"
+
         recyclerView = findViewById(R.id.immobiliersRecyclerView)
         progressBar = findViewById(R.id.progressBarImmo)
         searchImmobilierEditText = findViewById(R.id.searchImmobilierEditText)
@@ -78,9 +95,6 @@ class ImmobilierActivity : AppCompatActivity() {
         adapter = ImmobilierGridAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        // 🔹 Titre de la barre d'action
-        cityName = intent.getStringExtra("cityName") ?: "Lubumbashi"
-        title = "Biens à $cityName"
 
         // 🔹 Récupération des biens depuis l'API
         fetchImmobiliersByCity(cityName)

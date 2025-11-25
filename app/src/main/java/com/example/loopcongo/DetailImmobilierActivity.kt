@@ -33,6 +33,14 @@ class DetailImmobilierActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail_immobilier2)
         supportActionBar?.title = "Détail de l'immobilier"
 
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
+        }
+
+
         // ✅ Récupération des vues
         val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailImmobilier)
         val auteur = findViewById<TextView>(R.id.nomAuteurdetailImmobilier)
@@ -61,7 +69,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
         val address = intent.getStringExtra("address")
 
         val immoDescription = intent.getStringExtra("description")
-        val image = intent.getStringExtra("ImmoImage") ?: "0"
+        val image = intent.getStringExtra("ImmoImage")
 
         val username = intent.getStringExtra("username")
         val userImageProfil = intent.getStringExtra("userImage")

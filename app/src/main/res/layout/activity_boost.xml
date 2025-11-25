@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:text="Abonnement"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -76,6 +76,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="15dp" />
 
         <!-- Sous-titre -->

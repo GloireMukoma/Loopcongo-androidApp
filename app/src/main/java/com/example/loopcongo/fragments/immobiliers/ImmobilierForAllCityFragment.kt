@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.ImmoUserDemandeAdapter
+import com.example.loopcongo.adapters.ImmoUserDemandeRecyclerAdapter
 import com.example.loopcongo.adapters.articles.ArticleGridAdapter
 import com.example.loopcongo.adapters.immobiliers.ImmobilierGridAdapter
 import com.example.loopcongo.models.*
@@ -28,7 +29,7 @@ class ImmobilierForAllCityFragment : Fragment() {
     private lateinit var demandeRecycler: RecyclerView
 
     private lateinit var immoAdapter: ImmobilierGridAdapter
-    private lateinit var demandeAdapter: ImmoUserDemandeAdapter
+    private lateinit var demandeAdapter: ImmoUserDemandeRecyclerAdapter
 
     private val immobiliers = mutableListOf<Immobilier>()
     private val demandes = mutableListOf<ImmoUserDemande>()
@@ -61,7 +62,7 @@ class ImmobilierForAllCityFragment : Fragment() {
         immoRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // 🔹 Adapters
-        demandeAdapter = ImmoUserDemandeAdapter(demandes, R.layout.item_demande)
+        demandeAdapter = ImmoUserDemandeRecyclerAdapter(demandes, R.layout.item_demande)
         immoAdapter = ImmobilierGridAdapter(immobiliers)
 
         demandeRecycler.adapter = demandeAdapter

@@ -144,6 +144,17 @@ class HomeFragment : Fragment() {
                         intent.putExtra("city", annonce.city)
                         intent.putExtra("contact", annonce.contact)
                         intent.putExtra("file_url", annonce.file_url)
+
+                        // données de l'utilisateur
+                        intent.putExtra("vendeurId", annonce.user_id)
+                        intent.putExtra("vendeurUsername", annonce.username)
+                        intent.putExtra("vendeurContact", annonce.contact)
+                        intent.putExtra("vendeurCity", annonce.city)
+                        intent.putExtra("vendeurDescription", annonce.about)
+                        intent.putExtra("vendeurTypeAccount", annonce.type_account)
+                        intent.putExtra("vendeurAvatarImg", annonce.file_url)
+                        intent.putExtra("isCertifiedVendeur", annonce.is_certified)
+                        intent.putExtra("vendeurNbAbonner", annonce.nb_abonner)
                         startActivity(intent)
                     }
 

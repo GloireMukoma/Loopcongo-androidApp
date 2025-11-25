@@ -8,8 +8,8 @@
     android:clipChildren="true"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:strokeWidth="0.5dp"
-    app:strokeColor="@color/low_white">
+    app:strokeWidth="0.7dp"
+    app:strokeColor="@color/gray">
 
     <FrameLayout
         android:layout_width="match_parent"

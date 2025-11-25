@@ -69,7 +69,6 @@ class VendeurMainFragment : Fragment() {
             currentFragment?.filterVendeursFromApi(text?.toString()?.trim().orEmpty())
         }
 
-
         return view
     }
     private suspend fun updateAvatarAndListener(avatar: ImageView) {

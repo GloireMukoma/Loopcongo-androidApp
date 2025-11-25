@@ -2,16 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:context=".DemandesUsersActivity"
-    android:background="@color/BleuFoncePrimaryColor">
+    android:background="@color/white">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/demandesRecyclerView"
+    <!-- Top Bar with back arrow and 2 icons -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp"
+        android:background="@color/BleuFoncePrimaryColor"
+        android:paddingBottom="8dp">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            app:tint="@color/white"
+            android:src="@drawable/ic_back"/>
+
+        <TextView
+            android:id="@+id/cityImmobiliers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demandes utilisateurs"
+            android:textColor="#D0D0D0"
+            android:layout_marginStart="12dp"
+            android:fontFamily="sans-serif"
+            android:textSize="20sp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/demandesListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/low_white"
+        android:layout_marginHorizontal="18dp"
+        android:dividerHeight="1dp"
+        android:paddingTop="10dp"/>
 
     <ProgressBar
         android:id="@+id/progressBarDemandes"

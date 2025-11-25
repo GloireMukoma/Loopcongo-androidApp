@@ -8,17 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-
+        android:divider="@color/low_white"
+        android:dividerHeight="1dp"
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
-
         android:paddingTop="10dp"/>
 
 </LinearLayout>
 
     <!--
-     android:divider="@color/low_white"
-      android:dividerHeight="1dp"
+
     ce fragment implemente une reyclerview generique pour tout
     type de vendeur (vendeur, immobilier)
     -->
