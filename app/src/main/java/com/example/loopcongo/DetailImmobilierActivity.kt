@@ -40,7 +40,6 @@ class DetailImmobilierActivity : AppCompatActivity() {
             finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
         }
 
-
         // ✅ Récupération des vues
         val imagePrincipale = findViewById<ImageView>(R.id.imagePrincipaldetailImmobilier)
         val auteur = findViewById<TextView>(R.id.nomAuteurdetailImmobilier)

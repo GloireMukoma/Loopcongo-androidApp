@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/BleuFoncePrimaryColor">
+    android:background="@color/BleuFonce2PrimaryColor">
 
     <!-- TopBar personnalisée -->
     <LinearLayout
@@ -120,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginHorizontal="5dp"
         android:paddingTop="8dp"/>
 
     <!-- ProgressBar -->
