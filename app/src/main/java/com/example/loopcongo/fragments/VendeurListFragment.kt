@@ -29,7 +29,7 @@ import retrofit2.Response
 
 class VendeurListFragment : Fragment() {
 
-    private lateinit var vendeurListView: ListView
+    private lateinit var recyclerVendeurs: RecyclerView
     private lateinit var vendeurAdapter: VendeurAdapter
     private val vendeurs = mutableListOf<User>()
     private var type: String? = null
@@ -54,11 +54,33 @@ class VendeurListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_vendeur_list, container, false)
 
-        vendeurListView = view.findViewById(R.id.vendeurListView)
+        recyclerVendeurs = view.findViewById(R.id.vendeurRecyclerView)
 
-        // Utilisation de ton ArrayAdapter
-        vendeurAdapter = VendeurAdapter(requireContext(), vendeurs)
-        vendeurListView.adapter = vendeurAdapter
+        // Configuration RecyclerView
+        recyclerVendeurs.layoutManager = LinearLayoutManager(context)
+        vendeurAdapter = VendeurAdapter(requireContext(), vendeurs) { vendeur ->
+            // Clic sur un vendeur → ouvrir profil
+            val intent = when (vendeur.type_account?.lowercase()) {
+                "vendeur" -> Intent(context, ProfileVendeurActivity::class.java)
+                "immobilier" -> Intent(context, ProfileVendeurImmobilierActivity::class.java)
+                else -> Intent(context, ProfileVendeurActivity::class.java)
+            }
+
+            intent.putExtra("vendeurId", vendeur.id)
+            intent.putExtra("vendeurUsername", vendeur.username)
+            intent.putExtra("vendeurContact", vendeur.contact)
+            intent.putExtra("vendeurCity", vendeur.city)
+            intent.putExtra("vendeurDescription", vendeur.about)
+            intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+            intent.putExtra("vendeurAvatarImg", vendeur.file_url)
+            intent.putExtra("isCertifiedVendeur", vendeur.subscription_type)
+            intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
+            intent.putExtra("vendeurTotalLikes", vendeur.total_likes)
+            intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
+
+            context?.startActivity(intent)
+        }
+        recyclerVendeurs.adapter = vendeurAdapter
 
         loadVendeurs(null) // Chargement initial
 

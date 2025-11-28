@@ -1,13 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <!-- Barre de recherche -->
+    <EditText
+        android:id="@+id/inputSearch"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:background="@drawable/edittext_bottom_border"
+        android:hint="Rechercher..."
+        android:textColorHint="#2b3144"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:textColor="#2b3144" />
 
     <ProgressBar
         android:id="@+id/progressBarAccounts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/txtEmptyAccounts"
@@ -17,7 +35,7 @@
         android:textSize="14sp"
         android:visibility="gone"
         android:layout_gravity="center"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp" />
 
     <ListView
         android:id="@+id/listViewAccounts"
@@ -25,7 +43,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="@color/low_white"
-        android:layout_marginHorizontal="18dp"
+        android:layout_marginHorizontal="14dp"
         android:dividerHeight="1dp"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp" />
+
 </LinearLayout>

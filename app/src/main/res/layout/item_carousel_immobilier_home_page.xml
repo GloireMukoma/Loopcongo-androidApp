@@ -32,24 +32,24 @@
                 android:id="@+id/carousselStatutImmo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="..."
+                android:text="Statut de l'immobilier"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/carousselDescriptionImmo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="..."
+                android:text="Text de description"
+                android:textSize="13sp"
                 android:textColor="@android:color/white"
                 android:maxLines="3"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="4dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:text="..."
                     android:textColor="@color/secondaryColor"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
 

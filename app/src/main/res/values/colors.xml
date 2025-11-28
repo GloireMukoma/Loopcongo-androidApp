@@ -19,6 +19,8 @@
     <color name="textColorPrimary">#9AA0B2</color>
     <color name="contourColor">#2A2B3C</color>
 
+    <color name="red">#dc3545</color>
+
     <color name="moveColor">#9C27B0</color>
 
     <color name="lowWhiteTextColor">#D0D0D0</color>

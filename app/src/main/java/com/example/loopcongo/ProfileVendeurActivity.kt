@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -48,7 +49,6 @@ class ProfileVendeurActivity : AppCompatActivity() {
 
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
-        val isCertifiedVendeur = intent.getStringExtra("isCertifiedVendeur")
 
         val vendeurId = intent.getIntExtra("vendeurId", -1)
         val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
@@ -179,18 +179,33 @@ class ProfileVendeurActivity : AppCompatActivity() {
             profileVendeurNbAbonner.text = "--"
         }
 
-
         findViewById<TextView>(R.id.profileVendeurUsername).text = vendeurUsername
         findViewById<TextView>(R.id.profileVendeurDescription).text = vendeurDescription
         findViewById<TextView>(R.id.profileVendeurPhone).text = vendeurContact
         findViewById<TextView>(R.id.profileVendeurCity).text = vendeurCity
 
-        val sponsorTextView = findViewById<ImageView>(R.id.profileVendeurBadge) // TextView pour le badge
-        if (isCertifiedVendeur == "1") {
-            sponsorTextView.visibility = View.VISIBLE
-        } else {
-            sponsorTextView.visibility = View.GONE
+        val sponsorImageView = findViewById<ImageView>(R.id.profileVendeurBadge)
+
+        when (intent.getStringExtra("isCertifiedVendeur")) {
+            "Premium" -> {
+                sponsorImageView.visibility = View.VISIBLE
+                sponsorImageView.setColorFilter(
+                    ContextCompat.getColor(this, android.R.color.holo_blue_dark),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            "Pro" -> {
+                sponsorImageView.visibility = View.VISIBLE
+                sponsorImageView.setColorFilter(
+                    ContextCompat.getColor(this, R.color.gray),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            else -> {
+                sponsorImageView.visibility = View.GONE
+            }
         }
+
 
         val vendeurAvatar = findViewById<ImageView>(R.id.profileVendeurAvatarImage)
 

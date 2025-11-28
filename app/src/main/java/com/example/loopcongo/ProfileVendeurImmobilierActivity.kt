@@ -1,6 +1,7 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -54,7 +55,6 @@ class ProfileVendeurImmobilierActivity : AppCompatActivity() {
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurTypeCompte = intent.getStringExtra("vendeurTypeAccount")
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
-        val isCertifiedVendeur = intent.getIntExtra("isCertifiedVendeur", 0)
 
         // Statistique de l'utilisateur: nb article + nb commande
         val nbImmoPublierProfileVendeurImmo = findViewById<TextView>(R.id.nbImmoPublierProfileVendeurImmo)
@@ -187,11 +187,26 @@ class ProfileVendeurImmobilierActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.profileVendeurPhone).text = vendeurContact
         findViewById<TextView>(R.id.profileVendeurCity).text = vendeurCity
 
-        val sponsorTextView = findViewById<ImageView>(R.id.profileVendeurBadge) // TextView pour le badge
-        if (isCertifiedVendeur == 1) {
-            sponsorTextView.visibility = View.VISIBLE
-        } else {
-            sponsorTextView.visibility = View.GONE
+        val sponsorImageView = findViewById<ImageView>(R.id.profileVendeurBadge)
+
+        when (intent.getStringExtra("isCertifiedVendeur")) {
+            "Premium" -> {
+                sponsorImageView.visibility = View.VISIBLE
+                sponsorImageView.setColorFilter(
+                    ContextCompat.getColor(this, android.R.color.holo_blue_dark),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            "Pro" -> {
+                sponsorImageView.visibility = View.VISIBLE
+                sponsorImageView.setColorFilter(
+                    ContextCompat.getColor(this, R.color.gray),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            else -> {
+                sponsorImageView.visibility = View.GONE
+            }
         }
 
         val vendeurAvatar = findViewById<ImageView>(R.id.profileVendeurAvatarImage)

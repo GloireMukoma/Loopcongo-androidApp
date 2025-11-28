@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class CarouselUserAnnonceAdapter(
         val imageAnnonce: ImageView = view.findViewById(R.id.carouselAnnonceImage)
         val titreAnnonce: TextView = view.findViewById(R.id.carousselAnnonceTitre)
         val descriptionAnnonce: TextView = view.findViewById(R.id.carousselAnnonceDescription)
+        val btnConsulter: Button = view.findViewById(R.id.btnConsulterAnnonce) // bouton
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnonceViewHolder {
@@ -33,12 +35,17 @@ class CarouselUserAnnonceAdapter(
         val annonce = annonces[position]
         holder.titreAnnonce.text = annonce.titre
         holder.descriptionAnnonce.text = annonce.description
-        Glide.with(context).load("https://loopcongo.com/" + annonce.image).into(holder.imageAnnonce)
+        Glide.with(context)
+            .load("https://loopcongo.com/${annonce.image}")
+            .into(holder.imageAnnonce)
 
-        // Gestion du clic
-        holder.itemView.setOnClickListener {
+        // Clic uniquement sur le bouton
+        holder.btnConsulter.setOnClickListener {
             onItemClick?.invoke(annonce)
         }
+
+        // Désactive le clic sur toute la card si tu veux
+        holder.itemView.isClickable = false
     }
 
     override fun getItemCount(): Int = annonces.size

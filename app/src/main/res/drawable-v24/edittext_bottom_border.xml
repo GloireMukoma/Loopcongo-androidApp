@@ -11,7 +11,7 @@
     <!-- Ligne du bas -->
     <stroke
         android:width="1dp"
-        android:color="@color/gray" />
+        android:color="@color/low_white" />
 
     <corners android:radius="8dp" />
 </shape>

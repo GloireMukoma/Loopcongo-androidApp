@@ -1,17 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/BleuFoncePrimaryColor">
 
-    <ListView
-        android:id="@+id/vendeurListView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vendeurRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@color/low_white"
-        android:dividerHeight="1dp"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
+        android:paddingHorizontal="1dp"
         android:paddingTop="10dp"/>
 
 </LinearLayout>

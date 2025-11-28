@@ -44,8 +44,20 @@
                 android:text="Bénéficiez de 15 % de réduction sur les séjours"
                 android:textColor="@android:color/white"
                 android:maxLines="2"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="3dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/btnConsulterAnnonce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consulter"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:fontFamily="sans-serif-medium" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

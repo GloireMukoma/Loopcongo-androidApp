@@ -122,6 +122,15 @@ interface ApiService {
     @GET("user/{id}")
     fun getUserById(@Path("id") id: Int): Call<UserUniqueResponse>
 
+    // Activer l'abonnement d'un utilisateur
+    @POST("admin/subscription/activate/{id}")
+    suspend fun activateSubscription(@Path("id") userId: Int): ApiResponse2
+
+    // Desactiver l'abonnement d'un utilisateur
+    @POST("admin/subscription/desactivate/{id}")
+    suspend fun deactivateSubscription(@Path("id") userId: Int): ApiResponse2
+
+
     // get les statistiques d'un user: nb d'articles publiés+ nb de command
     @GET("user/statistics/get/{id}")
     suspend fun getUserStats(@Path("id") userId: Int): UserStatsResponse

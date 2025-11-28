@@ -2,12 +2,14 @@ package com.example.loopcongo.adapters.vendeurs
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.ProfileVendeurActivity
@@ -16,35 +18,53 @@ import com.example.loopcongo.R
 import com.example.loopcongo.models.User
 
 class VendeurAdapter(
-    context: Context,
-    private val vendeurs: List<User>
-) : ArrayAdapter<User>(context, 0, vendeurs) {
+    private val context: Context,
+    private val vendeurs: List<User>,
+    private val onItemClick: ((User) -> Unit)? = null // Callback clic
+) : RecyclerView.Adapter<VendeurAdapter.VendeurViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.item_vendeur2, parent, false)
+    inner class VendeurViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val imgProfile: ImageView = view.findViewById(R.id.imgProfileVendeur)
+        val nom: TextView = view.findViewById(R.id.usernameVendeur)
+        val phone: TextView = view.findViewById(R.id.phoneItemVendeur)
+        val city: TextView = view.findViewById(R.id.locationItemVendeur)
+        val about: TextView = view.findViewById(R.id.aboutVendeur)
+        val badgeImage: ImageView = view.findViewById(R.id.vendeurBadgeSponsor)
+    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VendeurViewHolder {
+        val view = LayoutInflater.from(context)
+            .inflate(R.layout.item_vendeur, parent, false)
+        return VendeurViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: VendeurViewHolder, position: Int) {
         val vendeur = vendeurs[position]
 
-        // Views
-        val imgProfile = view.findViewById<ImageView>(R.id.imgProfileVendeur)
-        val nom = view.findViewById<TextView>(R.id.usernameVendeur)
-        val phone = view.findViewById<TextView>(R.id.phoneItemVendeur)
-        val city = view.findViewById<TextView>(R.id.locationItemVendeur)
-        val about = view.findViewById<TextView>(R.id.aboutVendeur)
-        val badgeImage = view.findViewById<ImageView>(R.id.vendeurBadgeSponsor)
+        holder.nom.text = vendeur.username
+        holder.phone.text = vendeur.contact
+        holder.city.text = vendeur.city
+        holder.about.text = vendeur.about ?: "Aucune description"
 
-        // Texte
-        nom.text = vendeur.username
-        phone.text = vendeur.contact
-        city.text = vendeur.city
-        about.text = vendeur.about ?: "Aucune description"
-
-        // Badge certifié
-        if (vendeur.is_certified == "1") {
-            badgeImage.visibility = View.VISIBLE
-        } else {
-            badgeImage.visibility = View.GONE
+        // Badge selon le type d'abonnement
+        when (vendeur.subscription_type) {
+            "Premium" -> {
+                holder.badgeImage.visibility = View.VISIBLE
+                holder.badgeImage.setColorFilter(
+                    ContextCompat.getColor(context, android.R.color.holo_blue_dark),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            "Pro" -> {
+                holder.badgeImage.visibility = View.VISIBLE
+                holder.badgeImage.setColorFilter(
+                    ContextCompat.getColor(context, R.color.gray),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            else -> {
+                holder.badgeImage.visibility = View.GONE
+            }
         }
 
         // Image de profil
@@ -58,31 +78,13 @@ class VendeurAdapter(
             .load(imageUrl)
             .placeholder(R.drawable.avatar)
             .error(R.drawable.avatar)
-            .into(imgProfile)
+            .into(holder.imgProfile)
 
-        // Clic → Profil
-        view.setOnClickListener {
-            val intent = when (vendeur.type_account?.lowercase()) {
-                "vendeur" -> Intent(context, ProfileVendeurActivity::class.java)
-                "immobilier" -> Intent(context, ProfileVendeurImmobilierActivity::class.java)
-                else -> Intent(context, ProfileVendeurActivity::class.java)
-            }
-
-            intent.putExtra("vendeurId", vendeur.id)
-            intent.putExtra("vendeurUsername", vendeur.username)
-            intent.putExtra("vendeurContact", vendeur.contact)
-            intent.putExtra("vendeurCity", vendeur.city)
-            intent.putExtra("vendeurDescription", vendeur.about)
-            intent.putExtra("vendeurTypeAccount", vendeur.type_account)
-            intent.putExtra("vendeurAvatarImg", vendeur.file_url)
-            intent.putExtra("isCertifiedVendeur", vendeur.is_certified)
-            intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
-            intent.putExtra("vendeurTotalLikes", vendeur.total_likes)
-            intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)
-
-            context.startActivity(intent)
+        // Clic → callback
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(vendeur)
         }
-
-        return view
     }
+
+    override fun getItemCount(): Int = vendeurs.size
 }
