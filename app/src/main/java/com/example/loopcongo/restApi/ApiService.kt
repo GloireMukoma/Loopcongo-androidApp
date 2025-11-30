@@ -122,11 +122,15 @@ interface ApiService {
     @GET("user/{id}")
     fun getUserById(@Path("id") id: Int): Call<UserUniqueResponse>
 
-    // Activer l'abonnement d'un utilisateur
+    // Activer l'abonnement d'un utilisateur (ACCOUNT CREATED)
+    @FormUrlEncoded
     @POST("admin/subscription/activate/{id}")
-    suspend fun activateSubscription(@Path("id") userId: Int): ApiResponse2
+    suspend fun activateSubscription(
+        @Path("id") userId: Int,
+        @Field("type") type: String
+    ): ApiResponse2
 
-    // Desactiver l'abonnement d'un utilisateur
+    // Desactiver l'abonnement d'un utilisateur (ACCOUNT CREATED)
     @POST("admin/subscription/desactivate/{id}")
     suspend fun deactivateSubscription(@Path("id") userId: Int): ApiResponse2
 
@@ -162,6 +166,9 @@ interface ApiService {
     suspend fun rejectAbonnement(
         @Path("userId") userId: Int
     ): Response<Unit>
+
+
+
 
     // get la liste des comptes crées (onglets compte super admin)
     @GET("admin/accounts/all")

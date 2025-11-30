@@ -19,8 +19,14 @@ import kotlinx.coroutines.withContext
 
 class AccountCreatedAdapter(
     context: Context,
-    private var users: MutableList<User>
+    private var users: MutableList<User>,
+    private val listener: OnSubscriptionActionListener
 ) : ArrayAdapter<User>(context, 0, users) {
+
+    interface OnSubscriptionActionListener {
+        fun onValidate(userId: Int, type: String)
+        fun onReject(userId: Int)
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
@@ -36,23 +42,20 @@ class AccountCreatedAdapter(
         val txtStatus = view.findViewById<TextView>(R.id.status)
         val badge = view.findViewById<ImageView>(R.id.vendeurBadgeSponsor)
 
-        // Remplissage
+        // Textes
         txtUsername.text = user.username
         txtPhone.text = user.contact
         txtCity.text = user.city
         txtStatus.text = user.status
 
-        // Couleur selon le status
+        // Couleur status
         when (user.status) {
-            "Non abonné" -> txtStatus.setTextColor(ContextCompat.getColor(view.context, R.color.red))
-            "Abonné"  -> txtStatus.setTextColor(ContextCompat.getColor(view.context, android.R.color.holo_blue_dark))
-            else -> txtStatus.setTextColor(Color.GRAY) // couleur par défaut
+            "Non abonné" -> txtStatus.setTextColor(ContextCompat.getColor(context, R.color.red))
+            "Abonné"     -> txtStatus.setTextColor(ContextCompat.getColor(context, android.R.color.holo_blue_dark))
+            else -> txtStatus.setTextColor(Color.GRAY)
         }
 
-        // Badge SPONSOR
-        //badge.visibility = if (user.is_certified == "1") View.VISIBLE else View.GONE
-
-        // Badge selon le type d'abonnement
+        // Badge selon abonnement
         when (user.subscription_type) {
             "Premium" -> {
                 badge.visibility = View.VISIBLE
@@ -68,78 +71,57 @@ class AccountCreatedAdapter(
                     PorterDuff.Mode.SRC_IN
                 )
             }
-            else -> {
-                badge.visibility = View.GONE
-            }
+            else -> badge.visibility = View.GONE
         }
 
-
-        // Image
+        // Image utilisateur
         Glide.with(context)
             .load("https://loopcongo.com/${user.file_url}")
             .placeholder(R.drawable.avatar)
             .centerCrop()
             .into(imgProfile)
 
-        // Menu (Valider / Rejeter)
+        // Popup menu
         menu.setOnClickListener {
             val popup = PopupMenu(context, menu)
             popup.menuInflater.inflate(R.menu.menu_users_abonnement_options2, popup.menu)
 
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.optionActiver -> {
-                        activateUserSubscription(user.id)
+
+                    R.id.type_basic -> {
+                        listener.onValidate(user.id, "Basic")
                         true
                     }
-                    R.id.optionDesactiver -> {
-                        deactivateUserSubscription(user.id)
+
+                    R.id.type_pro -> {
+                        listener.onValidate(user.id, "Pro")
                         true
                     }
+
+                    R.id.type_premium -> {
+                        listener.onValidate(user.id, "Premium")
+                        true
+                    }
+
+                    R.id.optionReject -> {
+                        listener.onReject(user.id)
+                        true
+                    }
+
                     else -> false
                 }
             }
+
             popup.show()
         }
 
-
         return view
     }
+
     fun update(newList: List<User>) {
-        users.clear()       // ✅ fonctionne maintenant
+        users.clear()
         users.addAll(newList)
         notifyDataSetChanged()
     }
-
-
-    private fun activateUserSubscription(userId: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = ApiClient.instance.activateSubscription(userId)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Abonnement activé", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Erreur: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun deactivateUserSubscription(userId: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = ApiClient.instance.deactivateSubscription(userId)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Abonnement désactivé", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Erreur: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
 }

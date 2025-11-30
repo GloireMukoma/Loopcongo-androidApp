@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OngletAccountsCreatedFragment : Fragment() {
+class OngletAccountsCreatedFragment :
+    Fragment(),
+    AccountCreatedAdapter.OnSubscriptionActionListener {
 
     private lateinit var listView: ListView
     private lateinit var progressBar: ProgressBar
@@ -27,7 +26,8 @@ class OngletAccountsCreatedFragment : Fragment() {
     private lateinit var inputSearch: EditText
 
     private lateinit var adapter: AccountCreatedAdapter
-    private var fullList: List<User> = listOf()
+    private var fullList: List<User> = emptyList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,22 +41,20 @@ class OngletAccountsCreatedFragment : Fragment() {
         txtEmpty = view.findViewById(R.id.txtEmptyAccounts)
         inputSearch = view.findViewById(R.id.inputSearch)
 
-        adapter = AccountCreatedAdapter(requireContext(), mutableListOf())
+        adapter = AccountCreatedAdapter(requireContext(), mutableListOf(), this)
         listView.adapter = adapter
 
         fetchAccounts()
 
-        // 🔍 Recherche instantanée
-        inputSearch.addTextChangedListener {
-            filterList(it.toString())
-        }
+        inputSearch.addTextChangedListener { filterList(it.toString()) }
 
         return view
     }
 
+
+    // 🔥 Charger comptes
     private fun fetchAccounts() {
         progressBar.visibility = View.VISIBLE
-        txtEmpty.visibility = View.GONE
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -64,11 +62,11 @@ class OngletAccountsCreatedFragment : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     progressBar.visibility = View.GONE
-
                     fullList = users
 
                     if (users.isNotEmpty()) {
                         adapter.update(users)
+                        txtEmpty.visibility = View.GONE
                     } else {
                         txtEmpty.visibility = View.VISIBLE
                         txtEmpty.text = "Aucun compte disponible"
@@ -85,13 +83,56 @@ class OngletAccountsCreatedFragment : Fragment() {
         }
     }
 
+
+    // 🔎 Filtrer
     private fun filterList(query: String) {
         val filtered = fullList.filter {
-            it.username?.contains(query, ignoreCase = true) ?: false
+            (it.username ?: "").contains(query, ignoreCase = true)
         }
+
         adapter.update(filtered)
+
         txtEmpty.visibility = if (filtered.isEmpty()) View.VISIBLE else View.GONE
         txtEmpty.text = if (filtered.isEmpty()) "Aucun résultat" else ""
     }
 
+
+
+    // 🔥 Activer un abonnement
+    override fun onValidate(userId: Int, type: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = ApiClient.instance.activateSubscription(userId, type)
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Abonnement $type activé", Toast.LENGTH_SHORT).show()
+                    fetchAccounts()
+                }
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Erreur : ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    // ❌ Désactiver
+    override fun onReject(userId: Int) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = ApiClient.instance.deactivateSubscription(userId)
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Abonnement désactivé", Toast.LENGTH_SHORT).show()
+                    fetchAccounts()
+                }
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Erreur : ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 }

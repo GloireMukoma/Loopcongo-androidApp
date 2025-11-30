@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/optionActiver"
-        android:title="Activer"/>
+        android:id="@+id/type_basic"
+        android:title="Activer Basic" />
 
     <item
-        android:id="@+id/optionDesactiver"
-        android:title="Desactiver"/>
+        android:id="@+id/type_pro"
+        android:title="Activer Pro" />
+
+    <item
+        android:id="@+id/type_premium"
+        android:title="Activer Premium" />
+
+    <item
+        android:id="@+id/optionReject"
+        android:title="Désactiver" />
 
 </menu>
