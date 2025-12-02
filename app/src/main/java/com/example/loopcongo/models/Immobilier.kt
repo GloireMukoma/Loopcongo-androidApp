@@ -18,6 +18,7 @@ data class Immobilier(
     val imgUrl: String,
 
     val username: String,
+    val subscription_type: String,
     val userImage: String,
     val user_avatar: String,
     val contact: String

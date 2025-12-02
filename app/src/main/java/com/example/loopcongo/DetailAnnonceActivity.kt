@@ -1,10 +1,13 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
@@ -92,9 +95,24 @@ class DetailAnnonceActivity : AppCompatActivity() {
         val userContactText = userContact.text.toString()
         val discuterBtn = findViewById<LinearLayout>(R.id.btnWhatsappAnnonceDetail)
 
+        // Ajouter le clic pour afficher l'image fullscreen
+        imageAnnonce.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_fullscreen_image, null)
+            val fullImageView = dialogView.findViewById<ImageView>(R.id.fullscreenImageView)
+
+            Glide.with(this).load("https://loopcongo.com/$image").into(imageAnnonce)
+
+            builder.setView(dialogView)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE)) // fond noir
+            dialog.show()
+        }
+
         discuterBtn.setOnClickListener {
             if (userContactText.isNotEmpty()) {
-                val message = "Bonjour, je suis intéressé par votre article sur LoopCongo."
+                val message = "Bonjour, je suis intéressé par votre annonce sur LoopCongo.\n" +
+                "ANNONCE: $description"
                 val url = "https://wa.me/$userContactText?text=${Uri.encode(message)}"
                 try {
                     val intent = Intent(Intent.ACTION_VIEW)

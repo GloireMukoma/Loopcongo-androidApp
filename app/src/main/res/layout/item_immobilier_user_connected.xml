@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="210dp"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     card_view:cardCornerRadius="12dp"
     card_view:cardUseCompatPadding="false">
 
@@ -21,11 +21,25 @@
             android:contentDescription="Image de l’article"
             android:src="@drawable/shoes_men" />
 
+        <ImageView
+            android:id="@+id/btnUpdateImmoUserConnectedOnglet"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="6dp"
+            android:src="@drawable/ic_update"
+            app:tint="@android:color/holo_blue_dark"
+            android:background="@drawable/bg_delete_icon"
+            android:padding="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Supprimer l'article" />
+
         <!-- Icône suppression en haut à droite -->
         <ImageView
             android:id="@+id/btnDeleteImmobilierUserConnectedOnglet"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="top|end"
             android:layout_margin="6dp"
             android:src="@drawable/ic_delete_"
@@ -52,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nom de l'article"
                 android:textColor="@android:color/white"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
@@ -67,15 +81,28 @@
                 android:layout_marginTop="4dp" />
 
             <!-- Quartier -->
-            <TextView
-                android:id="@+id/quartierImmobilierUserConnectedOnglet"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="quartier"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="3dp"
+                    app:tint="@android:color/white"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/quartierImmobilierUserConnectedOnglet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="quartier"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
 
             <!-- Auteur avec icône -->
 

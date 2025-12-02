@@ -37,7 +37,7 @@
             android:id="@+id/companyDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Loop System est une startup spécialisée dans le développement d’applications mobiles, plateformes web, APIs,et solutions numériques modernes et performantes.
+            android:text="Congo System est une startup spécialisée dans le développement d’applications mobiles, plateformes web, APIs,et solutions numériques modernes et performantes.
 "
             android:textSize="14sp"
             android:textColor="@color/low_white"
@@ -93,7 +93,7 @@
             <LinearLayout
                 android:id="@+id/whatsappButton"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="46dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -116,9 +116,7 @@
             </LinearLayout>
 
 
-            <View
-                android:layout_width="12dp"
-                android:layout_height="1dp" />
+
 
             <!-- Email -->
             <!--<LinearLayout
@@ -129,6 +127,10 @@
                 android:orientation="horizontal"
                 android:background="@drawable/rounded_button_bg"
                 android:padding="10dp">
+
+                  <View
+                android:layout_width="12dp"
+                android:layout_height="1dp" />
 
                 <ImageView
                     android:layout_width="22dp"

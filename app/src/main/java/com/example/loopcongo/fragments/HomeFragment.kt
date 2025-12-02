@@ -257,7 +257,7 @@ class HomeFragment : Fragment() {
                         city.text = body.user.city
 
                         // verifier si l'user est premium pour avoir l'icon de certification
-                        if (body.user.subscription_type == "premium" && body.user.subscription_status == "active") {
+                        if (body.user.subscription_type == "Premium" && body.user.subscription_status == "active") {
                             view.findViewById<ImageView>(R.id.popupPremiumUserVerifiedIcon).visibility = View.VISIBLE
                         } else {
                             view.findViewById<ImageView>(R.id.popupPremiumUserVerifiedIcon).visibility = View.GONE

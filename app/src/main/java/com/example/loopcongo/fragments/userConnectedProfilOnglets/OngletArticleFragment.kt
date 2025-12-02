@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,6 +24,7 @@ class OngletArticleFragment : Fragment() {
 
     private var userId: Int = 0 // sera passé via arguments
     private lateinit var articlesRecyclerView: RecyclerView
+    private lateinit var tvNoArticles: TextView
 
     companion object {
         private const val ARG_USER_ID = "user_id"
@@ -49,6 +51,9 @@ class OngletArticleFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.onglet_article_profil_user_connected, container, false)
         articlesRecyclerView = view.findViewById(R.id.ongletArticlesProfilUserConnectedRecyclerView)
+
+        tvNoArticles = view.findViewById(R.id.tvNoArticles)
+
         fetchUserArticles()
         return view
     }
@@ -60,27 +65,25 @@ class OngletArticleFragment : Fragment() {
                     call: Call<ArticleResponse>,
                     response: Response<ArticleResponse>
                 ) {
-                    if (response.isSuccessful && response.body()?.status == true) {
-                        val articles = response.body()?.data ?: emptyList()
+                    val articles = response.body()?.data ?: emptyList()
+
+                    if (response.isSuccessful && response.body()?.status == true && articles.isNotEmpty()) {
+                        tvNoArticles.visibility = View.GONE
+                        articlesRecyclerView.visibility = View.VISIBLE
 
                         articlesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
                         articlesRecyclerView.adapter = UserConnectedOngletArticleAdapter(requireContext(), articles.toMutableList())
-
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            response.body()?.message ?: "Erreur serveur",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        // Aucun article reçu → afficher le message
+                        tvNoArticles.visibility = View.VISIBLE
+                        articlesRecyclerView.visibility = View.GONE
                     }
                 }
 
                 override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Erreur réseau : ${t.localizedMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    tvNoArticles.visibility = View.VISIBLE
+                    articlesRecyclerView.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Erreur réseau : ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
             })
     }

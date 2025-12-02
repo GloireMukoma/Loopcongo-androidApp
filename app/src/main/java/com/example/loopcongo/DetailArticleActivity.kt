@@ -1,6 +1,8 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -66,6 +69,12 @@ class DetailArticleActivity : AppCompatActivity() {
 
         prix.text = "$article_prix $devise"
 
+        // Charger l'image l'image principale de l'article
+        Glide.with(this)
+            .load("https://loopcongo.com/$image")
+            .placeholder(R.drawable.loading)
+            .into(imagePrincipale)
+
         // Charger l'image de profil de l'auteur
         if (!auteurAvatarUrl.isNullOrEmpty()) {
             Glide.with(this)
@@ -75,11 +84,25 @@ class DetailArticleActivity : AppCompatActivity() {
                 .into(avatarAuteur)
         }
 
-        // ✅ Charger l'image principale
-        Glide.with(this)
-            .load("https://loopcongo.com/$image")
-            .placeholder(R.drawable.loading)
-            .into(imagePrincipale)
+        // Ajouter le clic pour afficher l'image fullscreen
+        imagePrincipale.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_fullscreen_image, null)
+            val fullImageView = dialogView.findViewById<ImageView>(R.id.fullscreenImageView)
+
+            // Charger l'image dans le ImageView du dialog
+            Glide.with(this)
+                .load("https://loopcongo.com/$image")
+                .placeholder(R.drawable.loading)
+                .into(fullImageView)
+
+            builder.setView(dialogView)
+            val dialog = builder.create()
+            // Fond transparent pour l'effet overlay
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            dialog.show()
+        }
+
 
         // ✅ Charger les images de détail depuis l'API
         if (id != 0) {
@@ -96,7 +119,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
                 val articleLink = "https://loopcongo.com/product/detail/$id"
                 val message = "Bonjour, je suis intéressé par votre article sur LoopCongo.\n" +
-                        "Lien de l'article : $articleLink"
+                        "LIEN DE L'ARTICLE : $articleLink"
 
                 val url = "https://wa.me/$userContact?text=${Uri.encode(message)}"
 
@@ -135,10 +158,10 @@ class DetailArticleActivity : AppCompatActivity() {
                         intent.putExtra("vendeurCity", vendeur.city)
                         intent.putExtra("vendeurDescription", vendeur.about)
                         intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+                        intent.putExtra("vendeurSubscriptionType", vendeur.subscription_type)
+
                         intent.putExtra("vendeurAvatarImg", vendeur.file_url)
                         intent.putExtra("isCertifiedVendeur", vendeur.is_certified ?: 0)
-                        intent.putExtra("vendeurTotalArticles", vendeur.total_articles ?: 0)
-                        intent.putExtra("vendeurTotalLikes", vendeur.total_articles ?: 0)
                         intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner ?: 0)
 
                         // Lancer l'activité

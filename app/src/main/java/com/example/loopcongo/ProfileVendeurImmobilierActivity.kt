@@ -189,7 +189,7 @@ class ProfileVendeurImmobilierActivity : AppCompatActivity() {
 
         val sponsorImageView = findViewById<ImageView>(R.id.profileVendeurBadge)
 
-        when (intent.getStringExtra("isCertifiedVendeur")) {
+        when (intent.getStringExtra("vendeurSubscriptionType")) {
             "Premium" -> {
                 sponsorImageView.visibility = View.VISIBLE
                 sponsorImageView.setColorFilter(

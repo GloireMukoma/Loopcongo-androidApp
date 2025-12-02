@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +44,8 @@ class HomeImmobilierFragment : Fragment() {
     private lateinit var recyclerItemImmobilierCity: RecyclerView
     private lateinit var adapter: ItemCityImmobilierAdapter
 
+    //private lateinit var demandeRecycler: RecyclerView
+    private lateinit var tvNoDemande: TextView
     private lateinit var demandeRecycler: RecyclerView
 
     private lateinit var demandeAdapter: ImmoUserDemandeRecyclerAdapter
@@ -88,20 +91,45 @@ class HomeImmobilierFragment : Fragment() {
         ApiClient.instance.getImmosSubscribeUsers().enqueue(object : Callback<List<Immobilier>> {
             override fun onResponse(call: Call<List<Immobilier>>, response: Response<List<Immobilier>>) {
                 if (response.isSuccessful && response.body() != null) {
-                    val annonces = response.body()!!
+
+                    var annonces = response.body()!!
+
+                    // ✔️ Si aucune donnée reçue → injecter une annonce par défaut
+                    if (annonces.isEmpty()) {
+                        annonces = listOf(
+                            Immobilier(
+                                id = 0,
+                                account_id = 1,
+                                typeimmo = "Aucun bien disponible",
+                                statut = "",
+                                city = "RD Congo",
+                                quartier = "—",
+                                prix = "—",
+                                address = "—",
+                                about = "Revenez plus tard, de nouveaux biens seront disponibles.",
+                                file_url = "uploads/annonces/default_annonce.jpg",
+
+                                cityName = "—",
+                                nbImmoPublish = "0",
+                                imgUrl = "uploads/annonces/default_annonce.jpg",
+
+                                username = "LoopCongo",
+                                subscription_type = "null",
+                                userImage = "uploads/users/loop_icon.jpg",
+                                user_avatar = "uploads/users/loop_icon.jpg",
+                                contact = "+243977718960"
+                            )
+                        )
+                    }
 
                     viewPager2.adapter = CarouselImmobiliersHomePageAdapter(requireContext(), annonces)
 
-                    /*val sliderRunnable = Runnable {
-                        viewPager2.currentItem = (viewPager2.currentItem + 1) % annonces.size
-                    }*/
                     val sliderRunnable = Runnable {
                         val size = annonces.size
                         if (size > 0) {
                             viewPager2.currentItem = (viewPager2.currentItem + 1) % size
                         }
                     }
-
 
                     viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                         override fun onPageSelected(position: Int) {
@@ -110,44 +138,38 @@ class HomeImmobilierFragment : Fragment() {
                         }
                     })
 
-                    // Défilement auto
                     sliderHandler.postDelayed(sliderRunnable, 3000)
 
                 } else {
                     Toast.makeText(requireContext(), "Réponse vide ou invalide", Toast.LENGTH_SHORT).show()
                 }
             }
+
             override fun onFailure(call: Call<List<Immobilier>>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
 
-
-
-        // Caroussel des items des demandes
+        tvNoDemande = view.findViewById(R.id.tvNoDemande)
         demandeRecycler = view.findViewById(R.id.immoUserDemandeRecyclerView)
+
         demandeRecycler.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false
         )
-        demandeAdapter = ImmoUserDemandeRecyclerAdapter(demandes,  R.layout.item_demande)
+        demandeAdapter = ImmoUserDemandeRecyclerAdapter(demandes, R.layout.item_demande)
         demandeRecycler.adapter = demandeAdapter
 
+        // Vérifier si liste vide au départ
+        if (demandes.isEmpty()) {
+            tvNoDemande.visibility = View.VISIBLE
+            demandeRecycler.visibility = View.GONE
+        } else {
+            tvNoDemande.visibility = View.GONE
+            demandeRecycler.visibility = View.VISIBLE
+        }
 
-        /*recyclerItemImmobilierCity = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
-        recyclerItemImmobilierCity.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
-        val immobiliers = listOf(
-            ItemCityImmo(2, "Lubumbashi", "85 biens", R.drawable.lubumbashi),
-            ItemCityImmo(2, "Kolwezi", "85 biens", R.drawable.kolwezi),
-            ItemCityImmo(1, "Kinshasa", "120 biens", R.drawable.kinshasa),
-            ItemCityImmo(3, "Likasi", "42 biens", R.drawable.likasi)
-        )
-
-        adapter = ItemCityImmobilierAdapter(immobiliers)
-        recyclerItemImmobilierCity.adapter = adapter*/
 
         recyclerItemImmobilierCity = view.findViewById(R.id.itemCityImmobilierHomePageRecyclerView)
         recyclerItemImmobilierCity.layoutManager =
@@ -185,9 +207,21 @@ class HomeImmobilierFragment : Fragment() {
                     val result = response.body()?.demandes ?: emptyList()
                     demandes.clear()
                     demandes.addAll(result)
+
+                    // Met à jour l'affichage
                     demandeAdapter.notifyDataSetChanged()
+
+                    // Gérer la visibilité selon qu'il y ait des demandes
+                    if (demandes.isEmpty()) {
+                        tvNoDemande.visibility = View.VISIBLE
+                        demandeRecycler.visibility = View.GONE
+                    } else {
+                        tvNoDemande.visibility = View.GONE
+                        demandeRecycler.visibility = View.VISIBLE
+                    }
                 }
             }
+
 
             override fun onFailure(call: Call<ApiResponseDemande>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur de chargement des demandes", Toast.LENGTH_SHORT).show()
@@ -211,12 +245,12 @@ class HomeImmobilierFragment : Fragment() {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(requireContext())
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_person)
-                .error(R.drawable.ic_person)
+                .placeholder(R.drawable.ic_login)
+                .error(R.drawable.ic_login)
                 .circleCrop()
                 .into(avatar)
         } else {
-            avatar.setImageResource(R.drawable.ic_person)
+            avatar.setImageResource(R.drawable.ic_login)
         }
 
         // Configure le listener sur l'avatar
@@ -227,10 +261,17 @@ class HomeImmobilierFragment : Fragment() {
                 val account = latestUser ?: latestCustomer
 
                 val nextActivity = when (account) {
-                    is User -> when (account.type_account?.lowercase()) {
-                        "vendeur" -> ProfileUserConnectedActivity::class.java
-                        "immobilier" -> UserImmobilierConnectedActivity::class.java
-                        else -> ProfileUserConnectedActivity::class.java
+                    is User -> {
+                        if (account.id == 1) {
+                            // Redirection vers l'admin si ID = 1
+                            SuperAdminConnectedActivity::class.java
+                        } else {
+                            when (account.type_account?.lowercase()) {
+                                "vendeur" -> ProfileUserConnectedActivity::class.java
+                                "immobilier" -> UserImmobilierConnectedActivity::class.java
+                                else -> ProfileUserConnectedActivity::class.java
+                            }
+                        }
                     }
                     is Customer -> CustomerConnectedActivity::class.java
                     else -> LoginActivity::class.java

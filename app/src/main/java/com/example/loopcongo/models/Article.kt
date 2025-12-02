@@ -1,7 +1,6 @@
 package com.example.loopcongo.models
 data class Article(
     val id: Int,
-
     val account_id: Int,
     val user_nom: String,
     val username: String,
@@ -17,6 +16,7 @@ data class Article(
     val file_url: String,
     val user_avatar: String,
     val user_contact: String,
+    val subscription_type: String,
     val created_at: String,
 
 )

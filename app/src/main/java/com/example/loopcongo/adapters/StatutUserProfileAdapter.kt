@@ -42,7 +42,16 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
         val vendeur = vendeurList[position]
 
         holder.userName.text = vendeur.username
-        holder.totalArticle.text = "${vendeur.total_articles} articles"
+        //holder.totalArticle.text = "${vendeur.total_articles} articles"
+
+        // Vérifie le type de l'utilisateur
+        holder.totalArticle.text = if (vendeur.type_account == "vendeur") {
+            "${vendeur.total_articles} articles"
+        } else if (vendeur.type_account == "immobilier") {
+            "immobilier"
+        } else {
+            ""
+        }
 
 
         //CHARGEMENT DES IMAGES (profil et derniere article publié)
@@ -84,6 +93,7 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
             intent.putExtra("vendeurCity", vendeur.city)
             intent.putExtra("vendeurDescription", vendeur.about)
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+            intent.putExtra("vendeurSubscriptionType", vendeur.subscription_type)
             intent.putExtra("vendeurAvatarImg", vendeur.profile_image)
             intent.putExtra("isCertifiedVendeur", vendeur.is_certified)
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)

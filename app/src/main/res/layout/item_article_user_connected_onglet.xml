@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="210dp"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     card_view:cardCornerRadius="12dp"
     card_view:cardUseCompatPadding="false">
 
@@ -21,17 +21,31 @@
             android:contentDescription="Image de l’article"
             android:src="@drawable/shoes_men" />
 
+        <ImageView
+            android:id="@+id/btnUpdateArticleUserConnectedOnglet"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="6dp"
+            android:src="@drawable/ic_update"
+            app:tint="@android:color/holo_blue_dark"
+            android:background="@drawable/bg_delete_icon"
+            android:padding="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Supprimer l'article" />
+
         <!-- Icône suppression en haut à droite -->
         <ImageView
             android:id="@+id/btnDeleteArticleUserConnectedOnglet"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="top|end"
             android:layout_margin="6dp"
             android:src="@drawable/ic_delete_"
             app:tint="@android:color/holo_red_dark"
             android:background="@drawable/bg_delete_icon"
-            android:padding="8dp"
+            android:padding="6dp"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="Supprimer l'article" />

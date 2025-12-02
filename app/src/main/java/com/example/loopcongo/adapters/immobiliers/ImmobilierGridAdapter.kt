@@ -19,7 +19,10 @@ class ImmobilierGridAdapter(private val immobiliers: List<Immobilier>) :
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgImmo: ImageView = view.findViewById(R.id.imgImmobilierItem)
         val titreImmo: TextView = view.findViewById(R.id.titreImmobilierItem)
-        val prix: TextView = view.findViewById(R.id.prixImmobilierItem)
+
+        val prix: TextView = view.findViewById(R.id.statusPrixImmobilierItem)
+        val statut: TextView = view.findViewById(R.id.statusImmobilierItem)
+
         val auteur: TextView = view.findViewById(R.id.auteurImmobilierItem)
         //val date: TextView = view.findViewById(R.id.datqae_article)
 
@@ -41,6 +44,7 @@ class ImmobilierGridAdapter(private val immobiliers: List<Immobilier>) :
 
         // Remplir les champs
         holder.titreImmo.text = immobilier.about
+        holder.statut.text = immobilier.statut
         holder.prix.text = "${immobilier.prix} $"
         holder.auteur.text = immobilier.quartier  // Auteur ou quartier
 
@@ -58,6 +62,7 @@ class ImmobilierGridAdapter(private val immobiliers: List<Immobilier>) :
             intent.putExtra("address", immobilier.address)
             intent.putExtra("description", immobilier.about)
             intent.putExtra("ImmoImage", immobilier.file_url)
+            intent.putExtra("vendeurSubscriptionType", immobilier.subscription_type)
 
             intent.putExtra("username", immobilier.username)
             intent.putExtra("userImage", immobilier.user_avatar)

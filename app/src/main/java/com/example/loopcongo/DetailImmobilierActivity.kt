@@ -1,6 +1,8 @@
 package com.example.loopcongo
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -77,7 +80,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
 
         type.text = typeimmo
         description.text = immoDescription
-        prix.text = "$ ${immoPrix}"
+        prix.text = "${immoPrix} \$"
 
         status.text = " • ${statut}"
         auteur.text = username
@@ -90,6 +93,24 @@ class DetailImmobilierActivity : AppCompatActivity() {
             .load("https://loopcongo.com/$image")
             .placeholder(R.drawable.loading)
             .into(imagePrincipale)
+
+        // Ajouter le clic pour afficher l'image fullscreen
+        imagePrincipale.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_fullscreen_image, null)
+            val fullImageView = dialogView.findViewById<ImageView>(R.id.fullscreenImageView)
+
+            Glide.with(this)
+                .load("https://loopcongo.com/$image")
+                .placeholder(R.drawable.loading)
+                .into(fullImageView)
+
+            builder.setView(dialogView)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE)) // fond noir
+            dialog.show()
+        }
+
 
         // Charger l'image du profil user
         Glide.with(this)
@@ -124,6 +145,7 @@ class DetailImmobilierActivity : AppCompatActivity() {
                         intent.putExtra("vendeurCity", vendeur.city)
                         intent.putExtra("vendeurDescription", vendeur.about)
                         intent.putExtra("vendeurTypeAccount", vendeur.type_account)
+                        intent.putExtra("vendeurSubscriptionType", vendeur.subscription_type)
                         intent.putExtra("vendeurAvatarImg", vendeur.file_url)
                         intent.putExtra("isCertifiedVendeur", vendeur.is_certified ?: 0)
                         intent.putExtra("vendeurTotalArticles", vendeur.total_articles ?: 0)

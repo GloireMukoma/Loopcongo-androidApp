@@ -1,6 +1,9 @@
 package com.example.loopcongo.adapters.articles
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loopcongo.R
@@ -29,6 +33,7 @@ class UserConnectedOngletArticleAdapter(
         val prix: TextView = view.findViewById(R.id.articlePrixUserConnectedOnglet)
         val description: TextView = view.findViewById(R.id.articleDescUserConnectedOnglet)
         val btnDelete: ImageView = view.findViewById(R.id.btnDeleteArticleUserConnectedOnglet)
+        val btnUpdate: ImageView = view.findViewById(R.id.btnUpdateArticleUserConnectedOnglet)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -50,19 +55,31 @@ class UserConnectedOngletArticleAdapter(
             .error(R.drawable.img)
             .into(holder.image)
 
+        holder.btnUpdate.setOnClickListener {
+            val url = "https://loopcongo.com/product/edit/${article.id}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            context.startActivity(intent)
+        }
+
         holder.btnDelete.setOnClickListener {
-            AlertDialog.Builder(context)
+            val dialog = AlertDialog.Builder(context)
                 .setTitle("Supprimer l'article")
                 .setMessage("Êtes-vous sûr de vouloir supprimer cet article ?")
                 .setPositiveButton("Oui") { _, _ ->
-                    // utilisation de adapterPosition (compatible)
                     val pos = holder.adapterPosition
                     if (pos != RecyclerView.NO_POSITION) {
                         deleteArticle(article.id, pos)
                     }
                 }
                 .setNegativeButton("Non", null)
-                .show()
+                .create()
+
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
+            }
+
+            dialog.show()
         }
     }
 

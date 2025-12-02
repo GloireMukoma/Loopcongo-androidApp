@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,9 +26,10 @@ import retrofit2.Response
 
 class OngletAnnonceFragment : Fragment() {
 
-    private lateinit var recyclerView: ListView
+    private lateinit var listView: ListView
     private lateinit var articleAdapter: OngletAnnonceUserConnectedAdapter
     private var vendeurId: Int = 0
+    private lateinit var tvNoAnnonce: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +42,12 @@ class OngletAnnonceFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.onglet_annonce_profil_user_immobilier_connected, container, false)
 
-        val listView = view.findViewById<ListView>(R.id.listViewAnnonceUserImmoConnected)
+        listView = view.findViewById(R.id.listViewAnnonceUserImmoConnected)
+        tvNoAnnonce = view.findViewById(R.id.tvNoAnnonce)
 
         // Initialisation de l'adapter
         articleAdapter = OngletAnnonceUserConnectedAdapter(requireContext(), mutableListOf())
         listView.adapter = articleAdapter
-
 
         if (vendeurId != 0) {
             loadAnnonceVendeur(vendeurId)
@@ -62,16 +64,23 @@ class OngletAnnonceFragment : Fragment() {
                 if (response.isSuccessful && response.body() != null) {
                     val annonces = response.body()!!.data
                     if (annonces.isNotEmpty()) {
+                        tvNoAnnonce.visibility = View.GONE
+                        listView.visibility = View.VISIBLE
                         articleAdapter.updateData(annonces)
                     } else {
-                        Toast.makeText(requireContext(), "Aucune annonce trouvée", Toast.LENGTH_SHORT).show()
+                        tvNoAnnonce.visibility = View.VISIBLE
+                        listView.visibility = View.GONE
                     }
                 } else {
+                    tvNoAnnonce.visibility = View.VISIBLE
+                    listView.visibility = View.GONE
                     Toast.makeText(requireContext(), "Erreur lors de la récupération des annonces", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<AnnonceResponse>, t: Throwable) {
+                tvNoAnnonce.visibility = View.VISIBLE
+                listView.visibility = View.GONE
                 Toast.makeText(requireContext(), "Erreur : ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

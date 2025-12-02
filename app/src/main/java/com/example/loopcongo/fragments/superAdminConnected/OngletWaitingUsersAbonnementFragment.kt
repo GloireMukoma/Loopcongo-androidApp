@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 class OngletWaitingUsersAbonnementFragment : Fragment() {
 
     private lateinit var listView: ListView
+    private lateinit var txtEmpty: TextView
     private lateinit var adapter: WaitingUsersAbonnementAdapter
 
     override fun onCreateView(
@@ -27,6 +29,7 @@ class OngletWaitingUsersAbonnementFragment : Fragment() {
         val view = inflater.inflate(R.layout.onglet_waiting_users_abonnement, container, false)
 
         listView = view.findViewById(R.id.waitingUserDemandesAbonnementRecyclerView)
+        txtEmpty = view.findViewById(R.id.txtEmptyWaiting)
 
         loadPendingUsers()
 
@@ -37,6 +40,17 @@ class OngletWaitingUsersAbonnementFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 val response = ApiClient.instance.getWaitingUsersAbonnements()
+
+                if (response.isEmpty()) {
+                    // Afficher message vide
+                    txtEmpty.visibility = View.VISIBLE
+                    listView.visibility = View.GONE
+                    return@launch
+                }
+
+                // Sinon, afficher la liste
+                txtEmpty.visibility = View.GONE
+                listView.visibility = View.VISIBLE
 
                 adapter = WaitingUsersAbonnementAdapter(
                     requireActivity(),
@@ -57,6 +71,8 @@ class OngletWaitingUsersAbonnementFragment : Fragment() {
 
             } catch (e: Exception) {
                 e.printStackTrace()
+                txtEmpty.visibility = View.VISIBLE
+                txtEmpty.text = "Erreur de chargement"
             }
         }
     }
@@ -77,4 +93,3 @@ class OngletWaitingUsersAbonnementFragment : Fragment() {
         }
     }
 }
-

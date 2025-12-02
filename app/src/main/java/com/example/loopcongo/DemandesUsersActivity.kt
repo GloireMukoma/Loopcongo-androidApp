@@ -25,6 +25,9 @@ class DemandesUsersActivity : AppCompatActivity() {
     private val demandes = mutableListOf<ImmoUserDemande>()
     private lateinit var progressBar: ProgressBar
 
+    private lateinit var tvNoDemande: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demandes_users)
@@ -42,6 +45,9 @@ class DemandesUsersActivity : AppCompatActivity() {
 
         demandeListView = findViewById(R.id.demandesListView)
         progressBar = findViewById(R.id.progressBarDemandes)
+
+        tvNoDemande = findViewById(R.id.tvNoDemande)
+
 
         // 🔹 Adapter pour ListView
         demandeAdapter = ImmoUserDemandeAdapter(
@@ -66,11 +72,24 @@ class DemandesUsersActivity : AppCompatActivity() {
 
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!.demandes
+
                     demandes.clear()
                     demandes.addAll(result)
                     demandeAdapter.notifyDataSetChanged()
+
+                    // ✔Afficher / cacher le TextView selon la présence de données
+                    if (demandes.isEmpty()) {
+                        tvNoDemande.visibility = View.VISIBLE
+                        demandeListView.visibility = View.GONE
+                    } else {
+                        tvNoDemande.visibility = View.GONE
+                        demandeListView.visibility = View.VISIBLE
+                    }
+
                 } else {
-                    Toast.makeText(this@DemandesUsersActivity, "Aucune demande trouvée", Toast.LENGTH_SHORT).show()
+                    // Pas de données reçues → message par défaut
+                    tvNoDemande.visibility = View.VISIBLE
+                    demandeListView.visibility = View.GONE
                 }
             }
 
@@ -80,4 +99,5 @@ class DemandesUsersActivity : AppCompatActivity() {
             }
         })
     }
+
 }

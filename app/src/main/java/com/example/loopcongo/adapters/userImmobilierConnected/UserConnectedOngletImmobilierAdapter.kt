@@ -2,6 +2,8 @@ package com.example.loopcongo.adapters.userImmobilierConnected
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,9 +25,12 @@ class UserConnectedOngletImmobilierAdapter(
     inner class ImmoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.imageImmobilierUserConnectedOnglet)
         val description: TextView = itemView.findViewById(R.id.descImmobilierUserConnectedOnglet)
+
         val prix: TextView = itemView.findViewById(R.id.prixImmobilierUserConnectedOnglet)
         val quartier: TextView = itemView.findViewById(R.id.quartierImmobilierUserConnectedOnglet)
+
         val btnDelete: ImageView = itemView.findViewById(R.id.btnDeleteImmobilierUserConnectedOnglet)
+        val btnUpdate: ImageView = itemView.findViewById(R.id.btnUpdateImmoUserConnectedOnglet)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImmoViewHolder {
@@ -45,6 +50,12 @@ class UserConnectedOngletImmobilierAdapter(
             .load("https://loopcongo.com/${immo.file_url}")
             .placeholder(R.drawable.loading)
             .into(holder.image)
+
+        holder.btnUpdate.setOnClickListener {
+            val url = "https://loopcongo.com/immo/edit/${immo.id}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            context.startActivity(intent)
+        }
 
         // ✅ Gestion du clic sur le bouton Supprimer
         holder.btnDelete.setOnClickListener {

@@ -73,7 +73,7 @@ class VendeurListFragment : Fragment() {
             intent.putExtra("vendeurDescription", vendeur.about)
             intent.putExtra("vendeurTypeAccount", vendeur.type_account)
             intent.putExtra("vendeurAvatarImg", vendeur.file_url)
-            intent.putExtra("isCertifiedVendeur", vendeur.subscription_type)
+            intent.putExtra("vendeurSubscriptionType", vendeur.subscription_type)
             intent.putExtra("vendeurTotalArticles", vendeur.total_articles)
             intent.putExtra("vendeurTotalLikes", vendeur.total_likes)
             intent.putExtra("vendeurNbAbonner", vendeur.nb_abonner)

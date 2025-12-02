@@ -47,26 +47,34 @@ class CarouselImmobiliersHomePageAdapter(
             .centerCrop()
             .into(holder.imageImmo)
 
-        // Gestion du clic
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, DetailImmobilierActivity::class.java).apply {
-                putExtra("immoId", immo.id)
-                putExtra("userId", immo.account_id)
-                putExtra("typeImmo", immo.typeimmo)
-                putExtra("statut", immo.statut)
-                putExtra("city", immo.city)
-                putExtra("quartier", immo.quartier)
-                putExtra("prix", immo.prix)
-                putExtra("address", immo.address)
-                putExtra("description", immo.about)
-                putExtra("ImmoImage", immo.file_url)
-                putExtra("username", immo.username)
-                putExtra("userImage", immo.user_avatar)
-                putExtra("userContact", immo.contact)
+        // ✔️ Clic seulement si ce n’est pas l’annonce par défaut
+        if (immo.id != 0) {
+            holder.itemView.isClickable = true
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, DetailImmobilierActivity::class.java).apply {
+                    putExtra("immoId", immo.id)
+                    putExtra("userId", immo.account_id)
+                    putExtra("typeImmo", immo.typeimmo)
+                    putExtra("statut", immo.statut)
+                    putExtra("city", immo.city)
+                    putExtra("quartier", immo.quartier)
+                    putExtra("prix", immo.prix)
+                    putExtra("address", immo.address)
+                    putExtra("description", immo.about)
+                    putExtra("ImmoImage", immo.file_url)
+                    putExtra("username", immo.username)
+                    putExtra("userImage", immo.user_avatar)
+                    putExtra("userContact", immo.contact)
+                }
+                context.startActivity(intent)
             }
-            context.startActivity(intent)
+        } else {
+            // annonce par défaut → désactiver le clic
+            holder.itemView.isClickable = false
+            holder.itemView.setOnClickListener(null)
         }
     }
+
 
     override fun getItemCount(): Int = immobilier.size
 }

@@ -87,12 +87,12 @@ class VendeurMainFragment : Fragment() {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(requireContext())
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_person)
-                .error(R.drawable.ic_person)
+                .placeholder(R.drawable.ic_login)
+                .error(R.drawable.ic_login)
                 .circleCrop()
                 .into(avatar)
         } else {
-            avatar.setImageResource(R.drawable.ic_person)
+            avatar.setImageResource(R.drawable.ic_login)
         }
 
         // Configure le listener sur l'avatar
@@ -103,10 +103,17 @@ class VendeurMainFragment : Fragment() {
                 val account = latestUser ?: latestCustomer
 
                 val nextActivity = when (account) {
-                    is User -> when (account.type_account?.lowercase()) {
-                        "vendeur" -> ProfileUserConnectedActivity::class.java
-                        "immobilier" -> UserImmobilierConnectedActivity::class.java
-                        else -> ProfileUserConnectedActivity::class.java
+                    is User -> {
+                        if (account.id == 1) {
+                            // Redirection vers l'admin si ID = 1
+                            SuperAdminConnectedActivity::class.java
+                        } else {
+                            when (account.type_account?.lowercase()) {
+                                "vendeur" -> ProfileUserConnectedActivity::class.java
+                                "immobilier" -> UserImmobilierConnectedActivity::class.java
+                                else -> ProfileUserConnectedActivity::class.java
+                            }
+                        }
                     }
                     is Customer -> CustomerConnectedActivity::class.java
                     else -> LoginActivity::class.java

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Image de l’article -->
+        <!-- Image -->
         <ImageView
             android:id="@+id/imgImmobilierItem"
             android:layout_width="match_parent"
@@ -21,7 +21,24 @@
             android:contentDescription="Image de l’article"
             android:src="@drawable/shoes_men" />
 
-        <!-- Bloc texte superposé en bas avec fond semi-transparent -->
+        <!-- ⭐ Badge status/prix en haut à droite -->
+        <TextView
+            android:id="@+id/statusPrixImmobilierItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="status • prix $"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:background="@drawable/bg_status_prix"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp"/>
+
+        <!-- Fond dégradé + texte en bas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,18 +58,17 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
-            <!-- Prix -->
             <TextView
-                android:id="@+id/prixImmobilierItem"
+                android:id="@+id/statusImmobilierItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prix"
-                android:textStyle="bold"
+                android:text="statut"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                android:layout_marginTop="4dp" />
+                android:maxLines="2"
+                android:ellipsize="end" />
 
-            <!-- Auteur avec icône -->
+            <!-- Auteur + localisation -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,30 +93,6 @@
                     android:maxLines="1"
                     android:ellipsize="end" />
             </LinearLayout>
-
-            <!-- Date avec icône -->
-            <!-- <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="2dp">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_time"
-                    app:tint="@color/white"
-                    android:layout_marginEnd="4dp" />
-
-                <TextView
-                    android:id="@+id/date_article"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Il y a 2h"
-                    android:textColor="@color/white"
-                    android:textSize="11sp" />
-            </LinearLayout>-->
 
         </LinearLayout>
 

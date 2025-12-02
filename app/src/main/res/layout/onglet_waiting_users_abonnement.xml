@@ -1,7 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/txtEmptyWaiting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aucun abonnement en attente"
+        android:textSize="16sp"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
 
     <ListView
         android:id="@+id/waitingUserDemandesAbonnementRecyclerView"
@@ -13,3 +25,4 @@
         android:nestedScrollingEnabled="true" />
 
 </LinearLayout>
+

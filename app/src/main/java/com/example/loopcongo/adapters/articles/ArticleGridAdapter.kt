@@ -50,6 +50,7 @@ class ArticleGridAdapter(private var articles: List<Article>) :
                 putExtra("article_description", article.about)
                 putExtra("article_nbLike", article.nb_like ?: "0")
                 putExtra("article_auteur", article.user_nom)
+                putExtra("vendeurSubscriptionType", article.subscription_type)
                 putExtra("article_photo", article.file_url)
                 putExtra("user_avatar", article.user_avatar)
                 putExtra("user_contact", article.user_contact)
