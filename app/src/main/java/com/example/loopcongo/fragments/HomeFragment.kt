@@ -243,10 +243,8 @@ class HomeFragment : Fragment() {
                             intent.putExtra("vendeurCity", body.user.city)
                             intent.putExtra("vendeurDescription", body.user.about)
                             intent.putExtra("vendeurTypeAccount", body.user.type_account)
+                            intent.putExtra("vendeurSubscriptionType", body.user.subscription_type)
                             intent.putExtra("vendeurAvatarImg", body.user.file_url)
-                            intent.putExtra("isCertifiedVendeur", body.user.is_certified)
-                            intent.putExtra("vendeurTotalArticles", body.user.total_articles)
-                            intent.putExtra("vendeurTotalLikes", body.user.total_likes)
                             intent.putExtra("vendeurNbAbonner", body.user.nb_abonner)
 
                             context.startActivity(intent)

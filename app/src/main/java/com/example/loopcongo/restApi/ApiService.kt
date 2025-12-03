@@ -167,7 +167,9 @@ interface ApiService {
         @Path("userId") userId: Int
     ): Response<Unit>
 
-
+    // utiliser par l'onglet immobilier du super admin
+    @GET("admin/immobiliers")
+    suspend fun getAllImmobiliers(): ImmobilierResponse3
 
 
     // get la liste des comptes crées (onglets compte super admin)

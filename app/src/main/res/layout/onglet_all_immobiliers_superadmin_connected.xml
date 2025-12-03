@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Barre de recherche -->
+    <EditText
+        android:id="@+id/searchBarImmobiliersSuperAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:background="@drawable/edittext_bottom_border"
+        android:hint="Rechercher..."
+        android:textColorHint="#2b3144"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:textColor="#2b3144" />
+
+
+    <!-- Message vide -->
+    <TextView
+        android:id="@+id/txtEmptyImmobiliersSuperAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aucun bien trouvé"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/txtTotalImmobiliers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginLeft="10dp"
+        android:text="Total: 0" />
+
+    <!-- Liste des articles -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ongletAllImmobiliersSuperAdminConnectedRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:layout_marginHorizontal="4dp"
+        android:scrollbars="none" />
+
+    <!-- Loader centré -->
+    <ProgressBar
+        android:id="@+id/progressBarImmobiliersSuperAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

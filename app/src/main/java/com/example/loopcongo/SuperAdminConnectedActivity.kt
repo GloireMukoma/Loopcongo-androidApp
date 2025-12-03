@@ -188,7 +188,8 @@ class SuperAdminConnectedActivity : AppCompatActivity() {
             when (pos) {
                 0 -> tab.setIcon(R.drawable.ic_users)
                 1 -> tab.setIcon(R.drawable.ic_article)
-                2 -> tab.setIcon(R.drawable.ic_star)
+                2 -> tab.setIcon(R.drawable.ic_immobilier)
+                3 -> tab.setIcon(R.drawable.ic_star)
             }
         }.attach()
 

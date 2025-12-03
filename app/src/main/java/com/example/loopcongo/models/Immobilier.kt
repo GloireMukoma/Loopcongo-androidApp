@@ -30,6 +30,14 @@ data class ImmobilierResponse(
     val data: List<Immobilier>
 )
 
+// Utiliser pour afficher tout les biens immos dans l'onglet immo du superadmin
+data class ImmobilierResponse3(
+    val status: Boolean,
+    val message: String,
+    val total: Int,
+    val data: List<Immobilier>
+)
+
 data class ImmobilierResponse2(
     val status: Int,
     val city: String,
