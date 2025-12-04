@@ -2,10 +2,12 @@ package com.example.loopcongo
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -47,12 +49,35 @@ class DetailAnnonceActivity : AppCompatActivity() {
         val vendeurId = intent.getIntExtra("vendeurId", 0)
         val vendeurUsername = intent.getStringExtra("vendeurUsername")
         val vendeurContact = intent.getStringExtra("vendeurContact")
+
+        val vendeurSubscriptionType = intent.getStringExtra("vendeurSubscriptionType")
         val vendeurCity = intent.getStringExtra("vendeurCity")
         val vendeurDescription = intent.getStringExtra("vendeurDescription")
         val vendeurTypeAccount = intent.getStringExtra("vendeurTypeAccount") // vendeur ou immobilier
         val vendeurAvatarImg = intent.getStringExtra("vendeurAvatarImg")
         val vendeurIsCertified = intent.getBooleanExtra("isCertifiedVendeur", false)
         val vendeurNbAbonner = intent.getIntExtra("vendeurNbAbonner", 0)
+
+        val badgeSubscribe = findViewById<ImageView>(R.id.badge)
+        when (intent.getStringExtra("vendeurSubscriptionType")) {
+            "Premium" -> {
+                badgeSubscribe.visibility = View.VISIBLE
+                badgeSubscribe.setColorFilter(
+                    ContextCompat.getColor(this, android.R.color.holo_blue_dark),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            "Pro" -> {
+                badgeSubscribe.visibility = View.VISIBLE
+                badgeSubscribe.setColorFilter(
+                    ContextCompat.getColor(this, R.color.gray),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            else -> {
+                badgeSubscribe.visibility = View.GONE
+            }
+        }
 
         // Redirection vers le profil utilisateur qui a publié l'annonce
         val btnVoirProfil = findViewById<Button>(R.id.btnVoirProfilAnnonceDetail)
@@ -74,6 +99,7 @@ class DetailAnnonceActivity : AppCompatActivity() {
             profileIntent.putExtra("vendeurId", vendeurId)
             profileIntent.putExtra("vendeurUsername", vendeurUsername)
             profileIntent.putExtra("vendeurContact", vendeurContact)
+            profileIntent.putExtra("vendeurSubscriptionType", vendeurSubscriptionType)
             profileIntent.putExtra("vendeurCity", vendeurCity)
             profileIntent.putExtra("vendeurDescription", vendeurDescription)
             profileIntent.putExtra("vendeurTypeAccount", vendeurTypeAccount)
@@ -95,19 +121,24 @@ class DetailAnnonceActivity : AppCompatActivity() {
         val userContactText = userContact.text.toString()
         val discuterBtn = findViewById<LinearLayout>(R.id.btnWhatsappAnnonceDetail)
 
-        // Ajouter le clic pour afficher l'image fullscreen
         imageAnnonce.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.dialog_fullscreen_image, null)
             val fullImageView = dialogView.findViewById<ImageView>(R.id.fullscreenImageView)
 
-            Glide.with(this).load("https://loopcongo.com/$image").into(imageAnnonce)
+            // Charger l'image dans le ImageView du dialog
+            Glide.with(this)
+                .load("https://loopcongo.com/$image")
+                .placeholder(R.drawable.loading)
+                .into(fullImageView)
 
             builder.setView(dialogView)
             val dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE)) // fond noir
+            // Fond transparent pour l'effet overlay
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
             dialog.show()
         }
+        // Ajouter le clic pour afficher l'image fullscreen
 
         discuterBtn.setOnClickListener {
             if (userContactText.isNotEmpty()) {

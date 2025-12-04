@@ -99,7 +99,6 @@
                                 android:layout_width="17dp"
                                 android:layout_height="17dp"
                                 android:src="@drawable/ic_badge"
-                                android:layout_marginTop="1dp"
                                 android:layout_marginStart="3dp"
                                 app:tint="@android:color/holo_blue_dark"
                                 android:visibility="gone"/> <!-- Par défaut caché -->

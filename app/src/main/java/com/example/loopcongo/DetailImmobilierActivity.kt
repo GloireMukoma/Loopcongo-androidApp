@@ -2,6 +2,7 @@ package com.example.loopcongo
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -87,6 +89,28 @@ class DetailImmobilierActivity : AppCompatActivity() {
 
         userContact.text = contact
         addressImmo.text = address
+
+        val badgeSubscribe = findViewById<ImageView>(R.id.badge)
+
+        when (intent.getStringExtra("vendeurSubscriptionType")) {
+            "Premium" -> {
+                badgeSubscribe.visibility = View.VISIBLE
+                badgeSubscribe.setColorFilter(
+                    ContextCompat.getColor(this, android.R.color.holo_blue_dark),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            "Pro" -> {
+                badgeSubscribe.visibility = View.VISIBLE
+                badgeSubscribe.setColorFilter(
+                    ContextCompat.getColor(this, R.color.gray),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+            else -> {
+                badgeSubscribe.visibility = View.GONE
+            }
+        }
 
         // ✅ Charger l'image principale
         Glide.with(this)

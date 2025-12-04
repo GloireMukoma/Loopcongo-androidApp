@@ -153,6 +153,8 @@ class HomeFragment : Fragment() {
                         intent.putExtra("vendeurDescription", annonce.about)
                         intent.putExtra("vendeurTypeAccount", annonce.type_account)
                         intent.putExtra("vendeurAvatarImg", annonce.file_url)
+                        intent.putExtra("vendeurSubscriptionType", annonce.subscription_type)
+
                         intent.putExtra("isCertifiedVendeur", annonce.is_certified)
                         intent.putExtra("vendeurNbAbonner", annonce.nb_abonner)
                         startActivity(intent)

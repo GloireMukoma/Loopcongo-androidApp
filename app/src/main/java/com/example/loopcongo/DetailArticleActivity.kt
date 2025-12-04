@@ -143,7 +143,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
                 val articleLink = "https://loopcongo.com/product/detail/$id"
                 val message = "Bonjour, je suis intéressé par votre article sur LoopCongo.\n" +
-                        "LIEN DE L'ARTICLE : $articleLink"
+                        "Lien de l'article : $articleLink"
 
                 val url = "https://wa.me/$userContact?text=${Uri.encode(message)}"
 

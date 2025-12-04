@@ -60,6 +60,7 @@ class ArticleGridForOngletProfileVendeurAdapter(
             intent.putExtra("article_description", article.about)
             intent.putExtra("article_nbLike", article.nb_like ?: "0")
             intent.putExtra("article_auteur", article.user_nom)
+            intent.putExtra("vendeurSubscriptionType", article.subscription_type)
             intent.putExtra("user_contact", article.user_contact)
             intent.putExtra("article_photo", article.file_url)
             intent.putExtra("user_avatar", article.user_avatar)
