@@ -33,7 +33,7 @@ class ProfileVendeurActivity : AppCompatActivity() {
 
         // Forcer la couleur de la status bar et de la navigation bar
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
+        //window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
 
         val btnClose = findViewById<ImageView>(R.id.flecheBack)
         btnClose.setOnClickListener {

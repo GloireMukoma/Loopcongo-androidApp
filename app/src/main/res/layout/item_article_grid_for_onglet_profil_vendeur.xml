@@ -43,6 +43,21 @@
                 android:maxLines="2"
                 android:ellipsize="end" />
 
+            <!-- Étoiles -->
+            <RatingBar
+                android:id="@+id/rating_article"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:isIndicator="true"
+                android:rating="3.0"
+                android:layout_marginTop="2dp"
+                android:progressTint="@android:color/holo_blue_dark"
+                android:secondaryProgressTint="@android:color/holo_blue_dark"
+                android:backgroundTint="@android:color/holo_blue_dark" />
+
             <!-- Prix -->
             <TextView
                 android:id="@+id/prixArticleForOngletProfileVendeur"

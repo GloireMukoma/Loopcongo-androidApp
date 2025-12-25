@@ -71,6 +71,15 @@ class DetailArticleActivity : AppCompatActivity() {
 
         prix.text = "$article_prix $devise"
 
+
+        // Ouvrir la fenetre des commentaires
+        val btnCommentaires = findViewById<LinearLayout>(R.id.btnCommentaires)
+        btnCommentaires.setOnClickListener {
+            CommentaireBottomSheet(id)
+                .show(supportFragmentManager, "Commentaires")
+        }
+
+
         val badgeSubscribe = findViewById<ImageView>(R.id.badge)
 
         when (intent.getStringExtra("vendeurSubscriptionType")) {

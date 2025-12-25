@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BleuFoncePrimaryColor">
+
+    <!-- CONTENU SCROLLABLE -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,19 +124,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Icône trois points -->
-            <!--<ImageView
-            android:id="@+id/menuIconArticleDetail"
-            android:layout_width="24dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_more_"
-            android:contentDescription="Menu"
-            android:padding="4dp" darker_gray
-            app:tint="@color/secondaryColor" />-->
-
             <Button
                 android:id="@+id/btnVoirProfilDetailArticle"
                 android:layout_width="wrap_content"
@@ -146,8 +138,7 @@
                 android:fontFamily="sans-serif-medium" />
     </RelativeLayout>
 
-
-    <!-- Nom de l'article -->
+        <!-- Nom de l'article -->
         <TextView
             android:id="@+id/detailNomArticle"
             android:layout_width="match_parent"
@@ -206,34 +197,6 @@
             android:layout_marginBottom="8dp"
             android:dividerPadding="6dp" />
 
-        <!-- Prix et Likes -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <!--<TextView
-                android:id="@+id/articleDetailPrix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="180 $"
-                android:textColor="@android:color/darker_gray"
-                android:layout_marginEnd="5dp"
-                android:textStyle="bold"
-                android:textSize="16sp" />-->
-
-            <!-- Imageview-->
-
-            <!--<TextView
-                android:id="@+id/articleDetailNbLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="21 Likes"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="13sp" />-->
-        </LinearLayout>
-
         <!-- Bouton WhatsApp -->
         <LinearLayout
             android:id="@+id/btnWhatsappDetailArticle"
@@ -246,7 +209,7 @@
             android:clickable="true"
             android:focusable="true"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:padding="8dp">
 
             <ImageView
@@ -266,4 +229,38 @@
         </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <!-- BOUTON COMMENTAIRES FIXE -->
+    <LinearLayout
+        android:id="@+id/btnCommentaires"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_comment_article"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_message"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/txtCommentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="6dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</FrameLayout>

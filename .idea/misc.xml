@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_card_dark.xml" value="0.1495" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_comment_article.xml" value="0.116" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_commentaires_edit_text.xml" value="0.116" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_commentaires_item.xml" value="0.116" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_delete_icon.xml" value="0.14" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_listview_with_top_border.xml" value="0.1495" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/drawable-v24/bg_rounded_button.xml" value="0.1675" />
@@ -88,6 +91,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_tab_layout.xml" value="0.10709046454767726" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/activity_user_immobilier_connected.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/article_item.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/bottomsheet_commentaires.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/detail_article.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/dialog_fullscreen_image.xml" value="0.1" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/fragment_accueil.xml" value="0.1983695652173913" />
@@ -117,7 +121,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_all_immobiliers_superadmin_connected.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_annonce_user_connected.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_api.xml" value="0.2033514492753623" />
-        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid.xml" value="0.14" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid.xml" value="0.25" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_grid_for_onglet_profil_vendeur.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_popup_premium_user.xml" value="0.18659420289855072" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_article_superadmin_connected_onglet.xml" value="0.16576086956521738" />
@@ -134,6 +138,7 @@
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_citizen.xml" value="0.17753623188405798" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_city_immobilier.xml" value="0.18206521739130435" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_commande.xml" value="0.17798913043478262" />
+        <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_commentaire.xml" value="0.1" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_demande.xml" value="0.25" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_demande2.xml" value="0.18614130434782608" />
         <entry key="..\:/Users/Gloire/AndroidStudioProjects/Loopcongo/app/src/main/res/layout/item_fashion.xml" value="0.1983695652173913" />
