@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.loopcongo.AboutAppActivity
+import com.example.loopcongo.MesAbonnesActivity
 import com.example.loopcongo.SubscriptionActivity
 import com.example.loopcongo.R
 import com.example.loopcongo.adapters.vendeurs.OngletOptionsVendeurAdapter
@@ -42,6 +43,7 @@ class OngletOptionsFragment : Fragment() {
             SettingItem(R.drawable.ic_publish_product, "Publier un article"),
             SettingItem(R.drawable.ic_annonce_, "Publier une annonce"),
             SettingItem(R.drawable.ic_stars_, "Abonnement"),
+            SettingItem(R.drawable.ic_users, "Mes abonnés"),
             SettingItem(R.drawable.ic_person_, "A propos"),
             //SettingItem(R.drawable.ic_encontinu, "Certifier mon compte")
         )
@@ -81,6 +83,10 @@ class OngletOptionsFragment : Fragment() {
                     }
                     "Abonnement" -> {
                         val intent = Intent(requireContext(), SubscriptionActivity::class.java)
+                        startActivity(intent)
+                    }
+                    "Mes abonnés" -> {
+                        val intent = Intent(requireContext(), MesAbonnesActivity::class.java)
                         startActivity(intent)
                     }
                     "A propos" -> {

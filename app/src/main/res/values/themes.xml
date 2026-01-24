@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Loopcongo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Police globale pour tous les TextView, EditText, Button, etc. -->
+        <item name="android:fontFamily">@font/source_sans_3</item>
+        <item name="fontFamily">@font/source_sans_3</item>
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/BleuFoncePrimaryColor</item>
         <item name="colorPrimaryVariant">@color/BleuFoncePrimaryColor</item>

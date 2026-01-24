@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopcongo.adapters.CommentaireAdapter
+import com.example.loopcongo.database.AppDatabase
 import com.example.loopcongo.models.*
 import com.example.loopcongo.restApi.ApiClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,32 +86,69 @@ class CommentaireBottomSheet(
 
     private fun publierCommentaire(message: String) {
 
-        val request = PublierCommentaireRequest(
-            article_id = articleId,
-            user_id = 28, // ⚠️ À remplacer par l'utilisateur connecté
-            commentaire = message
-        )
+        viewLifecycleOwner.lifecycleScope.launch {
 
-        ApiClient.instance.publierCommentaire(request)
-            .enqueue(object : Callback<ApiCommentaireResponse> {
+            // ---- ROOM ----
+            val db = AppDatabase.getDatabase(requireContext())
 
-                override fun onResponse(
-                    call: Call<ApiCommentaireResponse>,
-                    response: Response<ApiCommentaireResponse>
-                ) {
-                    if (response.isSuccessful && response.body()?.status == true) {
-                        chargerCommentaires() // 🔄 rafraîchir la liste
+            val customerDao = db.customerDao()
+            val userDao = db.userDao()
+
+            val customer = customerDao.getCustomer()
+            val user = userDao.getUser()
+
+            // ❌ Aucun utilisateur connecté
+            if (customer == null && user == null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Veuillez vous connecter pour commenter",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@launch
+            }
+
+            // ✅ Détermination de l'utilisateur + type
+            val userId: Int
+            val userType: String
+
+            if (customer != null) {
+                userId = customer.id
+                userType = "customer"
+            } else {
+                userId = user!!.id
+                userType = user.type_account ?: "vendeur"
+            }
+
+            val request = PublierCommentaireRequest(
+                article_id = articleId,
+                user_id = userId,
+                user_type = userType,
+                commentaire = message
+            )
+
+            ApiClient.instance.publierCommentaire(request)
+                .enqueue(object : Callback<ApiCommentaireResponse> {
+
+                    override fun onResponse(
+                        call: Call<ApiCommentaireResponse>,
+                        response: Response<ApiCommentaireResponse>
+                    ) {
+                        if (response.isSuccessful && response.body()?.status == true) {
+                            chargerCommentaires()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<ApiCommentaireResponse>, t: Throwable) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Impossible d'envoyer le commentaire",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+                    override fun onFailure(call: Call<ApiCommentaireResponse>, t: Throwable) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Impossible d'envoyer le commentaire",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+        }
     }
+
+
 
 }

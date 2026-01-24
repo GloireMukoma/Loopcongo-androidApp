@@ -111,7 +111,6 @@ class StatutUserProfileAdapter(private val vendeurList: List<User>) :
             holder.badgeText.visibility = View.GONE
         }*/
 
-
     }
 
 }

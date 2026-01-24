@@ -39,19 +39,17 @@
                         android:layout_weight="1" />
 
                     <!-- Action Button 2 -->
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSubscribeProfileVendeur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp"
-                        android:minWidth="0dp"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="9dp"
                         android:text="S'abonner"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
-                        android:background="@drawable/rounded_button_bg"
-                        android:gravity="center" />
+                        android:paddingHorizontal="13dp"
+                        android:paddingVertical="10dp"
+                        app:cornerRadius="25dp"
+                        app:backgroundTint="@android:color/holo_blue_dark" />
                 </LinearLayout>
 
                 <!-- Profile info -->

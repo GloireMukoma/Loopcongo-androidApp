@@ -2,13 +2,19 @@ package com.example.loopcongo.models
 
 data class Commentaire(
     val id: Int,
+    val commentaire: String,
+    val time_ago: String?,
+    val created_at: String?,
+
     val article_id: Int,
-    val user_id: Int,
+
     val username: String?, // si l’API renvoie
     val user_avatar: String?,
-    val commentaire: String,
-    val created_at: String?,
-    val time_ago: String?
+    val user_type: String?,
+    val user_id: Int,
+    val contact: String?,
+    val city: String?,
+    val about: String?,
 )
 
 data class CommentaireResponse(
@@ -25,8 +31,10 @@ data class ApiCommentaireResponse(
 data class PublierCommentaireRequest(
     val article_id: Int,
     val user_id: Int,
+    val user_type: String, // "customer" | "vendeur"
     val commentaire: String
 )
+
 
 
 

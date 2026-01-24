@@ -71,7 +71,6 @@ class DetailArticleActivity : AppCompatActivity() {
 
         prix.text = "$article_prix $devise"
 
-
         // Ouvrir la fenetre des commentaires
         val btnCommentaires = findViewById<LinearLayout>(R.id.btnCommentaires)
         btnCommentaires.setOnClickListener {

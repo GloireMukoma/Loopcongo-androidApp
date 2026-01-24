@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/BleuFoncePrimaryColor">
+    android:background="@color/white">
 
     <!-- TopBar personnalisée -->
     <LinearLayout
@@ -114,14 +114,14 @@
 
     </LinearLayout>
 
-    <!-- RecyclerView des biens -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/immobiliersRecyclerView"
+    <ListView
+        android:id="@+id/immobiliersListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginHorizontal="5dp"
-        android:paddingTop="8dp"/>
+        android:layout_height="match_parent"
+        android:divider="@color/low_white"
+        android:layout_marginHorizontal="7dp"
+        android:dividerHeight="1dp"/>
+
 
     <!-- ProgressBar -->
     <ProgressBar

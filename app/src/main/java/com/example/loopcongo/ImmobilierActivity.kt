@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.loopcongo.adapters.articles.CarouselUserAnnonceAdapter
+import com.example.loopcongo.adapters.immobiliers.ImmobilierAdapter
 import com.example.loopcongo.adapters.immobiliers.ImmobilierGridAdapter
 import com.example.loopcongo.database.*
 import com.example.loopcongo.models.AnnonceResponse
@@ -35,19 +38,16 @@ class ImmobilierActivity : AppCompatActivity() {
     private lateinit var userDao: UserDao
     private lateinit var customerDao: CustomerDao
 
-    private lateinit var viewPager2: ViewPager2
-    private val sliderHandler = Handler(Looper.getMainLooper())
-
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var listView: ListView
     private lateinit var progressBar: ProgressBar
-    private lateinit var adapter: ImmobilierGridAdapter
+    private lateinit var adapter: ImmobilierAdapter
     private lateinit var searchLayout: LinearLayout
     private lateinit var searchImmobilierEditText: EditText
-
     private lateinit var cityImmobiliers: TextView
 
+    private val fullList: MutableList<Immobilier> = mutableListOf()   // API
+    private val displayList: MutableList<Immobilier> = mutableListOf() // UI
 
-    private var fullList: List<Immobilier> = listOf()
     private lateinit var cityName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,61 +55,64 @@ class ImmobilierActivity : AppCompatActivity() {
         setContentView(R.layout.activity_immobilier)
         supportActionBar?.hide()
 
-        // Couleur de la status bar (en haut)
         window.statusBarColor = ContextCompat.getColor(this, R.color.BleuFoncePrimaryColor)
-        // Couleur de la navigation bar (en bas)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.BleuClairPrimaryColor)
 
         val btnBack = findViewById<ImageView>(R.id.btnBack)
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // ferme l'activité actuelle pour ne pas revenir avec le bouton "Retour"
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
-        // Instance de la BD Room
-        val db = AppDatabase.getDatabase(this@ImmobilierActivity)
+        // Room
+        val db = AppDatabase.getDatabase(this)
         userDao = db.userDao()
         customerDao = db.customerDao()
 
-        // Récupère l'ImageView de l'avatar
         val avatarImgUserConnected = findViewById<ImageView>(R.id.avatarImgUserConnected)
-
-        // Met à jour l'avatar et configure le clic
         lifecycleScope.launch {
             updateAvatarAndListener(avatarImgUserConnected)
         }
 
-        // 🔹 Titre de la barre d'action
         cityName = intent.getStringExtra("cityName") ?: "Lubumbashi"
-        //title = "Biens à $cityName"
-
         cityImmobiliers = findViewById(R.id.cityImmobiliers)
         cityImmobiliers.text = "Immobiliers à $cityName"
 
-        recyclerView = findViewById(R.id.immobiliersRecyclerView)
         progressBar = findViewById(R.id.progressBarImmo)
         searchImmobilierEditText = findViewById(R.id.searchImmobilierEditText)
+        //searchLayout = findViewById(R.id.searchLayout)
 
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        adapter = ImmobilierGridAdapter(emptyList())
-        recyclerView.adapter = adapter
+        // ✅ ListView + ArrayAdapter
+        listView = findViewById(R.id.immobiliersListView)
 
+        adapter = ImmobilierAdapter(this, displayList)
+        listView.adapter = adapter
 
-        // 🔹 Récupération des biens depuis l'API
+        // 🔹 API
         fetchImmobiliersByCity(cityName)
 
-        // 🔹 Filtrage en temps réel par quartier
+        // 🔹 Recherche temps réel
         searchImmobilierEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
                 val query = s.toString().trim().lowercase()
-                val filteredList = fullList.filter { it.quartier.lowercase().contains(query) }
-                adapter = ImmobilierGridAdapter(filteredList)
-                recyclerView.adapter = adapter
+
+                val filtered = if (query.isEmpty()) {
+                    fullList
+                } else {
+                    fullList.filter {
+                        it.quartier.lowercase().contains(query)
+                    }
+                }
+
+                displayList.clear()
+                displayList.addAll(filtered)
+                adapter.notifyDataSetChanged()
             }
         })
+
     }
 
     private fun fetchImmobiliersByCity(city: String) {
@@ -117,6 +120,7 @@ class ImmobilierActivity : AppCompatActivity() {
 
         ApiClient.instance.getImmobiliersByCity(city)
             .enqueue(object : Callback<ImmobilierResponse2> {
+
                 override fun onResponse(
                     call: Call<ImmobilierResponse2>,
                     response: Response<ImmobilierResponse2>
@@ -124,18 +128,24 @@ class ImmobilierActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
 
                     if (response.isSuccessful && response.body() != null) {
-                        fullList = response.body()!!.data
 
-                        if (fullList.isNotEmpty()) {
-                            adapter = ImmobilierGridAdapter(fullList)
-                            recyclerView.adapter = adapter
-                        } else {
+                        fullList.clear()
+                        fullList.addAll(response.body()!!.data)
+
+                        // ✅ Copier vers la liste affichée
+                        displayList.clear()
+                        displayList.addAll(fullList)
+
+                        adapter.notifyDataSetChanged()
+
+                        if (fullList.isEmpty()) {
                             Toast.makeText(
                                 this@ImmobilierActivity,
                                 "Aucun bien trouvé pour ${response.body()!!.city}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                     } else {
                         Toast.makeText(
                             this@ImmobilierActivity,
@@ -156,13 +166,11 @@ class ImmobilierActivity : AppCompatActivity() {
             })
     }
 
-    // 🔹 Menu de la TopBar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_immobilier, menu)
         return true
     }
 
-    // 🔹 Action sur la loupe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_search -> {
@@ -173,6 +181,7 @@ class ImmobilierActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
     private suspend fun updateAvatarAndListener(avatar: ImageView) {
         // Récupère les comptes connectés

@@ -79,5 +79,12 @@ data class UserStatsResponse(
     val is_certified: String?
 )
 
+data class ApiResponseMesAbonnes(
+    val status: Boolean,
+    val total: Int,
+    val abonnes: List<User>
+)
+
+
 
 

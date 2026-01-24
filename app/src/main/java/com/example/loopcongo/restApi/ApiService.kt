@@ -7,12 +7,17 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @GET("user/mes-abonnes/{id}")
+    fun getMesAbonnes(
+        @Path("id") userId: Int
+    ): Call<ApiResponseMesAbonnes>
+
     @GET("articles/comments/get/{id}")
     fun getCommentaires(
         @Path("id") articleId: Int
     ): Call<CommentaireResponse>
 
-    @POST("commentaires")
+    @POST("commentaires/register")
     fun publierCommentaire(
         @Body request: PublierCommentaireRequest
     ): Call<ApiCommentaireResponse>
