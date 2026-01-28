@@ -75,9 +75,9 @@ class CommentaireAdapter(
                 }
 
                 "customer" -> Intent(context, ProfileCustomerActivity::class.java).apply {
-                    putExtra("userId", item.user_id)
-                    putExtra("username", item.username)
-                    putExtra("avatar", item.user_avatar)
+                    putExtra("customerId", item.user_id)
+                    //putExtra("username", item.username)
+                    //putExtra("avatar", item.user_avatar)
                 }
 
                 else -> return@setOnClickListener
