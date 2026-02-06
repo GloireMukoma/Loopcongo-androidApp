@@ -66,6 +66,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="15dp">
 
+                <!-- Avatar -->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgCustomerAvatar"
                     android:layout_width="64dp"
@@ -77,15 +78,50 @@
                     app:strokeWidth="1dp"
                     app:shapeAppearanceOverlay="@style/CircleImageView" />
 
-                <TextView
-                    android:id="@+id/txtCustomerName"
+                <!-- Infos utilisateur -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nom d'utilisateur"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:orientation="vertical">
+
+                    <!-- Nom -->
+                    <TextView
+                        android:id="@+id/txtCustomerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chargement..."
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"/>
+
+                    <!-- Téléphone + icône appel -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="3dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_phone"
+                            app:tint="@color/gray"/>
+
+                        <TextView
+                            android:id="@+id/txtCustomerContact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="..."
+                            android:textSize="13sp"
+                            android:layout_marginStart="8dp"
+                            android:textColor="@color/low_white"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
+
 
             <!-- Ville -->
             <LinearLayout
@@ -106,14 +142,14 @@
                     android:id="@+id/txtCustomerCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lubumbashi"
-                    android:textSize="16sp"
+                    android:text="..."
+                    android:textSize="15sp"
                     android:layout_marginStart="8dp"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
             <!-- Contact -->
-            <LinearLayout
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -131,19 +167,19 @@
                     android:id="@+id/txtCustomerContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+243 900 000 000"
-                    android:textSize="16sp"
+                    android:text="..."
+                    android:textSize="15sp"
                     android:layout_marginStart="8dp"
                     android:textColor="@color/white"/>
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!-- About -->
             <TextView
                 android:id="@+id/txtCustomerAbout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="À propos de l'utilisateur..."
-                android:textSize="16sp"
+                android:text="..."
+                android:textSize="14sp"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/low_white"/>
@@ -160,17 +196,17 @@
 
                 <Button
                     android:id="@+id/btnMessage"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Message"
                     android:textColor="@color/white"
-                    android:backgroundTint="@android:color/holo_orange_light"
+                    android:backgroundTint="@android:color/holo_blue_dark"
                     android:drawableStart="@drawable/ic_message"
                     android:padding="12dp"
                     android:layout_marginEnd="8dp"/>
 
-                <Button
+                <!--<Button
                     android:id="@+id/btnFollow"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -180,7 +216,7 @@
                     android:backgroundTint="@android:color/holo_blue_dark"
                     android:drawableStart="@drawable/ic_stars"
                     android:padding="12dp"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_marginStart="8dp"/>-->
             </LinearLayout>
 
         </LinearLayout>

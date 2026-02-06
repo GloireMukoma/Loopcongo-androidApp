@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/BleuFoncePrimaryColor">
+
+    <!-- ===== HEADER ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_close"
+            app:tint="@android:color/white"/>
+    </LinearLayout>
+
+    <!-- ===== CONTENU SCROLLABLE ===== -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Titre -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crée ton serveur"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ton serveur est l'endroit où tu retrouves tes amis.\nCrée le tien et lance une discussion."
+                android:textColor="#B5BAC1"
+                android:textSize="14sp"
+                android:gravity="center"/>
+
+            <!-- Créer le mien -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/BleuFonce2PrimaryColor"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_user"
+                        android:layout_marginEnd="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Créer le mien"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sous-titre -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Commencer à partir d'un modèle"
+                android:textColor="#B5BAC1"
+                android:textSize="14sp"/>
+
+            <!-- Liste modèles -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/BleuFonce2PrimaryColor"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <ListView
+                    android:id="@+id/serverCategoriesListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="#4F4F4F"
+                    android:layout_marginHorizontal="18dp"
+                    android:dividerHeight="0.3dp"
+                    android:paddingTop="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Invitation -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Tu as déjà une invitation ?"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== BOUTON BAS ===== -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:text="Rejoindre un serveur"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#5865F2"/>
+
+</LinearLayout>

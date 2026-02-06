@@ -19,6 +19,15 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
+            android:name=".GetServersListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateServerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ServeurActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileCustomerActivity"
             android:exported="false" />
         <activity

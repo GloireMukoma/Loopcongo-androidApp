@@ -127,13 +127,19 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                R.id.bNavImmo -> loadFragment(HomeImmobilierFragment())
-                R.id.bNavUsers -> loadFragment(VendeurMainFragment())
-                /*R.id.bNavCitizens -> {
-                     val intent = Intent(this, PrestataireActivity::class.java)
-                     startActivity(intent)
-                     true
-                 }*/
+                R.id.bNavImmo -> //loadFragment(HomeImmobilierFragment())
+                {
+                    val intent = Intent(this, CreateServerActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.bNavUsers -> //loadFragment(VendeurMainFragment())
+                {
+                    val intent = Intent(this, GetServersListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
             }
             true
         }

@@ -7,6 +7,12 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @GET("servers/get/all")
+    fun getServers(): Call<List<Server>>
+
+    @GET("servers/categories")
+    fun getServerCategories(): Call<List<ServerCategorie>>
+
     @GET("customer/info/get/{id}")
     fun getCustomerInfo(
         @Path("id") customerId: Int
