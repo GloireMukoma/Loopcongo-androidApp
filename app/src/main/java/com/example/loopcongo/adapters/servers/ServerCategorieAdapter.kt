@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.loopcongo.R
 import com.example.loopcongo.models.ServerCategorie
 
@@ -26,17 +27,11 @@ class ServerCategorieAdapter(
         val categorie = categories[position]
         txtName.text = categorie.name
 
-        val iconRes = context.resources.getIdentifier(
-            categorie.icon,
-            "drawable",
-            context.packageName
-        )
-
-        if (iconRes != 0) {
-            imgIcon.setImageResource(iconRes)
-        } else {
-            imgIcon.setImageResource(R.drawable.ic_user) // icône par défaut
-        }
+        Glide.with(context)
+            .load(categorie.icon)
+            .placeholder(R.drawable.loading)
+            .circleCrop()
+            .into(imgIcon)
 
         return view
     }

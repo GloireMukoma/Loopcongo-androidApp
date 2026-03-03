@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
         // Icon (etoile) d'abonnement
         val iconSubscription = view.findViewById<ImageView>(R.id.iconSubscription)
         iconSubscription.setOnClickListener {
-            val intent = Intent(requireContext(), SubscriptionActivity::class.java)
+            val intent = Intent(requireContext(), ServeurActivity::class.java)
             startActivity(intent)
         }
 

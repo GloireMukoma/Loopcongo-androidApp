@@ -48,39 +48,13 @@
         android:orientation="horizontal">
 
         <!-- ===== COLONNE SERVEURS ===== -->
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/serversRecyclerView"
             android:layout_width="72dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:paddingTop="10dp"
-            android:background="@color/BleuFoncePrimaryColor">
+            android:background="@color/BleuFoncePrimaryColor"
+            android:paddingTop="10dp"/>
 
-            <ImageView
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:src="@drawable/ic_message"
-                app:tint="@android:color/white"
-                android:background="@drawable/bg_circle"
-                android:padding="10dp"/>
-
-            <ImageView
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/ic_user"
-                android:background="@drawable/bg_circle"
-                android:scaleType="centerCrop"/>
-
-            <ImageView
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/ic_stars"
-                app:tint="@android:color/white"
-                android:background="@drawable/bg_circle"
-                android:padding="12dp"/>
-        </LinearLayout>
 
         <!-- ===== ZONE SERVEUR ===== -->
         <LinearLayout
@@ -92,14 +66,16 @@
 
             <!-- Header -->
             <TextView
+                android:id="@+id/serverName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Async - Community | Programmation"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/nombreNombreServeur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13 638 membres · Communauté"
@@ -107,102 +83,44 @@
                 android:textSize="12sp"
                 android:layout_marginTop="4dp"/>
 
-            <!-- Recherche -->
-            <EditText
+            <View
+                android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="12dp"
-                android:hint="Rechercher"
-                android:textSize="14dp"
-                android:textColor="@android:color/white"
-                android:background="@drawable/search_bg"
-                android:paddingStart="12dp"/>
+                android:layout_height="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:background="#2b3144" />
 
-            <!-- Catégorie -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⚙ Système"
+                android:text="Discussion"
                 android:textColor="#B5BAC1"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:textSize="17sp"
+                android:layout_marginTop="2dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Conteneur messages -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serverDiscussionMsgRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📢 annonces"
+                android:padding="2dp"
+                android:clipToPadding="false"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:text="Entrer dans la discussion"
+                android:textAllCaps="false"
+                android:textSize="15sp"
                 android:textColor="@android:color/white"
-                android:paddingVertical="8dp"/>
+                android:backgroundTint="#5865F2"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚙ système"
-                android:textColor="@android:color/white"
-                android:paddingVertical="8dp"/>
 
-            <!-- Catégorie -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📄 Discord"
-                android:textColor="#B5BAC1"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# général"
-                android:textColor="@android:color/white"
-                android:paddingVertical="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# commandes"
-                android:textColor="@android:color/white"
-                android:paddingVertical="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# 😂 memes-dev"
-                android:textColor="@android:color/white"
-                android:background="@drawable/bg_commentaires_item"
-                android:padding="10dp"/>
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- ===== BOTTOM NAV ===== -->
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="#2B2D31">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="Accueil"
-            android:textColor="@android:color/white"
-            android:gravity="center"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="Notifications"
-            android:textColor="#B5BAC1"
-            android:gravity="center"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="Toi"
-            android:textColor="#B5BAC1"
-            android:gravity="center"/>
-    </LinearLayout>-->
 
 </LinearLayout>

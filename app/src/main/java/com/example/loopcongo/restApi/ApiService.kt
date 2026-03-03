@@ -7,6 +7,17 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @GET("user-servers/{id}/{type}")
+    fun getUserServers(
+        @Path("id") userId: Int,
+        @Path("type") userType: String
+    ): Call<ServerResponse>
+
+    @GET("server/{serverId}/messages/get")
+    fun getServerMessages(
+        @Path("serverId") serverId: Int
+    ): Call<List<ServerMessage>>
+
     @GET("servers/get/all")
     fun getServers(): Call<List<Server>>
 

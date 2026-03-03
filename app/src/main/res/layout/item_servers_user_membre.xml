@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingVertical="8dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!-- Image serveur -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgServer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="4dp"
+            android:src="@drawable/loading"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            app:strokeColor="@color/secondaryColor"
+            app:strokeWidth="2dp" />
+
+        <!-- Badge notification (optionnel) -->
+        <View
+            android:id="@+id/notificationBadge"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="end|top"
+            android:background="@drawable/bg_badge_red"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <!-- Nom serveur -->
+    <TextView
+        android:id="@+id/txtServerName"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Nom"
+        android:textColor="@android:color/white"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginTop="2dp"/>
+
+</LinearLayout>

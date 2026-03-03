@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#4F4F4F"
-            android:layout_marginHorizontal="18dp"
-            android:dividerHeight="0.5dp"
+            android:layout_marginHorizontal="4dp"
+            android:dividerHeight="0.8dp"
             android:paddingTop="10dp"/>
 
     </androidx.cardview.widget.CardView>
