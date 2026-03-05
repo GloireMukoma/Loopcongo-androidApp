@@ -8,6 +8,11 @@ class Server (
     val membres_count: Int
 )
 
+data class BasicResponse(
+    val status: Boolean,
+    val message: String
+)
+
 data class ServerResponse(
     val status: Int,
     val data: List<Server>

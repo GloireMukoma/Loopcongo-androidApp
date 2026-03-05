@@ -28,10 +28,12 @@ class ListServersAdapter(
 
         val txtName = view.findViewById<TextView>(R.id.txtServerName)
         val txtNbMembres = view.findViewById<TextView>(R.id.txtNbMembres)
+
+        val txtAbout = view.findViewById<TextView>(R.id.txtAbout)
         val imgServer = view.findViewById<ImageView>(R.id.imgServer)
 
         txtName.text = server.name
-        //txtSubs.text = "${server.subscribers_count} abonnés"
+        //txtAbout.text = server.
         txtNbMembres.text = server.membres_count.toString()
 
         Glide.with(context)

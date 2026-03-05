@@ -32,6 +32,21 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="12dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Icon menu -->
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="13dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_more"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            app:tint="@color/gray"/>
     </LinearLayout>
 
     <!-- Conteneur messages -->
