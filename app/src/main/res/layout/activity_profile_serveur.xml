@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BleuClairPrimaryColor"
+    tools:context=".ProfileServeurActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/BleuFoncePrimaryColor"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:id="@+id/statsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="À Propos du serveur"
+                android:textColor="#D0D0D0"
+                android:layout_marginStart="12dp"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <!-- Carte du serveur -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/BleuFonce2PrimaryColor"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Avatar et infos principales -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgProfileServeur"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/user_profile"
+                        android:scaleType="centerCrop"
+                        app:strokeColor="@android:color/holo_orange_light"
+                        app:strokeWidth="1dp"
+                        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                    <!-- Infos serveur -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <!-- Nom du serveur -->
+                        <TextView
+                            android:id="@+id/txtProfileServeurName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nom du serveur"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
+
+                        <!-- Catégorie avec icône -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/ic_category"
+                                app:tint="@color/gray" />
+
+                            <TextView
+                                android:id="@+id/txtProfileServeurCategorie"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Catégorie"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray"
+                                android:layout_marginStart="6dp" />
+                        </LinearLayout>
+
+                        <!-- Nombre de membres avec icône -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/ic_server_decouvrir"
+                                app:tint="@android:color/holo_blue_bright" />
+
+                            <TextView
+                                android:id="@+id/txtProfileServeurAuteur"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 membres"
+                                android:textSize="13sp"
+                                android:textColor="@android:color/holo_blue_bright"
+                                android:layout_marginStart="6dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Description / About -->
+                <TextView
+                    android:id="@+id/txtAboutProfileServeur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description du serveur"
+                    android:textSize="14sp"
+                    android:textColor="@color/low_white"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Bouton rejoindre / message -->
+                <Button
+                    android:id="@+id/btnRejoindreServeur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rejoindre le serveur"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:drawableStart="@drawable/ic_message"
+                    android:padding="12dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

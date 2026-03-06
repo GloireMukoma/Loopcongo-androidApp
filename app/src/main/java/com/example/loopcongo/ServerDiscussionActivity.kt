@@ -22,6 +22,8 @@ import retrofit2.Response
 
 class ServerDiscussionActivity : AppCompatActivity() {
 
+    private var isMember = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_server_discussion)
@@ -114,16 +116,31 @@ class ServerDiscussionActivity : AppCompatActivity() {
                         response: Response<BasicResponse>
                     ) {
 
-                        if (response.isSuccessful) {
-                            Toast.makeText(
-                                this@ServerDiscussionActivity,
-                                "Serveur rejoint",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        if (response.isSuccessful && response.body() != null) {
+
+                            val apiResponse = response.body()!!
+
+                            if (apiResponse.status) {
+
+                                Toast.makeText(
+                                    this@ServerDiscussionActivity,
+                                    "Serveur rejoint avec succès",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            } else {
+
+                                Toast.makeText(
+                                    this@ServerDiscussionActivity,
+                                    apiResponse.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
                         Toast.makeText(
                             this@ServerDiscussionActivity,
                             "Erreur connexion",

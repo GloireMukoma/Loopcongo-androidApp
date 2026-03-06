@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Loopcongo"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileServeurActivity"
+            android:exported="false" />
+        <activity
             android:name=".ServerDiscussionActivity"
             android:exported="false" />
         <activity

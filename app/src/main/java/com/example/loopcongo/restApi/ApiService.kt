@@ -8,6 +8,14 @@ import retrofit2.http.*
 interface ApiService {
 
     @FormUrlEncoded
+    @POST("checkServerMembership")
+    fun checkServerMembership(
+        @Field("server_id") serverId: Int,
+        @Field("user_id") userId: Int,
+        @Field("user_type") userType: String
+    ): Call<BasicResponse>
+
+    @FormUrlEncoded
     @POST("join-server")
     fun joinServer(
         @Field("server_id") serverId: Int,
